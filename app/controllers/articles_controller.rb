@@ -3,6 +3,6 @@ class ArticlesController < ActionController::Base
     @article = Article.new
   end
 
-  def
+  def show
   end
 end
