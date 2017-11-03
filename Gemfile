@@ -17,6 +17,8 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
