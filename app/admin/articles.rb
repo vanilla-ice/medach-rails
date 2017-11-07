@@ -2,7 +2,7 @@ ActiveAdmin.register Article do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at
+permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list
 #
 # or
 #
@@ -49,6 +49,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     column :redaction
     column :infographic
     column :created_at
+    actions
   end
 
   form do |f|
@@ -56,6 +57,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :title, label: "Заголовок"
       f.input :body
       f.input :image
+      f.input :tag_list
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
       f.input :infographic, label: "Инфографика"
