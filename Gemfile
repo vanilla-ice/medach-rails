@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.4.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -19,6 +20,7 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'acts-as-taggable-on', '5.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
