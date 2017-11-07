@@ -55,7 +55,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
   form do |f|
     f.inputs do
       f.input :title, label: "Заголовок"
-      f.input :body
+      f.input :body, as: :trumbowyg
       f.input :image
       f.input :tag_list
       f.input :author, label: "Автор"
