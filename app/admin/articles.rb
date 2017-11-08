@@ -29,7 +29,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       row :title
       row :body
       row :image do |ad|
-        image_tag ad.image.url
+        image_tag(ad.image.url) if ad.image&.url
       end
       row :author
       row :redaction
