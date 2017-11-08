@@ -45,6 +45,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     end
     column :title
     column :body
+    column :tag_list
     column :author
     column :redaction
     column :infographic
