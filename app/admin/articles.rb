@@ -31,6 +31,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       row :image do |ad|
         image_tag(ad.image.url) if ad.image&.url
       end
+      row :tag_list
       row :author
       row :redaction
       row :infographic
@@ -58,7 +59,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :title, label: "Заголовок"
       f.input :body, as: :trumbowyg
       f.input :image
-      f.input :tag_list
+      f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
       f.input :infographic, label: "Инфографика"

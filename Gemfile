@@ -21,10 +21,12 @@ gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'devise'
 gem 'acts-as-taggable-on', '5.0.0'
+gem 'pry-rails', :group => :development
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
+gem 'active_model_serializers', '~> 0.10.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
