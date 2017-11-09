@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   namespace :api do
     resources :articles
+    get "/articles/by_tag/:tag_name" => "articles#get_by_tag", :as => :articles_by_tag
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
