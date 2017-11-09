@@ -12,12 +12,11 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def get_by_tag
-    @tag = ActsAsTaggableOn::Tag.find_by(name: params[:tag_name])
-    if @tag
-      @artiles = Article.tagged_with(@tag.name)
+      @articles = Article.tagged_with(params[:tag_name]) 
+    if @articles.any?
       render json: @articles
     else
-      # render :json, message: "ERROR"
+      render :json => {:message => "TAG NAME NOT FOUND"} 
     end
   end
 
