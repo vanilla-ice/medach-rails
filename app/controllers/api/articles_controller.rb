@@ -11,13 +11,18 @@ class Api::ArticlesController < ActionController::Base
     render json: @article
   end
 
-  def get_by_tag
-      @articles = Article.tagged_with(params[:tag_name]) 
+  def by_tag
+      @articles = Article.tagged_with(params[:tag_name])
     if @articles.any?
       render json: @articles
     else
-      render :json => {:message => "TAG NAME NOT FOUND"} 
+      render :json => {:message => "TAG NAME NOT FOUND"}
     end
+  end
+
+  def all_tags
+    @all_tags = ActsAsTaggableOn::Tag.all
+    render json: @all_tags
   end
 
 end
