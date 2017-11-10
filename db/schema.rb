@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109153429) do
+ActiveRecord::Schema.define(version: 20171110123322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20171109153429) do
     t.string "author"
     t.string "infographic"
     t.string "redaction"
+    t.datetime "publish_on"
+    t.index ["publish_on"], name: "index_articles_on_publish_on"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

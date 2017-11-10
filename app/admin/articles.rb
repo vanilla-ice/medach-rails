@@ -2,28 +2,11 @@ ActiveAdmin.register Article do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list
+permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on
 #
 # or
 #
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
-  # show do |article|
-  #   attributes_table do
-  #     row :title
-  #     row :body
-  #     row :preview_image do |a|
-  #       image_tag a.preview_image
-  #     end
-  #     row :author
-  #     row :redaction
-  #     row :infographic
-  #     row :created_at
-  #   end
-  # end
+
   show do
     attributes_table do
       row :title
@@ -36,6 +19,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       row :redaction
       row :infographic
       row :created_at
+      row :publish_on
     end
     active_admin_comments
   end
@@ -51,10 +35,12 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     column :redaction
     column :infographic
     column :created_at
+    column :publish_on
     actions
   end
 
   form do |f|
+    f.object.publish_on = Time.zone.now
     f.inputs do
       f.input :title, label: "Заголовок"
       f.input :body, as: :trumbowyg
@@ -64,6 +50,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :redaction, label: "Редакция"
       f.input :infographic, label: "Инфографика"
       f.input :created_at
+      f.input :publish_on, label: "отложенный постинг"
     end
     f.actions
   end
