@@ -1,7 +1,7 @@
 class Api::ArticlesController < ActionController::Base
   respond_to  :json
   def index
-    @articles = Article.all
+    @articles = Article.published
     render json: @articles
   end
 
