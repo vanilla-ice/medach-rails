@@ -25,4 +25,9 @@ class Api::ArticlesController < ActionController::Base
     render json: @all_tags
   end
 
+  def search
+    @articles = Article.search(params[:q])
+    render json: @articles
+  end
+
 end
