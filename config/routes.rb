@@ -5,9 +5,8 @@ Rails.application.routes.draw do
     resources :articles do
       collection do
         get 'all_tags'
-      end
-      member do
         get 'by_tag/:tag_name', action: :by_tag, as: :by_tag
+        get 'search'
       end
     end
   end
