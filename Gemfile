@@ -23,6 +23,7 @@ gem 'devise'
 gem 'acts-as-taggable-on', '5.0.0'
 gem 'pry-rails', :group => :development
 gem 'pg_search', '2.1.1'
+gem 'rails_12factor'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
