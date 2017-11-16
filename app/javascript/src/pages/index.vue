@@ -13,21 +13,15 @@
 <script>
 import moment from 'moment'
 
-import HeaderComponent from '~/components/Header.vue'
-import DataComponent from '~/components/Data.vue'
-import BigFotosComponent from '~/components/BigFotos.vue'
-import MinFotosComponent from '~/components/MinFotos.vue'
+import HeaderComponent from '../components/Header.vue'
+import DataComponent from '../components/Data.vue'
+import BigFotosComponent from '../components/BigFotos.vue'
+import MinFotosComponent from '../components/MinFotos.vue'
 
 import { mapGetters } from 'vuex'
-import { db } from '~/db'
-const $posts = db.ref('posts')
 moment.locale('ru')
 
 export default {
-  fetch ({ store }) {
-    store.dispatch('setPostsRef', $posts.orderByChild('sortDate').limitToLast(50))
-  },
-
   data () {
     return {
     }
