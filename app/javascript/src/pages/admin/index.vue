@@ -1,13 +1,13 @@
 <template lang="pug" >
   .inner
     .posts
-      nuxt-link.post(to="admin/post/new")
+      router-link.post(to="admin/post/new")
         .add-new(v-html="require('~/static/images/plus.svg')")
 
       .post(v-for="(post, index) in posts")
         .opacity
           .buttons
-            nuxt-link.button(:to="'admin/post/' + post.url") Редактировать
+            router-link.button(:to="'admin/post/' + post.url") Редактировать
             .button(@click="removePost(post['.key'])") Удалить
         .img
         .name

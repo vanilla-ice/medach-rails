@@ -11,14 +11,12 @@
 </template>
 
 <script>
-import HeaderComponent from '~/components/Header.vue'
-import DescColumn from '~/components/DescColumn.vue'
-import InfoColumn from '~/components/InfoColumn.vue'
-import descColumnBottom from '~/components/DescColumnBottom.vue'
+import HeaderComponent from '../components/Header.vue'
+import DescColumn from '../components/DescColumn.vue'
+import InfoColumn from '../components/InfoColumn.vue'
+import descColumnBottom from '../components/DescColumnBottom.vue'
 
 import { mapGetters } from 'vuex'
-import { db } from '~/db'
-const $posts = db.ref('posts')
 
 export default {
 
@@ -28,15 +26,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts']),
-
-    activePost () {
-      return this.posts[0]
-    }
+    ...mapGetters(['activePost']),
   },
 
   created () {
-    this.$store.dispatch('setPostsRef', $posts.orderByChild('url').equalTo(this.$route.params.id))
+    this.$store.commit('getActivePost', {id: this.$route.params.id})
   },
 
   mounted () {

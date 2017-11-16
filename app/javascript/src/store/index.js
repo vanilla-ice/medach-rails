@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
-import { firebaseMutations, firebaseAction } from 'vuexfire'
 import moment from 'moment'
+
+import { 
+  getArticles,
+  getPost
+ } from '../helpers/requests'
 
 Vue.use(Vuex)
 
@@ -10,36 +14,28 @@ function store () {
   return new Vuex.Store({
     state: {
       posts: [],
-      activeDate: moment(new Date()).format('DD/MM/YYYY')
+      activeDate: moment(new Date()).format('DD/MM/YYYY'),
+      activePost: null
     },
 
     getters: {
       posts: state => state.posts,
-      activeDate: state => state.activeDate
+      activeDate: state => state.activeDate,
+      activePost: state => state.activePost
     },
 
     mutations: {
-      ...firebaseMutations,
+      getPosts(state) {
+        getArticles().then(res => state.posts = [...res.data])
+      },
 
-      setActiveDate (store, date) {
-        store.activeDate = date
+      getActivePost(state, payload) {
+        const { id } = payload
+        getPost(id).then(res => state.activePost = res.data)
       }
     },
 
-    plugins: [createLogger()],
-
-    actions: {
-      setPostsRef: firebaseAction(({
-        bindFirebaseRef
-      }, ref) => {
-        return new Promise((resolve, reject) => {
-          bindFirebaseRef('posts', ref, {
-            readyCallback: resolve,
-            cancelCallback: reject
-          })
-        })
-      })
-    }
+    plugins: [createLogger()]
   })
 }
 

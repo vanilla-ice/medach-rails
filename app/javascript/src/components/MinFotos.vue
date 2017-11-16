@@ -1,17 +1,11 @@
 <template lang="pug">
   .min-fotos
       .min-fotos__day.min-fotos__tuesday
-        .min-fotos__day-data
-          .min-fotos__day-data-text
-            | {{dayOfTheWeek}}
-          .min-fotos__day-data-digit(@click="setActiveDate(day)")
-            | {{day}}
-          span.min-fotos__day-data-circle
         .min-fotos__day-wrapper
-          nuxt-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.url")
+          router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
             .min-fotos__item-foto.min-fotos__item-foto-1
             .min-fotos__item-text
-              | Когда кто-то говорит “больно”, мне часто вспоминается сцена в начале фильма “Майор Пэйн”.
+              | {{ getShortText(post.body) }}
 </template>
 
 <script>
@@ -39,7 +33,19 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['setActiveDate'])
+    ...mapMutations(['setActiveDate']),
+
+    getShortText(text) {
+      const textArray = text.split('.')
+      let result = []
+      if (textArray.length > 1) {
+        result = [textArray[0], textArray[1]]
+        return result.join('.')
+      }
+      else {
+        return textArray.join('.')
+      }
+    }
   }
 }
 </script>
