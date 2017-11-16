@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  root 'home#index'
   ActiveAdmin.routes(self)
   namespace :api do
     resources :articles do
