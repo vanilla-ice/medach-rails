@@ -5,7 +5,7 @@
           router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
             .min-fotos__item-foto.min-fotos__item-foto-1
             .min-fotos__item-text
-              | {{ getShortText(post.body) }}
+              | {{ post.shorttext }}
 </template>
 
 <script>
@@ -88,10 +88,10 @@ export default {
 
 .min-fotos__day-wrapper {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
 
-  max-width: 1050px;
+  max-width: 1090px;
   width: 100%;
   margin: 0 auto;
 }
@@ -102,10 +102,8 @@ export default {
   font-size: 12px;
   color: #515666;
   line-height: 16px;
-
-  &:not(:first-child) {
-    margin-left: 40px;
-  }
+  margin-left: 40px;
+  margin-bottom: 40px;
 }
 
 .min-fotos__item-foto {
