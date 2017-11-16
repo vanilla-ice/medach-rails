@@ -2,7 +2,7 @@ ActiveAdmin.register Article do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on
+permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on, :shorttext
 #
 # or
 #
@@ -20,6 +20,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       row :infographic
       row :created_at
       row :publish_on
+      row :shorttext
     end
     active_admin_comments
   end
@@ -29,6 +30,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       image_tag i.image
     end
     column :title
+    column :shorttext
     column :body
     column :tag_list
     column :author
@@ -45,6 +47,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :title, label: "Заголовок"
       f.input :body, as: :trumbowyg
       f.input :image
+      f.input :shorttext, label: "Краткое описание"
       f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
