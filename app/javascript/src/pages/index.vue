@@ -3,10 +3,10 @@
     header-component
     data-component(:date="activeDate")
     main.main-index
-      big-fotos-component(:posts="getActivePosts")
+      // big-fotos-component(:posts="getActivePosts")
       .inner
-        .days-wrapper(v-for="(day, index) in getPostsByDay", :key="index")
-          MinFotosComponent(:posts="day", :day="index")
+        .days-wrapper()
+          MinFotosComponent(:posts="posts")
 
 </template>
 
@@ -27,37 +27,41 @@ export default {
     }
   },
 
+  created() {
+    this.$store.commit('getPosts')
+    console.log(this.$store.state)
+  },
+
   computed: {
     ...mapGetters(['posts', 'activeDate']),
 
-    getActivePosts () {
-      return this.getPostsByDay[this.activeDate]
-    },
+    // getActivePosts () {
+    //   return this.getPostsByDay[this.activeDate]
+    // },
 
-    getPostsByDay () {
-      const sortedPosts = {}
-      const posts = this.posts.reduce((res, curr, id) => {
-        console.log('CURRENT', curr.date)
-        const date = moment(curr.date).format('DD/MM/YYYY')
+    // getPostsByDay () {
+    //   const sortedPosts = {}
+    //   const posts = this.posts.reduce((res, curr, id) => {
+    //     const date = moment(curr.date).format('DD/MM/YYYY')
 
-        if (!res.hasOwnProperty(date)) {
-          res[date] = []
-        }
-        res[date].push(curr)
-        return res
-      }, {})
+    //     if (!res.hasOwnProperty(date)) {
+    //       res[date] = []
+    //     }
+    //     res[date].push(curr)
+    //     return res
+    //   }, {})
 
-      Object.keys(posts).sort((a, b) => {
-        const dateA = moment(a, 'DD/MM/YYYY')
-        const dateB = moment(b, 'DD/MM/YYYY')
+    //   Object.keys(posts).sort((a, b) => {
+    //     const dateA = moment(a, 'DD/MM/YYYY')
+    //     const dateB = moment(b, 'DD/MM/YYYY')
 
-        if (dateA > dateB) return -1
-        else if (dateA < dateB) return 1
-        else return 0
-      }).map(item => { sortedPosts[item] = {...posts[item]} })
+    //     if (dateA > dateB) return -1
+    //     else if (dateA < dateB) return 1
+    //     else return 0
+    //   }).map(item => { sortedPosts[item] = {...posts[item]} })
 
-      return sortedPosts
-    }
+    //   return sortedPosts
+    // }
   },
 
   methods: {

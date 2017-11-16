@@ -1,6 +1,6 @@
 <template lang="pug">
   .big-fotos
-      nuxt-link(v-for="(post, id) in getPosts", :to="'post/' + post.url", :key="id").main__big-foto.main__big-foto-1
+      router-link(v-for="(post, id) in getPosts", :to="'post/' + post.url", :key="id").main__big-foto.main__big-foto-1
       .main__big-fotos__cloock
         .main__big-fotos__cloock-icon
         .main__big-fotos__cloock-digits

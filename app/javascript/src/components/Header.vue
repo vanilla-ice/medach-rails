@@ -1,22 +1,22 @@
 <template lang="pug">
   header.header
     .container
-      nuxt-link(to="/").logo
+      router-link(to="/").logo
         img(src="../static/images/logo.png")
       .header__main-nav
-        nuxt-link(to="/tag/surgery").main-nav__item
+        router-link(to="/tag/surgery").main-nav__item
           | #ХИРУРГИЯ
-        nuxt-link(to="/tag/therapy").main-nav__item
+        router-link(to="/tag/therapy").main-nav__item
           | #ТЕРАПИЯ
-        nuxt-link(to="/tag/ophthalmology").main-nav__item
+        router-link(to="/tag/ophthalmology").main-nav__item
           | #ОФТАЛЬМОЛОГИЯ
-        nuxt-link(to="/tag/cardiology").main-nav__item
+        router-link(to="/tag/cardiology").main-nav__item
           | #КАРДИОЛОГИЯ
-        nuxt-link(to="/tag/education").main-nav__item
+        router-link(to="/tag/education").main-nav__item
           | #ОБРАЗОВАНИЕ
-        nuxt-link(to="/tag/crispr").main-nav__item
+        router-link(to="/tag/crispr").main-nav__item
           | #CRISPR
-        nuxt-link(to="/tag/neurosurgery").main-nav__item
+        router-link(to="/tag/neurosurgery").main-nav__item
           | #НЕЙРОХИРУРГИЯ
       .header__wrapper-dop
         .header__serch-wrapper

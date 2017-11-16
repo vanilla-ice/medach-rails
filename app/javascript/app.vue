@@ -6,17 +6,14 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
 }
 </script>
 
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
+<style lang="scss">
+@import "normalize.css";
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 </style>
