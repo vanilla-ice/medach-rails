@@ -1,0 +1,27 @@
+body {
+  font-family: 'Time-Roman', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: #505666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #505666;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+
+  max-width: 1280px;
+  min-width: 1280px;
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}

@@ -4,11 +4,21 @@
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "coffeescript": "1.12.7",
+    "date-fns": "^1.29.0",
+    "moment": "2.18.1",
+    "svg-inline-loader": "^0.8.0",
     "vue": "^2.5.2",
     "vue-loader": "^13.3.0",
-    "vue-template-compiler": "^2.5.2"
+    "vue-router": "^3.0.1",
+    "vue-sweetalert2": "^1.0.7",
+    "vue-template-compiler": "^2.5.2",
+    "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
+    "node-sass": "^4.5.3",
+    "pug": "^2.0.0-beta6",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
     "webpack-dev-server": "^2.9.3"
   }
 }
