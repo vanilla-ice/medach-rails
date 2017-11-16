@@ -1,19 +1,19 @@
 @font-face {
 	font-family: 'Time-Roman';
-	src: url('../static/fonts/Time-Roman.eot');
-	src: url('../static/fonts/Time-Roman.eot?#iefix') format('embedded-opentype'),
-		url('../static/fonts/Time-Roman.woff') format('woff'),
-		url('../static/fonts/Time-Roman.ttf') format('truetype');
+	src: url('./fonts/Time-Roman.eot');
+	src: url('./fonts/Time-Roman.eot?#iefix') format('embedded-opentype'),
+		url('./fonts/Time-Roman.woff') format('woff'),
+		url('./fonts/Time-Roman.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'LucidaGrande-Bold';
-	src: url('../static/fonts/LucidaGrande-Bold.eot');
-	src: url('../static/fonts/LucidaGrande-Bold.eot?#iefix') format('embedded-opentype'),
-		url('../static/fonts/LucidaGrande-Bold.woff') format('woff'),
-		url('../static/fonts/LucidaGrande-Bold.ttf') format('truetype');
+	src: url('./fonts/LucidaGrande-Bold.eot');
+	src: url('./fonts/LucidaGrande-Bold.eot?#iefix') format('embedded-opentype'),
+		url('./fonts/LucidaGrande-Bold.woff') format('woff'),
+		url('./fonts/LucidaGrande-Bold.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
