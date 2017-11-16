@@ -68,6 +68,6 @@ export default {
 
   margin-top: 8px;
 
-  background: url('~/static/images/good-bad.png') no-repeat center;
+  background: url('../static/images/good-bad.png') no-repeat center;
 }
 </style>
