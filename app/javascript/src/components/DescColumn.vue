@@ -1,26 +1,39 @@
 <template lang="pug">
   .desc-column
-        .desc-column__title
-          | Хороший, плохой, целевой
-        .desc-column__text
-          | Мы уже писали о том, что Министерство здравоохранения, в процессе реформирования системы медицинского образования в России, делает ставку на целевой прием. Каким образом это осуществляется и как это можно доказать? Количество целевых мест в ординатуру по какой-либо специальности устанавливается не конкретной организацией, например, университетом или НИИ, а непосредственно Министерством здравоохранения или Министерством образования и науки (касается только подведомственных Минобру организаций). Проанализировав приказ Минздрава России от 26.05.2017 N 261 «Об установлении квоты целевого приема для получения высшего образования за счет бюджетных ассигнований федерального бюджета по программам ординатуры в федеральных государственных организациях, находящихся в ведении Министерства здравоохранения Российской Федерации, на 2017 год» и аналогичный приказ за 2016 год, мы сделали понятную инфографику, которая показывает, как именно изменилось распределение бюджетных мест в регионах между местами для поступления по свободному конкурсу и по целевым направлениям.
+    .desc-column__title {{ name }}
+    .desc-column__text(v-html="data")
 </template>
 
-<style scoped lang="scss">
+<script>
+export default {
+  props: ['data', 'name']
+}
+</script>
+
+<style lang="scss">
 .desc-column {
   max-width: 622px;
   width: 100%;
 
-  font-size: 17px;
-  line-height: 20px;
-}
+  p {
+    display: inline-block;
+    margin-bottom: 25px;
+  }
 
-.desc-column__title {
-  margin-bottom: 46px;
+  p span {
+    line-height: 20px !important;
+    font-family: Times-Roman !important;
+    font-size: 17px !important;
+    color: #515666 !important;
+    letter-spacing: 0 !important;
+  }
 
-  font-family: LucidaGrande-Bold;
-  font-size: 36px;
-  line-height: 43px;
+  .desc-column__title {
+    font-family: LucidaGrande-Bold;
+    font-size: 36px;
+    line-height: 43px;
+    margin-bottom: 46px;
+  }
 }
 
 </style>
