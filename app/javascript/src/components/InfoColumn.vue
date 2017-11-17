@@ -1,16 +1,35 @@
 <template lang="pug">
   .info-column
         .info-column__item.info-column__autor
-          | Автор: Чумной Доктор
-        .info-column__item.info-column__infographic
-          | Инфографика:
-          a(href="#")
-            | http://factory.mn
+          | Автор: {{info.author}}
+        .info-column__item.info-column__infographic(v-if="info.infographic")
+          | Инфографика: 
+          a(:href="info.infographic")
+            | {{info.infographic}}
         .info-column__item.info-column__redaction
-          | Редакция: Cornu Ammonis, Николай Лисицкий, Елена Лисицына
-        a(href='#').info-column__item.info-column__data
-          | 2 июля, 2017
+          | Редакция: {{info.redaction}}
+        .info-column__item.info-column__data
+          | {{date}}
 </template>
+
+<script>
+import { format } from 'date-fns'
+import ru from 'date-fns/locale/ru'
+
+export default {
+  props: ['info'],
+
+  mounted () {
+    console.log('data', this.info)
+  },
+
+  computed: {
+    date() {
+      return format(this.info.created_at, 'DD MMMM, YYYY', { locale: ru })
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .info-column {
@@ -26,12 +45,7 @@
   margin-bottom: 11px;
 }
 
-.info-column__infographic a {
-  text-decoration: underline;
-}
-
 .info-column__data {
-  text-decoration: underline;
   font-style: italic;
 }
 
