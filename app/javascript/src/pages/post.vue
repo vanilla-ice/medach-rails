@@ -5,9 +5,8 @@
       .container
         .foto-column
           .foto-column__poster
-        desc-column
-        info-column
-      desc-column-bottom
+        desc-column(v-if="activePost", :data="activePost.body", :name="activePost.title")
+        info-column(v-if="activePost", :info="activePost")
 </template>
 
 <script>
@@ -34,6 +33,7 @@ export default {
   },
 
   mounted () {
+    console.log('post', this.activePost)
   },
 
   components: {
