@@ -23,5 +23,8 @@
     "pug-loader": "^2.3.0",
     "sass-loader": "^6.0.6",
     "webpack-dev-server": "^2.9.3"
+  },
+  "scripts": {
+    "build": "./bin/webpack"
   }
 }
