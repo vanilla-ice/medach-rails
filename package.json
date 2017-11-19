@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "coffeescript": "1.12.7",
     "date-fns": "^1.29.0",
+    "dotenv": "^4.0.0",
     "moment": "2.18.1",
     "normalize.css": "^7.0.0",
     "svg-inline-loader": "^0.8.0",
@@ -23,5 +24,8 @@
     "pug-loader": "^2.3.0",
     "sass-loader": "^6.0.6",
     "webpack-dev-server": "^2.9.3"
+  },
+  "scripts": {
+    "dev": "BASE_URL=http://localhost:3000 ./bin/webpack-dev-server"
   }
 }
