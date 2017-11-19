@@ -18,6 +18,11 @@ export default {
   p {
     display: inline-block;
     margin-bottom: 25px;
+    line-height: 20px !important;
+    font-family: Times-Roman !important;
+    font-size: 17px !important;
+    color: #515666 !important;
+    letter-spacing: 0 !important;
   }
 
   p span {
@@ -33,6 +38,13 @@ export default {
     font-size: 36px;
     line-height: 43px;
     margin-bottom: 46px;
+  }
+
+  a {
+    text-decoration: underline;
+    font-size: 17px;
+    font-family: Times-Roman !important;
+    color: #515666 !important;
   }
 }
 

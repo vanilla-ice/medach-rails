@@ -2,15 +2,10 @@
   .posters
       .container
         .posters__wrapper
-          .posters__item(v-for="(post, id) in posts", :key="id")
-            a(href="#").posters__item-data
-              | {{ getPostDate(post.date) }}
-              span
-                .posters__item-circle
+          router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
             a(href="#").posters__item-foto.posters__item-foto-1
             .posters__item-text
-              | В 2015 году, последнем году, за которым имеются данные, лишь 72% детей до трех лет в США получили семь ключевых…
-          
+              | {{ post.shorttext }}
 </template>
 
 <script>

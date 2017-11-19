@@ -5,7 +5,8 @@ import moment from 'moment'
 
 import { 
   getArticles,
-  getPost
+  getPost,
+  getPostsByTag
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -15,13 +16,15 @@ function store () {
     state: {
       posts: [],
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
-      activePost: null
+      activePost: null,
+      activeTag: null
     },
 
     getters: {
       posts: state => state.posts,
       activeDate: state => state.activeDate,
-      activePost: state => state.activePost
+      activePost: state => state.activePost,
+      activeTag: state => state.activeTag
     },
 
     mutations: {
@@ -32,6 +35,12 @@ function store () {
       getActivePost(state, payload) {
         const { id } = payload
         getPost(id).then(res => state.activePost = res.data)
+      },
+
+      getTaggedPosts(state, payload) {
+        const { id } = payload;
+        state.activeTag = id
+        getPostsByTag(id).then(res => state.posts = [...res.data])
       }
     },
 

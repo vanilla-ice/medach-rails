@@ -7,36 +7,34 @@
       posters-component(:posts="posts")
 </template>
 <script>
-import HeaderComponent from '~/components/Header.vue'
-import PostersComponent from '~/components/Posters.vue'
+import HeaderComponent from '../components/Header.vue'
+import PostersComponent from '../components/Posters.vue'
 
-import { db } from '~/db'
 import { mapGetters } from 'vuex'
-const $posts = db.ref('posts')
 
 export default {
   data () {
     return {
       availableTags: [
         {
-          value: 'surgery',
+          value: 'хирургия',
           name: '#ХИРУРГИЯ'
         },
         {
           name: '#ТЕРАПИЯ',
-          value: 'therapy'
+          value: 'терапия'
         },
         {
           name: '#ОФТАЛЬМОЛОГИЯ',
-          value: 'ophthalmology'
+          value: 'офтальмология'
         },
         {
           name: '#КАРДИОЛОГИЯ',
-          value: 'cardiology'
+          value: 'кардиология'
         },
         {
           name: '#ОБРАЗОВАНИЕ',
-          value: 'education'
+          value: 'образование'
         },
         {
           name: '#CRISPR',
@@ -44,18 +42,28 @@ export default {
         },
         {
           name: '#НЕЙРОХИРУРГИЯ',
-          value: 'neurosurgery'
+          value: 'нейрохирургия'
         }
       ]
     }
   },
 
   created () {
-    this.$store.dispatch('setPostsRef', $posts.orderByChild(`tags/${this.$route.params.id}`).equalTo(true))
+    const payload = {
+      id: this.$route.params.id
+    }
+    this.$store.commit('getTaggedPosts', payload)
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    const payload = {
+      id: to.params.id
+    }
+    this.$store.commit('getTaggedPosts', payload)
+    next()
   },
 
   mounted () {
-    console.log('posts', this.posts)
   },
 
   computed: {
