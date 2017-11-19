@@ -2,7 +2,7 @@
   header.header
     .container
       router-link(to="/").logo
-        img(src="../static/images/logo.png")
+        | MEDACH
       .header__main-nav
         router-link(to="/tag/хирургия").main-nav__item
           | #ХИРУРГИЯ
@@ -33,7 +33,7 @@
           | Календарь
 </template>
 
-<style scoped >
+<style scoped lang="scss">
 .header {
   min-height: 62px;
   font-family: LucidaGrande-Bold;
@@ -195,6 +195,10 @@
   height: 7px;
   background: url('../static/images/medach.png') no-repeat center;
   background-size: contain;
+}
+
+.logo {
+  font-size: 24px;
 }
 
 </style>

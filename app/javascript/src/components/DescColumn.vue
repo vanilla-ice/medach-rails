@@ -18,7 +18,7 @@ export default {
   p {
     display: inline-block;
     margin-bottom: 25px;
-    line-height: 20px !important;
+    line-height: 24px !important;
     font-family: Times-Roman !important;
     font-size: 17px !important;
     color: #515666 !important;
@@ -26,7 +26,7 @@ export default {
   }
 
   p span {
-    line-height: 20px !important;
+    line-height: 24px !important;
     font-family: Times-Roman !important;
     font-size: 17px !important;
     color: #515666 !important;
