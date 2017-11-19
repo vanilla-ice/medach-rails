@@ -26,6 +26,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "scripts": {
-    "dev": "BASE_URL=http://localhost:3000 ./bin/webpack-dev-server"
+    "dev": "./bin/webpack-dev-server",
+    "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js"
   }
 }

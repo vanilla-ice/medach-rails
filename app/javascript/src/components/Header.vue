@@ -4,19 +4,19 @@
       router-link(to="/").logo
         img(src="../static/images/logo.png")
       .header__main-nav
-        router-link(to="/tag/surgery").main-nav__item
+        router-link(to="/tag/хирургия").main-nav__item
           | #ХИРУРГИЯ
-        router-link(to="/tag/therapy").main-nav__item
+        router-link(to="/tag/терапия").main-nav__item
           | #ТЕРАПИЯ
-        router-link(to="/tag/ophthalmology").main-nav__item
+        router-link(to="/tag/офтальмология").main-nav__item
           | #ОФТАЛЬМОЛОГИЯ
-        router-link(to="/tag/cardiology").main-nav__item
+        router-link(to="/tag/кардиология").main-nav__item
           | #КАРДИОЛОГИЯ
-        router-link(to="/tag/education").main-nav__item
+        router-link(to="/tag/образование").main-nav__item
           | #ОБРАЗОВАНИЕ
         router-link(to="/tag/crispr").main-nav__item
           | #CRISPR
-        router-link(to="/tag/neurosurgery").main-nav__item
+        router-link(to="/tag/нейрохирургия").main-nav__item
           | #НЕЙРОХИРУРГИЯ
       .header__wrapper-dop
         .header__serch-wrapper
