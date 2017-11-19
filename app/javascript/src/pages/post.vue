@@ -5,6 +5,7 @@
       .container
         .foto-column
           .foto-column__poster
+            lightbox#lightbox(:images="image")
         desc-column(v-if="activePost", :data="activePost.body", :name="activePost.title")
         info-column(v-if="activePost", :info="activePost")
 </template>
@@ -14,6 +15,7 @@ import HeaderComponent from '../components/Header.vue'
 import DescColumn from '../components/DescColumn.vue'
 import InfoColumn from '../components/InfoColumn.vue'
 import descColumnBottom from '../components/DescColumnBottom.vue'
+import Lightbox from 'vue-simple-lightbox'
 
 import { mapGetters } from 'vuex'
 
@@ -26,6 +28,12 @@ export default {
 
   computed: {
     ...mapGetters(['activePost']),
+
+    image () {
+      return [{
+        src: 'https://pp.userapi.com/c639524/v639524204/642d5/xBSPPUBJ9nE.jpg',
+      }]
+    }
   },
 
   created () {
@@ -39,10 +47,17 @@ export default {
     HeaderComponent,
     DescColumn,
     InfoColumn,
-    descColumnBottom
+    descColumnBottom,
+    Lightbox
   }
 }
 </script>
+
+<style lang="scss">
+  .my-gallery a img {
+    width: 100% !important;
+  }
+</style>
 
 <style scoped lang="scss">
 .main-description {
@@ -67,6 +82,11 @@ export default {
 
   margin-top: 8px;
 
-  background: url('../static/images/good-bad.png') no-repeat center / cover;
+  // background: url('../static/images/good-bad.png') no-repeat center / contain;
+
+  img {
+    display: block;
+    width: 100%;
+  }
 }
 </style>
