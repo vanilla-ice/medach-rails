@@ -6,12 +6,15 @@
     "axios": "^0.17.1",
     "coffeescript": "1.12.7",
     "date-fns": "^1.29.0",
+    "dotenv": "^4.0.0",
     "moment": "2.18.1",
     "normalize.css": "^7.0.0",
     "svg-inline-loader": "^0.8.0",
     "vue": "^2.5.2",
+    "vue-images": "^1.0.10",
     "vue-loader": "^13.3.0",
     "vue-router": "^3.0.1",
+    "vue-simple-lightbox": "^1.1.0",
     "vue-sweetalert2": "^1.0.7",
     "vue-template-compiler": "^2.5.2",
     "vuex": "^3.0.1",
@@ -25,6 +28,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "scripts": {
-    "build": "./bin/webpack"
+    "dev": "./bin/webpack-dev-server",
+    "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js"
   }
 }
