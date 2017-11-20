@@ -15,15 +15,17 @@ gem 'activeadmin_trumbowyg'
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+gem 'fog', '1.42.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
 gem 'devise'
 gem 'acts-as-taggable-on', '5.0.0'
-gem 'pry-rails', :group => :development
+gem 'pry-rails'
 gem 'pg_search', '2.1.1'
 gem 'rails_12factor'
+gem 'figaro', '1.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
