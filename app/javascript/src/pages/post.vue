@@ -31,7 +31,7 @@ export default {
 
     image () {
       return [{
-        src: 'https://pp.userapi.com/c639524/v639524204/642d5/xBSPPUBJ9nE.jpg',
+        src: this.activePost ? this.activePost.image.url : null,
       }]
     }
   },
