@@ -3,7 +3,7 @@
       .container
         .posters__wrapper
           router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
-            a(href="#").posters__item-foto.posters__item-foto-1
+            a(href="#", :style="{ background: `url(${post.image.url})` }").posters__item-foto
             .posters__item-text
               | {{ post.shorttext }}
 </template>
@@ -59,6 +59,10 @@ export default {
   height: 219px;
   width: 167px;
   margin-bottom: 10px;
+
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 
 .posters__item-foto-1 {
