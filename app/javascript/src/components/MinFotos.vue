@@ -3,7 +3,7 @@
       .min-fotos__day.min-fotos__tuesday
         .min-fotos__day-wrapper
           router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
-            .min-fotos__item-foto.min-fotos__item-foto-1
+            .min-fotos__item-foto(:style="{ background: `url(${post.image.url})` }")
             .min-fotos__item-text
               | {{ post.shorttext }}
 </template>
@@ -111,6 +111,9 @@ export default {
   width: 100%;
   height: 219px;
   margin-bottom: 10px;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
 }
 
 .min-fotos__day-data-text {

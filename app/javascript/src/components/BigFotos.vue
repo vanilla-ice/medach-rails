@@ -1,6 +1,6 @@
 <template lang="pug">
   .big-fotos
-      router-link(v-for="(post, id) in getPosts", :to="'post/' + post.id", :key="id").main__big-foto.main__big-foto-1
+      router-link(v-for="(post, id) in getPosts", :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
       .main__big-fotos__cloock
         .main__big-fotos__cloock-icon
         .main__big-fotos__cloock-digits
@@ -48,6 +48,8 @@ export default {
   width: 20%;
   height: 25vw;
   background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 
 .big-fotos {
