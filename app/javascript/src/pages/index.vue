@@ -29,7 +29,6 @@ export default {
 
   created() {
     this.$store.commit('getPosts')
-    console.log(this.$store.state)
   },
 
   computed: {

@@ -13,6 +13,4 @@ document.addEventListener('DOMContentLoaded', () => {
     template: '<App/>',
     components: { App }
   })
-
-  console.log(app)
 })
