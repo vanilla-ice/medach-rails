@@ -226,6 +226,8 @@ form {
 
 button {
   border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 input {
