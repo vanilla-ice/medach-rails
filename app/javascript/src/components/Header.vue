@@ -21,8 +21,9 @@
       .header__wrapper-dop
         .header__serch-wrapper
           label
-            span.header__search-icon
-            input(type="text" class="header__search" name="search" placeholder = "Поиск")
+            form(@submit.prevent="search")
+              button.header__search-icon(type="submit")
+              input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
           .header__search-buffer
         a(href="#").header__medach
         .header__socials-wrapper
@@ -32,6 +33,23 @@
         a(href="#").calendar
           | Календарь
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      query: ''
+    }
+  },
+
+  methods: {
+    search(e) {
+      this.$store.commit('search', this.query)
+      this.$router.push('/search')
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .header {
@@ -199,6 +217,19 @@
 
 .logo {
   font-size: 24px;
+}
+
+form {
+  display: flex;
+  width: 100%;
+}
+
+button {
+  border: none;
+}
+
+input {
+  flex: 1 1 auto;
 }
 
 </style>

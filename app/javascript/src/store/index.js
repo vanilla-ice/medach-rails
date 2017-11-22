@@ -6,7 +6,8 @@ import moment from 'moment'
 import { 
   getArticles,
   getPost,
-  getPostsByTag
+  getPostsByTag,
+  searchRequest
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -38,9 +39,13 @@ function store () {
       },
 
       getTaggedPosts(state, payload) {
-        const { id } = payload;
+        const { id } = payload
         state.activeTag = id
         getPostsByTag(id).then(res => state.posts = [...res.data])
+      },
+
+      search(state, payload) {
+        searchRequest(payload).then(res => state.posts = [...res.data])
       }
     },
 
