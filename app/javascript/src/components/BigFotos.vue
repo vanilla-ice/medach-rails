@@ -1,10 +1,10 @@
 <template lang="pug">
   .big-fotos
-      router-link(v-for="(post, id) in getPosts", :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
-      .main__big-fotos__cloock
-        .main__big-fotos__cloock-icon
-        .main__big-fotos__cloock-digits
-          | 19:10
+      router-link(v-for="(post, id) in getPosts" v-if="id < 5" :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
+      //- .main__big-fotos__cloock
+      //-   .main__big-fotos__cloock-icon
+      //-   .main__big-fotos__cloock-digits
+      //-     | 19:10
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
   },
 
   updated () {
+    console.log('posts', this.posts)
   },
 
   computed: {
@@ -55,6 +56,7 @@ export default {
 .big-fotos {
   display: flex;
   background: #f8f8f8;
+  justify-content: center;
   height: 25vw;
 }
 
