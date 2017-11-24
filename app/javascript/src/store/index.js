@@ -29,24 +29,47 @@ function store () {
     },
 
     mutations: {
-      getPosts(state) {
-        getArticles().then(res => state.posts = [...res.data])
+    },
+
+    actions: {
+      getPosts({state}) {
+        return new Promise((resolve, reject) => {
+          getArticles().then(res => {
+            state.posts = [...res.data]
+            resolve()
+          })
+        })
       },
 
-      getActivePost(state, payload) {
+      getActivePost({state}, payload) {
         const { id } = payload
-        getPost(id).then(res => state.activePost = res.data)
+        return new Promise((resolve, reject) => {
+          getPost(id).then(res => {
+            state.activePost = res.data
+            resolve()
+          })
+        })
       },
 
-      getTaggedPosts(state, payload) {
+      search({state}, payload) {
+        return new Promise((resolve, reject) => {
+          searchRequest(payload).then(res => {
+            state.posts = [...res.data]
+            resolve()
+          })
+        })
+      },
+
+      getTaggedPosts({state}, payload) {
         const { id } = payload
-        state.activeTag = id
-        getPostsByTag(id).then(res => state.posts = [...res.data])
+        return new Promise((resolve, reject) => {
+          state.activeTag = id
+          getPostsByTag(id).then(res => {
+            state.posts = [...res.data]
+            resolve()
+          })
+        })
       },
-
-      search(state, payload) {
-        searchRequest(payload).then(res => state.posts = [...res.data])
-      }
     },
 
     plugins: [createLogger()]

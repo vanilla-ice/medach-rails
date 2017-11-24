@@ -1,5 +1,6 @@
 <template lang="pug" >
   div
+    loader-component(v-if="isLoading")
     header-component
     data-component(:date="activeDate")
     main.main-index
@@ -17,6 +18,7 @@ import HeaderComponent from '../components/Header.vue'
 import DataComponent from '../components/Data.vue'
 import BigFotosComponent from '../components/BigFotos.vue'
 import MinFotosComponent from '../components/MinFotos.vue'
+import LoaderComponent from '../components/Loader.vue'
 
 import { mapGetters } from 'vuex'
 moment.locale('ru')
@@ -24,11 +26,12 @@ moment.locale('ru')
 export default {
   data () {
     return {
+      isLoading: true
     }
   },
 
-  created() {
-    this.$store.commit('getPosts')
+  mounted() {
+    this.$store.dispatch('getPosts').then((res) => setTimeout(() => this.isLoading = false, 300))
   },
 
   computed: {
@@ -62,7 +65,8 @@ export default {
     HeaderComponent,
     DataComponent,
     BigFotosComponent,
-    MinFotosComponent
+    MinFotosComponent,
+    LoaderComponent
   }
 }
 </script>
