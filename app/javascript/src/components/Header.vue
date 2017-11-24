@@ -1,5 +1,7 @@
 <template lang="pug">
+  
   header.header
+    loader-component(v-if="isLoading")
     .container
       router-link(to="/").logo
         | MEDACH
@@ -35,18 +37,29 @@
 </template>
 
 <script>
+import LoaderComponent from './Loader.vue'
 export default {
   data() {
     return {
-      query: ''
+      query: '',
+      isLoading: false
     }
   },
 
   methods: {
     search(e) {
-      this.$store.commit('search', this.query)
-      this.$router.push('/search')
+      this.isLoading = true
+      this.$store.dispatch('search', this.query).then(() => 
+        setTimeout(() => {
+          this.$router.push('/search')
+          this.isLoading = false
+        })
+      )
     }
+  },
+
+  components: {
+    LoaderComponent
   }
 }
 </script>

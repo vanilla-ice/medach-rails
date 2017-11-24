@@ -1,5 +1,6 @@
 <template lang="pug" >
   div
+    loader-component(v-if="isLoading")
     header-component
     main.main-surgery
       .main-surgery__title
@@ -9,12 +10,14 @@
 <script>
 import HeaderComponent from '../components/Header.vue'
 import PostersComponent from '../components/Posters.vue'
+import LoaderComponent from '../components/Loader.vue'
 
 import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
+      isLoading: true,
       availableTags: [
         {
           value: 'хирургия',
@@ -52,14 +55,15 @@ export default {
     const payload = {
       id: this.$route.params.id
     }
-    this.$store.commit('getTaggedPosts', payload)
+    this.$store.dispatch('getTaggedPosts', payload).then(res => setTimeout(() => this.isLoading = false, 300))
   },
 
   beforeRouteUpdate (to, from, next) {
     const payload = {
       id: to.params.id
     }
-    this.$store.commit('getTaggedPosts', payload)
+    this.isLoading = true
+    this.$store.dispatch('getTaggedPosts', payload).then(res => setTimeout(() => this.isLoading = false, 300))
     next()
   },
 
@@ -76,7 +80,8 @@ export default {
 
   components: {
     HeaderComponent,
-    PostersComponent
+    PostersComponent,
+    LoaderComponent
   }
 }
 </script>
