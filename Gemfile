@@ -10,7 +10,9 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'activeadmin', '~> 1.0.0'
-gem 'activeadmin_trumbowyg'
+# gem 'activeadmin_trumbowyg'
+gem 'activeadmin_quill_editor', '0.1.1'
+
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
