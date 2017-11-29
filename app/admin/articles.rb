@@ -45,7 +45,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     f.object.publish_on = Time.zone.now
     f.inputs do
       f.input :title, label: "Заголовок"
-      f.input :body, label: "Статья", as: :quill_editor
+      f.input :body, label: "Статья", as: :quill_editor,input_html: {data: {options: {modules: {toolbar: [['bold', 'italic', 'underline'], ['link', 'image']]}, theme: 'snow'}}}
       f.input :image
       f.input :shorttext, label: "Краткое описание"
       f.input :tag_list, :placeholder => 'Теги через запятую'
