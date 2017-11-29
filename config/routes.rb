@@ -10,6 +10,9 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
+    resources :images do
+
+    end
   end
   get '*path' => 'home#index'
 end

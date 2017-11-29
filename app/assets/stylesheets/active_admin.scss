@@ -10,7 +10,10 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
-@import 'activeadmin/quill_editor_input';
+//= require quill/dist/quill.js
+@import "quill/dist/quill.core.css";
+@import "quill/dist/quill.snow.css";
+// @import 'activeadmin/quill_editor_input';
 // @import 'activeadmin/trumbowyg/ui/sass/trumbowyg';
 // @import 'activeadmin/trumbowyg_input';
 

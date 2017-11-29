@@ -6,6 +6,7 @@ class Article < ApplicationRecord
                                :tsearch => {:dictionary => "russian", :prefix => true}
                               }
   mount_uploader :image, ImageUploader
+  has_many :images
   acts_as_taggable
   scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
 end

@@ -11,7 +11,7 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'activeadmin', '~> 1.0.0'
 # gem 'activeadmin_trumbowyg'
-gem 'activeadmin_quill_editor', '0.1.1'
+# gem 'activeadmin_quill_editor', '0.1.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
@@ -46,6 +46,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem "browserify-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
