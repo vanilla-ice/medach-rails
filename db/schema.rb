@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116151752) do
+ActiveRecord::Schema.define(version: 20171129094303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20171116151752) do
   create_table "articles", force: :cascade do |t|
     t.text "body"
     t.string "title"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "author"
@@ -57,7 +56,14 @@ ActiveRecord::Schema.define(version: 20171116151752) do
     t.string "redaction"
     t.datetime "publish_on"
     t.string "shorttext"
+    t.string "image"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
