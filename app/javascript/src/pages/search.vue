@@ -2,20 +2,36 @@
   div
     header-component
     main.main-surgery
-      .main-surgery__title
-        | #ХИРУРГИЯ
-      posters-component
+      posters-component(:posts="posts")
 </template>
 <script>
-  import HeaderComponent from '../components/Header.vue'
-  import PostersComponent from '../components/Posters.vue'
+import HeaderComponent from '../components/Header.vue'
+import PostersComponent from '../components/Posters.vue'
+
+import { mapGetters } from 'vuex'
 
 export default {
-    components: {
-      HeaderComponent,
-      PostersComponent
+  data () {
+    return {
     }
+  },
+
+  created () {
+    
+  },
+
+  mounted () {
+  },
+
+  computed: {
+    ...mapGetters(['posts'])
+  },
+
+  components: {
+    HeaderComponent,
+    PostersComponent
   }
+}
 </script>
 
 <style scoped lang="scss">

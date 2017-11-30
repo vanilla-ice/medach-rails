@@ -1,5 +1,7 @@
 <template lang="pug">
+  
   header.header
+    loader-component(v-if="isLoading")
     .container
       router-link(to="/").logo
         | MEDACH
@@ -21,8 +23,9 @@
       .header__wrapper-dop
         .header__serch-wrapper
           label
-            span.header__search-icon
-            input(type="text" class="header__search" name="search" placeholder = "Поиск")
+            form(@submit.prevent="search")
+              button.header__search-icon(type="submit")
+              input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
           .header__search-buffer
         a(href="#").header__medach
         .header__socials-wrapper
@@ -32,6 +35,34 @@
         a(href="#").calendar
           | Календарь
 </template>
+
+<script>
+import LoaderComponent from './Loader.vue'
+export default {
+  data() {
+    return {
+      query: '',
+      isLoading: false
+    }
+  },
+
+  methods: {
+    search(e) {
+      this.isLoading = true
+      this.$store.dispatch('search', this.query).then(() => 
+        setTimeout(() => {
+          this.$router.push('/search')
+          this.isLoading = false
+        })
+      )
+    }
+  },
+
+  components: {
+    LoaderComponent
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .header {
@@ -199,6 +230,21 @@
 
 .logo {
   font-size: 24px;
+}
+
+form {
+  display: flex;
+  width: 100%;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input {
+  flex: 1 1 auto;
 }
 
 </style>
