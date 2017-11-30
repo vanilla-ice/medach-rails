@@ -12,7 +12,7 @@ test:
   <<: *default
   database: medach_test
 
-prodaction:
+production:
   host: "ec2-54-235-65-224.compute-1.amazonaws.com"
   adapter: postgresql
   encoding: unicode

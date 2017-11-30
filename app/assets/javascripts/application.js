@@ -12,6 +12,5 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require quill/quill.js
 //= require_tree .
 
