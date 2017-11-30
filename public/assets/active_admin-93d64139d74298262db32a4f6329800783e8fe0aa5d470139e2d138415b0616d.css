@@ -1,6 +1,6 @@
 /* Active Admin CSS */
-@import url(quill/dist/quill.core.css);
-@import url(quill/dist/quill.snow.css);
+@import url(quill.core.css);
+@import url(quill.snow.css);
 @import url(katex/dist/katex.css);
 /* line 37, /Users/halla/.rvm/gems/ruby-2.4.1/gems/activeadmin-1.0.0/app/assets/stylesheets/active_admin/mixins/_reset.scss */
 html, body, div, span, applet, object, iframe,
@@ -2706,7 +2706,7 @@ img {
   min-height: 600px;
   outline: none;
   overflow-y: auto;
-  padding: 12px 15px;
+  padding: 0;
   tab-size: 4;
   -moz-tab-size: 4;
   text-align: left;
@@ -2715,17 +2715,17 @@ img {
   background-color: white;
 }
 
-/* line 43, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
+/* line 44, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
 .ql-editor sup {
   vertical-align: super;
 }
 
-/* line 46, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
+/* line 47, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
 .ql-editor sub {
   vertical-align: sub;
 }
 
-/* line 49, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
+/* line 50, /Users/halla/Developer/medach-rails/app/assets/stylesheets/active_admin.scss */
 input #quill_editor_input {
   display: none !important;
 }
