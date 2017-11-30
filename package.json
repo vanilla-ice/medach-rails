@@ -34,6 +34,7 @@
   },
   "scripts": {
     "dev": "./bin/webpack-dev-server",
-    "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js"
+    "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js",
+    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
   }
 }
