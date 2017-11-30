@@ -20,7 +20,6 @@ export default {
   props: ['info'],
 
   mounted () {
-    console.log('data', this.info)
   },
 
   computed: {

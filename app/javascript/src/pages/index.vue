@@ -1,9 +1,10 @@
 <template lang="pug" >
   div
+    loader-component(v-if="isLoading")
     header-component
     data-component(:date="activeDate")
     main.main-index
-      big-fotos-component(:posts="getActivePosts")
+      big-fotos-component(:posts="getActivePosts" v-if="getActivePosts")
       .inner
         .days-wrapper()
           MinFotosComponent(:posts="posts")
@@ -17,6 +18,7 @@ import HeaderComponent from '../components/Header.vue'
 import DataComponent from '../components/Data.vue'
 import BigFotosComponent from '../components/BigFotos.vue'
 import MinFotosComponent from '../components/MinFotos.vue'
+import LoaderComponent from '../components/Loader.vue'
 
 import { mapGetters } from 'vuex'
 moment.locale('ru')
@@ -24,12 +26,12 @@ moment.locale('ru')
 export default {
   data () {
     return {
+      isLoading: true
     }
   },
 
-  created() {
-    this.$store.commit('getPosts')
-    console.log(this.$store.state)
+  mounted() {
+    this.$store.dispatch('getPosts').then((res) => setTimeout(() => this.isLoading = false, 300))
   },
 
   computed: {
@@ -40,9 +42,9 @@ export default {
     },
 
     getPostsByDay () {
-      const sortedPosts = {}
       const posts = this.posts.reduce((res, curr, id) => {
         const date = moment(curr.created_at).format('DD/MM/YYYY')
+        console.log('date', date)
 
         if (!res.hasOwnProperty(date)) {
           res[date] = []
@@ -50,7 +52,6 @@ export default {
         res[date].push(curr)
         return res
       }, {})
-
       return posts
     }
   },
@@ -63,7 +64,8 @@ export default {
     HeaderComponent,
     DataComponent,
     BigFotosComponent,
-    MinFotosComponent
+    MinFotosComponent,
+    LoaderComponent
   }
 }
 </script>

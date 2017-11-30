@@ -1,6 +1,7 @@
 import axios from 'axios'
-
-const BASE_URL = 'https://medach-project.herokuapp.com/'
+ 
+// const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://medach-project.herokuapp.com"
 
 export const simpleRequest = (url, method, data, headers) => {
   const requestObj = {
@@ -50,5 +51,17 @@ export const getPostsByTag = (tag) => {
         resolve(response)
       })
       .catch(reject)
+  })
+}
+
+export const searchRequest = (query) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${BASE_URL}/api/articles/search`, {
+      params: {
+        q: query
+      }
+    }).then(response => {
+      resolve(response)
+    }).catch(reject)
   })
 }

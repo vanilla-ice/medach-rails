@@ -1,5 +1,6 @@
 <template lang="pug" >
   div
+    loader-component(v-if="isLoading")
     header-component
     main.main.main-description
       .container
@@ -16,6 +17,8 @@ import DescColumn from '../components/DescColumn.vue'
 import InfoColumn from '../components/InfoColumn.vue'
 import descColumnBottom from '../components/DescColumnBottom.vue'
 import Lightbox from 'vue-simple-lightbox'
+import LoaderComponent from '../components/Loader.vue'
+
 
 import { mapGetters } from 'vuex'
 
@@ -23,6 +26,7 @@ export default {
 
   data () {
     return {
+      isLoading: true
     }
   },
 
@@ -36,11 +40,8 @@ export default {
     }
   },
 
-  created () {
-    this.$store.commit('getActivePost', {id: this.$route.params.id})
-  },
-
   mounted () {
+    this.$store.dispatch('getActivePost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
   },
 
   components: {
@@ -48,7 +49,8 @@ export default {
     DescColumn,
     InfoColumn,
     descColumnBottom,
-    Lightbox
+    Lightbox,
+    LoaderComponent
   }
 }
 </script>
