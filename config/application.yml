@@ -1,4 +1,5 @@
 S3_ACCESS_KEY: "AKIAIF53HEY3XUA6XQ4A"
 S3_SECRET_KEY: "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"
+
 S3_BUCKET: "medachstorage"
 S3_ASSET_URL: "https://s3.amazonaws.com/medachstorage"

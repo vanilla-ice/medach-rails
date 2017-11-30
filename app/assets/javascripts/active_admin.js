@@ -1,95 +1,103 @@
 //= require active_admin/base
-<<<<<<< Updated upstream
-//= require activeadmin/quill_editor/quill
-//= require activeadmin/quill_editor_input
-
-
-// var IMGUR_CLIENT_ID = 'bcab3ce060640ba';
-// var IMGUR_API_URL = 'https://api.imgur.com/3/image';
-
-// function imageHandler(image, callback) {
-=======
 //= require quill/dist/quill.js
+//= require katex/dist/katex.js
 
+                /**
+                 * Step1. select local image
+                 *
+                 */
+  function selectLocalImage(editor) {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
 
-// var IMGUR_CLIENT_ID = 'bcab3ce060640ba';
-// var API_URL = '/api/images';
+                // Listen upload local image and save to server
+    input.onchange = () => {
+      const file = input.files[0];
 
-// var imageHandler = function(image, callback) {
+                // file type is only image.
+      if (/^image\//.test(file.type)) {
+        saveToServer(file, editor);
+      } else {
+        console.warn('You could only upload images.');
+      }
+    };
+  }
 
->>>>>>> Stashed changes
-//   var data = new FormData();
-//   data.append('image', image);
+              /**
+               * Step2. save to server
+               *
+               * @param {File} file
+               */
+  function saveToServer(file, editor) {
+    const fd = new FormData();
+    fd.append('image', file);
 
-//   var xhr = new XMLHttpRequest();
-<<<<<<< Updated upstream
-//   xhr.open('POST', IMGUR_API_URL, true);
-=======
-//   xhr.open('POST', API_URL, true);
->>>>>>> Stashed changes
-//   // xhr.setRequestHeader('Authorization', 'Client-ID ' + IMGUR_CLIENT_ID);
-//   xhr.onreadystatechange = function() {
-//     if (xhr.readyState === 4) {
-//       var response = JSON.parse(xhr.responseText);
-//       if (response.status === 200 && response.success) {
-//         callback(response.data.link);
-//       } else {
-//         var reader = new FileReader();
-//         reader.onload = function(e) {
-//           callback(e.target.result);
-//         };
-//         reader.readAsDataURL(image);
-//       }
-//     }
-//   }
-//   xhr.send(data);
-// }
-<<<<<<< Updated upstream
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/images', true);
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+                // this is callback data: url
+        const url = JSON.parse(xhr.responseText).url;
+        insertToEditor(url, editor);
+      }
+    };
+    xhr.send(fd);
+  }
+              /**
+               * Step3. insert image url to rich editor.
+               *
+               * @param {string} url
+               */
 
-// // document.addEventListener("DOMContentLoaded", function() {
-// //   var quill = new Quill('#article_body', {
-// //     modules: {
-// //       toolbar: [['bold', 'italic', 'underline', 'strike'],
-// //       ['link', 'image'],
-// //       [{ 'size': ['small', false, 'large', 'huge'] }],
-// //       [{ 'script': 'sub'}, { 'script': 'super' }],
-// //       [{ 'direction': 'rtl' }] ,
-// //       ['blockquote', 'code-block'] ,
-// //       [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-// //       [{ 'indent': '-1'}, { 'indent': '+1' }],
-// //       ['clean']]
+function insertToEditor(url, editor) {
+              // push image url to rich editor.
+  const range = editor.getSelection();
+  editor.insertEmbed(range.index, 'image', url);
+}
 
-//     },
-//     theme: 'snow',
-//     imageHandler: imageHandler
-//   });
-// });
-
-=======
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var quill = new Quill('#article_body', {
-    modules: {
+window.onload = function() {
+  var editors = document.getElementById('article_body');
+  if (!editors) return
+  var default_options = {
+    modules:{
+      formula: true,
       toolbar:
+                // custom функционал
       [
         ['bold', 'italic', 'underline', 'strike'],
-        ['link', 'image'],
+        ['image'],['formula'],
         [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'font': [] }],
         [{ 'script': 'sub'}, { 'script': 'super' }],
         [{ 'direction': 'rtl' }] ,
+        [{ 'align': [] }],
         ['blockquote', 'code-block'] ,
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         [{ 'indent': '-1'}, { 'indent': '+1' }],
         [{ 'color': [] }, { 'background': [] }],
         ['clean']
-      ],
+      ]
     },
+    placeholder: '',
     theme: 'snow'
-  });
+  };
 
-//   var toolbar = quill.getModule('toolbar');
-//   toolbar.addHandler('image', imageHandler);
-});
->>>>>>> Stashed changes
+
+      var quill_editor = new Quill( editors, default_options );
+
+      quill_editor.getModule('toolbar').addHandler('image', () => {
+        selectLocalImage(quill_editor);
+      });
+
+  var formtastic = document.querySelector( 'form.formtastic' );
+
+  if( formtastic ) {
+    formtastic.onsubmit = function() {
+        var input = document.getElementById( 'quill_editor_input' );
+        input.value = quill_editor.root.innerHTML;
+    };
+  }
+};
+
+
