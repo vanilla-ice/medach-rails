@@ -1,7 +1,7 @@
 import axios from 'axios'
  
-const BASE_URL = "http://localhost:3000"
-// const BASE_URL = "https://medach-project.herokuapp.com"
+// const BASE_URL = "http://localhost:3000"
+const BASE_URL = "https://medach-project.herokuapp.com"
 
 export const simpleRequest = (url, method, data, headers) => {
   const requestObj = {
