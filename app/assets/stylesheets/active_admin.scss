@@ -11,8 +11,8 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 //= require quill/dist/quill.js
-@import "quill/dist/quill.core.css";
-@import "quill/dist/quill.snow.css";
+@import "quill.core.css";
+@import "quill.snow.css";
 @import "katex/dist/katex.css";
 // @import 'activeadmin/quill_editor_input';
 // @import 'activeadmin/trumbowyg/ui/sass/trumbowyg';

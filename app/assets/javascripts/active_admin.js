@@ -1,6 +1,6 @@
 //= require active_admin/base
-//= require quill/dist/quill.js
 //= require katex/dist/katex.js
+//= require quill.js
 
                 /**
                  * Step1. select local image
