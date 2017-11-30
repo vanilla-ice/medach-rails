@@ -13,6 +13,7 @@
 //= require quill/dist/quill.js
 @import "quill/dist/quill.core.css";
 @import "quill/dist/quill.snow.css";
+@import "katex/dist/katex.css";
 // @import 'activeadmin/quill_editor_input';
 // @import 'activeadmin/trumbowyg/ui/sass/trumbowyg';
 // @import 'activeadmin/trumbowyg_input';
@@ -24,4 +25,29 @@
 img {
   height: 300px;
   width : 300px;
+}
+.ql-editor {
+  box-sizing: border-box;
+  line-height: 1.42;
+  min-height: 600px;
+  outline: none;
+  overflow-y: auto;
+  padding: 12px 15px;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: white;
+}
+.ql-editor sup {
+  vertical-align: super;
+}
+.ql-editor sub {
+  vertical-align: sub
+}
+input #quill_editor_input {
+
+  display: none !important;
+
 }
