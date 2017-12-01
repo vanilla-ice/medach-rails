@@ -34,7 +34,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "",
+    "start": "NODE_ENV=production RAILS_ENV=production rails server -p $PORT -e $RAILS_ENV",
     "dev": "./bin/webpack-dev-server",
     "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js --progress",
     "heroku-postbuild": "NODE_ENV=production RAILS_ENV=production rails assets:precompile"
