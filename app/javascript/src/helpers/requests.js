@@ -25,7 +25,7 @@ export const post = (url, data, headers = {}) => {
 
 export const getArticles = () => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles`)
+    get(`/api/articles`)
       .then(response => {
         resolve(response)
       })
