@@ -19,6 +19,7 @@
       if (/^image\//.test(file.type)) {
         saveToServer(file, editor);
       } else {
+
         console.warn('You could only upload images.');
       }
     };
