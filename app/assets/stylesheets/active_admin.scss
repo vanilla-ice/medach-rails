@@ -10,13 +10,9 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
-//= require quill/dist/quill.js
-@import "quill.core.css";
-@import "quill.snow.css";
-@import "katex/dist/katex.css";
-// @import 'activeadmin/quill_editor_input';
-// @import 'activeadmin/trumbowyg/ui/sass/trumbowyg';
-// @import 'activeadmin/trumbowyg_input';
+@import "quill/dist/quill.core";
+@import "quill/dist/quill.snow";
+@import "katex/dist/katex";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
