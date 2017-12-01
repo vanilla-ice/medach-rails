@@ -35,7 +35,7 @@ export const getArticles = () => {
 
 export const getPost = (id) => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles/${id}`)
+    get(`/api/articles/${id}`)
       .then(response => {
         resolve(response)
       })
@@ -45,7 +45,7 @@ export const getPost = (id) => {
 
 export const getPostsByTag = (tag) => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles/by_tag/${tag}`)
+    get(`/api/articles/by_tag/${tag}`)
       .then(response => {
         resolve(response)
       })
@@ -55,7 +55,7 @@ export const getPostsByTag = (tag) => {
 
 export const searchRequest = (query) => {
   return new Promise((resolve, reject) => {
-    axios.get(`${BASE_URL}/api/articles/search`, {
+    axios.get(`/api/articles/search`, {
       params: {
         q: query
       }
