@@ -1,6 +1,6 @@
 <template lang="pug">
   .big-fotos
-      router-link(v-for="(post, id) in getPosts" v-if="id < 5" :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
+      router-link(v-for="(post, id) in getPosts" v-if="id < 5 && post.image" :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
       //- .main__big-fotos__cloock
       //-   .main__big-fotos__cloock-icon
       //-   .main__big-fotos__cloock-digits
@@ -21,6 +21,7 @@ export default {
   },
 
   mounted () {
+    console.log(this.posts)
   },
 
   updated () {
