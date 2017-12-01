@@ -3,7 +3,7 @@
       .min-fotos__day.min-fotos__tuesday
         .min-fotos__day-wrapper
           router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
-            .min-fotos__item-foto(:style="{ background: `url(${post.image.url})` }")
+            .min-fotos__item-foto(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
             .min-fotos__item-text
               | {{ post.shorttext }}
 </template>
