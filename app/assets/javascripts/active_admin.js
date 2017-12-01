@@ -12,7 +12,7 @@
     input.click();
 
                 // Listen upload local image and save to server
-    input.onchange = () => {
+    input.onchange = function(){
       const file = input.files[0];
 
                 // file type is only image.
