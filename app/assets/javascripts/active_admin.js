@@ -1,49 +1,49 @@
-// require active_admin/base
-// require katex/dist/katex.js
-// require quill.js
+//= require active_admin/base
+//= require katex/dist/katex.js
+//= require quill.js
 
                 /**
                  * Step1. select local image
                  *
                  */
-  // function selectLocalImage(editor) {
-  //   const input = document.createElement('input');
-  //   input.setAttribute('type', 'file');
-  //   input.click();
+  function selectLocalImage(editor) {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.click();
 
-  //               // Listen upload local image and save to server
-  //   input.onchange = function(){
-  //     const file = input.files[0];
+                // Listen upload local image and save to server
+    input.onchange = function(){
+      const file = input.files[0];
 
-  //               // file type is only image.
-  //     if (/^image\//.test(file.type)) {
-  //       saveToServer(file, editor);
-  //     } else {
-  //       console.warn('You could only upload images.');
-  //     }
-  //   };
-  // }
+                // file type is only image.
+      if (/^image\//.test(file.type)) {
+        saveToServer(file, editor);
+      } else {
+        console.warn('You could only upload images.');
+      }
+    };
+  }
 
               /**
                * Step2. save to server
                *
                * @param {File} file
                */
-  // function saveToServer(file, editor) {
-  //   const fd = new FormData();
-  //   fd.append('image', file);
+  function saveToServer(file, editor) {
+    const fd = new FormData();
+    fd.append('image', file);
 
-  //   const xhr = new XMLHttpRequest();
-  //   xhr.open('POST', '/api/images', true);
-  //   xhr.onload = function() {
-  //     if (xhr.status === 200) {
-  //               // this is callback data: url
-  //       const url = JSON.parse(xhr.responseText).url;
-  //       insertToEditor(url, editor);
-  //     }
-  //   };
-  //   xhr.send(fd);
-  // }
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/images', true);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+                // this is callback data: url
+        const url = JSON.parse(xhr.responseText).url;
+        insertToEditor(url, editor);
+      }
+    };
+    xhr.send(fd);
+  }
               /**
                * Step3. insert image url to rich editor.
                *
