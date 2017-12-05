@@ -1,7 +1,7 @@
 class CommonUploader < CarrierWave::Uploader::Base
-  storage :fog
+  # storage :fog
   # if Rails.env.production?
   # else
-  #   storage :file
+  storage :file
   # end
 end
