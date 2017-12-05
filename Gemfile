@@ -18,6 +18,7 @@ gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'fog', '1.42.0'
+gem 'mina', '1.2.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'carrierwave', '~> 1.0'
