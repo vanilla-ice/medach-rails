@@ -12,7 +12,7 @@ set :user, 'deploy'
 set :application_name, 'medach'
 set :domain, '146.185.143.96'
 set :deploy_to, '/home/deploy/apps/medach'
-set :repository, 'git://github.com/vanilla-ice/medach.git'
+set :repository, 'git://github.com/vanilla-ice/medach-rails.git'
 set :branch, 'master'
 
 # Optional settings:
