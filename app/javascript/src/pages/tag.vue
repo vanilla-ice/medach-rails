@@ -17,7 +17,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      isLoading: true,
+      isLoading: true, 
       availableTags: [
         {
           value: 'хирургия',
