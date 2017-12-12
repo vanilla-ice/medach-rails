@@ -32,12 +32,14 @@ export default {
   img {
     display: block;
     max-width: 100%;
+    margin: 15px auto;
   }
 
   blockquote {
     padding-left: 16px;
     border-left: 3px solid #ccc;
     color: #666;
+    margin: 15px 0;
   }
 
 

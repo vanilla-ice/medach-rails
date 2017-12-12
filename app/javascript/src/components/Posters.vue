@@ -51,6 +51,8 @@ export default {
   color: #515666;
   font-size: 12px;
   line-height: 14px;
+  max-height: 43px;
+  overflow: hidden;
 }
 
 .posters__item-foto {
