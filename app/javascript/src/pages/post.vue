@@ -5,8 +5,11 @@
     main.main.main-description
       .container
         .foto-column
-          .foto-column__poster
+          .foto-column__poster(v-if="image[0].src")
             lightbox#lightbox(:images="image")
+          .placeholder(v-if="!image[0].src")
+            span
+              | MEDACH
         desc-column(v-if="activePost", :data="activePost.body", :name="activePost.title")
         info-column(v-if="activePost", :info="activePost")
 </template>
@@ -75,6 +78,8 @@ export default {
 .foto-column {
   max-width: 254.43px;
   width: 100%;
+  position: relative;
+  min-height: 321px;
 }
 
 .foto-column__poster {
@@ -89,6 +94,38 @@ export default {
   img {
     display: block;
     width: 100%;
+  }
+}
+
+.image { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  z-index: 2;
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  z-index: 1;
+
+  span {
+    font-size: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 24px;
+    color: #aaaaaa;
   }
 }
 </style>
