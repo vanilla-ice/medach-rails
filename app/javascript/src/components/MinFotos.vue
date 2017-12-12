@@ -204,6 +204,10 @@ export default {
   background-color: #F8F8F8;
 }
 
+.min-fotos__item-text {
+  max-height: 50px;
+  overflow: hidden;
+}
 
 </style>
 
