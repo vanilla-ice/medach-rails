@@ -3,7 +3,11 @@
       .min-fotos__day.min-fotos__tuesday
         .min-fotos__day-wrapper
           router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
-            .min-fotos__item-foto(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
+            .min-fotos__foto-wrapper
+              .min-fotos__item-foto(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
+              .min-fotos__item-foto_placeholder
+                span
+                  | MEDACH
             .min-fotos__item-text
               | {{ post.shorttext }}
 </template>
@@ -106,14 +110,43 @@ export default {
   margin-bottom: 40px;
 }
 
-.min-fotos__item-foto {
-  display: block;
-  width: 100%;
+.min-fotos__foto-wrapper {
+  position: relative;
   height: 219px;
   margin-bottom: 10px;
+}
+
+.min-fotos__item-foto {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: cover !important;
+  z-index: 2;
+
+  &_placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f8f8f8;
+    z-index: 1;
+
+    span {
+      font-size: 18px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 24px;
+      color: #aaaaaa;
+    }
+  }
 }
 
 .min-fotos__day-data-text {
