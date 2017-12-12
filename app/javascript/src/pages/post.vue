@@ -45,6 +45,7 @@ export default {
 
   mounted () {
     this.$store.dispatch('getActivePost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
+    console.log(this.$store.state)
   },
 
   components: {
