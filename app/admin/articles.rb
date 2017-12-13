@@ -35,7 +35,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     column :tag_list
     column :author
     column :redaction
-    column :infographic
+    column :infographic, label: "Изображение"
     column :created_at
     column :publish_on
     actions
@@ -56,7 +56,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
-      f.input :infographic, label: "Инфографика"
+      f.input :infographic, label: "Изображение"
       f.input :created_at
       f.input :publish_on, label: "отложенный постинг"
     end
