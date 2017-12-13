@@ -21,6 +21,8 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       row :created_at
       row :publish_on
       row :shorttext
+      row :translate
+      row :origin
     end
     active_admin_comments
   end
@@ -36,6 +38,8 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     column :author
     column :redaction
     column :infographic, label: "Изображение"
+    column :translate
+    column :origin
     column :created_at
     column :publish_on
     actions
