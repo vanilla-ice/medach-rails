@@ -69,6 +69,10 @@ task :deploy do
   # run(:local){ say 'done' }
 end
 
+task :logs do
+  command "tail -f #{fetch(:deploy_to)}/current/log/production.log"
+end
+
 # For help in making your deploy script, see the Mina documentation:
 #
 #  - https://github.com/mina-deploy/mina/tree/master/docs
