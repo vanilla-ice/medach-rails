@@ -10,6 +10,11 @@
           | Редакция: {{info.redaction}}
         .info-column__item.info-column__data
           | {{date}}
+        .info-column__item
+          span.title
+            | Тэги:
+          router-link(v-for="(tag, id) in info.tag_list", :to="'/tag/' + tag").tag
+            |{{'#' + tag}}
 </template>
 
 <script>
@@ -20,6 +25,7 @@ export default {
   props: ['info'],
 
   mounted () {
+    
   },
 
   computed: {
@@ -46,6 +52,18 @@ export default {
 
 .info-column__data {
   font-style: italic;
+}
+
+.tag {
+  display: inline-block;
+  text-decoration: underline;
+  margin-left: 5px;
+
+  &:not(:last-child) {
+    &::after {
+      content: ',';
+    }
+  }
 }
 
 </style>
