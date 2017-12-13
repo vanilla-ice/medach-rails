@@ -25,6 +25,11 @@ class Api::ArticlesController < ActionController::Base
     render json: @all_tags
   end
 
+  def tags_count
+    @tags_count = ActsAsTaggableOn::Tag.most_used
+    render json: @tags_count
+  end
+
   def search
     @articles = Article.search(params[:q])
     render json: @articles

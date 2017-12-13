@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get 'all_tags'
         get 'by_tag/:tag_name', action: :by_tag, as: :by_tag
         get 'search'
+        get 'tags_count'
       end
     end
     resources :images do
