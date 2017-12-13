@@ -2,7 +2,7 @@
   div
     loader-component(v-if="isLoading")
     header-component
-    data-component(:date="activeDate")
+    data-component(v-if="getActivePosts", :date="activeDate")
     main.main-index
       big-fotos-component(:posts="getActivePosts" v-if="getActivePosts")
       .inner
@@ -44,7 +44,6 @@ export default {
     getPostsByDay () {
       const posts = this.posts.reduce((res, curr, id) => {
         const date = moment(curr.created_at).format('DD/MM/YYYY')
-        console.log('date', date)
 
         if (!res.hasOwnProperty(date)) {
           res[date] = []

@@ -1,9 +1,7 @@
 import axios from 'axios'
  
-// const BASE_URL = "http://localhost:3000"
 const BASE_URL = process.env.BASE_URL
 
-console.log('@@@@@@@@@@@@@@@@', BASE_URL)
 export const simpleRequest = (url, method, data, headers) => {
   const requestObj = {
     url,
@@ -27,7 +25,7 @@ export const post = (url, data, headers = {}) => {
 
 export const getArticles = () => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles`)
+    get(`/api/articles`)
       .then(response => {
         resolve(response)
       })
@@ -37,7 +35,7 @@ export const getArticles = () => {
 
 export const getPost = (id) => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles/${id}`)
+    get(`/api/articles/${id}`)
       .then(response => {
         resolve(response)
       })
@@ -47,7 +45,7 @@ export const getPost = (id) => {
 
 export const getPostsByTag = (tag) => {
   return new Promise((resolve, reject) => {
-    get(`${BASE_URL}/api/articles/by_tag/${tag}`)
+    get(`/api/articles/by_tag/${tag}`)
       .then(response => {
         resolve(response)
       })
@@ -57,7 +55,7 @@ export const getPostsByTag = (tag) => {
 
 export const searchRequest = (query) => {
   return new Promise((resolve, reject) => {
-    axios.get(`${BASE_URL}/api/articles/search`, {
+    axios.get(`/api/articles/search`, {
       params: {
         q: query
       }

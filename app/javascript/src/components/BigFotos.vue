@@ -1,10 +1,9 @@
 <template lang="pug">
   .big-fotos
-      router-link(v-for="(post, id) in getPosts" v-if="id < 5" :to="'post/' + post.id", :key="id", :style="{ background: `url(${post.image.url})` }").main__big-foto
-      //- .main__big-fotos__cloock
-      //-   .main__big-fotos__cloock-icon
-      //-   .main__big-fotos__cloock-digits
-      //-     | 19:10
+    router-link(v-for="(post, id) in getPosts" v-if="id < 5 && post.image" :to="'post/' + post.id", :key="id").main__big-foto
+      .placeholder
+        span MEDACH
+      .image(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
 </template>
 
 <script>
@@ -24,7 +23,6 @@ export default {
   },
 
   updated () {
-    console.log('posts', this.posts)
   },
 
   computed: {
@@ -44,13 +42,43 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .main__big-foto {
+.main__big-foto {
   display: block;
   width: 20%;
   height: 25vw;
+  position: relative;
+}
+
+.image { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  z-index: 2;
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  z-index: 1;
+
+  span {
+    font-size: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 24px;
+    color: #aaaaaa;
+  }
 }
 
 .big-fotos {

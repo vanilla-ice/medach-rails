@@ -1,5 +1,5 @@
 <template lang="pug">
-  .desc-column
+  .desc-column.ql-editor
     .desc-column__title {{ name }}
     .desc-column__text(v-html="data")
 </template>
@@ -11,26 +11,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/quill.core.css';
+
 .desc-column {
   max-width: 622px;
   width: 100%;
 
   p {
-    display: inline-block;
-    margin-bottom: 25px;
-    line-height: 24px !important;
-    font-family: Times-Roman !important;
-    font-size: 17px !important;
-    color: #515666 !important;
-    letter-spacing: 0 !important;
-  }
-
-  p span {
-    line-height: 24px !important;
-    font-family: Times-Roman !important;
-    font-size: 17px !important;
-    color: #515666 !important;
-    letter-spacing: 0 !important;
+    font-family: Times-Roman;
+    color: #515666;
   }
 
   .desc-column__title {
@@ -40,12 +29,21 @@ export default {
     margin-bottom: 46px;
   }
 
-  a {
-    text-decoration: underline;
-    font-size: 17px;
-    font-family: Times-Roman !important;
-    color: #515666 !important;
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 15px auto;
   }
+
+  blockquote {
+    padding-left: 16px;
+    border-left: 3px solid #ccc;
+    color: #666;
+    margin: 15px 0;
+  }
+
+
+
 }
 
 </style>
