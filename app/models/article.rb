@@ -12,7 +12,7 @@ class Article < ApplicationRecord
   before_save :delete_whitespace
 
   def delete_whitespace
-    @article = Article.last
+    @article = Article.find(params[:id]
     @article.tag_list.map {|s| s.gsub(/(\#|\s)/, '')}
   end
 end
