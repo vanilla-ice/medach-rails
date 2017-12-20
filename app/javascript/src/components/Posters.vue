@@ -76,6 +76,7 @@ export default {
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  z-index: 2;
 }
 
 .posters__item-foto-1 {
