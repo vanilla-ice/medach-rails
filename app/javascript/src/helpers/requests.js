@@ -64,3 +64,14 @@ export const searchRequest = (query) => {
     }).catch(reject)
   })
 }
+
+export const tagsCount = () => {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/articles/tags_count`)
+      .then(response => {
+        resolve(response)
+      }).catch(error => reject(error))
+  })
+}
+
+

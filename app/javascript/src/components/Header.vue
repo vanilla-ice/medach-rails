@@ -6,20 +6,10 @@
       router-link(to="/").logo
         | MEDACH
       .header__main-nav
-        router-link(to="/tag/хирургия").main-nav__item
-          | #ХИРУРГИЯ
-        router-link(to="/tag/терапия").main-nav__item
-          | #ТЕРАПИЯ
-        router-link(to="/tag/офтальмология").main-nav__item
-          | #ОФТАЛЬМОЛОГИЯ
-        router-link(to="/tag/кардиология").main-nav__item
-          | #КАРДИОЛОГИЯ
-        router-link(to="/tag/образование").main-nav__item
-          | #ОБРАЗОВАНИЕ
-        router-link(to="/tag/crispr").main-nav__item
-          | #CRISPR
-        router-link(to="/tag/нейрохирургия").main-nav__item
-          | #НЕЙРОХИРУРГИЯ
+
+        router-link(v-for="tag in popularTags", :to="`/tag/${tag.name}`").main-nav__item
+          |{{tag.name.toUpperCase()}}
+
       .header__wrapper-dop
         .header__serch-wrapper
           label
@@ -38,12 +28,18 @@
 
 <script>
 import LoaderComponent from './Loader.vue'
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       query: '',
       isLoading: false
     }
+  },
+
+  created() {
+    this.$store.dispatch('getTagsCount').then(() => console.log('popularTags', this.popularTags))
   },
 
   methods: {
@@ -56,6 +52,10 @@ export default {
         })
       )
     }
+  },
+
+  computed: {
+    ...mapGetters(['popularTags'])
   },
 
   components: {
@@ -87,7 +87,7 @@ export default {
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   max-width: 694px;
   width:  100%;
@@ -99,9 +99,17 @@ export default {
   position: relative;
 
   display: inline-block;
+
+  &::before {
+    content: '#';
+  }
+
+  &:not(:first-child) {
+    margin-left: 5px;
+  }
 }
 
-.main-nav__item.main-nav__item::before {
+.main-nav__item.main-nav__item::after {
   content: '';
   position: absolute;
   opacity: 0;

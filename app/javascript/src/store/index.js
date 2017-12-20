@@ -7,7 +7,8 @@ import {
   getArticles,
   getPost,
   getPostsByTag,
-  searchRequest
+  searchRequest,
+  tagsCount
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -18,14 +19,16 @@ function store () {
       posts: [],
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
-      activeTag: null
+      activeTag: null,
+      popularTags: []
     },
 
     getters: {
       posts: state => state.posts,
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
-      activeTag: state => state.activeTag
+      activeTag: state => state.activeTag,
+      popularTags: state => state.popularTags
     },
 
     mutations: {
@@ -70,6 +73,10 @@ function store () {
           })
         })
       },
+
+      getTagsCount({state}) {
+        return tagsCount().then((res) => state.popularTags = [...res.data]).catch(error => console.log(error))
+      }
     },
 
     plugins: [createLogger()]
