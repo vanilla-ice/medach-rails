@@ -7,7 +7,7 @@
         | MEDACH
       .header__main-nav
 
-        router-link(v-for="tag in popularTags", :to="`/tag/${tag.name}`").main-nav__item
+        router-link(v-for="(tag, id) in popularTags" v-if="id < 10" , :to="`/tag/${tag.name}`").main-nav__item
           |{{tag.name.toUpperCase()}}
 
       .header__wrapper-dop
@@ -86,8 +86,10 @@ export default {
   position: relative;
 
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
   justify-content: flex-start;
+  overflow: hidden;
+  white-space: nowrap;
 
   max-width: 694px;
   width:  100%;
@@ -99,6 +101,7 @@ export default {
   position: relative;
 
   display: inline-block;
+  white-space: nowrap;
 
   &::before {
     content: '#';
@@ -121,7 +124,7 @@ export default {
   background: #505666;
 }
 
-.main-nav__item:hover.main-nav__item::before {
+.main-nav__item:hover.main-nav__item::after {
   opacity: 1;
 }
 
