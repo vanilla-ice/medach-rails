@@ -18,36 +18,6 @@ export default {
   data () {
     return {
       isLoading: true, 
-      availableTags: [
-        {
-          value: 'хирургия',
-          name: '#ХИРУРГИЯ'
-        },
-        {
-          name: '#ТЕРАПИЯ',
-          value: 'терапия'
-        },
-        {
-          name: '#ОФТАЛЬМОЛОГИЯ',
-          value: 'офтальмология'
-        },
-        {
-          name: '#КАРДИОЛОГИЯ',
-          value: 'кардиология'
-        },
-        {
-          name: '#ОБРАЗОВАНИЕ',
-          value: 'образование'
-        },
-        {
-          name: '#CRISPR',
-          value: 'crispr'
-        },
-        {
-          name: '#НЕЙРОХИРУРГИЯ',
-          value: 'нейрохирургия'
-        }
-      ]
     }
   },
 
@@ -74,7 +44,7 @@ export default {
     ...mapGetters(['posts']),
 
     getTagName () {
-      return this.availableTags.filter(item => item.value === this.$route.params.id)[0].name
+      return '#' + this.$route.params.id.toUpperCase()
     }
   },
 
