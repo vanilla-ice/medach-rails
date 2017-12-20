@@ -9,11 +9,10 @@ class Article < ApplicationRecord
   has_many :images
   acts_as_taggable
   scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
-  after_save :delete_whitespace
+  before_save :delete_whitespace
 
   def delete_whitespace
-    @article = Article.find(params[:id])
-    @article.tag_list.map {|s| s.gsub(/(\#|\s)/, '')}
-    @article.save!
+    self.tag_list = self.tag_list.map {|s| s.gsub(/(\#|\s)/, '')}
+    self
   end
 end
