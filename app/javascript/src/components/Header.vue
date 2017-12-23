@@ -3,27 +3,54 @@
   header.header
     loader-component(v-if="isLoading")
     .container
-      router-link(to="/").logo
-        | MEDACH
-      .header__main-nav
+      .left
+        router-link(to="/").logo
+          | MEDACH
+        .header__main-nav.only-desktop
 
-        router-link(v-for="(tag, id) in popularTags" v-if="id < 10" , :to="`/tag/${tag.name}`").main-nav__item
-          |{{tag.name.toUpperCase()}}
+          router-link(v-for="(tag, id) in popularTags" v-if="id < 8" , :to="`/tag/${tag.name}`").main-nav__item
+            |{{tag.name.toUpperCase()}}
 
-      .header__wrapper-dop
-        .header__serch-wrapper
-          label
-            form(@submit.prevent="search")
-              button.header__search-icon(type="submit")
-              input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
-          .header__search-buffer
-        a(href="#").header__medach
+      .right.only-desktop
+        .header__wrapper-dop
+          .header__serch-wrapper
+            label
+              form(@submit.prevent="search")
+                button.header__search-icon(type="submit")
+                input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
+            .header__search-buffer
+          a(href="#").header__medach
+          .header__socials-wrapper
+            a(href="#").header__social.header__socials-vk
+            a(href="#").header__social.header__socials-facebook
+            a(href="#").header__social.header__socials-telegram
+      
+      .burger.only-mobile(@click="toggleMenu")
+        //- img(src="../static/images/menu.svg")
+        #nav-icon3(:class="{open: isOpen}")
+          span
+          span
+          span
+          span
+    
+    .menu-page(:class="{visible: isOpen}")
+
+      .search
+        label
+          form(@submit.prevent="search")
+            button.header__search-icon(type="submit")
+            input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
+
+      .tags
+        router-link(v-for="(tag, id) in popularTags" v-if="id < 8" , :to="`/tag/${tag.name}`").main-nav__item
+          | {{tag.name.toUpperCase()}}
+
+      .social
         .header__socials-wrapper
           a(href="#").header__social.header__socials-vk
           a(href="#").header__social.header__socials-facebook
           a(href="#").header__social.header__socials-telegram
-        a(href="#").calendar
-          | Календарь
+
 </template>
 
 <script>
@@ -34,12 +61,13 @@ export default {
   data() {
     return {
       query: '',
-      isLoading: false
+      isLoading: false,
+      isOpen: false
     }
   },
 
   created() {
-    this.$store.dispatch('getTagsCount').then(() => console.log('popularTags', this.popularTags))
+    this.$store.dispatch('getTagsCount')
   },
 
   methods: {
@@ -51,6 +79,17 @@ export default {
           this.isLoading = false
         })
       )
+    },
+
+    toggleMenu() {
+      this.isOpen = !this.isOpen
+
+      if (this.isOpen) {
+        document.querySelector('body').style.overflow = 'hidden'
+      }
+      else {
+        document.querySelector('body').style.overflow = 'initial'
+      }
     }
   },
 
@@ -68,6 +107,8 @@ export default {
 .header {
   min-height: 62px;
   font-family: LucidaGrande-Bold;
+  z-index: 10;
+  padding: 10px 0;
 }
 
 .header .container {
@@ -91,10 +132,11 @@ export default {
   overflow: hidden;
   white-space: nowrap;
 
-  max-width: 694px;
+  max-width: 753px;
   width:  100%;
 
   font-size: 10px;
+  margin-left: 40px;
 }
 
 .main-nav__item {
@@ -188,7 +230,6 @@ export default {
   .header__socials-wrapper {
   display: flex;
   justify-content: space-between;
-  margin-right: 20px;
 }
 
 .header__social {
@@ -200,15 +241,15 @@ export default {
 }
 
 .header__socials-vk {
-  background: url('../static/images/vk.png') no-repeat center;
+  background: url('../static/images/vk.svg') no-repeat center / contain;
 }
 
 .header__socials-facebook {
-  background: url('../static/images/facebook.png') no-repeat center;
+  background: url('../static/images/facebook.svg') no-repeat center / contain;
 }
 
 .header__socials-telegram {
-  background: url('../static/images/telegram.png') no-repeat center;
+  background: url('../static/images/telegram.svg') no-repeat center / contain;
 }
 
 .calendar {
@@ -237,10 +278,12 @@ export default {
   height: 7px;
   background: url('../static/images/medach.png') no-repeat center;
   background-size: contain;
+  margin-right: 15px;
 }
 
 .logo {
   font-size: 24px;
+  z-index: 20;
 }
 
 form {
@@ -256,6 +299,183 @@ button {
 
 input {
   flex: 1 1 auto;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.only-mobile {
+  display: none;
+}
+
+.burger {
+  opacity: .7;
+  height: 22px;
+  width: 22px;
+  z-index: 20;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#nav-icon3 {
+  width: 27px;
+  height: 22px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+#nav-icon3 span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #000;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+  top: 7px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 14px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 7px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 7px;
+  width: 0%;
+  left: 50%;
+}
+
+.menu-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  opacity: 0;
+  transition: opacity .2s ease;
+  will-change: opacity;
+  pointer-events: none;
+  z-index: 10;
+  padding-top: 82px;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.search {
+  position: absolute;
+  left: 180px;
+  top: 31px;
+
+  input {
+    font-size: 18px;
+    width: 50vw;
+    max-width: initial;
+  }
+
+  button {
+    transform: translateY(37%);
+  }
+}
+
+.tags {
+  padding: 0 30px;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .main-nav__item:not(:first-child) {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+
+  .main-nav__item {
+    font-size: 20px;
+  }
+}
+
+.social {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+
+  .header__social {
+    width: 27px;
+    height: 27px;
+    margin: 0 10px;
+  }
+
+  .header__socials-facebook {
+    height: 22px;
+    margin-top: 2px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .only-desktop {
+    display: none;
+  }
+
+  .only-mobile {
+    display: block;
+  }
 }
 
 </style>
