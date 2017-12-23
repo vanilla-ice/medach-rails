@@ -4,7 +4,7 @@
     loader-component(v-if="isLoading")
     .container
       .left
-        router-link(to="/").logo
+        .logo(@click="closeMenu")
           | MEDACH
         .header__main-nav.only-desktop
 
@@ -90,6 +90,12 @@ export default {
       else {
         document.querySelector('body').style.overflow = 'initial'
       }
+    },
+
+    closeMenu() {
+      this.isOpen = false
+      document.querySelector('body').style.overflow = 'initial'
+      this.$router.push('/')
     }
   },
 
