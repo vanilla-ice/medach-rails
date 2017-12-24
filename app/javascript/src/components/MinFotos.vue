@@ -242,5 +242,22 @@ export default {
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .min-fotos {
+    padding: 0 40px;
+  }
+  .min-fotos__item {
+    width: calc(33.3% - 27px);
+
+    &:nth-child(3n - 2) {
+      margin-left: 0;
+    } 
+  }
+
+  .min-fotos__foto-wrapper {
+    height: 275px;
+  }
+}
+
 </style>
 

@@ -132,6 +132,17 @@ export default {
   color: #BEBEBE;
 }
 
+@media (max-width: 1024px) {
+  .main__big-foto {
+    height: 275px;
+  }
+
+  .big-fotos {
+    height: 275px;
+    margin-bottom: 15px;
+  }
+}
+
 
 </style>
 

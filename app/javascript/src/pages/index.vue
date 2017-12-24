@@ -1,5 +1,5 @@
 <template lang="pug" >
-  div
+  div.main-container
     loader-component(v-if="isLoading")
     header-component
     data-component(v-if="getActivePosts", :date="activeDate")
@@ -74,6 +74,12 @@ export default {
 .days-wrapper {
   &:nth-child(even) {
     background: #F8F8F8;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    margin-top: 115px;
   }
 }
 
