@@ -26,7 +26,6 @@
             a(href="#").header__social.header__socials-telegram
       
       .burger.only-mobile(@click="toggleMenu")
-        //- img(src="../static/images/menu.svg")
         #nav-icon3(:class="{open: isOpen}")
           span
           span
@@ -42,7 +41,7 @@
             input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
 
       .tags
-        router-link(v-for="(tag, id) in popularTags" v-if="id < 8" , :to="`/tag/${tag.name}`").main-nav__item
+        .main-nav__item(v-for="(tag, id) in popularTags" v-if="id < 8" @click="goToTag(tag.name)")
           | {{tag.name.toUpperCase()}}
 
       .social
@@ -96,6 +95,12 @@ export default {
       this.isOpen = false
       document.querySelector('body').style.overflow = 'initial'
       this.$router.push('/')
+    },
+
+    goToTag(tag) {
+      this.isOpen = false;
+      document.querySelector('body').style.overflow = 'initial'
+      this.$router.push(`/tag/${tag}`)
     }
   },
 
