@@ -1,5 +1,5 @@
 <template lang="pug" >
-  div
+  div.main-container
     loader-component(v-if="isLoading")
     header-component
     main.main.main-description
@@ -127,6 +127,25 @@ export default {
     transform: translate(-50%, -50%);
     line-height: 24px;
     color: #aaaaaa;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    margin-top: 115px;
+  }
+
+  .container {
+    flex-flow: column nowrap;
+  }
+
+  .foto-column {
+    max-width: 375px;
+    margin-bottom: 45px;
+
+    &__poster {
+      max-width: initial;
+    }
   }
 }
 </style>
