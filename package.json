@@ -22,6 +22,7 @@
     "sass-loader": "^6.0.6",
     "svg-inline-loader": "^0.8.0",
     "vue": "^2.5.2",
+    "vue-carousel": "^0.6.5",
     "vue-images": "^1.0.10",
     "vue-loader": "^13.3.0",
     "vue-router": "^3.0.1",

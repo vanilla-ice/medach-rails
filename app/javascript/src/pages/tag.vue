@@ -83,4 +83,11 @@ export default {
     margin-bottom: 25px;
   }
 }
+
+@media (max-width: 767px) {
+  .main-surgery__title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+}
 </style>

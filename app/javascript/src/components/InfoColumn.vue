@@ -74,5 +74,13 @@ export default {
   }
 }
 
+@media (max-width: 767px) {
+  .info-column {
+    max-width: initial;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
 </style>
 

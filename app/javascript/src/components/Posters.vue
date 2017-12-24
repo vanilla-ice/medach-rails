@@ -216,5 +216,26 @@ export default {
   }
 }
 
+@media (max-width: 767px) {
+  .posters__wrapper {
+    padding-top: 0;
+  }
+  .posters__item {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 40px;
+  }
+
+  .posters__item-foto {
+    height: 370px;
+  }
+
+  .posters__item-text {
+    font-size: 18px;
+    line-height: 22px;
+    max-height: 68px;
+  }
+}
+
 </style>
 
