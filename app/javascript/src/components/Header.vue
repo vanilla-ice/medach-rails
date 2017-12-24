@@ -321,7 +321,6 @@ input {
 .burger {
   opacity: .7;
   height: 22px;
-  width: 22px;
   z-index: 20;
 
   img {
@@ -481,6 +480,19 @@ input {
 
   .only-mobile {
     display: block;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+
+    .container {
+      padding: 0 40px;
+    }
   }
 }
 
