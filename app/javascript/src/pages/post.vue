@@ -148,4 +148,14 @@ export default {
     }
   }
 }
+
+@media (max-width: 767px) {
+  .foto-column {
+    max-width: 100%;
+
+    &__poster {
+      max-width: 100%;
+    }
+  }
+}
 </style>

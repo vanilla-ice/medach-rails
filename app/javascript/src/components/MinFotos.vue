@@ -259,5 +259,24 @@ export default {
   }
 }
 
+@media (max-width: 767px) {
+  .min-fotos__item {
+    width: 100%;
+    margin-left: 0;
+
+    margin-top: 20px;
+  }
+
+  .min-fotos__foto-wrapper {
+    height: 370px;
+  }
+
+  .min-fotos__item-text {
+    font-size: 18px;
+    line-height: 22px;
+    max-height: 68px;
+  }
+}
+
 </style>
 

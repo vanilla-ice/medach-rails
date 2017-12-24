@@ -507,5 +507,16 @@ input {
   }
 }
 
+@media (max-width: 767px) {
+  .header .container {
+    padding: 0 20px;
+  }
+
+  .search {
+    left: 148px;
+    max-width: 125px;
+  }
+}
+
 </style>
 
