@@ -74,7 +74,7 @@ export default {
       this.isLoading = true
       this.$store.dispatch('search', this.query).then(() => 
         setTimeout(() => {
-          document.querySelector('body').style.overflow = 'initial'
+          document.querySelector('#app').style.overflow = 'initial'
           this.isOpen = false
           this.$router.push('/search')
           this.isLoading = false
@@ -86,22 +86,26 @@ export default {
       this.isOpen = !this.isOpen
 
       if (this.isOpen) {
-        document.querySelector('body').style.overflow = 'hidden'
+        document.querySelector('#app').style.overflow = 'hidden'
+        document.querySelector('#app').style.maxHeight = '100vh'
       }
       else {
-        document.querySelector('body').style.overflow = 'initial'
+        document.querySelector('#app').style.overflow = 'initial'
+        document.querySelector('#app').style.maxHeight = 'initial'
       }
     },
 
     closeMenu() {
       this.isOpen = false
-      document.querySelector('body').style.overflow = 'initial'
+      document.querySelector('#app').style.overflow = 'initial'
+      document.querySelector('#app').style.maxHeight = 'initial'
       this.$router.push('/')
     },
 
     goToTag(tag) {
       this.isOpen = false;
-      document.querySelector('body').style.overflow = 'initial'
+      document.querySelector('#app').style.overflow = 'initial'
+      document.querySelector('#app').style.maxHeight = 'initial'
       this.$router.push(`/tag/${tag}`)
     }
   },
