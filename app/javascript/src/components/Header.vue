@@ -74,6 +74,8 @@ export default {
       this.isLoading = true
       this.$store.dispatch('search', this.query).then(() => 
         setTimeout(() => {
+          document.querySelector('body').style.overflow = 'initial'
+          this.isOpen = false
           this.$router.push('/search')
           this.isLoading = false
         })
