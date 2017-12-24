@@ -190,5 +190,31 @@ export default {
   }
 }
 
+
+@media (max-width: 1024px) {
+  .posters .container {
+    padding: 0 40px;
+  }
+
+  .posters__item {
+    max-width: initial;
+    width: calc(33.3% - 27px);
+    margin-right: 0;
+
+    &:not(:nth-child(3n - 2)) {
+      margin-left: 40px;
+    }
+
+    &:nth-child(n + 4) {
+      margin-top: 40px;
+    }
+  }
+
+  .posters__item-foto {
+    width: initial;
+    height: 275px;
+  }
+}
+
 </style>
 
