@@ -7,7 +7,7 @@
       .big-photos
         big-fotos-component(:posts="getActivePosts" v-if="getActivePosts")
       
-      .slider(v-if="getActivePosts.length > 0")
+      .slider(v-if="getActivePosts && getActivePosts.length > 0")
         carousel
           slide(v-for="(post, id) in getActivePosts", :key="id")
             router-link.main__big-foto(:to="'post/' + post.id")
