@@ -201,4 +201,14 @@ img {
   background: #fff;
   overflow-y: auto;
   color: #505666;
+  font-size: 16px;
+
+  p {
+    font-family: Times-Roman, Georgia;
+    line-height: 1.42;
+  }
+}
+
+.js-quickview {
+  cursor: pointer;
 }
