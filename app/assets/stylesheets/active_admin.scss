@@ -37,6 +37,11 @@ img {
   background-color: white;
 
 }
+
+.ql-container {
+  max-height: 601px;
+  overflow-y: auto;
+}
 .ql-editor sup {
   vertical-align: super;
 }
