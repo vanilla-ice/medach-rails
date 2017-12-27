@@ -55,10 +55,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
         </div> <input type=\"hidden\" id=\"quill_editor_input\" name=\"article[body]\">".html_safe
 
       end
-      f.input :image do |ad|
-        image_tag ad.image.url
-      end
-      # f.input :image
+      f.input :image
       f.input :shorttext, label: "Краткое описание"
       f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
