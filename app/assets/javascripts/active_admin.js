@@ -63,7 +63,7 @@ window.onload = function() {
   var default_options = {
     modules:{
       formula: true,
-      toolbar: 
+      toolbar:
                 // custom функционал
       [
         ['bold', 'italic', 'underline', 'strike'],
