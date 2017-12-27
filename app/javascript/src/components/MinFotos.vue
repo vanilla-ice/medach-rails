@@ -242,5 +242,41 @@ export default {
   overflow: hidden;
 }
 
+@media (max-width: 1024px) {
+  .min-fotos {
+    padding: 0 40px;
+  }
+  .min-fotos__item {
+    width: calc(33.3% - 27px);
+
+    &:nth-child(3n - 2) {
+      margin-left: 0;
+    } 
+  }
+
+  .min-fotos__foto-wrapper {
+    height: 275px;
+  }
+}
+
+@media (max-width: 767px) {
+  .min-fotos__item {
+    width: 100%;
+    margin-left: 0;
+
+    margin-top: 20px;
+  }
+
+  .min-fotos__foto-wrapper {
+    height: 370px;
+  }
+
+  .min-fotos__item-text {
+    font-size: 18px;
+    line-height: 22px;
+    max-height: 68px;
+  }
+}
+
 </style>
 

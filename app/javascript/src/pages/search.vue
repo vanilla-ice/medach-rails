@@ -1,5 +1,5 @@
 <template lang="pug" >
-  div
+  div.main-container
     header-component
     main.main-surgery
       posters-component(:posts="posts")
@@ -53,5 +53,11 @@ export default {
 
 .main-surgery .container {
   padding: 0 115px;
+}
+
+@media (max-width: 1024px) {
+  .main-container {
+    margin-top: 115px;
+  }
 }
 </style>
