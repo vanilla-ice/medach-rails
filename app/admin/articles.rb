@@ -33,13 +33,13 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
     end
     column :title
     column :shorttext
-    column :body
+    # column :body
     column :tag_list
     column :author
-    column :redaction
-    column :infographic, label: "Изображение"
-    column :translate
-    column :origin
+    # column :redaction
+    # column :infographic, label: "Изображение"
+    # column :translate
+    # column :origin
     column :created_at
     column :publish_on
     actions
