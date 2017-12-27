@@ -46,5 +46,12 @@ export default {
 
 }
 
+@media (max-width: 1024px) {
+  .desc-column {
+    max-width: initial;
+    padding: 0;
+  }
+}
+
 </style>
 

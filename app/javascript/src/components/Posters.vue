@@ -190,5 +190,52 @@ export default {
   }
 }
 
+
+@media (max-width: 1024px) {
+  .posters .container {
+    padding: 0 40px;
+  }
+
+  .posters__item {
+    max-width: initial;
+    width: calc(33.3% - 27px);
+    margin-right: 0;
+
+    &:not(:nth-child(3n - 2)) {
+      margin-left: 40px;
+    }
+
+    &:nth-child(n + 4) {
+      margin-top: 40px;
+    }
+  }
+
+  .posters__item-foto {
+    width: initial;
+    height: 275px;
+  }
+}
+
+@media (max-width: 767px) {
+  .posters__wrapper {
+    padding-top: 0;
+  }
+  .posters__item {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top: 40px;
+  }
+
+  .posters__item-foto {
+    height: 370px;
+  }
+
+  .posters__item-text {
+    font-size: 18px;
+    line-height: 22px;
+    max-height: 68px;
+  }
+}
+
 </style>
 
