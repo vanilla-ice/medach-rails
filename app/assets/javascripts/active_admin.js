@@ -142,7 +142,7 @@ $(document).ready(function() {
 
   $('body').on('click', '.js-quickview', function() {
     $('body').css('overflow-y', 'hidden')
-    let data = {};
+    var data = {};
 
     data['name'] = $('#article_title').val()
     data['post'] = $('.ql-editor').html()
