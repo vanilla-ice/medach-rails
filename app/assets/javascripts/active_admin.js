@@ -101,7 +101,7 @@ window.onload = function() {
   }
 };
 
-const renderQuickviewPopup = (data) => {
+const renderQuickviewPopup = function(data) {
   return `
     <div class="quickview-popup">
       <div class="js-close close-popup">Закрыть</div>
@@ -133,11 +133,12 @@ const renderQuickviewPopup = (data) => {
   `
 }
 
-$(document).ready(() => {
+$(document).ready(function() {
   $('body').append('<div class="popup-wrapper"></div>')
   setTimeout(() => $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>'), 0)
+  $('.actions ol').append('<li class="action input_action"><button class="js-draft">Save as draft</button></li>')
 
-  $('body').on('click', '.js-quickview', () => {
+  $('body').on('click', '.js-quickview', function() {
     $('body').css('overflow-y', 'hidden')
     let data = {};
 
@@ -149,13 +150,17 @@ $(document).ready(() => {
     data['origin'] = $('#article_origin').val()
     data['image'] = $('#article_image_url').val()
 
-    console.log('data', data)
-
     $('.popup-wrapper').append(renderQuickviewPopup(data))
   })
 
-  $('body').on('click', '.js-close', () => {
+  $('body').on('click', '.js-close', function() {
     $('.popup-wrapper > div').remove()
     $('body').css('overflow-y', 'initial')
+  })
+
+  $('body').on('click', '.js-draft', function(e) {
+    e.preventDefault()
+    $('#article_publish_on_1i').val('2022')
+    $('#article_submit_action input').trigger('click')
   })
 })
