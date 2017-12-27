@@ -13,6 +13,7 @@
 @import "quill/dist/quill.core";
 @import "quill/dist/quill.snow";
 @import "katex/dist/katex";
+@import "../../../javascript/src/assets/fonts.css";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -48,7 +49,166 @@ img {
 .ql-editor sub {
   vertical-align: sub
 }
-input #quill_editor_input {
 
+.info-column {
+  max-width: 218px;
+  width: 100%;
+  margin-top: 90px;
 
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.info-column__item {
+  margin-bottom: 11px;
+}
+
+.info-column__data {
+  font-style: italic;
+}
+
+.tag {
+  display: inline-block;
+  text-decoration: underline;
+  margin-left: 5px;
+
+  &:not(:last-child) {
+    &::after {
+      content: ',';
+    }
+  }
+}
+
+.main-description {
+  margin-top: 66px;
+  padding-bottom: 56px;
+}
+
+.main-description .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.foto-column {
+  max-width: 254.43px;
+  width: 100%;
+  position: relative;
+  min-height: 321px;
+}
+
+.foto-column__poster {
+  max-width: 254.43px;
+  width: 100%;
+  height: 321.17px;
+
+  margin-top: 8px;
+
+  // background: url('../static/images/good-bad.png') no-repeat center / contain;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.image { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  z-index: 2;
+}
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f8f8f8;
+  z-index: 1;
+
+  span {
+    font-size: 28px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 24px;
+    color: #aaaaaa;
+  }
+}
+
+.desc-column {
+  max-width: 622px;
+  width: 100%;
+
+  p {
+    font-family: Times-Roman;
+    color: #515666;
+  }
+
+  .desc-column__title {
+    font-family: LucidaGrande-Bold;
+    font-size: 36px;
+    line-height: 43px;
+    margin-bottom: 46px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 15px auto;
+  }
+
+  blockquote {
+    padding-left: 16px;
+    border-left: 3px solid #ccc;
+    color: #666;
+    margin: 15px 0;
+  }
+}
+
+.close-popup {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+  overflow: hidden;
+
+  max-width: 1280px;
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.quickview-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  background: #fff;
+  overflow-y: auto;
+  color: #505666;
+  font-size: 16px;
+
+  p {
+    font-family: Times-Roman, Georgia;
+    line-height: 1.42;
+  }
+}
+
+.js-quickview {
+  cursor: pointer;
 }
