@@ -101,4 +101,62 @@ window.onload = function() {
   }
 };
 
+const renderQuickviewPopup = (data) => {
+  return `
+    <div class="quickview-popup">
+      <div class="js-close close-popup">Закрыть</div>
+      <div class="main main-description">
+        <div class="container">
 
+          <div class="foto-column">
+            <div class="foto-column__poster">
+              ${data.image ? `<img src="${data.image}" />` : ``}
+            </div>
+          </div>
+
+          <div class="desc-column ql-editor">
+            <div class="desc-column__title">${data.name ? data.name : ''}</div>
+            <div class="desc-column__text">${data.post ? data.post : ''}</div>
+          </div>
+
+          <div class="info-column">
+
+            <div class="info-column__item">Автор: ${data.author ? data.author : ''}</div>
+            <div class="info-column__item info-column__infographic">Инфографика: <a href="${data.infographic ? data.infographic : ''}">${data.infographic}</a></div>
+            <div class="info-column__item">Редакция: ${data.redaction ? data.redaction : ''}</div>
+            <div class="info-column__item">Дата: ${data.date ? data.date : ''}</div>
+            <div class="info-column__item info-column__infographic">Оригинал: <a href="${data.origin ? data.origin : ''}">${data.origin}</a></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+}
+
+$(document).ready(() => {
+  $('body').append('<div class="popup-wrapper"></div>')
+  setTimeout(() => $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>'), 0)
+
+  $('body').on('click', '.js-quickview', () => {
+    $('body').css('overflow-y', 'hidden')
+    let data = {};
+
+    data['name'] = $('#article_title').val()
+    data['post'] = $('.ql-editor').html()
+    data['redaction'] = $('#article_redaction').val()
+    data['author'] = $('#article_author').val()
+    data['infographic'] = $('#article_infographic').val()
+    data['origin'] = $('#article_origin').val()
+    data['date'] = $('article_publish_on_3i').val() + ' ' + $('article_publish_on_2i').val() + ' ' + $('article_publish_on_1i').val()
+
+    console.log('data', data)
+
+    $('.popup-wrapper').append(renderQuickviewPopup(data))
+  })
+
+  $('body').on('click', '.js-close', () => {
+    $('.popup-wrapper > div').remove()
+    $('body').css('overflow-y', 'initial')
+  })
+})
