@@ -2,7 +2,7 @@ class Api::ArticlesController < ActionController::Base
   respond_to  :json
   def index
     @articles = Article.published
-    render json: @articles
+    render json: @articles.newest_first
   end
 
 

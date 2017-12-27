@@ -9,6 +9,7 @@ class Article < ApplicationRecord
   has_many :images
   acts_as_taggable
   scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
+  scope :newest_first, -> {order("created_at DESC")}
   before_save :delete_whitespace
 
   def delete_whitespace
