@@ -124,7 +124,6 @@ const renderQuickviewPopup = (data) => {
             <div class="info-column__item">Автор: ${data.author ? data.author : ''}</div>
             <div class="info-column__item info-column__infographic">Инфографика: <a href="${data.infographic ? data.infographic : ''}">${data.infographic}</a></div>
             <div class="info-column__item">Редакция: ${data.redaction ? data.redaction : ''}</div>
-            <div class="info-column__item">Дата: ${data.date ? data.date : ''}</div>
             <div class="info-column__item info-column__infographic">Оригинал: <a href="${data.origin ? data.origin : ''}">${data.origin}</a></div>
 
           </div>
@@ -148,7 +147,7 @@ $(document).ready(() => {
     data['author'] = $('#article_author').val()
     data['infographic'] = $('#article_infographic').val()
     data['origin'] = $('#article_origin').val()
-    data['date'] = $('article_publish_on_3i').val() + ' ' + $('article_publish_on_2i').val() + ' ' + $('article_publish_on_1i').val()
+    data['image'] = $('#article_image_url').val()
 
     console.log('data', data)
 
