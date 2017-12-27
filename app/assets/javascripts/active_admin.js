@@ -101,4 +101,68 @@ window.onload = function() {
   }
 };
 
+var renderQuickviewPopup = function(data) {
+  var result =
+    '<div class="quickview-popup">' +
+      '<div class="js-close close-popup">Закрыть</div>' + 
+      '<div class="main main-description">' +
+        '<div class="container">' +
 
+          '<div class="foto-column">' +
+            '<div class="foto-column__poster">' +
+              '<img src="' + data.image + '"/>' +
+           ' </div>' + 
+          '</div>' + 
+
+          '<div class="desc-column ql-editor">' +
+            '<div class="desc-column__title">' + data.name + '</div>' +
+            '<div class="desc-column__text">' + data.post + '</div>' +
+          '</div>' +
+
+          '<div class="info-column">' +
+
+            '<div class="info-column__item">Автор: ' + data.author +  '</div>' +
+            '<div class="info-column__item info-column__infographic">Инфографика: <a href="' + data.infographic + '">' + data.infographic + '</a></div>' +
+            '<div class="info-column__item">Редакция: ' + data.redaction + '</div>' +
+            '<div class="info-column__item info-column__infographic">Оригинал: <a href="' + data.origin + '">' + data.origin + '</a></div>' +
+
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+
+    return result;
+  
+};
+
+$(document).ready(function() {
+  $('body').append('<div class="popup-wrapper"></div>');
+  setTimeout(function() { $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>')}, 0);
+  $('.actions ol').append('<li class="action input_action"><button class="js-draft">Save as draft</button></li>');
+
+  $('body').on('click', '.js-quickview', function() {
+    $('body').css('overflow-y', 'hidden')
+    var data = {};
+
+    data['name'] = $('#article_title').val()
+    data['post'] = $('.ql-editor').html()
+    data['redaction'] = $('#article_redaction').val()
+    data['author'] = $('#article_author').val()
+    data['infographic'] = $('#article_infographic').val()
+    data['origin'] = $('#article_origin').val()
+    data['image'] = $('#article_image_url').val()
+
+    $('.popup-wrapper').append(renderQuickviewPopup(data))
+  });
+
+  $('body').on('click', '.js-close', function() {
+    $('.popup-wrapper > div').remove()
+    $('body').css('overflow-y', 'initial')
+  });
+
+  $('body').on('click', '.js-draft', function(e) {
+    e.preventDefault()
+    $('#article_publish_on_1i').val('2022')
+    $('#article_submit_action input').trigger('click')
+  });
+});
