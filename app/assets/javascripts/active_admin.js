@@ -137,7 +137,7 @@ var renderQuickviewPopup = function(data) {
 
 $(document).ready(function() {
   $('body').append('<div class="popup-wrapper"></div>');
-  setTimeout(() => $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>'), 0);
+  setTimeout(function() { $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>')}, 0);
   $('.actions ol').append('<li class="action input_action"><button class="js-draft">Save as draft</button></li>');
 
   $('body').on('click', '.js-quickview', function() {
