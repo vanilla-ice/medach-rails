@@ -1,20 +1,24 @@
 <template lang="pug">
   .info-column
-        .info-column__item.info-column__autor
-          | Автор: {{info.author}}
-        .info-column__item.info-column__infographic(v-if="info.infographic")
-          | Инфографика: 
-          a(:href="info.infographic")
-            | {{info.infographic}}
-        .info-column__item.info-column__redaction
-          | Редакция: {{info.redaction}}
-        .info-column__item.info-column__data
-          | {{date}}
-        .info-column__item
-          span.title
-            | Тэги:
-          router-link(v-for="(tag, id) in info.tag_list", :to="'/tag/' + tag").tag
-            |{{'#' + tag}}
+    .info-column__item.info-column__autor
+      | Автор: {{info.author}}
+    .info-column__item.info-column__infographic(v-if="info.infographic")
+      | Инфографика: 
+      a(:href="info.infographic")
+        | {{info.infographic}}
+    .info-column__item.info-column__redaction(v-if="info.redaction")
+      | Редакция: {{info.redaction}}
+    .info-column__item.info-column__data
+      | {{date}}
+    .info-column__item.info-column__infographic(v-if="info.origin")
+      | Оригинал: 
+      a(:href="info.origin" target="_blank")
+        | {{info.origin}}
+    .info-column__item
+      span.title
+        | Тэги:
+      router-link(v-for="(tag, id) in info.tag_list", :to="'/tag/' + tag").tag
+        |{{'#' + tag}}
 </template>
 
 <script>
