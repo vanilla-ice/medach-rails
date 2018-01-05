@@ -136,7 +136,11 @@ var renderQuickviewPopup = function(data) {
 };
 
 $(document).ready(function() {
+  var body = $('.row-body').find('td').text()
+  $('.row-body').find('td').html(body)
   $('body').append('<div class="popup-wrapper"></div>');
+  $('#tabs').append('<li><a href="/" target="_blank" >Go to the website</a></li>');
+  
   setTimeout(function() { $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>')}, 0);
   $('.actions ol').append('<li class="action input_action"><button class="js-draft">Save as draft</button></li>');
 
@@ -165,4 +169,6 @@ $(document).ready(function() {
     $('#article_publish_on_1i').val('2022')
     $('#article_submit_action input').trigger('click')
   });
+
+  
 });
