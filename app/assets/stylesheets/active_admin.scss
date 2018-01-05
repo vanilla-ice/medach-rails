@@ -20,8 +20,7 @@
 //
 //   .status_tag { background: #6090DB; }
 img {
-  height: 300px;
-  width : 300px;
+  width : 100%;
 }
 .ql-editor {
   box-sizing: border-box;
@@ -36,7 +35,10 @@ img {
   white-space: pre-wrap;
   word-wrap: break-word;
   background-color: white;
+}
 
+.inputs img {
+  max-width: 300px !important;
 }
 
 .ql-container {

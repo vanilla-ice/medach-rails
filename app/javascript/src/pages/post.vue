@@ -10,7 +10,7 @@
           .placeholder(v-if="!image[0].src")
             span
               | MEDACH
-        desc-column(v-if="activePost", :data="activePost.body", :name="activePost.title")
+        desc-column(v-if="activePost", :post="activePost.body", :name="activePost.title")
         info-column(v-if="activePost", :info="activePost")
 </template>
 
@@ -53,7 +53,7 @@ export default {
     DescColumn,
     InfoColumn,
     descColumnBottom,
-    Lightbox,
+    Lightbox, 
     LoaderComponent
   }
 }
