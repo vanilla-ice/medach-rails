@@ -161,6 +161,7 @@ export default {
 
   display: inline-block;
   white-space: nowrap;
+  letter-spacing: 0.3px;
 
   &::before {
     content: '#';
@@ -301,6 +302,7 @@ export default {
 .logo {
   font-size: 24px;
   z-index: 20;
+  cursor: pointer;
 }
 
 form {
