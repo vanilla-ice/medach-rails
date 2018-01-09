@@ -1,7 +1,7 @@
 class Api::ArticlesController < ActionController::Base
   respond_to  :json
   def index
-    @articles = Article.published
+    @articles = Article.published.page(params[:page]).per(20)
     render json: @articles.newest_first
   end
 
@@ -32,10 +32,5 @@ class Api::ArticlesController < ActionController::Base
   def search
     @articles = Article.search(params[:q])
     render json: @articles
-  end
-
-  def paginate
-    @articles = Article.page(params[:page]).per(20)
-    render json: @articles.newest_first
   end
 end
