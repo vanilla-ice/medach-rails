@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         get 'by_tag/:tag_name', action: :by_tag, as: :by_tag
         get 'search'
         get 'tags_count'
+        get 'show_fixed'
         # get 'paginate', action: :paginate, as: :paginate
       end
     end

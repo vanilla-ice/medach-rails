@@ -33,4 +33,9 @@ class Api::ArticlesController < ActionController::Base
     @articles = Article.search(params[:q])
     render json: @articles
   end
+
+  def show_fixed
+   @articles = Article.fixed
+   render json: @articles
+  end
 end
