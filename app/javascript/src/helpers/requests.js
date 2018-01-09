@@ -37,6 +37,12 @@ export const getArticles = (page) => {
   })
 }
 
+export const getPinnedPostsRequest = () => {
+  return new Promise((resolve, reject) => {
+    get(`api/articles/show_fixed`).then(response => resolve(response)).catch(error => reject(error))
+  })
+}
+
 export const getPost = (id) => {
   return new Promise((resolve, reject) => {
     get(`/api/articles/${id}`)
