@@ -35,10 +35,10 @@ function store () {
     },
 
     actions: {
-      getPosts({state}) {
+      getPosts({state}, page) {
         return new Promise((resolve, reject) => {
-          getArticles().then(res => {
-            state.posts = [...res.data]
+          getArticles(page).then(res => {
+            state.posts = [...state.posts, ...res.data]
             resolve()
           })
         })

@@ -16,8 +16,12 @@
               .image(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
       
       .inner
-        .days-wrapper()
+        .days-wrapper
           MinFotosComponent(:posts="posts")
+          .loader(v-if="isFetching")
+            img(src="../static/images/loader.svg")
+      
+
 
 </template>
 
@@ -37,12 +41,23 @@ moment.locale('ru')
 export default {
   data () {
     return {
-      isLoading: true
+      isLoading: true,
+      currentPage: 1,
+      isFetching: false,
+      inThrottle: false
     }
   },
 
   mounted() {
-    this.$store.dispatch('getPosts').then((res) => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getPosts', this.currentPage).then((res) => setTimeout(() => this.isLoading = false, 300))
+    let isThrottling = false;
+
+    window.addEventListener('scroll', () => {
+      const $container = document.querySelector("#app")
+      if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+        this.throttle(this.fetchPosts, 1000);
+      }
+    })
   },
 
   computed: {
@@ -67,7 +82,19 @@ export default {
   },
 
   methods: {
+    fetchPosts() {
+      this.isFetching = true
+      this.currentPage = ++this.currentPage
+      this.$store.dispatch('getPosts', this.currentPage).then(() => this.isFetching = false)
+    },
 
+    throttle(func, limit) {
+      if (!this.inThrottle) {
+        func()
+        this.inThrottle = true
+        setTimeout(() => this.inThrottle = false, limit)
+      }
+    }
   },
 
   components: {
@@ -131,6 +158,12 @@ export default {
   background-repeat: no-repeat !important;
   background-position: center !important;
   z-index: 2;
+}
+
+.loader {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
 @media (max-width: 1024px) {

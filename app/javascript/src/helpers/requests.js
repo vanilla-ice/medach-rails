@@ -23,13 +23,17 @@ export const post = (url, data, headers = {}) => {
   return simpleRequest(url, "post", data, headers);
 }
 
-export const getArticles = () => {
+export const getArticles = (page) => {
   return new Promise((resolve, reject) => {
-    get(`/api/articles`)
-      .then(response => {
-        resolve(response)
-      })
-      .catch(reject)
+    axios.get(`/api/articles`, { 
+      params: {
+        page: page
+      }
+    })
+    .then(response => {
+      resolve(response)
+    })
+    .catch(reject)
   })
 }
 
