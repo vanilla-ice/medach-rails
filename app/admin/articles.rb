@@ -60,7 +60,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
-      f.input :infographic, label: "Изображение"
+      f.input :infographic, label: "Инфографика"
       f.input :origin, label: "Оригинал"
       f.input :translate, label: "Перевод"
       f.input :created_at
