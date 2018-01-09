@@ -2,7 +2,7 @@ ActiveAdmin.register Article do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on, :shorttext, :origin, :translate
+permit_params :body, :image, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on, :shorttext, :origin, :translate, :fixed
 #
 # or
 #
@@ -64,8 +64,9 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
       f.input :origin, label: "Оригинал"
       f.input :translate, label: "Перевод"
       f.input :created_at
-      f.input :publish_on, label: "отложенный постинг"
+      f.input :publish_on, label: "Отложенный постинг"
       f.input :image_url, :input_html => { :value => f.object.image.url }, as: :hidden
+      f.input :fixed, label: "Закрепить в шапке"
     end
     f.actions
   end
