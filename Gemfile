@@ -23,7 +23,7 @@ gem 'mina', '1.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
-gem 'devise'
+gem "devise"
 gem 'acts-as-taggable-on', '5.0.0'
 gem 'pry-rails'
 gem 'pg_search', '2.1.1'
