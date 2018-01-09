@@ -8,7 +8,8 @@ import {
   getPost,
   getPostsByTag,
   searchRequest,
-  tagsCount
+  tagsCount,
+  getPinnedPostsRequest
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -20,7 +21,8 @@ function store () {
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
       activeTag: null,
-      popularTags: []
+      popularTags: [],
+      pinnedPosts: []
     },
 
     getters: {
@@ -28,7 +30,8 @@ function store () {
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
       activeTag: state => state.activeTag,
-      popularTags: state => state.popularTags
+      popularTags: state => state.popularTags,
+      pinnedPosts: state => state.pinnedPosts
     },
 
     mutations: {
@@ -42,6 +45,10 @@ function store () {
             resolve()
           })
         })
+      },
+
+      getPinnedPosts({state}) {
+        getPinnedPostsRequest().then((res) => state.pinnedPosts = [...res.data])
       },
 
       getActivePost({state}, payload) {

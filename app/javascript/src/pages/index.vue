@@ -2,14 +2,13 @@
   div.main-container
     loader-component(v-if="isLoading")
     header-component
-    data-component(v-if="getActivePosts", :date="activeDate")
     main.main-index
       .big-photos
-        big-fotos-component(:posts="getActivePosts" v-if="getActivePosts")
+        big-fotos-component(:posts="pinnedPosts" v-if="pinnedPosts.length > 0")
       
-      .slider(v-if="getActivePosts && getActivePosts.length > 0")
+      .slider(v-if="pinnedPosts && pinnedPosts.length > 0")
         carousel
-          slide(v-for="(post, id) in getActivePosts", :key="id")
+          slide(v-for="(post, id) in pinnedPosts", :key="id")
             router-link.main__big-foto(:to="'post/' + post.id")
               .placeholder
                 span MEDACH
@@ -50,6 +49,7 @@ export default {
 
   mounted() {
     this.$store.dispatch('getPosts', this.currentPage).then((res) => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getPinnedPosts')
     let isThrottling = false;
 
     window.addEventListener('scroll', () => {
@@ -61,24 +61,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate']),
-
-    getActivePosts () {
-      return this.getPostsByDay[this.activeDate]
-    },
-
-    getPostsByDay () {
-      const posts = this.posts.reduce((res, curr, id) => {
-        const date = moment(curr.created_at).format('DD/MM/YYYY')
-
-        if (!res.hasOwnProperty(date)) {
-          res[date] = []
-        }
-        res[date].push(curr)
-        return res
-      }, {})
-      return posts
-    }
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts'])
   },
 
   methods: {
