@@ -5,14 +5,13 @@ class Api::ArticlesController < ActionController::Base
     render json: @articles.newest_first
   end
 
-
   def show
     @article = Article.find(params[:id])
     render json: @article
   end
 
   def by_tag
-      @articles = Article.tagged_with(params[:tag_name])
+    @articles = Article.tagged_with(params[:tag_name])
     if @articles.any?
       render json: @articles
     else
@@ -35,4 +34,8 @@ class Api::ArticlesController < ActionController::Base
     render json: @articles
   end
 
+  def paginate
+    @articles = Article.page(params[:page]).per(20)
+    render json: @articles.newest_first
+  end
 end
