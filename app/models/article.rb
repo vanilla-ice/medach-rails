@@ -1,6 +1,8 @@
 class Article < ApplicationRecord
   include PgSearch
 
+  validates :shorttext, length: { maximum: 250 }
+
   has_many :images
 
   before_save :delete_whitespace
