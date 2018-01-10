@@ -25,7 +25,7 @@ export default {
   updated () {
   },
 
-  computed: {
+  computed: {    
     dayOfTheWeek () {
       return format(this.day, 'dddd', { locale: ru })
     },
