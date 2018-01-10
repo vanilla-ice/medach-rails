@@ -2,22 +2,25 @@
   div.main-container
     loader-component(v-if="isLoading")
     header-component
-    data-component(v-if="getActivePosts", :date="activeDate")
     main.main-index
       .big-photos
-        big-fotos-component(:posts="getActivePosts" v-if="getActivePosts")
+        big-fotos-component(:posts="pinnedPosts" v-if="pinnedPosts.length > 0")
       
-      .slider(v-if="getActivePosts && getActivePosts.length > 0")
+      .slider(v-if="pinnedPosts && pinnedPosts.length > 0")
         carousel
-          slide(v-for="(post, id) in getActivePosts", :key="id")
+          slide(v-for="(post, id) in pinnedPosts", :key="id")
             router-link.main__big-foto(:to="'post/' + post.id")
               .placeholder
                 span MEDACH
               .image(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
       
       .inner
-        .days-wrapper()
+        .days-wrapper
           MinFotosComponent(:posts="posts")
+          .loader(v-if="isFetching")
+            img(src="../static/images/loader.svg")
+      
+
 
 </template>
 
@@ -37,37 +40,44 @@ moment.locale('ru')
 export default {
   data () {
     return {
-      isLoading: true
+      isLoading: true,
+      currentPage: 1,
+      isFetching: false,
+      inThrottle: false
     }
   },
 
   mounted() {
-    this.$store.dispatch('getPosts').then((res) => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getPosts', this.currentPage).then((res) => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getPinnedPosts')
+    let isThrottling = false;
+
+    window.addEventListener('scroll', () => {
+      const $container = document.querySelector("#app")
+      if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+        this.throttle(this.fetchPosts, 1000);
+      }
+    })
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate']),
-
-    getActivePosts () {
-      return this.getPostsByDay[this.activeDate]
-    },
-
-    getPostsByDay () {
-      const posts = this.posts.reduce((res, curr, id) => {
-        const date = moment(curr.created_at).format('DD/MM/YYYY')
-
-        if (!res.hasOwnProperty(date)) {
-          res[date] = []
-        }
-        res[date].push(curr)
-        return res
-      }, {})
-      return posts
-    }
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts'])
   },
 
   methods: {
+    fetchPosts() {
+      this.isFetching = true
+      this.currentPage = ++this.currentPage
+      this.$store.dispatch('getPosts', this.currentPage).then(() => this.isFetching = false)
+    },
 
+    throttle(func, limit) {
+      if (!this.inThrottle) {
+        func()
+        this.inThrottle = true
+        setTimeout(() => this.inThrottle = false, limit)
+      }
+    }
   },
 
   components: {
@@ -131,6 +141,12 @@ export default {
   background-repeat: no-repeat !important;
   background-position: center !important;
   z-index: 2;
+}
+
+.loader {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
 }
 
 @media (max-width: 1024px) {
