@@ -56,7 +56,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
 
       end
       f.input :image
-      f.input :shorttext, label: "Краткое описание"
+      f.input :shorttext, label: "Краткое описание", :placeholder => 'max 250 символов'
       f.input :tag_list, :placeholder => 'Теги через запятую'
       f.input :author, label: "Автор"
       f.input :redaction, label: "Редакция"
