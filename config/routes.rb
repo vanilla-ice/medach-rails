@@ -10,7 +10,6 @@ Rails.application.routes.draw do
         get 'search'
         get 'tags_count'
         get 'show_fixed'
-        # get 'paginate', action: :paginate, as: :paginate
       end
     end
     resources :images do
