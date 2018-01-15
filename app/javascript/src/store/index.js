@@ -22,7 +22,8 @@ function store () {
       activePost: null,
       activeTag: null,
       popularTags: [],
-      pinnedPosts: []
+      pinnedPosts: [],
+      pageCount: 0
     },
 
     getters: {
@@ -31,7 +32,8 @@ function store () {
       activePost: state => state.activePost,
       activeTag: state => state.activeTag,
       popularTags: state => state.popularTags,
-      pinnedPosts: state => state.pinnedPosts
+      pinnedPosts: state => state.pinnedPosts,
+      pageCount: state => state.pageCount
     },
 
     mutations: {
@@ -41,7 +43,8 @@ function store () {
       getPosts({state}, page) {
         return new Promise((resolve, reject) => {
           getArticles(page).then(res => {
-            state.posts = [...state.posts, ...res.data]
+            state.posts = [...state.posts, ...res.data.articles]
+            state.pageCount = Math.ceil(res.data.count / 20)
             resolve()
           })
         })
