@@ -1,6 +1,6 @@
 <template lang="pug">
   .info-column
-    .info-column__item.info-column__autor
+    .info-column__item.info-column__autor(v-if="info.author")
       | Автор: {{info.author}}
     .info-column__item.info-column__infographic(v-if="info.infographic")
       | Инфографика: 
@@ -14,7 +14,11 @@
       | Оригинал: 
       a(:href="info.origin" target="_blank")
         | {{info.origin}}
-    .info-column__item
+    .info-column__item.info-column__infographic(v-if="info.origin")
+      | Перевод: 
+      a(:href="info.translate" target="_blank" v-if="info.translate")
+        | {{info.translate}}
+    .info-column__item(v-if="info.tag_list.length > 0")
       span.title
         | Тэги:
       router-link(v-for="(tag, id) in info.tag_list", :to="'/tag/' + tag").tag
