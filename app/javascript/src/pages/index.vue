@@ -48,7 +48,9 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getPosts', this.currentPage).then((res) => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getPosts', this.currentPage).then((res) => {
+      setTimeout(() => this.isLoading = false, 300)
+    })
     this.$store.dispatch('getPinnedPosts')
     let isThrottling = false;
 
@@ -61,14 +63,17 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate', 'pinnedPosts'])
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount'])
   },
 
   methods: {
     fetchPosts() {
-      this.isFetching = true
-      this.currentPage = ++this.currentPage
-      this.$store.dispatch('getPosts', this.currentPage).then(() => this.isFetching = false)
+      console.log(this.pageCount)
+      if (this.pageCount && (this.pageCount > this.currentPage)) {
+        this.isFetching = true
+        this.currentPage = ++this.currentPage
+        this.$store.dispatch('getPosts', this.currentPage).then(() => this.isFetching = false)
+      }
     },
 
     throttle(func, limit) {
