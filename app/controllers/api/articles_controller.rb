@@ -1,7 +1,7 @@
 class Api::ArticlesController < ActionController::Base
   respond_to  :json
   def index
-    @articles = Article.published.page(params[:page]).per(15)
+    @articles = Article.published.page(params[:page]).per(20)
     render json: @articles.newest_first
   end
 
