@@ -10,7 +10,7 @@ class Article < ApplicationRecord
   acts_as_taggable
   mount_uploader :image, ImageUploader
 
-  scope :fixed, -> { where(fixed: true) }
+  scope :fixed, -> { where(fixed: true)}
   scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
   scope :newest_first, -> {order("created_at DESC")}
 
