@@ -67,7 +67,7 @@ window.onload = function() {
                 // custom функционал
       [
         ['bold', 'italic', 'underline', 'strike'],
-        ['image'],['formula'],
+        ['link', 'image'],['formula'],
         [{ 'size': ['small', false, 'large', 'huge'] }],
         [{ 'font': [] }],
         [{ 'script': 'sub'}, { 'script': 'super' }],

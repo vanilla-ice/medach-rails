@@ -1,12 +1,17 @@
 class Api::ArticlesController < ActionController::Base
   respond_to  :json
   def index
+<<<<<<< HEAD
     articles = Article.published
     paginated = articles.page(params[:page]).per(20)
     render json: {
       articles: paginated.newest_first,
       count: articles.count
     }
+=======
+    @articles = Article.published.page(params[:page]).per(20)
+    render json: @articles.newest_first
+>>>>>>> b63d965d121ea0a0c80268b506b3f0262d28f44d
   end
 
   def show

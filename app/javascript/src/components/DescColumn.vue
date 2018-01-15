@@ -64,6 +64,10 @@ export default {
     margin-bottom: 46px;
   }
 
+  &__text a {
+    text-decoration: underline
+  }
+
   img {
     display: block;
     max-width: 100%;
