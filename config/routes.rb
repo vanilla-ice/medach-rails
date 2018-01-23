@@ -6,11 +6,12 @@ Rails.application.routes.draw do
     resources :articles do
       collection do
         get 'all_tags'
-        get 'by_tag/:tag_name', action: :by_tag, as: :by_tag
+        get 'by_tag/:tag_name', action: :by_tag
+        # , as: :by_tag
         get 'search'
         get 'tags_count'
         get 'show_fixed'
-      end
+      end 
     end
     resources :images do
 
