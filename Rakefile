@@ -9,7 +9,7 @@ Rails.application.load_tasks
 desc "read file"
 
   task :readfile  => :environment  do
-    file = File.read"/Users/halla/Developer/medach-rails/db/wp_posts.json"
+    file = File.read"./db/wp_posts.json"
     data = JSON.parse(file)
     data.each do |post|
       if post["post_content"] || post["post_title"]
