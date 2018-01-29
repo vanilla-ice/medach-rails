@@ -53,10 +53,14 @@ export default {
   width: 100%;
 
   p {
-    font-family: Times-Roman;
+    font-family: sans-serif;
     color: #515666;
     line-height: 1.58;
     font-size: 18px;
+  }
+
+  .ql-font-serif {
+    font-size: 'Times New Roman';
   }
 
   .desc-column__title {
