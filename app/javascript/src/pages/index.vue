@@ -41,7 +41,6 @@ export default {
   data () {
     return {
       isLoading: true,
-      currentPage: 1,
       isFetching: false,
       inThrottle: false
     }
@@ -63,17 +62,12 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount'])
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount'])
   },
 
   methods: {
     fetchPosts() {
-      console.log(this.pageCount)
-      if (this.pageCount && (this.pageCount > this.currentPage)) {
-        this.isFetching = true
-        this.currentPage = ++this.currentPage
-        this.$store.dispatch('getPosts', this.currentPage).then(() => this.isFetching = false)
-      }
+      this.$store.dispatch('getPosts').then(() => this.isFetching = false)
     },
 
     throttle(func, limit) {

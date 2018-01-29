@@ -23,7 +23,8 @@ function store () {
       activeTag: null,
       popularTags: [],
       pinnedPosts: [],
-      pageCount: 0
+      pageCount: 0,
+      indexPageCount: 1
     },
 
     getters: {
@@ -33,20 +34,32 @@ function store () {
       activeTag: state => state.activeTag,
       popularTags: state => state.popularTags,
       pinnedPosts: state => state.pinnedPosts,
-      pageCount: state => state.pageCount
+      pageCount: state => state.pageCount,
+      indexPageCount: state => state.indexPageCount
     },
 
     mutations: {
+      incrementIndexPageCount(state) {
+        state.indexPageCount = state.indexPageCount + 1
+      } 
     },
 
     actions: {
-      getPosts({state}, page) {
+      getPosts({state, commit}) {
+        const page = state.indexPageCount
+
         return new Promise((resolve, reject) => {
-          getArticles(page).then(res => {
-            state.posts = [...state.posts, ...res.data.articles]
-            state.pageCount = Math.ceil(res.data.count / 20)
+          if (state.pageCount === 0 || (state.pageCount > page || state.pageCount === page)) {
+            getArticles(page).then(res => {
+              state.posts = [...state.posts, ...res.data.articles]
+              state.pageCount = Math.ceil(res.data.count / 20)
+              commit('incrementIndexPageCount')
+              resolve()
+            })
+          }
+          else {
             resolve()
-          })
+          }
         })
       },
 
