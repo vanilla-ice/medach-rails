@@ -2,8 +2,9 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
+require 'uri'
 
-
+# http([\w\W]+?).jpg
 Rails.application.load_tasks
 
 desc "read file"
@@ -11,12 +12,15 @@ desc "read file"
   task :readfile  => :environment  do
     file = File.read"/Users/halla/Developer/medach-rails/db/wp_posts.json"
     data = JSON.parse(file)
-    data.each do |post|
-      if post["post_content"] || post["post_title"]
-        Article.create(body: post["post_content"], title: post["post_title"])
-      else
-        puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
-      end
+    data.take(50).each do |post|
+      # if post["post_content"].empty? && post["post_title"].empty?
+      #   puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
+      # else
+      #   Article.create(body: post["post_content"], title: post["post_title"], publish_on: Time.zone.now )
+      # end
+      
+      link = post["post_content"].match(URI.regexp).select { |x| x =~ /^http.*\.jpg$/}
+     puts link.inspect
     end
 
     # puts data[0].keys
