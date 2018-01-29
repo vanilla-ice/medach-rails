@@ -9,7 +9,8 @@ import {
   getPostsByTag,
   searchRequest,
   tagsCount,
-  getPinnedPostsRequest
+  getPinnedPostsRequest,
+  getAllTags
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -24,7 +25,8 @@ function store () {
       popularTags: [],
       pinnedPosts: [],
       pageCount: 0,
-      indexPageCount: 1
+      indexPageCount: 1,
+      allTags: []
     },
 
     getters: {
@@ -35,7 +37,8 @@ function store () {
       popularTags: state => state.popularTags,
       pinnedPosts: state => state.pinnedPosts,
       pageCount: state => state.pageCount,
-      indexPageCount: state => state.indexPageCount
+      indexPageCount: state => state.indexPageCount,
+      tags: state => state.allTags
     },
 
     mutations: {
@@ -61,6 +64,10 @@ function store () {
             resolve()
           }
         })
+      },
+
+      getTags({state}) {
+        getAllTags().then((res) => state.allTags = [...res.data])
       },
 
       getPinnedPosts({state}) {

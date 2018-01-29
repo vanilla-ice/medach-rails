@@ -43,6 +43,12 @@ export const getPinnedPostsRequest = () => {
   })
 }
 
+export const getAllTags = () => {
+  return new Promise((resolve, reject) => {
+    get(`/api/articles/all_tags`).then(response => resolve(response)).catch(error => reject(error))
+  })
+}
+
 export const getPost = (id) => {
   return new Promise((resolve, reject) => {
     get(`/api/articles/${id}`)

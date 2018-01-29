@@ -2,6 +2,15 @@
   
   header.header
     loader-component(v-if="isLoading")
+    .tags-popup.only-desktop(v-if="isTagsOpen")
+      .tag-wrapper
+        .tags-inner(v-for="(tags, key) in sortTags()", :key="key")
+          .letter 
+            | {{key.toUpperCase()}}
+          .tags-wrapper
+            router-link.tag-name(v-for="(tag, id) in tags", :key="id", :to="`/tag/${tag.name}`")
+              | \#{{tag.name.toUpperCase()}}
+
     .container
       .left
         .logo(@click="closeMenu")
@@ -19,7 +28,8 @@
                 button.header__search-icon(type="submit")
                 input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
             .header__search-buffer
-          a(href="#").header__medach
+          .header__medach(@click="toggleTags")
+            | ВСЕ ТЕГИ
           .header__socials-wrapper
             a(href="#").header__social.header__socials-vk
             a(href="#").header__social.header__socials-facebook
@@ -61,12 +71,14 @@ export default {
     return {
       query: '',
       isLoading: false,
-      isOpen: false
+      isOpen: false,
+      isTagsOpen: false
     }
   },
 
   created() {
     this.$store.dispatch('getTagsCount')
+    this.$store.dispatch('getTags')
   },
 
   methods: {
@@ -80,6 +92,34 @@ export default {
           this.isLoading = false
         })
       )
+    },
+
+    toggleTags() {
+      this.isTagsOpen = !this.isTagsOpen
+      if (this.isTagsOpen) {
+        document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
+      }
+      else {
+        document.getElementsByTagName('body')[0].style.overflowY = 'initial'
+      }
+    },
+
+    sortTags() {
+      const tags = this.tags.reduce((res, curr) => {
+        const firstLetter = curr.name[0].toLowerCase();
+        if (!res.hasOwnProperty(firstLetter)) {
+          res[firstLetter] = [];
+        }
+        res[firstLetter].push(curr)
+        return res;
+      }, {})
+
+      const ordered = {};
+      Object.keys(tags).sort().forEach(function(key) {
+        ordered[key] = tags[key];
+      });
+
+      return ordered
     },
 
     toggleMenu() {
@@ -111,7 +151,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['popularTags'])
+    ...mapGetters(['popularTags', 'tags'])
   },
 
   components: {
@@ -138,6 +178,42 @@ export default {
 
   min-height: 62px;
 
+}
+
+.tags-popup {
+  position: fixed;
+  top: 62px;
+  width: 100%;
+  height: calc(100vh - 62px);
+  overflow-y: auto;
+  background: #fff;
+  z-index: 30;
+}
+
+.tag-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  width: 100%;
+  padding: 50px 30px 30px 30px;
+  margin: 0 auto;
+}
+
+.tags-inner {
+  width: 25%;
+  padding: 10px 20px;
+  margin-top: 30px;
+}
+
+.letter {
+  font-size: 22px;
+}
+
+.tag-name {
+  display: block;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .header__main-nav {
@@ -292,11 +368,14 @@ export default {
 }
 
 .header__medach {
-  width: 46px;
-  height: 7px;
-  background: url('../static/images/medach.png') no-repeat center;
   background-size: contain;
-  margin-right: 15px;
+  margin-right: 20px;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: LucidaGrande-Bold;
+  white-space: nowrap;
 }
 
 .logo {
