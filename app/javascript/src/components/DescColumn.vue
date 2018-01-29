@@ -49,12 +49,14 @@ export default {
 @import '../assets/quill.core.css';
 
 .desc-column {
-  max-width: 622px;
+  max-width: 739px;
   width: 100%;
 
   p {
     font-family: Times-Roman;
     color: #515666;
+    line-height: 1.58;
+    font-size: 18px;
   }
 
   .desc-column__title {
