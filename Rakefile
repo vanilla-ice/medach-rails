@@ -12,20 +12,26 @@ desc "read file"
   task :readfile  => :environment  do
     file = File.read"./db/wp_posts.json"
     data = JSON.parse(file)
-    data.take(60).each do |post|
-      if post["post_content"].empty? && post["post_title"].empty?
-        puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
+    data.each do |post|
+      if post["post_content"].present? && post["post_title"].present?
+         short = post["post_title"].slice(0, 150).gsub(/<[a-zA-Z\/][^>]*>/, '')
+
+         Article.create(body: post["post_content"].gsub(/\[[^\]]*\]/, ''), title: post["post_title"], publish_on: Time.zone.now, author: post["ID"], shorttext: short)
       else
-        Article.create(body: post["post_content"], title: post["post_title"], publish_on: Time.zone.now )
+        puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
+      end
+        
+      if post["post_type"] === "attachment" && post["post_parent"] != '0'
+        
+        var = Article.find_by(author: post["post_parent"])
+      
+        var.update(remote_image_url: post["guid"])
+      
+      else
+        puts "jopa"
       end
 
-    #   link = post["post_content"].match(URI.regexp).select { |x| x =~ /^http.*\.jpg$/}
-    #  puts link.inspect
-
-  end
-
-    # puts data[0].keys
-    # puts "@@@@@@@@@@@@@@@"
-    # puts data[23]["post_content"]
+      # \[[^\]]*\]
     puts "complete "
   end
+end
