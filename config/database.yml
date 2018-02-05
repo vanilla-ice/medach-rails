@@ -7,7 +7,7 @@ default: &default
 development:
   <<: *default
   database: medach_development
-  port: 5431
+  port: 5432
 
 test:
   <<: *default
