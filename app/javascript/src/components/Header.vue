@@ -14,7 +14,7 @@
     .top
       .container
         .left
-          .logo(@click="closeMenu")
+          .logo(@click="closeMenu", :class="{'logo--opened': isOpen}")
             | Meda
             span ch
 
@@ -34,21 +34,20 @@
                   .header__search-icon
                   input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
               .header__search-buffer
+        .burger.only-mobile(@click="toggleMenu")
+          #nav-icon3(:class="{open: isOpen}")
+            span
+            span
+            span
+            span
 
-    .bottom 
+    .bottom.only-desktop
       .container
         .header__main-nav.only-desktop
           router-link(v-for="(tag, id) in popularTags" v-if="id < 7" , :to="`/tag/${tag.name}`").main-nav__item
             |{{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
-    
-      .burger.only-mobile(@click="toggleMenu")
-        #nav-icon3(:class="{open: isOpen}")
-          span
-          span
-          span
-          span
     
     .menu-page(:class="{visible: isOpen}")
 
@@ -447,10 +446,15 @@
     color: #fff;
     font-family: 'Archangelsk';
     font-size: 25px;
+    transition: color .2s ease;
     color: #FFFFFF;
     letter-spacing: 2.08px;
     span {
       color: #6CF6FF;
+    }
+
+    &--opened {
+      color: #7F7F7F;
     }
   }
   
@@ -510,7 +514,7 @@
     position: absolute;
     height: 2px;
     width: 100%;
-    background: #000;
+    background: #fff;
     opacity: 1;
     left: 0;
     -webkit-transform: rotate(0deg);
@@ -521,6 +525,10 @@
     -moz-transition: .25s ease-in-out;
     -o-transition: .25s ease-in-out;
     transition: .25s ease-in-out;
+  }
+
+  #nav-icon3.open span {
+    background: #000;
   }
   
   #nav-icon3 span:nth-child(1) {
@@ -656,6 +664,19 @@
     .search {
       left: 148px;
       max-width: 125px;
+    }
+
+    .main-nav__item {
+      padding: 0;
+      border: none;
+    }
+
+    .header__search-icon {
+      display: none;
+    }
+
+    .search {
+      top: 18px;
     }
   }
 </style>
