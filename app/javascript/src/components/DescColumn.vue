@@ -79,6 +79,7 @@ export default {
     max-width: 100%;
     margin: 15px auto;
     cursor: pointer;
+    height: auto;
   }
 
   blockquote {
