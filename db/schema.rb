@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109131906) do
+ActiveRecord::Schema.define(version: 20180209114001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,10 @@ ActiveRecord::Schema.define(version: 20180109131906) do
     t.string "origin"
     t.string "translate"
     t.boolean "fixed", default: false, null: false
+    t.string "search"
     t.index ["origin"], name: "index_articles_on_origin"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
+    t.index ["search"], name: "index_articles_on_search"
     t.index ["shorttext"], name: "index_articles_on_shorttext"
     t.index ["translate"], name: "index_articles_on_translate"
   end
