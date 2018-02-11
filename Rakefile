@@ -10,9 +10,22 @@ Rails.application.load_tasks
 desc "read file"
 
   task :readfile  => :environment  do
-    file = File.read"./db/wp_posts.json"
-    data = JSON.parse(file)
-    data.reverse!.each do |post|
+    #берем посты
+    posts = File.read"./db/wp_posts.json"
+    data = JSON.parse(posts)
+    #берем теги
+    # tags = File.read"./db/wp_terms.json"
+    # tags_data = JSON.parse(tags)
+    # #берем таблицу связей тегов с постами
+    # tags_r = File.read"./db/wp_term_relationships.json"
+    # tags_r_data = JSON.parse(tags_r)
+
+    # tags_data.each do |tag|
+    # tags_r_data.each do |taggin|
+    data.each do |post|
+
+
+
       if post["post_content"].present? && post["post_title"].present? && post["post_status"] === "publish" && post["post_parent"] === '0'
          short = post["post_title"].slice(0, 150).gsub(/<[a-zA-Z\/][^>]*>/, '')
 
