@@ -22,11 +22,11 @@
         .right.only-desktop
           .header__wrapper-dop
             .header__category
-              router-link.category-name(to="/tag/авторские статьи") АВТОРСКИЕ СТАТЬИ
+              router-link.category-name(to="/tag/авторская статья") АВТОРСКИЕ СТАТЬИ
             .header__category
-              router-link.category-name(to="/tag/новости") НОВОСТИ
+              router-link.category-name(to="/tag/новость") НОВОСТИ
             .header__category
-              router-link.category-name(to="/tag/переводы") ПЕРЕВОДЫ
+              router-link.category-name(to="/tag/перевод") ПЕРЕВОДЫ
             .header__category
               router-link.category-name(to="/tag/медиа") МЕДИА
             .header__serch-wrapper
