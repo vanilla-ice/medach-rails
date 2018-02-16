@@ -8,8 +8,9 @@
           .letter 
             | {{key.toUpperCase()}}
           .tags-wrapper
-            router-link.tag-name(v-for="(tag, id) in tags", :key="id", :to="`/tag/${tag.name}`")
-              | \#{{tag.name.toUpperCase()}}
+            div(v-for="(tag, id) in tags", :key="id")
+              router-link.tag-name(:to="`/tag/${tag.name}`")
+                | \#{{tag.name.toUpperCase()}}
 
     .top
       .container
@@ -216,6 +217,10 @@
     width: 25%;
     padding: 10px 20px;
     margin-top: 30px;
+
+    &:hover {
+      z-index: 15;
+    }
   }
   
   .letter {
@@ -223,9 +228,22 @@
   }
   
   .tag-name {
-    display: block;
+    display: inline-block;
     font-size: 14px;
     margin-top: 10px;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #fff;
+    transition: max-width .3s ease;
+    z-index: 10;
+
+    &:hover {
+      max-width: 700px;
+      z-index: 30;
+    }
+
   }
   
   .header__main-nav {
