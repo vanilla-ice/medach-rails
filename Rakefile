@@ -18,8 +18,9 @@ desc "read file"
       if post["post_content"].present? && post["post_title"].present? && post["post_status"] === "publish" && post["post_parent"] === '0'
          short = post["post_title"].slice(0, 150).gsub(/<[a-zA-Z\/][^>]*>/, '')
          content =  post["post_content"].gsub(/\[[^\]]*\]/, '')
+         
          Article.create(
-            body: content.gsub(/http:../, +'http://old.'),
+            body: content.gsub(/http:../, +'http://old.' ),
             title: post["post_title"], publish_on: Time.zone.now,
             search: post["ID"], shorttext: short,
             author: "old.medach.pro"
@@ -46,7 +47,7 @@ desc "read file"
         end
       
       else
-        puts "nema"
+        puts "nem"
       end
 
     end
