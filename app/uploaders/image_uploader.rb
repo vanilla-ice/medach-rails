@@ -1,7 +1,8 @@
 class ImageUploader < CommonUploader
   include CarrierWave::MiniMagick
   # process scale: [278, 261]
-  
+  # process resize_to_fit: [800, 800]
+
   version :thumb do
     process resize_to_fill: [278,261]
   end

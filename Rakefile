@@ -17,9 +17,9 @@ desc "read file"
 
       if post["post_content"].present? && post["post_title"].present? && post["post_status"] === "publish" && post["post_parent"] === '0'
          short = post["post_title"].slice(0, 150).gsub(/<[a-zA-Z\/][^>]*>/, '')
-
+         content =  post["post_content"].gsub(/\[[^\]]*\]/, '')
          Article.create(
-            body: post["post_content"].gsub(/\[[^\]]*\]/, ''),
+            body: content.gsub(/http:../, +'http://old.'),
             title: post["post_title"], publish_on: Time.zone.now,
             search: post["ID"], shorttext: short,
             author: "old.medach.pro"
@@ -27,6 +27,8 @@ desc "read file"
       else
         puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
       end
+
+      
     end
   end
 
@@ -34,21 +36,36 @@ desc "read file"
     posts = File.read"./db/wp_posts.json"
     post_data = JSON.parse(posts)
     post_data.each do |post|
-
       if post["post_type"] === "attachment" && post["post_parent"] != '0'
-         
         kek = Article.find_by(search: post["post_parent"])
         unless kek.nil?
-          kek.update(remote_image_url: post["guid"])
+          ima = post["guid"].gsub(/http:../, +'http://old.')
+          kek.update(remote_image_url: ima)
         else
-          puts "nil"
+          nil 
         end
-        
+      
       else
-        puts "jopa"
+        puts "nema"
       end
 
     end
+  end
+
+  task :resize => :environment do
+    i = 0
+    loop do
+      i += 1
+     art = Article.find_by(id: i) 
+     if art.present?
+      art.update(remote_image_url: art.image.thumb.url)
+     else
+      nil
+     end
+     break if i == 400 
+    end
+  
+  
   end
 
 
@@ -67,14 +84,14 @@ desc "add tags on articles"
         if tag["term_id"] === taggin["term_taxonomy_id"]
           lolik = Article.find_by(search: taggin["object_id"])
           unless lolik.nil?
-            lolik.tag_list.add(tag["name"])
+            lolik.tag_list.remove(tag["name"])
             lolik.save
             puts "NORMUL"
           else
-            puts "nil"
+            nil
           end
         else 
-          puts "error"
+          nil
         end
       end
     end
