@@ -46,8 +46,8 @@ export default {
   margin-right: 4.3%;
 }
 
-.posters__item:nth-child(n+5) {
-  margin-right: 0;
+.posters__item:nth-child(n+6) {
+  margin-top: 4.3%;
 }
 
 .posters__item-text {

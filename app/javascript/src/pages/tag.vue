@@ -62,14 +62,17 @@ export default {
 }
 
 .main-surgery__title {
-  margin-top: 96px;
-  margin-bottom: 76px;
 
   text-align: center;
 
   font-family: LucidaGrande-Bold;
   font-size: 36px;
   line-height: 43px;
+
+   max-width: 800px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 96px auto 76px auto;
 }
 
 
