@@ -13,20 +13,12 @@ test:
   <<: *default
   database: medach_test
 
-# production:
-#   host: "ec2-54-235-65-224.compute-1.amazonaws.com"
-#   adapter: postgresql
-#   encoding: unicode
-#   database: "da485eahkif3h2"
-#   username: "nbezebhvydeyna"
-#   port: 5432
-#   password: "15026a7b7ccf0d828b7ca69cf7ea70c0bb754e0f8f8981b91001c085e378926f"
-
 production:
   host: "ec2-54-235-65-224.compute-1.amazonaws.com"
   adapter: postgresql
   encoding: unicode
-  database: "medach"
-  username: "medach_user"
+  database: "da485eahkif3h2"
+  username: "nbezebhvydeyna"
   port: 5432
   password: "15026a7b7ccf0d828b7ca69cf7ea70c0bb754e0f8f8981b91001c085e378926f"
+
