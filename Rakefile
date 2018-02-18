@@ -52,6 +52,24 @@ desc "read file"
 
     end
   end
+  task :delete => :environment do
+    i = 0
+    loop do
+      i += 1
+     art = Article.find_by(id: i) 
+     if art.present?
+      art.delete
+     else
+      nil
+     end
+     break if i == 400 
+    end
+  
+  
+  end
+  
+
+
 
   task :resize => :environment do
     i = 0
