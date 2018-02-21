@@ -214,3 +214,13 @@ img {
 .js-quickview {
   cursor: pointer;
 }
+
+.ql-snow.ql-toolbar .ql-showHtml {
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-showHtml:after {
+  content: "[source]";
+}

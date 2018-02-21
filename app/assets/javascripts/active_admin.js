@@ -77,15 +77,38 @@ window.onload = function() {
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         [{ 'indent': '-1'}, { 'indent': '+1' }],
         [{ 'color': [] }, { 'background': [] }],
-        ['clean']
+        ['clean'],
+        ['showHtml']
       ]
     },
     theme: 'snow'
-
   };
 
+  var txtArea = document.createElement('textarea');
+  txtArea.style.cssText = "width: 100%;margin: 0px;background: rgb(29, 29, 29);box-sizing: border-box;color: rgb(204, 204, 204);font-size: 15px;outline: none;padding: 20px;line-height: 24px;font-family: Consolas, Menlo, Monaco, &quot;Courier New&quot;, monospace;position: absolute;top: 0;bottom: 0;border: none;display:none"
 
   var quill_editor = new Quill( editors, default_options );
+
+
+  var htmlEditor = quill_editor.addContainer('ql-custom')
+  htmlEditor.appendChild(txtArea)
+
+  var myEditor = document.querySelector('#article_body')
+
+  quill_editor.on('text-change', (delta, oldDelta, source) => {
+    var html = myEditor.children[0].innerHTML
+    txtArea.value = html
+  })
+
+  var customButton = document.querySelector('.ql-showHtml');
+  customButton.addEventListener('click', function() {
+    if (txtArea.style.display === '') {
+      var html = txtArea.value
+      quill_editor.pasteHTML(html)
+    }
+    txtArea.style.display = txtArea.style.display === 'none' ? '' : 'none'
+  });
+
 
   quill_editor.getModule('toolbar').addHandler('image', function() {
     selectLocalImage(quill_editor);
