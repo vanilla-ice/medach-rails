@@ -29,6 +29,12 @@ const router = new Router({
       path: '/search',
       name: 'search',
       component: Search
+    },
+    { 
+      path: '*',
+      beforeEnter: (to, from, next) => {
+        window.location = 'http://old.medach.pro' + to.path
+      }
     }
   ]
 })
