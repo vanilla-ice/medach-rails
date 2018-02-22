@@ -87,6 +87,13 @@ window.onload = function() {
   var txtArea = document.createElement('textarea');
   txtArea.style.cssText = "width: 100%;margin: 0px;background: rgb(29, 29, 29);box-sizing: border-box;color: rgb(204, 204, 204);font-size: 15px;outline: none;padding: 20px;line-height: 24px;font-family: Consolas, Menlo, Monaco, &quot;Courier New&quot;, monospace;position: absolute;top: 0;bottom: 0;border: none;display:none"
 
+  var BackgroundClass = Quill.import('attributors/class/background');
+  var ColorClass = Quill.import('attributors/class/color');
+
+  Quill.register(BackgroundClass, true);
+  Quill.register(ColorClass, true);
+  
+
   var quill_editor = new Quill( editors, default_options );
 
 
@@ -101,13 +108,24 @@ window.onload = function() {
   })
 
   var customButton = document.querySelector('.ql-showHtml');
+  var HtmlButtonOpenNumber = 1;
+
+
+
   customButton.addEventListener('click', function() {
+    if (HtmlButtonOpenNumber === 1) {
+      txtArea.value = myEditor.children[0].innerHTML;
+      HtmlButtonOpenNumber += 1;
+    }
+
     if (txtArea.style.display === '') {
-      var html = txtArea.value
-      quill_editor.pasteHTML(html)
+      var html = txtArea.value;
+
+      quill_editor.pasteHTML(html);
     }
     txtArea.style.display = txtArea.style.display === 'none' ? '' : 'none'
   });
+
 
 
   quill_editor.getModule('toolbar').addHandler('image', function() {
