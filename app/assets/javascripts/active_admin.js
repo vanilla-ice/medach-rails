@@ -87,14 +87,28 @@ window.onload = function() {
   var txtArea = document.createElement('textarea');
   txtArea.style.cssText = "width: 100%;margin: 0px;background: rgb(29, 29, 29);box-sizing: border-box;color: rgb(204, 204, 204);font-size: 15px;outline: none;padding: 20px;line-height: 24px;font-family: Consolas, Menlo, Monaco, &quot;Courier New&quot;, monospace;position: absolute;top: 0;bottom: 0;border: none;display:none"
 
-  var BackgroundClass = Quill.import('attributors/class/background');
-  var ColorClass = Quill.import('attributors/class/color');
 
-  Quill.register(BackgroundClass, true);
-  Quill.register(ColorClass, true);
-  
+
+  let Block = Quill.import('blots/block');
+  let Inline = Quill.import('blots/inline');
+
+  class TitleImageBlock extends Block { 
+    
+  }
+
+  TitleImageBlock.blotName = 'blockquote';
+  TitleImageBlock.tagName = 'p';
+  TitleImageBlock.className = 'title-image';
+
+  Quill.register(TitleImageBlock);
 
   var quill_editor = new Quill( editors, default_options );
+  setTimeout(function() { $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>')}, 0);
+  $('.ql-toolbar').append('<span class="ql-formats img-title-block">Image Title</span>');
+  
+  $('.img-title-block').click(function() {
+    quill_editor.format('blockquote', true);
+  })
 
 
   var htmlEditor = quill_editor.addContainer('ql-custom')
@@ -111,7 +125,6 @@ window.onload = function() {
   var HtmlButtonOpenNumber = 1;
 
 
-
   customButton.addEventListener('click', function() {
     if (HtmlButtonOpenNumber === 1) {
       txtArea.value = myEditor.children[0].innerHTML;
@@ -125,7 +138,6 @@ window.onload = function() {
     }
     txtArea.style.display = txtArea.style.display === 'none' ? '' : 'none'
   });
-
 
 
   quill_editor.getModule('toolbar').addHandler('image', function() {
@@ -176,15 +188,17 @@ var renderQuickviewPopup = function(data) {
   
 };
 
+
 $(document).ready(function() {
   var body = $('.row-body').find('td').text()
   $('.row-body').find('td').html(body)
   $('body').append('<div class="popup-wrapper"></div>');
   $('#tabs').append('<li><a href="/" target="_blank" >Go to the website</a></li>');
   
-  setTimeout(function() { $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>')}, 0);
   $('.actions ol').append('<li class="action input_action"><button class="js-draft">Save as draft</button></li>');
 
+
+  $('.ql-toolbar').append('<span class="ql-formats js-quickview">Предпросмотр</span>');
   $('body').on('click', '.js-quickview', function() {
     $('body').css('overflow-y', 'hidden')
     var data = {};
@@ -210,6 +224,4 @@ $(document).ready(function() {
     $('#article_publish_on_1i').val('2022')
     $('#article_submit_action input').trigger('click')
   });
-
-  
 });
