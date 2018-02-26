@@ -148,6 +148,7 @@ img {
 .desc-column {
   max-width: 622px;
   width: 100%;
+  overflow: hidden;
 
   p {
     font-family: Times-Roman;
@@ -213,4 +214,78 @@ img {
 
 .js-quickview {
   cursor: pointer;
+}
+
+.img-title-block {
+  cursor: pointer;
+}
+
+.title-image {
+  font-weight: lighter;
+}
+
+.ql-snow.ql-toolbar .ql-showHtml {
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-snow.ql-toolbar .ql-titleImg {
+  white-space: nowrap;
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-titleImg:after {
+  content: "Title img";
+}
+
+.ql-snow.ql-toolbar .ql-contentImg {
+  white-space: nowrap;
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-contentImg:after {
+  content: "Content img";
+}
+
+.desc-column .quill__title-img {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #30312F;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.desc-column .quill__title-content {
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  font-size: 16px;
+  color: #30312F;
+  line-height: 24px;
+
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-bottom: 2px solid #000; 
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }

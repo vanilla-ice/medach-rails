@@ -130,6 +130,21 @@ export default {
   }
 }
 
+.quill__title-img {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #514D4D;
+} 
+
 @media (max-width: 1024px) {
   .main-container {
     margin-top: 115px;

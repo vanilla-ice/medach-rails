@@ -462,7 +462,9 @@
     z-index: 20;
     cursor: pointer;
     color: #fff;
+    
     font-family: 'Archangelsk';
+
     font-size: 25px;
     transition: color .2s ease;
     color: #FFFFFF;

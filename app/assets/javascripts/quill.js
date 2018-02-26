@@ -9946,6 +9946,7 @@ _core2.default.register({
   'attributors/class/direction': _direction.DirectionClass,
   'attributors/class/font': _font.FontClass,
   'attributors/class/size': _size.SizeClass,
+  
 
   'attributors/style/align': _align.AlignStyle,
   'attributors/style/background': _background.BackgroundStyle,
