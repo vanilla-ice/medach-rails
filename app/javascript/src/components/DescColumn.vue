@@ -77,6 +77,7 @@ export default {
   img {
     display: block;
     max-width: 100%;
+    width: 100%;
     margin: 15px auto;
     cursor: pointer;
     height: auto;
@@ -87,6 +88,44 @@ export default {
     border-left: 3px solid #ccc;
     color: #666;
     margin: 15px 0;
+  }
+
+  .quill__title-img {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+
+    color: #fff;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+
+    background: #30312F;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000; 
+    border-right: 2px solid #000; 
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .quill__title-content {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 16px;
+    color: #30312F;
+    line-height: 24px;
+
+    border-left: 2px solid #000; 
+    border-right: 2px solid #000; 
+    border-bottom: 2px solid #000; 
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 }
 

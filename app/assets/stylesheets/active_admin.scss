@@ -148,6 +148,7 @@ img {
 .desc-column {
   max-width: 622px;
   width: 100%;
+  overflow: hidden;
 
   p {
     font-family: Times-Roman;
@@ -229,6 +230,39 @@ img {
   text-shadow: none;
 }
 
-.ql-showHtml:after {
-  content: "[source]";
+.ql-snow.ql-toolbar .ql-titleImg {
+  white-space: nowrap;
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-titleImg:after {
+  content: "Title img";
+}
+
+.ql-snow.ql-toolbar .ql-contentImg {
+  white-space: nowrap;
+  width: auto;
+  color: #000;
+  text-shadow: none;
+}
+
+.ql-contentImg:after {
+  content: "Content img";
+}
+
+.desc-column .quill__title-img {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #514D4D;
 }
