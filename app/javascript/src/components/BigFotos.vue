@@ -3,7 +3,7 @@
     router-link(v-for="(post, id) in getPosts" v-if="id < 5 && post.image" :to="'post/' + post.id", :key="id").main__big-foto
       .placeholder
         span MEDACH
-      .image(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
+      .image(v-if="post.image", :style="{ background: `url(${post.image.thumb.url})` }")
 </template>
 
 <script>

@@ -4,7 +4,7 @@
         .posters__wrapper
           router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
             .posters__item-foto
-              .image(:style="{ background: `url(${post.image.url})` }")
+              .image(:style="{ background: `url(${post.thumb.url})` }")
               .placeholder
                 span MEDACH
             .posters__item-text

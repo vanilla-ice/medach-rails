@@ -12,7 +12,7 @@
             router-link.main__big-foto(:to="'post/' + post.id")
               .placeholder
                 span MEDACH
-              .image(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
+              .image(v-if="post.image", :style="{ background: `url(${post.image.thumb.url})` }")
       
       .inner
         .days-wrapper

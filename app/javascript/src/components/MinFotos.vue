@@ -4,7 +4,7 @@
         .min-fotos__day-wrapper
           router-link.min-fotos__item(v-for="(post, index) in posts", :key="index", :to="'post/' + post.id")
             .min-fotos__foto-wrapper
-              .min-fotos__item-foto(v-if="post.image", :style="{ background: `url(${post.image.url})` }")
+              .min-fotos__item-foto(v-if="post.image", :style="{ background: `url(${post.image.thumb.url})` }")
               .min-fotos__item-foto_placeholder
                 span
                   | MEDACH
