@@ -2,38 +2,23 @@
   div.main-container
     loader-component(v-if="isLoading")
     header-component
-    main.main-index
-      .big-photos
-        big-fotos-component(:posts="pinnedPosts" v-if="pinnedPosts.length > 0")
-      
-      .slider(v-if="pinnedPosts && pinnedPosts.length > 0")
-        carousel
-          slide(v-for="(post, id) in pinnedPosts", :key="id")
-            router-link.main__big-foto(:to="'post/' + post.id")
-              .placeholder
-                span MEDACH
-              .image(v-if="post.image", :style="{ background: `url(${post.image.thumb.url})` }")
-      
-      .inner
-        .days-wrapper
-          MinFotosComponent(:posts="posts")
-          .loader(v-if="isFetching")
-            img(src="../static/images/loader.svg")
-      
-
-
+    .main
+      top-articles
+      blogs
+      autors
+      worst-articles
 </template>
 
 <script>
 import moment from 'moment'
-import { Carousel, Slide } from 'vue-carousel'
 
 import HeaderComponent from '../components/Header.vue'
-import DataComponent from '../components/Data.vue'
-import BigFotosComponent from '../components/BigFotos.vue'
-import MinFotosComponent from '../components/MinFotos.vue'
-import LoaderComponent from '../components/Loader.vue'
+import TopArticles from '../components/index/TopArticles.vue'
+import Blogs from '../components/index/Blogs.vue'
+import Autors from '../components/index/Autors.vue'
+import WorstArticles from '../components/index/WorstArticles.vue'
 
+import LoaderComponent from '../components/Loader.vue'
 import { mapGetters } from 'vuex'
 moment.locale('ru')
 
@@ -81,17 +66,19 @@ export default {
 
   components: {
     HeaderComponent,
-    DataComponent,
-    BigFotosComponent,
-    MinFotosComponent,
-    LoaderComponent,
-    Carousel,
-    Slide
+    TopArticles,
+    Blogs,
+    Autors,
+    WorstArticles,
+    LoaderComponent
   }
 }
 </script>
 
 <style lang="scss" scopped>
+.main {
+  background: #e0e0e0;
+}
 
 .days-wrapper {
   &:nth-child(even) {

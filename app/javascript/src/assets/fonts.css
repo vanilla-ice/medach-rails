@@ -1,3 +1,4 @@
+
 @font-face {
 	font-family: 'Time-Roman';
 	src: url('./fonts/Time-Roman.eot');
@@ -20,9 +21,10 @@
 
 @font-face {
 	font-family: 'Archangelsk';
-	src: url('./fonts/Archangelsk.woff2') format('woff2'),
-			url('./fonts/Archangelsk.woff') format('woff'),
-			url('./fonts/Archangelsk.ttf') format('truetype');
+	src: url('../fonts/Archangelsk.eot');
+	src: url('./fonts/Archangelsk.eot?#iefix') format('embedded-opentype'),
+		url('./fonts/Archangelsk.woff') format('woff'),
+		url('./fonts/Archangelsk.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
