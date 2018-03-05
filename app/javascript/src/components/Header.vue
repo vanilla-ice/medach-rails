@@ -1,5 +1,4 @@
 <template lang="pug">
-  
   header.header
     loader-component(v-if="isLoading")
     .tags-popup.only-desktop(v-if="isTagsOpen")
@@ -49,9 +48,16 @@
             |{{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
-    
-    .menu-page(:class="{visible: isOpen}")
+        .sort
+          label.sort-text#sort-text(for = "sort-checkbox__checkbox")
+            | ПОКАЗЫВАТЬ ПО ПОРЯДКУ   
+          .sort-checkbox__wrapper
+            input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
+            label.toggle(for = "sort-checkbox__checkbox")
+              .toggle-circle
+            
 
+    .menu-page(:class="{visible: isOpen}")
       .search
         label
           form(@submit.prevent="search")
@@ -181,7 +187,7 @@
   }
   
   .header .container {
-    max-width: 1280px;
+    max-width: 1440px;
     width: 100%;
     min-height: 62px;
   }
@@ -267,7 +273,7 @@
     border: 1px solid #7F7F7F;
     border-radius: 3px;
     font-family: sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     color: #7F7F7F;
     letter-spacing: 0;
     text-transform: lowercase;
@@ -277,7 +283,7 @@
   }
   
   .top {
-    background: #18164F;
+    background: #110F6C;
   }
   
   .top .container {
@@ -306,8 +312,69 @@
     background: #ffffff;
     padding: 10px 0;
     .container {
+      display: flex;
+      justify-content: space-between;
+
       min-height: initial;
     }
+  }
+
+  .sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 302px;
+    width: 100%;
+  }
+
+  .sort-text {
+    font-size: 16px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+  }
+
+  .sort-checkbox__checkbox {
+    display: none;
+  }
+
+  .toggle {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 31px;
+    height: 14px;
+
+    border-radius: 10px;
+    border: 2px solid #B1B1B1;
+
+    cursor: pointer;
+  }
+
+  .toggle-circle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    left: -5px;
+
+    width: 19px;
+    height: 19px;
+
+    background: #fff;
+
+    border-radius: 50%;
+    border: 2px solid #B1B1B1;
+
+    transition: 0.3s;
+  }
+
+  .sort-checkbox__checkbox:checked + .toggle  .toggle-circle{
+    left: 14px;
   }
   
   .header__wrapper-dop {
@@ -333,7 +400,6 @@
     input {
       width: 0;
       transition: width .2s ease;
-      padding-left: 10px;
       color: #ffffff;
       border: 0;
       background: transparent;
@@ -452,7 +518,7 @@
     cursor: pointer;
     white-space: nowrap;
     font-family: sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     color: #7F7F7F;
     letter-spacing: 0;
     align-self: center;
@@ -463,7 +529,7 @@
     cursor: pointer;
     color: #fff;
     
-    font-family: 'Archangelsk';
+    font-family: Archangelsk;
 
     font-size: 25px;
     transition: color .2s ease;

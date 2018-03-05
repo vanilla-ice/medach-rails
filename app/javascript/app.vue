@@ -31,6 +31,15 @@ html {
   margin: 0;
 }
 
+.container {
+  display: flex;
+  position: relative;
+
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 30px;
+}
+
 .button--green {
   display: inline-block;
   border-radius: 4px;
