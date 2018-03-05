@@ -1,0 +1,52 @@
+<div class="article-info">
+  <div class="article-info__header">
+    <div class="article-info__header-cover-image">
+      <%= image_tag(article.cover_image) %>
+    </div>
+    <div class="article-info__info">
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">
+          Оригинал
+        </div>
+        <div class="article-info__info-item-value">
+          <%= article.origin %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">
+          Перевод
+        </div>
+        <div class="article-info__info-item-value">
+          <%= article.translate %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Редакция</div>
+        <div class="article-info__info-item-value">
+          <%= article.redaction %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Обложка</div>
+        <div class="article-info__info-item-value">
+          <%= article.infographic %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Тэги</div>
+        <div class="article-info__info-item-value">
+          <%= article.tag_list %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Дата публикации</div>
+        <div class="article-info__info-item-value">
+          <%= (article.publish_on || article.created_at).strftime('%d %B %Y, %H:%M') %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="article-info__body">
+    <%= article.body.html_safe %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+class BlogArticle < Article
+end

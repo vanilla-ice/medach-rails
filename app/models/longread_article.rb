@@ -1,0 +1,2 @@
+class LongreadArticle < Article
+end
