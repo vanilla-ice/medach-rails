@@ -42,4 +42,10 @@ class Api::ArticlesController < ActionController::Base
    @articles = Article.fixed
    render json: @articles
   end
+ 
+  private
+    def article_params
+      [:cover_image, :avatar]
+    end
+
 end

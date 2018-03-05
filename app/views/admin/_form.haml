@@ -1,18 +1,12 @@
-- f.object.body ||= ""
-= f.inputs do
-  = f.input :title, label: "Заголовок"
-  = render :partial => "admin/text_editor", locals: { f: f }
-  - if f.object.cover_image.present?
-    = f.input :cover_image, :as => :file, :hint => image_tag(f.object.cover_image.url), label: "Обложка"
-  - else
-    = f.input :cover_image, :as => :file, label: "Обложка"
-  = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
-  = f.input :tag_list, :placeholder => 'Теги через запятую'
-  = f.input :author, label: "Автор"
-  = f.input :redaction, label: "Редакция"
-  = f.input :infographic, label: "Инфографика"
-  = f.input :origin, label: "Оригинал"
-  = f.input :translate, label: "Перевод"
-  = f.input :created_at
-  = f.input :publish_on, label: "Отложенный постинг"
-  = f.input :fixed, label: "Закрепить в шапке"
+= f.input :title, label: "Заголовок"
+= render :partial => "admin/text_editor", locals: { f: f }
+= render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка', name: "cover_image", message: "Обложка не представлена"}
+= f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
+= f.input :tag_list, :placeholder => 'Теги через запятую', label: 'Теги'
+= f.input :author, label: "Автор"
+= f.input :redaction, label: "Редакция"
+= f.input :infographic, label: "Инфографика"
+= f.input :origin, label: "Оригинал"
+= f.input :translate, label: "Перевод"
+= f.input :publish_on, label: "Отложенный постинг", as: :datetime_picker
+= f.input :fixed, label: "Закрепить в шапке"

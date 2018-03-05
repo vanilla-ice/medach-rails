@@ -21,26 +21,6 @@ permit_params :body, :cover_image, :title, :author, :infographic, :redaction, :c
 
   show do
     render 'admin/article', {article: longread_article}
-    # h1 do
-    #   longread_article.title
-    # end
-    # div do
-    #   image_tag(longread_article.cover_image, class: "admin__cover-image")
-    # end
-    # attributes_table do
-    #   row :title
-    #   row :body
-    #   row :tag_list
-    #   row :author
-    #   row :redaction
-    #   row :infographic
-    #   row :created_at
-    #   row :publish_on
-    #   row :short_description
-    #   row :translate
-    #   row :origin
-    # end
-    # active_admin_comments
   end
 
   index do

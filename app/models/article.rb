@@ -9,6 +9,7 @@ class Article < ApplicationRecord
 
   acts_as_taggable
   mount_uploader :cover_image, ImageUploader
+  mount_uploader :avatar, AvatarUploader
 
   scope :fixed, -> { where(fixed: true)}
   scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
