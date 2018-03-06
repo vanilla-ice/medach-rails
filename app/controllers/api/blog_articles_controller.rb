@@ -7,4 +7,12 @@ class Api::BlogArticlesController < Api::ArticlesController
     def serializer
       SingleBlogArticleSerializer
     end
+
+    def root_key_single
+      'blog'
+    end
+
+    def root_key_multiple
+      'blogs'
+    end
 end

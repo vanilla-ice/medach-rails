@@ -5,10 +5,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :articles, controller: 'longread_articles', type: 'LongreadArticle', only: [:index, :show] do
       collection do
-        get 'all_tags'
-        get 'by_tag/:tag_name', action: :by_tag
-        get 'search'
-        get 'tags_count'
         get 'show_fixed'
       end 
     end
@@ -17,6 +13,11 @@ Rails.application.routes.draw do
     end
     resources :blogs, controller: 'blog_articles', type: 'BlogArticle', only: [:index, :show]
     resources :news, controller: 'news_articles', type: 'NewsArticle', only: [:index, :show]
+    resources :tags, only: [:index, :show] do
+      collection do
+        get 'most_used', action: :most_used
+      end
+    end
   end
   get '*path' => 'home#index'
 end
