@@ -2,18 +2,18 @@ class Api::ArticlesController < ActionController::Base
   respond_to :json
 
   def index
-    articles = article_type_class.published
+    articles = type_class.published
     paginated = articles.page(params[:page]).per(20)
-    render json: paginated, each_serializer: multiple_article_serializer, root: root_key_multiple, key_transform: :camel_lower, meta: meta_attributes(paginated)
+    render json: paginated, each_serializer: each_serializer, root: root_key_multiple, key_transform: :camel_lower, meta: meta_attributes(paginated)
   end
 
   def show
-    @article = article_type_class.find(params[:id])
-    render json: @article, serializer: single_article_serializer, root: root_key_single, key_transform: :camel_lower
+    @article = type_class.find(params[:id])
+    render json: @article, serializer: serializer, root: root_key_single, key_transform: :camel_lower
   end
 
   def by_tag
-    @articles = article_type_class.tagged_with(params[:tag_name])
+    @articles = type_class.tagged_with(params[:tag_name])
     if @articles.any?
       render json: @articles
     else
@@ -32,12 +32,12 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def search
-    @articles = article_type_class.search(params[:q])
-    render json: @articles, each_serializer: multiple_article_serializer, root: root_key_multiple, key_transform: :camel_lower
+    @articles = type_class.search(params[:q])
+    render json: @articles, each_serializer: each_serializer, root: root_key_multiple, key_transform: :camel_lower
   end
 
   def show_fixed
-   @articles = article_type_class.fixed
+   @articles = type_class.fixed
    render json: @articles
   end
  
@@ -51,56 +51,24 @@ class Api::ArticlesController < ActionController::Base
     }.merge(extra_meta)
   end
 
-  private
-    # STI helper methods
-    def set_article_type
-      @article_type = article_type
+  protected
+    def type_class
+      Article
     end
 
-    def article_type
-      Article.article_types.include?(params[:type]) ? params[:type] : "Article"
+    def serializer
+      SingleArticleSerializer
     end
 
-    def article_type_class
-      article_type.constantize
-    end
-
-    # STI helpers for serializer
-    def single_article_serializer
-      serializers = {
-        LongreadArticle: SingleArticleSerializer,
-        BlogArticle: SingleBlogArticleSerializer,
-        NewsArticle: SingleArticleSerializer
-      }
-      serializers[article_type.to_sym]
-    end
-
-    def multiple_article_serializer
-      serializers = {
-        LongreadArticle: MultipleArticleSerializer,
-        BlogArticle: MultipleArticleSerializer,
-        NewsArticle: MultipleArticleSerializer
-      }
-      serializers[article_type.to_sym]
+    def each_serializer
+      MultipleArticleSerializer
     end
 
     def root_key_single
-      root_keys = {
-        LongreadArticle: 'article',
-        BlogArticle: 'blog',
-        NewsArticle: 'news'
-      }
-      root_keys[article_type.to_sym]
+      'article'
     end
 
     def root_key_multiple
-      root_keys = {
-        LongreadArticle: 'articles',
-        BlogArticle: 'blogs',
-        NewsArticle: 'news'
-      }
-      root_keys[article_type.to_sym]
+      'articles'
     end
-
-
 end

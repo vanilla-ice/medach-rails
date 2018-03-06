@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   ActiveAdmin.routes(self)
   namespace :api do
-    resources :articles, type: 'LongreadArticle', only: [:index, :show] do
+    resources :articles, controller: 'longread_articles', type: 'LongreadArticle', only: [:index, :show] do
       collection do
         get 'all_tags'
         get 'by_tag/:tag_name', action: :by_tag
@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     resources :images do
 
     end
-    resources :blogs, controller: 'articles', type: 'BlogArticle', only: [:index, :show]
-    resources :news, controller: 'articles', type: 'NewsArticle', only: [:index, :show]
+    resources :blogs, controller: 'blog_articles', type: 'BlogArticle', only: [:index, :show]
+    resources :news, controller: 'news_articles', type: 'NewsArticle', only: [:index, :show]
   end
   get '*path' => 'home#index'
 end
