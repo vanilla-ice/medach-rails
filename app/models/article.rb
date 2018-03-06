@@ -26,4 +26,9 @@ class Article < ApplicationRecord
     self.tag_list = self.tag_list.map {|s| s.gsub(/(\#|\s)/, '')}
     self
   end
+
+  def self.article_types
+    %w(LongreadArticle BlogArticle NewsArticle)
+  end
+
 end
