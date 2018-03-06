@@ -7,6 +7,7 @@
       blogs
       autors
       worst-articles
+    footer-component
 </template>
 
 <script>
@@ -17,6 +18,7 @@ import TopArticles from '../components/index/TopArticles.vue'
 import Blogs from '../components/index/Blogs.vue'
 import Autors from '../components/index/Autors.vue'
 import WorstArticles from '../components/index/WorstArticles.vue'
+import FooterComponent from '../components/Footer.vue'
 
 import LoaderComponent from '../components/Loader.vue'
 import { mapGetters } from 'vuex'
@@ -70,6 +72,7 @@ export default {
     Blogs,
     Autors,
     WorstArticles,
+    FooterComponent,
     LoaderComponent
   }
 }
@@ -77,6 +80,9 @@ export default {
 
 <style lang="scss" scopped>
 .main {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
   background: #e0e0e0;
 }
 
