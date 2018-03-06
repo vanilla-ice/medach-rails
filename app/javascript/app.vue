@@ -75,4 +75,11 @@ html {
   @import './src/assets/normalize.css';
   // @import './src/assets/fonts.css';
   @import './src/assets/settings.css';
+
+@media(max-width: 1440px) {
+  .container {
+    padding-left: 30/1380 * 100%;
+    padding-right: 30/1380 * 100%;
+  }
+}
 </style>
