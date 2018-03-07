@@ -1,56 +1,33 @@
 <template lang="pug">
   .worst-articles__container.container
-    .worst-articles__item
+    router-link(to="#").worst-articles__item
       .worst-articles__image
         .worst-articles__info-name
       .worst-articles__text-block
         .worst-articles__text
           | Генетически модефицированые бактериофаги: обзор достижений последнего десятилетия
-        .worst-articles__text-footer
-          .worst-articles__like
-            .worst-articles__like-icon
-            .worst-articles__like-digit
-              | 1667
-          .worst-articles__tags
-            .worst-articles__tag
-              | терапия
-          .worst-articles__date
-            | Ноябрь 19, 2017
-    .worst-articles__item
+        card-footer
+    router-link(to="#").worst-articles__item
       .worst-articles__image
       .worst-articles__text-block
         .worst-articles__text
           | Новые возможности анализа крови
-        .worst-articles__text-footer
-          .worst-articles__like
-            .worst-articles__like-icon
-            .worst-articles__like-digit
-              | 1667
-          .worst-articles__tags
-            .worst-articles__tag
-              | терапия
-          .worst-articles__date
-            | Ноябрь 19, 2017
-    .worst-articles__item
+        card-footer
+    router-link(to="#").worst-articles__item
       .worst-articles__image
       .worst-articles__text-block
         .worst-articles__text
           | Новые возможности анализа крови
-        .worst-articles__text-footer
-          .worst-articles__like
-            .worst-articles__like-icon
-            .worst-articles__like-digit
-              | 1667
-          .worst-articles__tags
-            .worst-articles__tag
-              | терапия
-          .worst-articles__date
-            | Ноябрь 19, 2017
+        card-footer
 </template>
 
 <script>
+  import CardFooter from './CardFooter.vue';
+
   export default {
-    
+    components: {
+      CardFooter
+    }
   }
 </script>
 

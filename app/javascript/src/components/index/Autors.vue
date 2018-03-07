@@ -1,14 +1,14 @@
 <template lang="pug">
   .autors__container.container
-    .autors__item.autors__item-1
+    router-link(to="#").autors__item.autors__item-1
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
-      a(href="#").autors__item-subscribe
+      .autors__item-subscribe
         | Подписаться
-    .autors__item.autors__item-2
+    router-link(to="#").autors__item.autors__item-2
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
-      a(href="#").autors__item-subscribe
+      .autors__item-subscribe
         | Подписаться
 </template>
 
