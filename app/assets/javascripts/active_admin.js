@@ -1,6 +1,7 @@
 //= require active_admin/base
 //= require katex/dist/katex.js
 //= require quill.js
+//= require chosen-jquery
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -212,6 +213,13 @@ var renderQuickviewPopup = function renderQuickviewPopup(data) {
 };
 
 $(document).ready(function () {
+
+  $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'No results matched',
+    width: '80%'
+  })
+
   var body = $('.row-body').find('td').text();
   $('.row-body').find('td').html(body);
   $('body').append('<div class="popup-wrapper"></div>');
