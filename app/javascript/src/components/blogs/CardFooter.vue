@@ -1,0 +1,68 @@
+<template lang="pug">
+  div( :class="{'card-footer': true, 'color-black': color}")
+    .name
+      | Plague doctor
+    .card-info
+      .icon
+      .liks
+        | 1234
+      .date
+        | Сентябрь 21, 2018
+</template>
+
+<script>
+  export default {
+    props: {
+      color: Boolean
+    },
+
+    data() {
+      return {
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .card-footer {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+
+    font-size: 16px;
+    color: #fff;
+  }
+
+  .card-footer.color-black {
+    color: #000;
+  }
+
+  .color-black .liks {
+    color: #7F7F7F;
+  }
+
+  .color-black .date {
+    color: #7F7F7F;
+  }
+
+  .card-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 21px;
+    height: 26px;
+    margin-right: 5px;
+
+    background: url('../../static/images/fire.png') no-repeat center;
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+
+    margin-left: 26px;
+  }
+</style>
