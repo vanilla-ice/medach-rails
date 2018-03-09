@@ -123,18 +123,6 @@ export default {
   position: relative;
 }
 
-.image { 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  z-index: 2;
-}
-
 .loader {
   display: flex;
   flex-flow: row nowrap;
@@ -143,7 +131,7 @@ export default {
 
 @media (max-width: 1024px) {
   .main-container {
-    margin-top: 115px;
+    margin-top: 62px;
   }
 }
 

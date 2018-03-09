@@ -51,4 +51,20 @@
 
     border: 2px solid #19DBAB;
   }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    .intresting-wrapper {
+      min-height: 500/1440 * 100vw;
+      padding: 40/1440 * 100vw;
+    }
+
+    .cards {
+      margin-top: 40/1440 * 100vw;
+    }
+
+    .card {
+      min-height: 351/1440 * 100vw;
+      max-width: 295/1440 * 100vw;
+    }
+  }
 </style>

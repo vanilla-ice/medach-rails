@@ -148,10 +148,21 @@
 
     .top-blogs__right {
       min-height: 500/1440 * 100vw;
+      margin-left: 30/1440 * 100vw;
     }
 
     .top-blogs__right-card {
       min-height: 235/1440 * 100vw;;
+      padding-top: 40/1440 * 100vw;
+      padding-right: 24/1440 * 100vw;
+      padding-left: 24/1440 * 100vw;
+      padding-bottom: 24/1440 * 100vw;
+    }
+  }
+
+  @media(max-width: 1250px) {
+    .top-blogs__left-title {
+
     }
   }
 </style>
