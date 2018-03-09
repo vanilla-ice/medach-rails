@@ -83,4 +83,14 @@
     color: #fff;
     font-size: 18px;
   }
+
+  @media (max-width: 1440px) {
+    .card {
+      min-height: 235/1440 * 100vw;
+      padding-top: 40/1440 * 100vw;
+      padding-left: 24/1440 * 100vw;
+      padding-right: 24/1440 * 100vw;
+      padding-bottom: 24/1440 * 100vw;
+    }
+  }
 </style>

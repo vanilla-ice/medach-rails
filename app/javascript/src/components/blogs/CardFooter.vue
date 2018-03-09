@@ -65,4 +65,10 @@
 
     margin-left: 26px;
   }
+
+  @media(max-width: 1250px) {
+    .card-footer.color-black {
+      font-size: 14px;
+    }
+  }
 </style>
