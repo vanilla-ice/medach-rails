@@ -25,7 +25,7 @@ export const post = (url, data, headers = {}) => {
 
 export const getArticles = (page) => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/articles`, { 
+    axios.get(`/api/articles`, {
       params: {
         page: page
       }

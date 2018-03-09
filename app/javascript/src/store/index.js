@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
 import moment from 'moment'
 
-import { 
+import {
   getArticles,
   getPost,
   getPostsByTag,
