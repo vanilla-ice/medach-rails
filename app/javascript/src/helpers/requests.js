@@ -45,7 +45,7 @@ export const getPinnedPostsRequest = () => {
 
 export const getAllTags = () => {
   return new Promise((resolve, reject) => {
-    get(`/api/articles/all_tags`).then(response => resolve(response)).catch(error => reject(error))
+    get(`/api/tags`).then(response => resolve(response)).catch(error => reject(error))
   })
 }
 
@@ -61,7 +61,7 @@ export const getPost = (id) => {
 
 export const getPostsByTag = (tag) => {
   return new Promise((resolve, reject) => {
-    get(`/api/articles/by_tag/${tag}`)
+    get(`/api/articles/by_tag/${tag}`) // /api/articles?tag=tag_name
       .then(response => {
         resolve(response)
       })
@@ -71,9 +71,9 @@ export const getPostsByTag = (tag) => {
 
 export const searchRequest = (query) => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/articles/search`, {
+    axios.get(`/api/articles`, {
       params: {
-        q: query
+        query: query
       }
     }).then(response => {
       resolve(response)
@@ -81,13 +81,21 @@ export const searchRequest = (query) => {
   })
 }
 
-export const tagsCount = () => {
+export const tagsMostUsed = () => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/articles/tags_count`)
+    axios.get(`/api/tags/most_used`)
       .then(response => {
         resolve(response)
       }).catch(error => reject(error))
   })
 }
 
-
+export const siteConfig = () => {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/site_config`)
+      .then(response => {
+        console.log(response);
+        resolve(response)
+      }).catch(error => reject(error))
+  })
+}

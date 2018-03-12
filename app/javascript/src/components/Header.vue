@@ -45,7 +45,7 @@
       .container
         .header__main-nav.only-desktop
           router-link(v-for="(tag, id) in popularTags" v-if="id < 7" , :to="`/tag/${tag.name}`").main-nav__item
-            |{{tag.name.toUpperCase()}}
+            | {{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
         .sort
@@ -93,7 +93,7 @@
     },
   
     created() {
-      this.$store.dispatch('getTagsCount')
+      this.$store.dispatch('getTagsMostUsed')
       this.$store.dispatch('getTags')
     },
   

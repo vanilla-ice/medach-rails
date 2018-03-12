@@ -8,9 +8,10 @@ import {
   getPost,
   getPostsByTag,
   searchRequest,
-  tagsCount,
+  tagsMostUsed,
   getPinnedPostsRequest,
-  getAllTags
+  getAllTags,
+  siteConfig
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -78,6 +79,7 @@ function store () {
         const { id } = payload
         return new Promise((resolve, reject) => {
           getPost(id).then(res => {
+            console.log(res)
             state.activePost = res.data
             resolve()
           })
@@ -104,9 +106,13 @@ function store () {
         })
       },
 
-      getTagsCount({state}) {
-        return tagsCount().then((res) => state.popularTags = [...res.data]).catch(error => console.log(error))
-      }
+      getTagsMostUsed({state}) {
+        return tagsMostUsed().then((res) => state.popularTags = [...res.data]).catch(error => console.log(error))
+      },
+
+      getSiteConfig({state}) {
+        return siteConfig().then((res) => console.log(res)).catch(error => console.log(error))
+      },      
     },
 
     plugins: [createLogger()]
