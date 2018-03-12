@@ -48,6 +48,5 @@ export default {
 <style lang="scss">
 @import '../assets/quill.core.css';
 
-
 </style>
 

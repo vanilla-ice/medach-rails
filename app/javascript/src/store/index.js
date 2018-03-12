@@ -79,8 +79,8 @@ function store () {
         const { id } = payload
         return new Promise((resolve, reject) => {
           getPost(id).then(res => {
-            console.log(res)
             state.activePost = res.data
+            console.log(state.activePost)
             resolve()
           })
         })

@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      article-component
+      article-component(v-if="activePost", :title = "activePost.article.title", :post="activePost.article.body")
 
     //- main.main.main-description
     //-   .container
