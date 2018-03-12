@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307140435) do
+ActiveRecord::Schema.define(version: 20180311200529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,9 @@ ActiveRecord::Schema.define(version: 20180307140435) do
     t.string "search"
     t.string "type", null: false
     t.string "avatar"
+    t.bigint "partner_id"
     t.index ["origin"], name: "index_articles_on_origin"
+    t.index ["partner_id"], name: "index_articles_on_partner_id"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
     t.index ["search"], name: "index_articles_on_search"
     t.index ["short_description"], name: "index_articles_on_short_description"
@@ -71,6 +73,13 @@ ActiveRecord::Schema.define(version: 20180307140435) do
   end
 
   create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "name"
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,4 +127,5 @@ ActiveRecord::Schema.define(version: 20180307140435) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  add_foreign_key "articles", "partners"
 end

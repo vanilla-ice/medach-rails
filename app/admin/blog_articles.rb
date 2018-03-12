@@ -2,7 +2,25 @@ ActiveAdmin.register BlogArticle do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :body, :cover_image, :avatar_cache, :short_description, :avatar, :title, :author, :infographic, :redaction, :created_at, :tag_list, :publish_on, :shorttext, :origin, :translate, :fixed
+  permit_params(
+    :body,
+    :cover_image,
+    :avatar_cache,
+    :short_description,
+    :avatar,
+    :title,
+    :author,
+    :infographic,
+    :redaction,
+    :created_at,
+    :tag_list,
+    :publish_on,
+    :shorttext,
+    :origin,
+    :translate,
+    :fixed,
+    :partner_id
+  )
 #
 # or
 #
