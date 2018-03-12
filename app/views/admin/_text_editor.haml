@@ -1,4 +1,4 @@
 %div{ class: "article-content" }
   %span{class: "article-content__title"} Текст статьи
-  %div{ :id => "article_body" }= (f.object.body || "").html_safe
+  = f.input :body, :input_html => { id: :article_body }
   = f.input :body, :input_html => { id: :quill_editor_input }, as: :hidden
