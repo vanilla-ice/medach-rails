@@ -1,6 +1,8 @@
 class Api::ArticlesController < ActionController::Base
   respond_to :json
 
+  impressionist :actions => [:show]
+
   def index
     @articles = type_class.published
     if params[:tag]
@@ -26,6 +28,7 @@ class Api::ArticlesController < ActionController::Base
       )
     else 
       @article = type_class.find(params[:id])
+      impressionist(@article)
       render json: @article, serializer: serializer, root: root_key_single, key_transform: :camel_lower
     end
   end

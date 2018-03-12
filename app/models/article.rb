@@ -1,6 +1,8 @@
 class Article < ApplicationRecord
   include PgSearch
 
+  is_impressionable :counter_cache => true, :unique => :all
+
   validates :short_description, length: { maximum: 250 }
 
   has_many :images
