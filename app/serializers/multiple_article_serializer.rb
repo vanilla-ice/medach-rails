@@ -1,7 +1,3 @@
-class MultipleArticleSerializer < ActiveModel::Serializer
-  attributes :id, :fixed, :cover_image, :title
+class MultipleArticleSerializer < BaseArticleSerializer
 
-  def id
-    object.id.to_s
-  end
 end
