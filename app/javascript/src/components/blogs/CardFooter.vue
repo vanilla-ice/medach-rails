@@ -5,7 +5,7 @@
     .card-info
       .icon
       .liks
-        | 1234
+        | {{ getViews() }}
       .date
         | Сентябрь 21, 2018
 </template>
@@ -13,11 +13,22 @@
 <script>
   export default {
     props: {
-      color: Boolean
+      color: Boolean,
+      tags: null,
+      view: null,
     },
 
     data() {
       return {
+      }
+    },
+
+    methods: {
+      getViews () {
+        if (this.view) {
+          return this.view
+        }
+        return '0'
       }
     }
   }

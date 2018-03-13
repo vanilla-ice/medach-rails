@@ -1,26 +1,32 @@
 <template lang="pug">
   .top-blogs.container
-    router-link(to="#").top-blogs__left
+    router-link(to="#").top-blogs__left( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
       .top-blogs__left-title
-        | Про канадскую медицину.
-      card-footer
+        | {{ info.pinnedBlogs[0].title }}
+      card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views" )
     .top-blogs__right
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-1
+      router-link(to="#").top-blogs__right-card.top-blogs__right-card-1( :style="{ backgroundImage:`url(${info.pinnedBlogs[1].coverImage.url})` }")
         .top-blogs__right-title
-          | Четыре вопроса о зубах мудрости.
-        card-footer
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-2
+          | {{ info.pinnedBlogs[1].title }}
+        card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views" )
+      router-link(to="#").top-blogs__right-card.top-blogs__right-card-2( :style="{ backgroundImage:`url(${info.pinnedBlogs[2].coverImage.url})` }")
         .top-blogs__right-title
-          | Лечение в Израиле. ЭТО ПРОСТО
-        card-footer
+          | {{ info.pinnedBlogs[2].title }}
+        card-footer( :tags="info.pinnedBlogs[2].tags", :view="info.pinnedBlogs[2].views" )
 </template>
 
 <script>
   import CardFooter from "./CardFooter.vue"
 
   export default {
+    props: ['info'],
+
     components: {
       CardFooter
+    },
+
+    mounted() {
+      console.log('props', this.info)
     }
   }
 </script>
@@ -38,7 +44,8 @@
     min-height: 500px;
     padding: 40px 38px 24px 24px;
 
-    background: url('../../static/images/dies-irae.png') no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 
     border-radius: 8px;
@@ -124,14 +131,16 @@
   }
 
   .top-blogs__right-card-1 {
-    background: url('../../static/images/scince-rich.jpg') no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 
     border-radius: 8px;
   }
 
   .top-blogs__right-card-2 {
-    background: url('../../static/images/scince-rich.jpg') no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 
     border-radius: 8px;

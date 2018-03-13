@@ -2,25 +2,27 @@
 <template lang="pug">
   .top-articles__container.container
     router-link(to="#").top-articles__item
-      .top-articles__image.top-articles__image-1
+      .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${info.pinnedArticles[0].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
-          | Скрининг: в крови
-        card-footer
+          | {{ info.pinnedArticles[0].title }}
+        card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" )
     router-link(to="#").top-articles__item
-      .top-articles__image.top-articles__image-2
+      .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
-          | Влияние электронных сигарет на сердечно-сосудистую систему
-        card-footer
+          | {{ info.pinnedArticles[1].title }}
+        card-footer( :tags="info.pinnedArticles[1].tags", :view="info.pinnedArticles[1].views" )
 </template>
 
 <script>
   import CardFooter from './CardFooter.vue';
 
   export default {
+    props: ['info'],
+
     components: {
       CardFooter
     }
@@ -49,7 +51,8 @@
     min-height: 316px;
     width: 100%;
 
-    background: url('../../static/images/dies-irae.png') no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover; 
   }
 

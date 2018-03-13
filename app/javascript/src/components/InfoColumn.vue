@@ -22,7 +22,7 @@
       span.title
         | Тэги:
       router-link(v-for="(tag, id) in info.tag_list", :to="'/tag/' + tag").tag
-        |{{'#' + tag}}
+        | {{'#' + tag}}
 </template>
 
 <script>

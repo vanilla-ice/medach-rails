@@ -3,15 +3,17 @@
     .article-footer__like
       .article-footer__like-icon
       .article-footer__like-digit
-        | 1667
-    .article-footer__tag
-      | терапия
+        | {{ view }}
+    .article-footer__tag(v-for="tag in tags")
+      | {{ tag }}
     .article-footer__date
       | Ноябрь 19, 2017
 </template>
 
 <script>
   export default {
+    props: ['tags', 'view']
+
   }
 </script>
 

@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      top-articles
+      top-articles(v-if="siteConfig" :info="siteConfig")
       blogs
       autors
       worst-articles
@@ -34,11 +34,16 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getPosts', this.currentPage).then((res) => {
+    this.$store.dispatch('getSiteConfig').then((res) => {
       setTimeout(() => this.isLoading = false, 300)
-    })
-    this.$store.dispatch('getPinnedPosts')
-    let isThrottling = false;
+    });
+
+    // this.$store.dispatch('getPosts', this.currentPage).then((res) => {
+    //   setTimeout(() => this.isLoading = false, 300)
+    // })
+
+    // this.$store.dispatch('getPinnedPosts')
+    // let isThrottling = false;
 
     window.addEventListener('scroll', () => {
       const $container = document.querySelector("#app")
@@ -49,7 +54,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount'])
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount', 'siteConfig'])
   },
 
   methods: {

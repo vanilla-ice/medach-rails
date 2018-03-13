@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      top-blogs
+      top-blogs(v-if="siteConfig" :info="siteConfig")
       three-columns
       two-columns
       intresting
@@ -18,11 +18,11 @@
   import TwoColumns from '../components/blogs/TwoColums.vue'
   import Intresting from '../components/blogs/Intresting.vue'
 
-
   import LoaderComponent from '../components/Loader.vue'
 
-  export default {
+  import { mapGetters } from 'vuex'
 
+  export default {
     components: {
       HeaderComponent,
       TopBlogs,
@@ -33,15 +33,20 @@
       LoaderComponent
     },
 
+    computed: {
+      ...mapGetters(['siteConfig'])
+    },
+
     data() {
       return {
         isLoading: true
       }
     },
+
     mounted() {
-      this.$store.dispatch('getPosts', this.currentPage).then((res) => {
+      this.$store.dispatch('getSiteConfig').then((res) => {
         setTimeout(() => this.isLoading = false, 300)
-      })
+      });
     }
   }
 </script>

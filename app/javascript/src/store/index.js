@@ -27,7 +27,8 @@ function store () {
       pinnedPosts: [],
       pageCount: 0,
       indexPageCount: 1,
-      allTags: []
+      allTags: [],
+      siteConfig: null
     },
 
     getters: {
@@ -39,7 +40,8 @@ function store () {
       pinnedPosts: state => state.pinnedPosts,
       pageCount: state => state.pageCount,
       indexPageCount: state => state.indexPageCount,
-      tags: state => state.allTags
+      tags: state => state.allTags,
+      siteConfig: state => state.siteConfig
     },
 
     mutations: {
@@ -80,7 +82,6 @@ function store () {
         return new Promise((resolve, reject) => {
           getPost(id).then(res => {
             state.activePost = res.data
-            console.log(state.activePost)
             resolve()
           })
         })
@@ -111,7 +112,9 @@ function store () {
       },
 
       getSiteConfig({state}) {
-        return siteConfig().then((res) => console.log(res)).catch(error => console.log(error))
+        return siteConfig().then((res) => {
+          state.siteConfig = {...res.data.siteConfig}
+      }).catch(error => console.log(error))
       },      
     },
 
