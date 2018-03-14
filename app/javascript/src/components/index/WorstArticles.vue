@@ -77,6 +77,7 @@
 
   .worst-articles__text {
     font-size: 18px;
+    font-family: Montserrat-Bold, helvetica;
   }
 
   .worst-articles__like {

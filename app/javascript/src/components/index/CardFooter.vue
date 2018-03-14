@@ -7,13 +7,24 @@
     .article-footer__tag(v-for="tag in tags")
       | {{ tag }}
     .article-footer__date
-      | Ноябрь 19, 2017
+      | {{ currentDate() }}
 </template>
 
 <script>
-  export default {
-    props: ['tags', 'view']
+  import { format } from 'date-fns'
+  import ru from 'date-fns/locale/ru'
 
+  export default {
+    props: ['tags', 'view', 'date'],
+
+    methods: {
+      currentDate() {
+        if (this.date) {
+          let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
+          return date[0].toUpperCase() + date.slice(1);
+        }
+      }
+    }
   }
 </script>
 
@@ -26,6 +37,7 @@
     margin-top: 10px;
 
     color: #7F7F7F;
+    font-family: Montserrat-SemiBold, helvetica;
     font-size: 16px;
   }
 
@@ -50,13 +62,14 @@
     margin-right: 8px;
 
     font-size: 14px;
+    font-family: Montserrat-Medium, helvetica;
     border-radius: 3px;
     border: 1px solid #7F7F7F;
   }
 
   .article-footer__date {
     flex-shrink: 0;
-    width: 141px;
+    width: 170px;
     margin-left: auto;
     
     text-align: right;

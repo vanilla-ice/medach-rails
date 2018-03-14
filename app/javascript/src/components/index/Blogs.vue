@@ -48,6 +48,8 @@
     padding: 24px 24px 31px 24px;
     flex-wrap: nowrap;
 
+    font-family: Montserrat-SemiBold, helvetica;
+
     background: #fff;
   }
 
@@ -57,6 +59,8 @@
     margin-right: 8px;
 
     font-size: 14px;
+    font-family: Montserrat-Medium, helvetica;
+
     border-radius: 3px;
     border: 1px solid #7F7F7F;
   }

@@ -7,14 +7,14 @@
       .top-articles__text-block
         .top-articles__text
           | {{ info.pinnedArticles[0].title }}
-        card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" )
+        card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" :date="info.pinnedArticles[0].publicationDate" )
     router-link(:to="'post/' + info.pinnedArticles[1].id").top-articles__item
       .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
           | {{ info.pinnedArticles[1].title }}
-        card-footer( :tags="info.pinnedArticles[1].tags", :view="info.pinnedArticles[1].views" )
+        card-footer( :tags="info.pinnedArticles[1].tags", :view="info.pinnedArticles[1].views" :date="info.pinnedArticles[1].publicationDate" )
 </template>
 
 <script>

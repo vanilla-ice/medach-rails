@@ -56,6 +56,7 @@
 
   .card-title {
     font-size: 16px;
+    font-family: Montserrat-Bold, helvetica;
   }
 
   @media(max-width: 1440px) {

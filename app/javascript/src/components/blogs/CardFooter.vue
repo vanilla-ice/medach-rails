@@ -1,21 +1,26 @@
 <template lang="pug">
   div( :class="{'card-footer': true, 'color-black': color}")
     .name
-      | Plague doctor
+      | {{ author }}
     .card-info
       .icon
       .liks
         | {{ getViews() }}
       .date
-        | Сентябрь 21, 2018
+        | {{ currentDate() }}
 </template>
 
 <script>
+  import { format } from 'date-fns'
+  import ru from 'date-fns/locale/ru'
+
   export default {
     props: {
       color: Boolean,
       tags: null,
       view: null,
+      author: null,
+      date: null
     },
 
     data() {
@@ -29,6 +34,13 @@
           return this.view
         }
         return '0'
+      },
+
+      currentDate() {
+        if (this.date) {
+          let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
+          return date[0].toUpperCase() + date.slice(1);
+        }
       }
     }
   }
@@ -42,6 +54,7 @@
     width: 100%;
 
     font-size: 16px;
+    font-family: Montserrat-SemiBold, helvetica;
     color: #fff;
   }
 
@@ -75,6 +88,10 @@
     align-items: center;
 
     margin-left: 26px;
+  }
+
+  .name {
+    font-family: Montserrat-Medium, helvetica;
   }
 
   @media(max-width: 1250px) {

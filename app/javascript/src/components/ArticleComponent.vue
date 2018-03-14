@@ -45,6 +45,10 @@
   .article__content img {
     width: 100%;
   }
+
+  .article__content i {
+    font-family: PTSerif-Regular, helvetica;;
+  }
 </style>
 
 <style lang="scss" scoped>
@@ -67,7 +71,7 @@
   }
 
   .article-title {
-    font-family: Montserrat-Medium, helvetica;
+    font-family: PTSerif-Regular, helvetica;
     font-size: 30px;
   }
 
@@ -78,7 +82,7 @@
     padding-bottom: 40px;
 
     font-size: 16px;
-    font-family: Montserrat-Regular, helvetica;
+    font-family: PTSerif-Regular, helvetica;
     color: #ACACAC;
   }
 
@@ -92,6 +96,8 @@
     width: 100%;
     text-align: right;
     margin-top: auto;
+
+    font-family: Montserrat-Regular, helvetica;
   }
 
   .content-header {

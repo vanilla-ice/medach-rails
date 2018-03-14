@@ -177,7 +177,7 @@
 <style scoped lang="scss">
   .header {
     min-height: 62px;
-    font-family: Helvetica, sans-serif;
+    font-family: Montserrat-Medium, Helvetica, sans-serif;
     z-index: 10;
     &__category {
       &:not(:first-child) {
@@ -272,7 +272,7 @@
     padding: 3px 7px;
     border: 1px solid #7F7F7F;
     border-radius: 3px;
-    font-family: sans-serif;
+    font-family: Montserrat-Medium, helvetica, sans-serif;
     font-size: 14px;
     color: #7F7F7F;
     letter-spacing: 0;
@@ -517,7 +517,7 @@
     color: #000;
     cursor: pointer;
     white-space: nowrap;
-    font-family: sans-serif;
+    font-family: Montserrat-Regular, sans-serif;
     font-size: 14px;
     color: #7F7F7F;
     letter-spacing: 0;

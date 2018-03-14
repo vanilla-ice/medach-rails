@@ -51,6 +51,7 @@
 
   .autors__item-text {
     font-size: 24px;
+    font-family: Montserrat-SemiBold, helvetica;
     color: #fff;
   }
 
@@ -60,6 +61,7 @@
     border: 2px solid #19DBAB;
 
     font-size: 16px;
+    font-family: Montserrat-Regular, helvetica;
     color: #fff;  
   }
 
