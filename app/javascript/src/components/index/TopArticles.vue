@@ -1,14 +1,14 @@
 
 <template lang="pug">
   .top-articles__container.container
-    router-link(to="#").top-articles__item
+    router-link(:to=" 'post/' + info.pinnedArticles[0].id ").top-articles__item
       .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${info.pinnedArticles[0].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
           | {{ info.pinnedArticles[0].title }}
         card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" )
-    router-link(to="#").top-articles__item
+    router-link(:to="'post/' + info.pinnedArticles[1].id").top-articles__item
       .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
@@ -25,6 +25,10 @@
 
     components: {
       CardFooter
+    },
+
+    mounted() {
+      console.log(this.info);
     }
   }
 </script>
