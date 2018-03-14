@@ -73,7 +73,7 @@ html {
     padding-bottom: 50px;
   }
   @import './src/assets/normalize.css';
-  // @import './src/assets/fonts.css';
+  @import './src/assets/fonts.css';
   @import './src/assets/settings.css';
 
 @media(max-width: 1440px) {
