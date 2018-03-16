@@ -315,7 +315,6 @@ $(document).ready(function () {
     images: {
       upload: {
         handler: function(data, success, failture) {
-          console.log('handler', data.blob(), data.filename(), data.id())
           saveToServer(data.blob(), editor)
             .then(function(data) {
               success(data.url)
