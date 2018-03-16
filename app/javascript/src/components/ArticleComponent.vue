@@ -3,19 +3,19 @@
     .article__wrapper
       .article
         .article-title
-          | {{ title }}
+          | {{ getContent(title) }}
         .article-info__wrapper
-          .article-info
-            .article-info__item.publishing(v-if="postInfo.origin")
-              | {{ postInfo.origin }}
-            .article-info__item.transfer(v-if="postInfo.translate")
-              | Перевод: {{ postInfo.translate }}
-            .article-info__item.revision(v-if="postInfo.redaction")
-              | Редакция: {{ postInfo.redaction }}
-            .article-info__item.cover(v-if="postInfo.infographic")
-              | Обложка: {{ postInfo.infographic }}
+          .article-info(v-if="postInfo")
+            .article-info__item.publishing
+              | {{ getContent(false) }}
+            .article-info__item.transfer
+              | Перевод: {{  getContent(postInfo.translate) }}
+            .article-info__item.revision
+              | Редакция: {{ getContent(postInfo.redaction) }}
+            .article-info__item.cover
+              | Обложка: {{ getContent(postInfo.infographic) }}
           .date
-            | {{ currentDate }}
+            | {{ getCurrentDate() }}
         .article__content
           img.article__cover-image(v-if="coverImage" :src="coverImage" )
           .article__content-text( v-html="post" )
@@ -28,12 +28,18 @@
   export default {
     props: ['title', 'coverImage', 'date', 'post', 'postInfo'],
 
-    computed: {
-      currentDate() {
+    methods: {
+      getContent(data) {
+        if (data) return data
+        return "Неизвестно"
+      },
+
+      getCurrentDate() {
         if (this.date) {
           let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
           return date[0].toUpperCase() + date.slice(1);
         }
+        return "Неизвестно"
       }
     }
   }
@@ -42,12 +48,54 @@
 </script>
 
 <style lang="scss">
+  .article__content {
+    font-family: PTSerif-Regular, helvetica;
+  }
+
   .article__content img {
     width: 100%;
   }
 
   .article__content i {
-    font-family: PTSerif-Regular, helvetica;;
+    font-family: PTSerif-Regular, helvetica;
+  }
+
+  .editor__img-title {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+
+    color: #fff;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 20px;
+
+    background: #30312F;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000; 
+    border-right: 2px solid #000; 
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .editor__img-content {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 14px;
+    color: #30312F;
+    line-height: 20px;
+
+    border-left: 2px solid #000; 
+    border-right: 2px solid #000; 
+    border-bottom: 2px solid #000; 
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 </style>
 

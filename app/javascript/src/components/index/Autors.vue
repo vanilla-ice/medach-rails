@@ -25,6 +25,8 @@
   }
 
   .autors__item {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,6 +40,25 @@
     border-radius: 4px;
 
     cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: #000;
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+
+      border-radius: 8px;
+    }
+  }
+
+  .autors__item div {
+    z-index: 2;
   }
 
   .autors__item-1 {

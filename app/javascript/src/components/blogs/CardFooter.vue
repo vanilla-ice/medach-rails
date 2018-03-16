@@ -1,7 +1,7 @@
 <template lang="pug">
   div( :class="{'card-footer': true, 'color-black': color}")
     .name
-      | {{ author }}
+      | {{ getAutor() }}
     .card-info
       .icon
       .liks
@@ -29,6 +29,11 @@
     },
 
     methods: {
+      getAutor() {
+        if (this.author) return this.author
+        return "Неизвестно"
+      },
+
       getViews () {
         if (this.view) {
           return this.view
@@ -41,6 +46,7 @@
           let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
           return date[0].toUpperCase() + date.slice(1);
         }
+        return "Неизвестно"
       }
     }
   }

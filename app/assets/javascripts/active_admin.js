@@ -309,6 +309,7 @@ function insertToEditor(url, editor) {
 }
 
 $(document).ready(function () {
+  var editor;
 
   var config = {
     basePath: '/textboxio',
@@ -327,7 +328,9 @@ $(document).ready(function () {
     }
   };
 
-  var editor = textboxio.replace('#article_body', config)
+  if (document.getElementById('article_body')) {
+    editor = textboxio.replace('#article_body', config)
+  }
 
   $('.chosen-select').chosen({
     allow_single_deselect: true,

@@ -21,7 +21,7 @@
         .right.only-desktop
           .header__wrapper-dop
             .header__category
-              router-link.category-name(to="/tag/авторская статья") АВТОРСКИЕ СТАТЬИ
+              router-link.category-name(to="/blogs") АВТОРСКИЕ СТАТЬИ
             .header__category
               router-link.category-name(to="/tag/новость") НОВОСТИ
             .header__category
@@ -48,7 +48,7 @@
             | {{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
-        .sort
+        .sort(v-if="sort")
           label.sort-text#sort-text(for = "sort-checkbox__checkbox")
             | ПОКАЗЫВАТЬ ПО ПОРЯДКУ   
           .sort-checkbox__wrapper
@@ -88,7 +88,8 @@
         query: '',
         isLoading: false,
         isOpen: false,
-        isTagsOpen: false
+        isTagsOpen: false,
+        sort: true
       }
     },
   
@@ -96,7 +97,11 @@
       this.$store.dispatch('getTagsMostUsed')
       this.$store.dispatch('getTags')
     },
-  
+
+    // mounted() {
+    //   if (this.$router.history.current.name === 'post') this.sort = false;
+    // },
+   
     methods: {
       search(e) {
         this.isLoading = true
