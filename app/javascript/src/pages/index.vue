@@ -85,6 +85,7 @@ export default {
 
 <style lang="scss" scopped>
 .main {
+  min-height: 100vh;
   padding-top: 30px;
   padding-bottom: 30px;
 

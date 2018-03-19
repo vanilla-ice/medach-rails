@@ -4,7 +4,28 @@
         .posters__wrapper
           router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
             .posters__item-foto
-              .image(:style="{ background: `url(${post.thumb.url})` }")
+              .image(:style="{ background: `url(${post.coverImage.url})` }")
+              .placeholder
+                span MEDACH
+            .posters__item-text
+              | {{ post.shorttext }}
+          router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
+            .posters__item-foto
+              .image(:style="{ background: `url(${post.coverImage.url})` }")
+              .placeholder
+                span MEDACH
+            .posters__item-text
+              | {{ post.shorttext }}
+          router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
+            .posters__item-foto
+              .image(:style="{ background: `url(${post.coverImage.url})` }")
+              .placeholder
+                span MEDACH
+            .posters__item-text
+              | {{ post.shorttext }}
+          router-link.posters__item(v-for="(post, id) in posts", :key="id", :to="`/post/${post.id}`")
+            .posters__item-foto
+              .image(:style="{ background: `url(${post.coverImage.url})` }")
               .placeholder
                 span MEDACH
             .posters__item-text
@@ -17,12 +38,13 @@ import moment from 'moment'
 export default {
   props: ['posts'],
 
-  data () {
+  data() {
     return {
     }
   },
 
-  mounted () {
+  mounted() {
+    console.log(this.post)
   },
 
   computed: {
@@ -37,13 +59,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.posters__item {
-  display: inline-block;
-  vertical-align: top;
+.posters {
+  min-height: 100vh;
+  background: #e0e0e0;
+}
 
-  max-width: 167px;
+.posters__item {
+  display: block;
+
+  background: #fff;
   width: 100%;
-  margin-right: 4.3%;
+  margin-bottom: 10px;
+
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15), inset 0 -1px 0 0 rgba(0,0,0,0.2);
 }
 
 .posters__item:nth-child(n+6) {
@@ -62,8 +91,7 @@ export default {
   display: block;
 
   height: 219px;
-  width: 167px;
-  margin-bottom: 10px;
+  width: 33.3%;
   position: relative;
 }
 
@@ -79,67 +107,10 @@ export default {
   z-index: 2;
 }
 
-.posters__item-foto-1 {
-  background: url('../static/images/vaccine-wars.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-2 {
-  background: url('../static/images/vaccine.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-3 {
-  background: url('../static/images/mouth.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-4 {
-  background: url('../static/images/pain.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-5 {
-  background: url('../static/images/stress-brain.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-6 {
-  background: url('../static/images/mikrobiom-intestines.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-7 {
-  background: url('../static/images/darkside.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-8 {
-  background: url('../static/images/womb.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-9 {
-  background: url('../static/images/crisp.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-10 {
-  background: url('../static/images/nay_2.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-11 {
-  background: url('../static/images/scince-rich.jpg') no-repeat center;
-  background-size: contain;
-}
-
-.posters__item-foto-12 {
-  background: url('../static/images/eye.jpg') no-repeat center;
-  background-size: contain;
-}
-
 .posters__wrapper {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
   padding-top: 27px;
   padding-bottom: 18px;
 }
@@ -167,7 +138,7 @@ export default {
 }
 
 .main-surgery .container {
-  padding: 0 115px;
+  padding: 0 15px;
 }
 
 .placeholder {
@@ -191,51 +162,51 @@ export default {
 }
 
 
-@media (max-width: 1024px) {
-  .posters .container {
-    padding: 0 40px;
-  }
+// @media (max-width: 1024px) {
+//   .posters .container {
+//     padding: 0 40px;
+//   }
 
-  .posters__item {
-    max-width: initial;
-    width: calc(33.3% - 27px);
-    margin-right: 0;
+//   .posters__item {
+//     max-width: initial;
+//     width: calc(33.3% - 27px);
+//     margin-right: 0;
 
-    &:not(:nth-child(3n - 2)) {
-      margin-left: 40px;
-    }
+//     &:not(:nth-child(3n - 2)) {
+//       margin-left: 40px;
+//     }
 
-    &:nth-child(n + 4) {
-      margin-top: 40px;
-    }
-  }
+//     &:nth-child(n + 4) {
+//       margin-top: 40px;
+//     }
+//   }
 
-  .posters__item-foto {
-    width: initial;
-    height: 275px;
-  }
-}
+//   .posters__item-foto {
+//     width: initial;
+//     height: 275px;
+//   }
+// }
 
-@media (max-width: 767px) {
-  .posters__wrapper {
-    padding-top: 0;
-  }
-  .posters__item {
-    width: 100%;
-    margin-left: 0 !important;
-    margin-top: 40px;
-  }
+// @media (max-width: 767px) {
+//   .posters__wrapper {
+//     padding-top: 0;
+//   }
+//   .posters__item {
+//     width: 100%;
+//     margin-left: 0 !important;
+//     margin-top: 40px;
+//   }
 
-  .posters__item-foto {
-    height: 370px;
-  }
+//   .posters__item-foto {
+//     height: 370px;
+//   }
 
-  .posters__item-text {
-    font-size: 18px;
-    line-height: 22px;
-    max-height: 68px;
-  }
-}
+//   .posters__item-text {
+//     font-size: 18px;
+//     line-height: 22px;
+//     max-height: 68px;
+//   }
+// }
 
 </style>
 

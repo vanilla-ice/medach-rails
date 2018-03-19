@@ -90,7 +90,8 @@ function store () {
       search({state}, payload) {
         return new Promise((resolve, reject) => {
           searchRequest(payload).then(res => {
-            state.posts = [...res.data]
+            state.posts = {...res.data.articles}
+            console.log(state.posts)
             resolve()
           })
         })

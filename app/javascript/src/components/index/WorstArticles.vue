@@ -1,6 +1,8 @@
 <template lang="pug">
   .worst-articles__container.container
     router-link(to="#").worst-articles__item
+      .worst-articles__image.worst-articles__image-placeholder
+        span MEDACH
       .worst-articles__image
         .worst-articles__info-name
       .worst-articles__text-block
@@ -8,12 +10,16 @@
           | Генетически модефицированые бактериофаги: обзор достижений последнего десятилетия
         card-footer
     router-link(to="#").worst-articles__item
+      .worst-articles__image.worst-articles__image-placeholder
+        span MEDACH
       .worst-articles__image
       .worst-articles__text-block
         .worst-articles__text
           | Новые возможности анализа крови
         card-footer
     router-link(to="#").worst-articles__item
+      .worst-articles__image.worst-articles__image-placeholder
+        span MEDACH
       .worst-articles__image
       .worst-articles__text-block
         .worst-articles__text
@@ -38,6 +44,8 @@
   }
 
   .worst-articles__item {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -50,9 +58,33 @@
   }
 
   .worst-articles__image {
+    position: relative;
+    z-index: 2;
+
     min-height: 325px;
     background: url('../../static/images/good-bad.png') no-repeat center;
     background-size: cover;
+
+  }
+
+  .worst-articles__image-placeholder {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    background: #f8f8f8;
+
+    span {
+      font-size: 28px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 24px;
+      color: #aaaaaa;
+    }
   }
 
   .worst-articles__text-block {

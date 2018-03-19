@@ -3,7 +3,7 @@
     .article-footer__like
       .article-footer__like-icon
       .article-footer__like-digit
-        | {{ view }}
+        | {{ getViews() }}
     .article-footer__tag(v-for="tag in tags")
       | {{ tag }}
     .article-footer__date
@@ -23,6 +23,21 @@
           let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
           return date[0].toUpperCase() + date.slice(1);
         }
+        return "Неизвестно"
+      },
+
+      getViews() {
+        if (this.view) {
+          return this.view
+        }
+        return '0'
+      },
+
+      getTags() {
+        if (this.tags) {
+          return this.tags
+        }
+        return 'Неизвестно'
       }
     }
   }

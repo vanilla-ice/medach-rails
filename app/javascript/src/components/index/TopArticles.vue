@@ -2,6 +2,8 @@
 <template lang="pug">
   .top-articles__container.container
     router-link(:to=" 'post/' + info.pinnedArticles[0].id ").top-articles__item
+      .top-articles__image.top-articles__image-placeholder
+        span MEDACH
       .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${info.pinnedArticles[0].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
@@ -9,11 +11,13 @@
           | {{ getTitle(info.pinnedArticles[0]) }}
         card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" :date="info.pinnedArticles[0].publicationDate" )
     router-link(:to="'post/' + info.pinnedArticles[1].id").top-articles__item
+      .top-articles__image.top-articles__image-placeholder
+        span MEDACH
       .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
-          | {{ getTitle(info.pinnedArticles[1].title) }}
+          | {{ getTitle(info.pinnedArticles[1]) }}
         card-footer( :tags="info.pinnedArticles[1].tags", :view="info.pinnedArticles[1].views" :date="info.pinnedArticles[1].publicationDate" )
 </template>
 
@@ -48,6 +52,8 @@
   }
 
   .top-articles__item {
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -57,8 +63,28 @@
     cursor: pointer;
   }
 
-  .top-articles__image {
+  .top-articles__image.top-articles__image-placeholder {
+    position: absolute;
+    z-index: 1;
+    background-color: #f8f8f8;
+    top: 0;
+    left: 0;
+    width: 100%;
 
+    span {
+      font-size: 28px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 24px;
+      color: #aaaaaa;
+    }
+  }
+
+  .top-articles__image {
+    position: relative;
+    z-index: 2;
     min-height: 316px;
     width: 100%;
 
@@ -96,7 +122,7 @@
 
     .top-articles__text-block {
       min-height: 184/1440 * 100vw; 
-      padding: 24/675 * 100%;
+      padding: 24/1440 * 100vw;
     }
   }
   @media(max-width: 1250px) {

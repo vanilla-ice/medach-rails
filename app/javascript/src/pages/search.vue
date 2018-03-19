@@ -21,10 +21,15 @@ export default {
   },
 
   mounted () {
+    console.log('search', this.posts)
   },
 
   computed: {
-    ...mapGetters(['posts'])
+    ...mapGetters(['posts']),
+
+    getPosts() {
+      console.log('search', this.posts)
+    }
   },
 
   components: {
@@ -36,7 +41,7 @@ export default {
 
 <style scoped lang="scss">
   .main-surgery {
-  padding-bottom: 56px;
+
 }
 
 .main-surgery__title {

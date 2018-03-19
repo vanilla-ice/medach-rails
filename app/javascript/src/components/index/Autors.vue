@@ -1,11 +1,17 @@
 <template lang="pug">
   .autors__container.container
     router-link(to="#").autors__item.autors__item-1
+      .autors__image( :style="{ backgroundColor:`#4C1876`, }")
+      .autors__placeholder
+        span MEDACH
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
       .autors__item-subscribe
         | Подписаться
     router-link(to="#").autors__item.autors__item-2
+      .autors__image( :style="{ backgroundImage: `url(../../static/images/good-bad.png)` }")
+      .autors__placeholder
+        span MEDACH
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
       .autors__item-subscribe
@@ -50,7 +56,7 @@
       right: 0;
       background: #000;
       opacity: 0.5;
-      z-index: 1;
+      z-index: 3;
       pointer-events: none;
 
       border-radius: 8px;
@@ -58,15 +64,46 @@
   }
 
   .autors__item div {
-    z-index: 2;
+    z-index: 4;
   }
 
-  .autors__item-1 {
-    background: #4C1876;
+  .autors__item .autors__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    border-radius: 8px;
+  }
+
+  .autors__item .autors__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    border-radius: 8px;
+
+    background: #110E9B;
+
+    span {
+      font-size: 28px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 24px;
+      color: #aaaaaa;
+    }
   }
 
   .autors__item-2 {
     background: url('../../static/images/good-bad.png') no-repeat center;
+
     background-size: cover;
   }
 

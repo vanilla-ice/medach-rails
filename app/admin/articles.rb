@@ -29,7 +29,7 @@ permit_params :body, :image, :title, :author, :infographic, :redaction, :created
 
   index do
     column :image do |i|
-      image_tag i.image
+      image_tag i.cover_image
     end
     column :title
     column :shorttext

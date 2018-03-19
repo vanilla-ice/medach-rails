@@ -10,7 +10,6 @@
             div(v-for="(tag, id) in tags", :key="id")
               router-link.tag-name(:to="`/tag/${tag.name}`")
                 | \#{{tag.name.toUpperCase()}}
-
     .top
       .container
         .left
@@ -98,9 +97,9 @@
       this.$store.dispatch('getTags')
     },
 
-    // mounted() {
-    //   if (this.$router.history.current.name === 'post') this.sort = false;
-    // },
+    mounted() {
+      if (this.$router.history.current.name === 'post') this.sort = false;
+    },
    
     methods: {
       search(e) {

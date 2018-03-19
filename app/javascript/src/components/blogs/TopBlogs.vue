@@ -1,15 +1,24 @@
 <template lang="pug">
   .top-blogs.container
-    router-link(to="#").top-blogs__left( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
+    router-link(to="#").top-blogs__left
+      .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
+      .top-blogs__placeholder
+        span MEDACH
       .top-blogs__left-title
         | {{ getTitle(info.pinnedBlogs[0]) }}
       card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views", :author="info.pinnedBlogs[0].author", :date="info.pinnedBlogs[0].publicationDate" )
     .top-blogs__right
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-1( :style="{ backgroundImage:`url(${info.pinnedBlogs[1].coverImage.url})`, }")
+      router-link(to="#").top-blogs__right-card.top-blogs__right-card-1
+        .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[1].coverImage.url})`, }")
+        .top-blogs__placeholder
+          span MEDACH
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[1]) }}
         card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views", :author="info.pinnedBlogs[1].author", :date="info.pinnedBlogs[1].publicationDate" )
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-2( :style="{ backgroundImage:`url(${info.pinnedBlogs[2].coverImage.url})` }")
+      router-link(to="#").top-blogs__right-card.top-blogs__right-card-2
+        .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[2].coverImage.url})`, }")
+        .top-blogs__placeholder
+          span MEDACH
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[2]) }}
         card-footer( :tags="info.pinnedBlogs[2].tags", :view="info.pinnedBlogs[2].views" :author="info.pinnedBlogs[2].author", :date="info.pinnedBlogs[2].publicationDate" )
@@ -25,15 +34,17 @@
       CardFooter
     },
 
+    data() {
+      return {
+        image: false
+      }
+    },
+
     methods: {
       getTitle(data) {
         if (data) return data.title
         return "Неизвестно"
       }
-    },
-
-    mounted() {
-      console.log('props', this.info)
     }
   }
 </script>
@@ -51,10 +62,6 @@
     min-height: 500px;
     padding: 40px 38px 24px 24px;
 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
     border-radius: 8px;
 
     &::after {
@@ -66,7 +73,7 @@
       right: 0;
       background: #000;
       opacity: 0.5;
-      z-index: 1;
+      z-index: 3;
       pointer-events: none;
 
       border-radius: 8px;
@@ -75,7 +82,43 @@
 
   .top-blogs__left div {
     position: relative;
+    z-index: 4;
+  }
+
+  .top-blogs .top-blogs__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     z-index: 2;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
+  }
+
+  .top-blogs .top-blogs__placeholder {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: #110E9B;
+    border-radius: 8px;
+
+    span {
+      font-size: 28px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      line-height: 24px;
+      color: #aaaaaa;
+    }
   }
 
   .top-blogs__left-title {
@@ -125,7 +168,7 @@
       right: 0;
       background: #000;
       opacity: 0.5;
-      z-index: 1;
+      z-index: 3;
       pointer-events: none;
 
       border-radius: 8px;
@@ -134,7 +177,7 @@
 
   .top-blogs__right-card div {
     position: relative;
-    z-index: 2;
+    z-index: 4;
   }
 
   .top-blogs__right-card-1 {
