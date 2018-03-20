@@ -14,7 +14,7 @@ class Article < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   scope :fixed, -> { where(fixed: true)}
-  scope :published, -> { where(["publish_on < ?", Time.zone.now]) }
+  scope :published, -> { where(["publish_on < ?", Time.zone.now]).order("publish_on DESC") }
   scope :newest_first, -> {order("created_at DESC")}
 
   multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]

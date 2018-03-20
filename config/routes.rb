@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     get 'blogs_page_config', to: 'blogs_configs#index'
     get 'main_page_config', to: 'main_configs#index'
+    get 'all_articles', to: 'articles#all' 
   end
   get '*path' => 'home#index'
 end
