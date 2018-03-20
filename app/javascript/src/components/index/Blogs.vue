@@ -4,37 +4,39 @@
       .blogs-tag
         | БЛОГИ
       .blogs__articles-wrapper
-        router-link(to="#").blogs__articles-big
+        router-link(:to=" 'blog-post/' + info.pinnedBlogs[0].id ").blogs__articles-big
           .blogs__articles-big-text
-            | Регулярная биогенеза, функционирования и разрушения микроРНК
+            | {{ info.pinnedBlogs[0].title }}
           .blogs__articles-big-date
-            | Декабрь 29, 2017     
+            | {{ currentDate(info.pinnedBlogs[0].publicationDate) }}  
         .blogs__articles-min-wrapper
-          router-link(to="#").blogs__articles-min-item.blogs__articles-min-item-top
+          router-link(v-for="(item, id) in info.pinnedBlogs" v-if="id > 0 && id < 5" :key="id" :to=" 'blog-post/' + item.id ").blogs__articles-min-item
             .blogs__articles-min-item-text
-              | Рак поджелудочной железы
+              | {{ item.title }}
             .blogs__articles-min-item-date
-              | Август 23, 2017
-          router-link(to="#").blogs__articles-min-item.blogs__articles-min-item-top
-            .blogs__articles-min-item-text
-              | Логика диагноза: Чарльз Сандерс Пирс, литературное повествовование и история настоящего заболевания
-            .blogs__articles-min-item-date
-              | Август 23, 2017
-          router-link(to="#").blogs__articles-min-item
-            .blogs__articles-min-item-text
-              | DIES IRAE: Как один день изменил всю систему ординатуры в России
-            .blogs__articles-min-item-date
-              | Август 23, 2017
-          router-link(to="#").blogs__articles-min-item
-            .blogs__articles-min-item-text
-              | Травматическое повреждение головного мозга
-            .blogs__articles-min-item-date
-              | Июнь 20, 2017
+              | {{ currentDate(item.publicationDate) }}
 </template>
 
 <script>
+ import { format } from 'date-fns'
+ import ru from 'date-fns/locale/ru'
+
   export default {
-    
+    props: ['info'],
+
+    mounted() {
+      console.log(this.info)
+    },
+
+    methods: {
+      currentDate(data) {
+      if (data) {
+          let date = format(data, 'MMMM D, YYYY', { locale: ru });
+          return date[0].toUpperCase() + date.slice(1);
+        }
+        return ""
+      }
+    }
   }
 </script>
 

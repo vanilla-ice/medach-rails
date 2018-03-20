@@ -59,6 +59,16 @@ export const getPost = (id) => {
   })
 }
 
+export const getBlogPost = (id) => {
+  return new Promise((resolve, reject) => {
+    get(`/api/blogs/${id}`)
+      .then(response => {
+        resolve(response)
+      })
+      .catch(reject)
+  })
+}
+
 export const getPostsByTag = (tag) => {
   return new Promise((resolve, reject) => {
     get(`/api/articles/by_tag/${tag}`) // /api/articles?tag=tag_name

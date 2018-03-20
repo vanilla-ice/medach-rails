@@ -6,6 +6,7 @@ import Post from '../pages/post.vue'
 import Tag from '../pages/tag.vue'
 import Search from '../pages/search.vue'
 import InOrder from '../pages/inOrder.vue'
+import BlogPost from '../pages/blogPost.vue'
 
 Vue.use(Router)
 
@@ -21,6 +22,11 @@ const router = new Router({
       path: '/post/:id',
       name: 'post',
       component: Post
+    },
+    {
+      path: '/blog-post/:id',
+      name: 'blog-post',
+      component: BlogPost
     },
     {
       path: '/tag/:id',

@@ -36,10 +36,6 @@
         if (data) return data.title
         return "Неизвестно" 
       }
-    },
-
-    mounted() {
-      console.log(this.info);
     }
   }
 </script>

@@ -4,7 +4,7 @@
     header-component
     .main
       top-articles(v-if="siteConfig" :info="siteConfig")
-      blogs
+      blogs(v-if="siteConfig" :info="siteConfig")
       autors
       worst-articles
     footer-component

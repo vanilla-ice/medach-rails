@@ -9,28 +9,12 @@
         :title = "activePost.article.title",
         :post="activePost.article.body")
 
-    //- main.main.main-description
-    //-   .container
-    //-     .foto-column
-    //-       .foto-column__poster(v-if="image[0].src")
-    //-         lightbox#lightbox(:images="image")
-    //-       .placeholder(v-if="!image[0].src")
-    //-         span
-    //-           | MEDACH
-    //-     desc-column(v-if="activePost", :post="activePost.body", :name="activePost.title")
-    //-     info-column(v-if="activePost", :info="activePost")
 </template>
 
 <script>
 import HeaderComponent from '../components/Header.vue'
 import LoaderComponent from '../components/Loader.vue'
 import ArticleComponent from '../components/ArticleComponent.vue'
-
-// import Lightbox from 'vue-simple-lightbox'
-// import DescColumn from '../components/DescColumn.vue'
-// import InfoColumn from '../components/InfoColumn.vue'
-// import descColumnBottom from '../components/DescColumnBottom.vue'
-
 
 import { mapGetters } from 'vuex'
 

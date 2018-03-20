@@ -6,6 +6,7 @@ import moment from 'moment'
 import {
   getArticles,
   getPost,
+  getBlogPost,
   getPostsByTag,
   searchRequest,
   tagsMostUsed,
@@ -22,6 +23,7 @@ function store () {
       posts: [],
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
+      activeBlogPost: null,
       activeTag: null,
       popularTags: [],
       pinnedPosts: [],
@@ -35,6 +37,7 @@ function store () {
       posts: state => state.posts,
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
+      activeBlogPost: state => state.activeBlogPost,
       activeTag: state => state.activeTag,
       popularTags: state => state.popularTags,
       pinnedPosts: state => state.pinnedPosts,
@@ -82,6 +85,17 @@ function store () {
         return new Promise((resolve, reject) => {
           getPost(id).then(res => {
             state.activePost = res.data
+            resolve()
+          })
+        })
+      },
+
+      getActiveBlogPost({state}, payload) {
+        const { id } = payload
+        return new Promise((resolve, reject) => {
+          getBlogPost(id).then(res => {
+            state.activeBlogPost = res.data
+            console.log('blogPost', state.activePost)
             resolve()
           })
         })

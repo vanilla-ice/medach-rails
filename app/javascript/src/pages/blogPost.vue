@@ -1,0 +1,52 @@
+<template lang="pug">
+    div.main-container
+      loader-component(v-if="isLoading")
+      header-component
+      .main
+        | {{ this.consoleLog() }}
+        article-component(v-if="activeBlogPost", :postInfo = " {origin: activeBlogPost.blog.origin, redaction: activeBlogPost.blog.redaction, translate: activeBlogPost.blog.translate, infographic: activeBlogPost.blog.infographic} ",
+          :coverImage="activeBlogPost.blog.coverImage.url",
+          :date="activeBlogPost.blog.publishOn",
+          :title = "activeBlogPost.blog.title",
+          :post="activeBlogPost.blog.body")
+</template>
+
+<script>
+import HeaderComponent from '../components/Header.vue'
+import LoaderComponent from '../components/Loader.vue'
+import ArticleComponent from '../components/ArticleComponent.vue'
+
+import { mapGetters } from 'vuex'
+
+  export default {
+    components: {
+      HeaderComponent,
+      LoaderComponent,
+      ArticleComponent
+    },
+
+    data () {
+      return {
+        isLoading: true
+      }
+    },
+
+    computed: {
+      ...mapGetters(['activeBlogPost'])
+    },
+
+    mounted() {
+      this.$store.dispatch('getActiveBlogPost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
+    },
+
+    methods: {
+      consoleLog() {
+        console.log(this.activeBlogPost)
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
