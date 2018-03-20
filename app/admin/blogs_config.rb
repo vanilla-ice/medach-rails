@@ -1,27 +1,19 @@
-ActiveAdmin.register SiteConfig do
+ActiveAdmin.register BlogsConfig do
   permit_params(
-    :pinned_articles,
-    :promoted_articles,
     :pinned_blogs,
+    :spotlight_blogs,
+    :main_blogs,
     :promoted_blogs,
     :title,
     :active
   )
+
+  menu parent: "Page Configs", label: 'Blogs Page Configs'
+
   form do |f|
     f.inputs do
       f.input :title, label: 'Название'
       f.input :active, label: 'Активен'
-      f.input(
-        :pinned_articles,
-        as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
-        collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :promoted_articles,
-        :input_html => { multiple: true, class: 'chosen-select' },
-        collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
-      )
       f.input(
         :pinned_blogs,
         as: :select,
@@ -29,13 +21,24 @@ ActiveAdmin.register SiteConfig do
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
-        :promoted_blogs,
+        :spotlight_blogs,
         as: :select,
         :input_html => { multiple: true, class: 'chosen-select' },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
-    f.actions
+      f.input(
+        :main_blogs,
+        as: :select,
+        :input_html => { multiple: true, class: 'chosen-select' },
+        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
+      )
+      f.input(
+        :promoted_blogs,
+        :input_html => { multiple: true, class: 'chosen-select' },
+        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
+      )
     end
+    f.actions
   end
 
   index do
@@ -47,12 +50,12 @@ ActiveAdmin.register SiteConfig do
     end
 
     column :title
-    column "Data" do |site_config|
-      render 'admin/site_config_data', { 
-        pinned_articles: populate_articles(site_config.data['pinned_articles']),
-        promoted_articles: populate_articles(site_config.data['promoted_articles']),
-        pinned_blogs: populate_articles(site_config.data['pinned_blogs']),
-        promoted_blogs: populate_articles(site_config.data['promoted_blogs']),
+    column "Data" do |blogs_config|
+      render 'admin/blogs_config_data', {
+        pinned_blogs: populate_articles(blogs_config.data['pinned_blogs']),
+        spotlight_blogs: populate_articles(blogs_config.data['spotlight_blogs']),
+        main_blogs: populate_articles(blogs_config.data['main_blogs']),
+        promoted_blogs: populate_articles(blogs_config.data['promoted_blogs'])
       }
     end
     column :active
@@ -62,38 +65,39 @@ ActiveAdmin.register SiteConfig do
   controller do
 
     def filter_input_data(name)
-      params[:site_config][name].reject(&:empty?)
+      params[:blogs_config][name].reject(&:empty?)
     end
 
     def build_data
       @data = {
-        pinned_articles: filter_input_data(:pinned_articles),
-        promoted_articles: filter_input_data(:promoted_articles),
         pinned_blogs: filter_input_data(:pinned_blogs),
+        spotlight_blogs: filter_input_data(:spotlight_blogs),
+        main_blogs: filter_input_data(:main_blogs),
         promoted_blogs: filter_input_data(:promoted_blogs)
       }
     end
 
     def create
       build_data
-      SiteConfig.create(
-        title: params[:site_config][:title], 
+      BlogsConfig.create(
+        title: params[:blogs_config][:title], 
         data: @data,
-        active: params[:site_config][:active]
+        type: 'BlogsConfig',
+        active: params[:blogs_config][:active]
       )
       redirect_to collection_url
     end
 
     def update
       build_data
-      site_config = SiteConfig.find(params[:id])
-      site_config.update!({
-        title: params[:site_config][:title],
+      blogs_config = BlogsConfig.find(params[:id])
+      blogs_config.update!({
+        title: params[:blogs_config][:title],
         data: @data,
-        active: params[:site_config][:active]
+        type: 'BlogsConfig',
+        active: params[:blogs_config][:active]
       })
       redirect_to collection_url
     end
   end
-
 end
