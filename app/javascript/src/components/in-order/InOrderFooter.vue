@@ -3,7 +3,6 @@
     .name
       | Имя
     .card-info
-      .icon
       .liks
         | 89
       .date

@@ -54,7 +54,10 @@ const router = new Router({
         window.location = 'http://old.medach.pro' + to.path
       }
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

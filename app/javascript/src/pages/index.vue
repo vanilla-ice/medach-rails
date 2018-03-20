@@ -6,7 +6,7 @@
       top-articles(v-if="siteConfig" :info="siteConfig")
       blogs(v-if="siteConfig" :info="siteConfig")
       autors
-      worst-articles
+      worst-articles(v-if="siteConfig" :info="siteConfig.promotedArticles")
     footer-component
 </template>
 

@@ -3,7 +3,6 @@
     .name
       | {{ getAutor() }}
     .card-info
-      .icon
       .liks
         | {{ getViews() }}
       .date

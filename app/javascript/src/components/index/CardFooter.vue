@@ -1,7 +1,6 @@
 <template lang="pug">
   .article-footer
     .article-footer__like
-      .article-footer__like-icon
       .article-footer__like-digit
         | {{ getViews() }}
     .article-footer__tag(v-for="tag in tags")

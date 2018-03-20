@@ -1,38 +1,30 @@
 <template lang="pug">
   .worst-articles__container.container
-    router-link(to="#").worst-articles__item
+    router-link.worst-articles__item(to="#" v-for="(item, id) in info" v-if="id < 3", :key="item.id")
       .worst-articles__image.worst-articles__image-placeholder
         span MEDACH
-      .worst-articles__image
+      .worst-articles__image( :style="{ backgroundImage: `url(${item.coverImage.url})` }" )
         .worst-articles__info-name
       .worst-articles__text-block
         .worst-articles__text
-          | Генетически модефицированые бактериофаги: обзор достижений последнего десятилетия
-        card-footer
-    router-link(to="#").worst-articles__item
-      .worst-articles__image.worst-articles__image-placeholder
-        span MEDACH
-      .worst-articles__image
-      .worst-articles__text-block
-        .worst-articles__text
-          | Новые возможности анализа крови
-        card-footer
-    router-link(to="#").worst-articles__item
-      .worst-articles__image.worst-articles__image-placeholder
-        span MEDACH
-      .worst-articles__image
-      .worst-articles__text-block
-        .worst-articles__text
-          | Новые возможности анализа крови
-        card-footer
+          | {{ item.title }}
+        card-footer(:view="item.views", :date="item.publicationDate")
 </template>
 
 <script>
   import CardFooter from './CardFooter.vue';
 
+  import { mapGetters } from 'vuex'
+
   export default {
+    props: ['info'],
+
     components: {
       CardFooter
+    },
+
+    mounted() {
+      console.log(this.info)
     }
   }
 </script>
