@@ -48,6 +48,18 @@ class Api::ArticlesController < ActionController::Base
     }.merge(extra_meta)
   end
 
+  def all
+    @articles = Article.published
+    paginated = @articles.page(params[:page]).per(20)
+    render(
+      json: paginated,
+      each_serializer: BaseArticleSerializer,
+      root: 'all_articles',
+      key_transform: :camel_lower,
+      meta: meta_attributes(paginated)
+    )
+  end
+
   protected
     def type_class
       Article
