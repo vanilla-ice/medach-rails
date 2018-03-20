@@ -4,11 +4,12 @@ class Api::ArticlesController < ActionController::Base
   impressionist :actions => [:show]
 
   def index
-    @articles = type_class.published
     if params[:tag]
       @articles = type_class.published.tagged_with(params[:tag])
     elsif params[:query]
       @articles = type_class.published.search(params[:query])
+    else
+      @articles = type_class.published.tagged_with(['перевод'], :exclude => true)
     end
     paginated = @articles.page(params[:page]).per(20)
     render(
@@ -55,6 +56,19 @@ class Api::ArticlesController < ActionController::Base
       json: paginated,
       each_serializer: BaseArticleSerializer,
       root: 'all_articles',
+      key_transform: :camel_lower,
+      meta: meta_attributes(paginated)
+    )
+  end
+
+  def translated
+    @articles = type_class.published.tagged_with(['перевод'])
+    paginated = @articles.page(params[:page]).per(20)
+
+    render(
+      json: paginated,
+      each_serializer: each_serializer,
+      root: root_key_multiple,
       key_transform: :camel_lower,
       meta: meta_attributes(paginated)
     )
