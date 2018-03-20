@@ -7,12 +7,14 @@ import {
   getArticles,
   getPost,
   getBlogPost,
+  getNewsPost,
   getPostsByTag,
   searchRequest,
   tagsMostUsed,
   getPinnedPostsRequest,
   getAllTags,
-  siteConfig
+  mainPageConfig,
+  blogsPageConfig
  } from '../helpers/requests'
 
 Vue.use(Vuex)
@@ -24,13 +26,15 @@ function store () {
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
       activeBlogPost: null,
+      activeNewsPost: null,
       activeTag: null,
       popularTags: [],
       pinnedPosts: [],
       pageCount: 0,
       indexPageCount: 1,
       allTags: [],
-      siteConfig: null
+      mainPageConfig: null,
+      blogsPageConfig: null
     },
 
     getters: {
@@ -38,13 +42,15 @@ function store () {
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
       activeBlogPost: state => state.activeBlogPost,
+      activeNewsPost: state => state.activeNewsPost,
       activeTag: state => state.activeTag,
       popularTags: state => state.popularTags,
       pinnedPosts: state => state.pinnedPosts,
       pageCount: state => state.pageCount,
       indexPageCount: state => state.indexPageCount,
       tags: state => state.allTags,
-      siteConfig: state => state.siteConfig
+      mainPageConfig: state => state.mainPageConfig,
+      blogsPageConfig: state => state.blogsPageConfig
     },
 
     mutations: {
@@ -95,7 +101,16 @@ function store () {
         return new Promise((resolve, reject) => {
           getBlogPost(id).then(res => {
             state.activeBlogPost = res.data
-            console.log('blogPost', state.activePost)
+            resolve()
+          })
+        })
+      },
+
+      getActiveNewsPost({state}, payload) {
+        const { id } = payload
+        return new Promise((resolve, reject) => {
+          getNewsPost(id).then(res => {
+            state.activeNewsPost = res.data
             resolve()
           })
         })
@@ -126,11 +141,20 @@ function store () {
         return tagsMostUsed().then((res) => state.popularTags = [...res.data]).catch(error => console.log(error))
       },
 
-      getSiteConfig({state}) {
-        return siteConfig().then((res) => {
-          state.siteConfig = {...res.data.siteConfig}
-      }).catch(error => console.log(error))
-      },      
+      getMainPageConfig({state}) {
+        return mainPageConfig().then((res) => {
+          state.mainPageConfig = {...res.data.mainConfig}
+          console.log(state.mainPageConfig)
+        }).catch(error => console.log(error))
+      },
+      
+      getBlogsPageConfig({state}) {
+        return blogsPageConfig().then((res) => {
+          state.blogsPageConfig = {...res.data.blogsConfig}
+          console.log(res)
+          console.log(state.blogsPageConfig)
+        }).catch(error => console.log(error))
+      }, 
     },
 
     plugins: [createLogger()]

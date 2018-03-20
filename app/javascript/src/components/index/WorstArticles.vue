@@ -1,6 +1,6 @@
 <template lang="pug">
   .worst-articles__container.container
-    router-link.worst-articles__item(to="#" v-for="(item, id) in info" v-if="id < 3", :key="item.id")
+    router-link.worst-articles__item(v-for="(item, id) in info" v-if="id < 3" :key="item.id" :to="'post/' + item.id")
       .worst-articles__image.worst-articles__image-placeholder
         span MEDACH
       .worst-articles__image( :style="{ backgroundImage: `url(${item.coverImage.url})` }" )
@@ -21,10 +21,6 @@
 
     components: {
       CardFooter
-    },
-
-    mounted() {
-      console.log(this.info)
     }
   }
 </script>

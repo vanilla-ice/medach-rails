@@ -1,19 +1,19 @@
 <template lang="pug">
   .top-blogs.container
-    router-link(to="#").top-blogs__left
+    router-link(:to="'blog-post/' + info.pinnedBlogs[0].id").top-blogs__left
       .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
       .top-blogs__placeholder
       .top-blogs__left-title
         | {{ getTitle(info.pinnedBlogs[0]) }}
       card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views", :author="info.pinnedBlogs[0].author", :date="info.pinnedBlogs[0].publicationDate" )
     .top-blogs__right
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-1
+      router-link(:to="'blog-post/' + info.pinnedBlogs[1].id").top-blogs__right-card.top-blogs__right-card-1
         .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[1].coverImage.url})`, }")
         .top-blogs__placeholder
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[1]) }}
         card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views", :author="info.pinnedBlogs[1].author", :date="info.pinnedBlogs[1].publicationDate" )
-      router-link(to="#").top-blogs__right-card.top-blogs__right-card-2
+      router-link(:to="'blog-post/' + info.pinnedBlogs[2].id").top-blogs__right-card.top-blogs__right-card-2
         .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[2].coverImage.url})`, }")
         .top-blogs__placeholder
         .top-blogs__right-title

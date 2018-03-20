@@ -1,23 +1,17 @@
 <template lang="pug">
   .cards-container.container
-    router-link(to="#").card
+    router-link.card(v-for="(item, id) in info" :key="item.id" v-if="id < 3" :to="'blog-post/' + item.id")
       .card-title
-        | Лечение рака подорожником
-      card-footer(:color="colorBlack")
-    router-link(to="#").card
-      .card-title
-        | Лечение рака подорожником
-      card-footer(:color="colorBlack")
-    router-link(to="#").card
-      .card-title
-        | Лечение рака подорожником
-      card-footer(:color="colorBlack")
+        | {{ item.title }}
+      card-footer(:color="colorBlack" :tags="item.tags" :view="item.views" :author="item.author" :date="item.publicationDate")
 </template>
 
 <script>
   import CardFooter from "./CardFooter.vue"
 
   export default {
+    props: ['info'],
+
     components: {
       CardFooter
     },

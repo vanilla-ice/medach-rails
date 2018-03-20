@@ -3,9 +3,9 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      top-blogs(v-if="siteConfig" :info="siteConfig")
-      three-columns
-      two-columns
+      top-blogs(v-if="blogsPageConfig" :info="blogsPageConfig")
+      three-columns(v-if="blogsPageConfig" :info="blogsPageConfig.spotlightBlogs")
+      two-columns(v-if="blogsPageConfig" :info="blogsPageConfig.mainBlogs")
       intresting
     footer-component
 </template>
@@ -34,7 +34,7 @@
     },
 
     computed: {
-      ...mapGetters(['siteConfig'])
+      ...mapGetters(['blogsPageConfig'])
     },
 
     data() {
@@ -44,7 +44,7 @@
     },
 
     mounted() {
-      this.$store.dispatch('getSiteConfig').then((res) => {
+      this.$store.dispatch('getBlogsPageConfig').then((res) => {
         setTimeout(() => this.isLoading = false, 300)
       });
     }

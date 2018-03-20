@@ -104,8 +104,6 @@
     max-width: 1380px;
     width: 100%;
     margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
     padding: 40px 30px 90px 77px;
 
 

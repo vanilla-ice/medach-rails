@@ -1,23 +1,15 @@
 <template lang="pug">
   .autors__container.container
-    router-link(to="#").autors__item.autors__item-1
-      .autors__image( :style="{ backgroundColor:`#4C1876`, }")
+    router-link.autors__item.autors__item-1( v-for="(item, id) in info" :key="item.id" v-if="id < 2" :to="'news-post/' + item.id" )
+      .autors__image( :style="{ backgroundImage:`url(${item.coverImage.url})` }")
       .autors__placeholder
       .autors__item-text
-        | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
-      .autors__item-subscribe
-        | Подписаться
-    router-link(to="#").autors__item.autors__item-2
-      .autors__image( :style="{ backgroundImage: `url(../../static/images/good-bad.png)` }")
-      .autors__placeholder
-      .autors__item-text
-        | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
-      .autors__item-subscribe
-        | Подписаться
-</template>
+        | {{ item.title }}
+</template> 
 
 <script>
   export default {
+    props: ['info']
     
   }
 </script>
@@ -72,6 +64,8 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     border-radius: 8px;
   }

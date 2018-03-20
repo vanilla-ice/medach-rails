@@ -50,7 +50,7 @@ export default {
 
 <style scoped lang="scss">
   .main {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 </style>

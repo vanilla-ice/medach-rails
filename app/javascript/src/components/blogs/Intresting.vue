@@ -5,6 +5,14 @@
         | Вам будет интересно!
       .cards
         router-link(to="#").card
+          //- .worst-articles__image.worst-articles__image-placeholder
+          //-   span MEDACH
+          //- .worst-articles__image( :style="{ backgroundImage: `url(${item.coverImage.url})` }" )
+          //-   .worst-articles__info-name
+          //- .worst-articles__text-block
+          //-   .worst-articles__text
+          //-     | {{ item.title }}
+        card-footer(:view="item.views", :date="item.publicationDate")
         router-link(to="#").card
         router-link(to="#").card
         router-link(to="#").card

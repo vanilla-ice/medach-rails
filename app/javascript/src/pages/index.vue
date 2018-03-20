@@ -3,10 +3,10 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      top-articles(v-if="siteConfig" :info="siteConfig")
-      blogs(v-if="siteConfig" :info="siteConfig")
-      autors
-      worst-articles(v-if="siteConfig" :info="siteConfig.promotedArticles")
+      top-articles(v-if="mainPageConfig" :info="mainPageConfig")
+      blogs(v-if="mainPageConfig" :info="mainPageConfig")
+      news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
+      worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
     footer-component
 </template>
 
@@ -16,7 +16,7 @@ import moment from 'moment'
 import HeaderComponent from '../components/Header.vue'
 import TopArticles from '../components/index/TopArticles.vue'
 import Blogs from '../components/index/Blogs.vue'
-import Autors from '../components/index/Autors.vue'
+import News from '../components/index/News.vue'
 import WorstArticles from '../components/index/WorstArticles.vue'
 import FooterComponent from '../components/Footer.vue'
 
@@ -34,7 +34,7 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getSiteConfig').then((res) => {
+    this.$store.dispatch('getMainPageConfig').then((res) => {
       setTimeout(() => this.isLoading = false, 300)
     });
 
@@ -54,7 +54,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount', 'siteConfig'])
+    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount', 'mainPageConfig'])
   },
 
   methods: {
@@ -75,7 +75,7 @@ export default {
     HeaderComponent,
     TopArticles,
     Blogs,
-    Autors,
+    News,
     WorstArticles,
     FooterComponent,
     LoaderComponent

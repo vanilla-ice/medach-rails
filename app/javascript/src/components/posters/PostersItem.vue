@@ -18,10 +18,6 @@ import PostersFooter from './PostersFooter.vue'
 
     components: {
       PostersFooter
-    },
-
-    mounted() {
-      console.log(this.posts)
     }
   }
 </script>

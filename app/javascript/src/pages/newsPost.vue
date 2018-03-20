@@ -3,11 +3,11 @@
       loader-component(v-if="isLoading")
       header-component
       .main
-        article-component(v-if="activeBlogPost", :postInfo = " {origin: activeBlogPost.blog.origin, redaction: activeBlogPost.blog.redaction, translate: activeBlogPost.blog.translate, infographic: activeBlogPost.blog.infographic} ",
-          :coverImage="activeBlogPost.blog.coverImage.url",
-          :date="activeBlogPost.blog.publishOn",
-          :title = "activeBlogPost.blog.title",
-          :post="activeBlogPost.blog.body")
+        article-component(v-if="activeNewsPost", :postInfo = " {origin: activeNewsPost.news.origin, redaction: activeNewsPost.news.redaction, translate: activeNewsPost.news.translate, infographic: activeNewsPost.news.infographic} ",
+          :coverImage="activeNewsPost.news.coverImage.url",
+          :date="activeNewsPost.news.publishOn",
+          :title = "activeNewsPost.news.title",
+          :post="activeNewsPost.news.body")
 </template>
 
 <script>
@@ -31,11 +31,11 @@ import { mapGetters } from 'vuex'
     },
 
     computed: {
-      ...mapGetters(['activeBlogPost'])
+      ...mapGetters(['activeNewsPost'])
     },
 
     mounted() {
-      this.$store.dispatch('getActiveBlogPost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
+      this.$store.dispatch('getActiveNewsPost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
     }
   }
 </script>

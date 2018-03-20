@@ -24,10 +24,6 @@
   export default {
     props: ['info'],
 
-    mounted() {
-      console.log(this.info)
-    },
-
     methods: {
       currentDate(data) {
       if (data) {

@@ -69,6 +69,16 @@ export const getBlogPost = (id) => {
   })
 }
 
+export const getNewsPost = (id) => {
+  return new Promise((resolve, reject) => {
+    get(`/api/news/${id}`)
+      .then(response => {
+        resolve(response)
+      })
+      .catch(reject)
+  })
+}
+
 export const getPostsByTag = (tag) => {
   return new Promise((resolve, reject) => {
     get(`/api/articles/by_tag/${tag}`) // /api/articles?tag=tag_name
@@ -100,9 +110,18 @@ export const tagsMostUsed = () => {
   })
 }
 
-export const siteConfig = () => {
+export const mainPageConfig = () => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/site_config`)
+    axios.get(`/api/main_page_config`)
+      .then(response => {
+        resolve(response)
+      }).catch(error => reject(error))
+  })
+}
+
+export const blogsPageConfig = () => {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/blogs_page_config`)
       .then(response => {
         resolve(response)
       }).catch(error => reject(error))
