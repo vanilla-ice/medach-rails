@@ -1,4 +1,6 @@
 class BlogsConfig < SiteConfig
+  scope :active, -> { where(active: true).order("updated_at DESC") }
+
   def pinned_blogs
     data_value('pinned_blogs')
   end
