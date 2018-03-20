@@ -3,7 +3,6 @@
     router-link(to="#").top-blogs__left
       .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
       .top-blogs__placeholder
-        span MEDACH
       .top-blogs__left-title
         | {{ getTitle(info.pinnedBlogs[0]) }}
       card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views", :author="info.pinnedBlogs[0].author", :date="info.pinnedBlogs[0].publicationDate" )
@@ -11,14 +10,12 @@
       router-link(to="#").top-blogs__right-card.top-blogs__right-card-1
         .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[1].coverImage.url})`, }")
         .top-blogs__placeholder
-          span MEDACH
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[1]) }}
         card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views", :author="info.pinnedBlogs[1].author", :date="info.pinnedBlogs[1].publicationDate" )
       router-link(to="#").top-blogs__right-card.top-blogs__right-card-2
         .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[2].coverImage.url})`, }")
         .top-blogs__placeholder
-          span MEDACH
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[2]) }}
         card-footer( :tags="info.pinnedBlogs[2].tags", :view="info.pinnedBlogs[2].views" :author="info.pinnedBlogs[2].author", :date="info.pinnedBlogs[2].publicationDate" )
@@ -109,16 +106,6 @@
 
     background-color: #110E9B;
     border-radius: 8px;
-
-    span {
-      font-size: 28px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      line-height: 24px;
-      color: #aaaaaa;
-    }
   }
 
   .top-blogs__left-title {
@@ -199,10 +186,10 @@
   @media(max-width: 1440px) {
     .top-blogs__left {
       min-height: 500/1440 * 100vw;
-      padding-top: 40/1440 * 100%;
-      padding-right: 38/1440 * 100%;
-      padding-bottom: 24/1440 * 100%;
-      padding-left: 24/1440 * 100%;
+      padding-top: 40/1440 * 100vw;
+      padding-right: 38/1440 * 100vw;
+      padding-bottom: 24/1440 * 100vw;
+      padding-left: 24/1440 * 100vw;
     }
 
     .top-blogs__right {

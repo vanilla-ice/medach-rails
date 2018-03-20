@@ -9,7 +9,7 @@
 </template>
 <script>
 import HeaderComponent from '../components/Header.vue'
-import PostersComponent from '../components/Posters.vue'
+import PostersComponent from '../components/posters/Posters.vue'
 import LoaderComponent from '../components/Loader.vue'
 
 import { mapGetters } from 'vuex'

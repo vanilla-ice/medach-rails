@@ -126,7 +126,7 @@
 
   @media(max-width: 1440px) {
     .blogs__wrapper {
-      padding: 1.7% 1.7% 1.9% 1.7%;
+      padding: 1.7vw 1.7vw 1.9vw 1.7vw;
     }
   }
 

@@ -162,7 +162,7 @@
     }
 
     .worst-articles__text-block {
-      padding: 24/440 * 100%;
+      padding: 24/1440 * 100vw;
     }
 
     .worst-articles__image {

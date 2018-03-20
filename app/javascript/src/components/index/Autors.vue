@@ -3,7 +3,6 @@
     router-link(to="#").autors__item.autors__item-1
       .autors__image( :style="{ backgroundColor:`#4C1876`, }")
       .autors__placeholder
-        span MEDACH
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
       .autors__item-subscribe
@@ -11,7 +10,6 @@
     router-link(to="#").autors__item.autors__item-2
       .autors__image( :style="{ backgroundImage: `url(../../static/images/good-bad.png)` }")
       .autors__placeholder
-        span MEDACH
       .autors__item-text
         | Галлюциногенные грибы поделились друг с другом рецептом синтеза психоделиков
       .autors__item-subscribe
@@ -89,16 +87,6 @@
     border-radius: 8px;
 
     background: #110E9B;
-
-    span {
-      font-size: 28px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      line-height: 24px;
-      color: #aaaaaa;
-    }
   }
 
   .autors__item-2 {
@@ -132,7 +120,7 @@
 
   @media(max-width: 1250px) {
     .autors__item {
-      padding: 24/1380 * 100%;
+      padding: 24/1440 * 100vw;
     }
 
     .autors__item-text {

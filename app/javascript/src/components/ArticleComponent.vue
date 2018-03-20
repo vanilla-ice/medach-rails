@@ -7,7 +7,7 @@
         .article-info__wrapper
           .article-info(v-if="postInfo")
             .article-info__item.publishing
-              | {{ getContent(false) }}
+              | {{ getContent(postInfo.origin) }}
             .article-info__item.transfer
               | Перевод: {{  getContent(postInfo.translate) }}
             .article-info__item.revision
@@ -31,7 +31,7 @@
     methods: {
       getContent(data) {
         if (data) return data
-        return "Неизвестно"
+        return ""
       },
 
       getCurrentDate() {
@@ -39,7 +39,7 @@
           let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
           return date[0].toUpperCase() + date.slice(1);
         }
-        return "Неизвестно"
+        return ""
       }
     }
   }

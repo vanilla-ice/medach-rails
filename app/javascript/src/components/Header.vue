@@ -20,7 +20,9 @@
         .right.only-desktop
           .header__wrapper-dop
             .header__category
-              router-link.category-name(to="/blogs") АВТОРСКИЕ СТАТЬИ
+              router-link.category-name(to="/blogs") БЛОГИ
+            .header__category
+              router-link.category-name(to="/tag/авторские статьи") АВТОРСКИЕ СТАТЬИ
             .header__category
               router-link.category-name(to="/tag/новость") НОВОСТИ
             .header__category
@@ -55,7 +57,6 @@
             label.toggle(for = "sort-checkbox__checkbox")
               .toggle-circle
             
-
     .menu-page(:class="{visible: isOpen}")
       .search
         label

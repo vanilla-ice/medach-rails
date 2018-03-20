@@ -4,9 +4,10 @@
     main.main-surgery
       posters-component(:posts="posts")
 </template>
+
 <script>
 import HeaderComponent from '../components/Header.vue'
-import PostersComponent from '../components/Posters.vue'
+import PostersComponent from '../components/posters/Posters.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -16,20 +17,8 @@ export default {
     }
   },
 
-  created () {
-    
-  },
-
-  mounted () {
-    console.log('search', this.posts)
-  },
-
   computed: {
-    ...mapGetters(['posts']),
-
-    getPosts() {
-      console.log('search', this.posts)
-    }
+    ...mapGetters(['posts'])
   },
 
   components: {
@@ -40,12 +29,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .main-surgery {
-
-}
 
 .main-surgery__title {
-
   text-align: center;
 
   font-family: LucidaGrande-Bold;

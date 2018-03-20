@@ -23,7 +23,7 @@
           let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
           return date[0].toUpperCase() + date.slice(1);
         }
-        return "Неизвестно"
+        return ""
       },
 
       getViews() {
@@ -37,7 +37,7 @@
         if (this.tags) {
           return this.tags
         }
-        return 'Неизвестно'
+        return ''
       }
     }
   }

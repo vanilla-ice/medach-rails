@@ -1,5 +1,5 @@
 <template lang="pug">
-  div( :class="{'card-footer': true, 'color-black': color}")
+  div.card-footer
     .name
       | {{ getAutor() }}
     .card-info
@@ -59,9 +59,8 @@
     align-items: center;
     width: 100%;
 
-    font-size: 16px;
+    font-size: 14px;
     font-family: Montserrat-SemiBold, helvetica;
-    color: #fff;
   }
 
   .card-footer.color-black {
@@ -100,9 +99,4 @@
     font-family: Montserrat-Medium, helvetica;
   }
 
-  @media(max-width: 1250px) {
-    .card-footer.color-black {
-      font-size: 14px;
-    }
-  }
 </style>
