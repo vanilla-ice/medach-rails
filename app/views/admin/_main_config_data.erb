@@ -1,0 +1,34 @@
+<div class="site-config__data">
+    <div>
+      <div>Закрепленные статьи:</div>
+      <% if pinned_articles.any? %>
+        <% pinned_articles.each do |article| %>
+          <span> <%=link_to(article.title, admin_longread_article_path(article)) %> </span>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <div>Закрепленные блоги:</div>
+      <% if pinned_blogs.any? %>
+        <% pinned_blogs.each do |blog| %>
+          <span> <%=link_to(blog.title, admin_blog_article_path(blog)) %> </span>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <div>Главные новости:</div>
+      <% if main_news.any? %>
+        <% main_news.each do |article| %>
+          <span> <%=link_to(article.title, admin_news_article_path(article)) %> </span>
+        <% end %>
+       <% end %>
+    </div>
+    <div>
+      <div>Продвигаемые статьи:</div>
+      <% if promoted_articles.any? %>
+        <% promoted_articles.each do |article| %>
+          <span> <%=link_to(article.title, admin_longread_article_path(article)) %> </span>
+        <% end %>
+      <% end %>
+    </div>
+</div>
