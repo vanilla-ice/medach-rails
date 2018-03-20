@@ -2,11 +2,11 @@
 = render :partial => "admin/text_editor", locals: { f: f }
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка', name: "cover_image", message: "Обложка не представлена"}
 = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
-= f.input :tag_list, :placeholder => 'Теги через запятую', label: 'Теги'
+= f.input :tag_list, as: :tags, label: 'Теги'
 = f.input :author, label: "Автор"
 = f.input :redaction, label: "Редакция"
 = f.input :infographic, label: "Инфографика"
 = f.input :origin, label: "Оригинал"
 = f.input :translate, label: "Перевод"
-= f.input :publish_on, label: "Отложенный постинг", as: :datetime_picker
+= f.input :publish_on, label: "Отложенный постинг", as: :date_time_picker
 = f.input :fixed, label: "Закрепить в шапке"

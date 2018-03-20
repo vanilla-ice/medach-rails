@@ -76,3 +76,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'haml'
 gem 'chosen-rails'
 gem 'impressionist'
+gem 'activeadmin_addons'

@@ -1,4 +1,5 @@
 //= require active_admin/base
+//= require activeadmin_addons/all
 //= require katex/dist/katex.js
 //= require quill.js
 //= require chosen-jquery
