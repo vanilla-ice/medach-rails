@@ -1,4 +1,6 @@
 class MainConfig < SiteConfig
+  scope :active, -> { where(active: true).order("updated_at DESC") }
+
   def pinned_articles
     data_value('pinned_articles')
   end

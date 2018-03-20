@@ -18,7 +18,8 @@ Rails.application.routes.draw do
         get 'most_used', action: :most_used
       end
     end
-    get 'site_config', to: 'site_configs#index'
+    get 'blogs_page_config', to: 'blogs_configs#index'
+    get 'main_page_config', to: 'main_configs#index'
   end
   get '*path' => 'home#index'
 end
