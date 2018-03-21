@@ -27,17 +27,16 @@ import { mapGetters } from 'vuex'
     },
 
     mounted() {
-      this.$store.dispatch('getActiveNews').then((res) => {
-        setTimeout(() => this.isLoading = false, 300)
-      });
+      // this.$store.dispatch('getActiveArticles').then((res) => {
+      //   setTimeout(() => this.isLoading = false, 300)
+      // });
 
-      window.addEventListener('scroll', () => {
-        const $container = document.querySelector("#app")
-        if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-          console.log(this.newsMeta.nextPage)
-          if (this.newsMeta.nextPage) this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})
-        }
-      })
+      // window.addEventListener('scroll', () => {
+      //   const $container = document.querySelector("#app")
+      //   if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+      //     if (this.newsMeta.nextPage) this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})
+      //   }
+      // })
     },
 
     computed: {

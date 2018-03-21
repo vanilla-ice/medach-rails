@@ -9,6 +9,7 @@ import Search from '../pages/search.vue'
 import InOrder from '../pages/inOrder.vue'
 import BlogPost from '../pages/blogPost.vue'
 import NewsPost from '../pages/newsPost.vue'
+import Articles from '../pages/articles.vue'
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ const router = new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/articles',
+      name: 'articles',
+      component: Articles
     },
     { 
       path: '*',

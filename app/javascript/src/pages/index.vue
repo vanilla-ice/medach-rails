@@ -38,37 +38,30 @@ export default {
       setTimeout(() => this.isLoading = false, 300)
     });
 
-    // this.$store.dispatch('getPosts', this.currentPage).then((res) => {
-    //   setTimeout(() => this.isLoading = false, 300)
+    // window.addEventListener('scroll', () => {
+    //   const $container = document.querySelector("#app")
+    //   if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+    //     this.throttle(this.fetchPosts, 1000);
+    //   }
     // })
-
-    // this.$store.dispatch('getPinnedPosts')
-    // let isThrottling = false;
-
-    window.addEventListener('scroll', () => {
-      const $container = document.querySelector("#app")
-      if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-        this.throttle(this.fetchPosts, 1000);
-      }
-    })
   },
 
   computed: {
-    ...mapGetters(['posts', 'activeDate', 'pinnedPosts', 'pageCount', 'indexPageCount', 'mainPageConfig'])
+    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig'])
   },
 
   methods: {
-    fetchPosts() {
-      this.$store.dispatch('getPosts').then(() => this.isFetching = false)
-    },
+    // fetchPosts() {
+    //   this.$store.dispatch('getPosts').then(() => this.isFetching = false)
+    // },
 
-    throttle(func, limit) {
-      if (!this.inThrottle) {
-        func()
-        this.inThrottle = true
-        setTimeout(() => this.inThrottle = false, limit)
-      }
-    }
+    // throttle(func, limit) {
+    //   if (!this.inThrottle) {
+    //     func()
+    //     this.inThrottle = true
+    //     setTimeout(() => this.inThrottle = false, limit)
+    //   }
+    // }
   },
 
   components: {

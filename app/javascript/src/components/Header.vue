@@ -22,7 +22,7 @@
             .header__category
               router-link.category-name(to="/blogs") БЛОГИ
             .header__category
-              router-link.category-name(to="/tag/авторские статьи") АВТОРСКИЕ СТАТЬИ
+              router-link.category-name(to="/articles") АВТОРСКИЕ СТАТЬИ
             .header__category
               router-link.category-name(to="/news") НОВОСТИ 
             .header__category

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info.news" :key="item.id" :to="'news-post/' + item.id")
+    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info" :key="item.id" :to="'news-post/' + item.id")
       .in-order__item-foto
         .image(:style="{backgroundImage: `url(${item.coverImage.url})`}")
         .placeholder
