@@ -3,8 +3,6 @@
     .name
       | {{ getAutor() }}
     .card-info
-      .liks
-        | {{ getViews() }}
       .date
         | {{ currentDate() }}
 </template>
@@ -15,7 +13,7 @@
 
   export default {
     props: {
-      color: Boolean,
+      color: null,
       tags: null,
       view: null,
       author: null,

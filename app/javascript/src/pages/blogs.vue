@@ -6,7 +6,7 @@
       top-blogs(v-if="blogsPageConfig" :info="blogsPageConfig")
       three-columns(v-if="blogsPageConfig" :info="blogsPageConfig.spotlightBlogs")
       two-columns(v-if="blogsPageConfig" :info="blogsPageConfig.mainBlogs")
-      intresting
+      intresting(v-if="blogsPageConfig" :info="blogsPageConfig.promotedBlogs")
     footer-component
 </template>
 

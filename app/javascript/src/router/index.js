@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../pages/index.vue'
 import Blogs from '../pages/blogs.vue'
+import News from '../pages/news.vue'
 import Post from '../pages/post.vue'
 import Tag from '../pages/tag.vue'
 import Search from '../pages/search.vue'
@@ -53,6 +54,11 @@ const router = new Router({
       path: '/in-order',
       name: 'in-order',
       component: InOrder
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: News
     },
     { 
       path: '*',

@@ -1,17 +1,33 @@
 <template lang="pug">
   div.card-footer
     .name
-      | Имя
+      | {{ getAutor() }}
     .card-info
-      .liks
-        | 89
       .date
-        | Дата
+        | {{ currentDate() }}
 </template>
 
 <script>
+  import { format } from 'date-fns'
+  import ru from 'date-fns/locale/ru'
+
   export default {
-    
+    props: ['date', 'author'],
+
+    methods: {
+      getAutor() {
+        if (this.author) return this.author
+        return ""
+      },
+
+      currentDate() {
+        if (this.date) {
+          let date = format(this.date, 'MMMM D, YYYY', { locale: ru });
+          return date[0].toUpperCase() + date.slice(1);
+        }
+        return ""
+      }
+    }
   }
 </script>
 
@@ -21,6 +37,7 @@
     justify-content: space-between; 
     align-items: center;
     width: 100%;
+    margin-top: 10px;
 
     font-size: 14px;
     font-family: Montserrat-SemiBold, helvetica;

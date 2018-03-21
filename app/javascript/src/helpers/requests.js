@@ -49,6 +49,12 @@ export const getAllTags = () => {
   })
 }
 
+export const getNews = () => {
+  return new Promise((resolve, reject) => {
+    get(`/api/news`).then(response => resolve(response)).catch(error => reject(error))
+  })
+}
+
 export const getPost = (id) => {
   return new Promise((resolve, reject) => {
     get(`/api/articles/${id}`)
@@ -72,6 +78,16 @@ export const getBlogPost = (id) => {
 export const getNewsPost = (id) => {
   return new Promise((resolve, reject) => {
     get(`/api/news/${id}`)
+      .then(response => {
+        resolve(response)
+      })
+      .catch(reject)
+  })
+}
+
+export const getNewsNextPage = (id) => {
+  return new Promise((resolve, reject) => {
+    get(`/api/news?page=${id}`)
       .then(response => {
         resolve(response)
       })

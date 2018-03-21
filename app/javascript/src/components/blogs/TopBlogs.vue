@@ -37,6 +37,10 @@
       }
     },
 
+    mounted() {
+      console.log('blogs-top' ,this.info);
+    },
+
     methods: {
       getTitle(data) {
         if (data) return data.title

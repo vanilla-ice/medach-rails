@@ -6,8 +6,10 @@ import moment from 'moment'
 import {
   getArticles,
   getPost,
+  getNews,
   getBlogPost,
   getNewsPost,
+  getNewsNextPage,
   getPostsByTag,
   searchRequest,
   tagsMostUsed,
@@ -23,6 +25,7 @@ function store () {
   return new Vuex.Store({
     state: {
       posts: [],
+      news: null,
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
       activeBlogPost: null,
@@ -39,6 +42,7 @@ function store () {
 
     getters: {
       posts: state => state.posts,
+      news: state => state.news,
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
       activeBlogPost: state => state.activeBlogPost,
@@ -75,6 +79,25 @@ function store () {
           else {
             resolve()
           }
+        })
+      },
+
+      getActiveNews({state}, payload) {
+        return new Promise((resolve, reject) => {
+          getNews(payload).then(res => {
+            state.news = {...res.data};
+            resolve(res);
+          })
+        })
+      },
+
+      getActiveNextPageNews({state}, payload) {
+        const { id } = payload
+        return new Promise((resolve, reject) => {
+          getNewsPost(id).then(res => {
+            state.activeNewsPost = res.data
+            resolve(res)
+          })
         })
       },
 
@@ -120,7 +143,6 @@ function store () {
         return new Promise((resolve, reject) => {
           searchRequest(payload).then(res => {
             state.posts = {...res.data.articles}
-            console.log(state.posts)
             resolve()
           })
         })
@@ -144,15 +166,12 @@ function store () {
       getMainPageConfig({state}) {
         return mainPageConfig().then((res) => {
           state.mainPageConfig = {...res.data.mainConfig}
-          console.log(state.mainPageConfig)
         }).catch(error => console.log(error))
       },
       
       getBlogsPageConfig({state}) {
         return blogsPageConfig().then((res) => {
           state.blogsPageConfig = {...res.data.blogsConfig}
-          console.log(res)
-          console.log(state.blogsPageConfig)
         }).catch(error => console.log(error))
       }, 
     },

@@ -1,40 +1,35 @@
 <template lang="pug">
   div
-    router-link(to="#").in-order__item
+    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info.news" :key="item.id" :to="'news-post/' + item.id")
       .in-order__item-foto
-        .image
+        .image(:style="{backgroundImage: `url(${item.coverImage.url})`}")
         .placeholder
           span MEDACH
       .in-order__item-text 
         .in-order__item-author
-          | Пост 
-        in-order-footer
-    router-link(to="#").in-order__item
-      .in-order__item-foto
-        .image
-        .placeholder
-          span MEDACH
-      .in-order__item-text 
-        .in-order__item-author
-          | Пост 
-        in-order-footer
-    router-link(to="#").in-order__item
-      .in-order__item-foto
-        .image
-        .placeholder
-          span MEDACH
-      .in-order__item-text 
-        .in-order__item-author
-          | Пост 
-        in-order-footer
+          | {{ item.title }}
+        in-order-footer(:date="item.publicationDate" :author="item.author")
 </template>
 
 <script>
 import InOrderFooter from './InorderFooter.vue'
 
   export default {
+    props: ['info'],
+
     components: {
       InOrderFooter
+    },
+
+    mounted() {
+      console.log(this.info);
+    },
+
+    methods: {
+      getImg(item) {
+        if (item.coverImage.url) return false
+        return true
+      }
     }
   }
 </script>
@@ -87,6 +82,10 @@ import InOrderFooter from './InorderFooter.vue'
   background-repeat: no-repeat !important;
   background-position: center !important;
   z-index: 2;
+}
+
+.no-image .in-order__item-foto {
+  display: none;
 }
 
 .placeholder {

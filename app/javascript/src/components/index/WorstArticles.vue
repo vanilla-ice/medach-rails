@@ -42,7 +42,6 @@
 
     background: #fff;
     min-height: 500px;
-
   }
 
   .worst-articles__image {
@@ -50,9 +49,7 @@
     z-index: 2;
 
     min-height: 325px;
-    background: url('../../static/images/good-bad.png') no-repeat center;
     background-size: cover;
-
   }
 
   .worst-articles__image-placeholder {

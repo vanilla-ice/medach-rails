@@ -2,7 +2,7 @@
   .in-order
     .container
       .in-order__wrapper
-        in-order-item
+        in-order-item(:info="info")
 </template>
 
 <script>
@@ -10,26 +10,22 @@ import InOrderItem from './InOrderItem.vue'
 
 
 export default {
+  props: ['info'],
+
   components: {
     InOrderItem
+  },
+
+  data() {
+    return {
+    }
+  },
+
+  methods: {
+    getPostDate (date) {
+      return moment(date).format('DD.MM.YYYY')
+    }
   }
-
-  // props: ['posts'],
-
-  // components: {
-  //   InOrderItem
-  // },
-
-  // data() {
-  //   return {
-  //   }
-  // },
-
-  // methods: {
-  //   getPostDate (date) {
-  //     return moment(date).format('DD.MM.YYYY')
-  //   }
-  // }
 }
 </script>
 
@@ -43,7 +39,5 @@ export default {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
-  padding-top: 27px;
-  padding-bottom: 18px;
 }
 </style>

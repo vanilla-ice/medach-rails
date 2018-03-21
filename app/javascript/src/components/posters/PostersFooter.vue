@@ -3,8 +3,6 @@
     .name
       | {{ getAutor() }}
     .card-info
-      .liks
-        | {{ getViews() }}
       .date
         | {{ currentDate() }}
 </template>

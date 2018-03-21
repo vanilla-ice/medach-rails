@@ -24,7 +24,7 @@
             .header__category
               router-link.category-name(to="/tag/авторские статьи") АВТОРСКИЕ СТАТЬИ
             .header__category
-              router-link.category-name(to="/tag/новость") НОВОСТИ
+              router-link.category-name(to="/news") НОВОСТИ 
             .header__category
               router-link.category-name(to="/tag/перевод") ПЕРЕВОДЫ
             .header__category
