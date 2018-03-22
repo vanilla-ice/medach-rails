@@ -8,7 +8,7 @@ ActiveAdmin.register BlogsConfig do
     :active
   )
 
-  menu parent: "Page Configs", label: 'Blogs Page Configs'
+  menu parent: "Конфигурация страниц"
 
   form do |f|
     f.inputs do
@@ -16,25 +16,29 @@ ActiveAdmin.register BlogsConfig do
       f.input :active, label: 'Активен'
       f.input(
         :pinned_blogs,
+        label: 'Закрепленные блоги',
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :spotlight_blogs,
+        label: 'Блоги в центре внимания',
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :main_blogs,
+        label: 'Главные блоги',
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :promoted_blogs,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        label: 'Продвигаемые блоги',
+        :input_html => { multiple: true },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
     end
@@ -49,8 +53,8 @@ ActiveAdmin.register BlogsConfig do
       articles.compact
     end
 
-    column :title
-    column "Data" do |blogs_config|
+    column "Название", :title
+    column "Конфигурация" do |blogs_config|
       render 'admin/blogs_config_data', {
         pinned_blogs: populate_articles(blogs_config.data['pinned_blogs']),
         spotlight_blogs: populate_articles(blogs_config.data['spotlight_blogs']),
@@ -58,7 +62,7 @@ ActiveAdmin.register BlogsConfig do
         promoted_blogs: populate_articles(blogs_config.data['promoted_blogs'])
       }
     end
-    column :active
+    column "Активен", :active
     actions
   end
 

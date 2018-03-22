@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Myapp"
+  config.site_title = "Medach"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -154,6 +154,8 @@ ActiveAdmin.setup do |config|
   # https://github.com/svenfuchs/i18n/blob/master/lib%2Fi18n%2Fbackend%2Fbase.rb#L52
   #
   config.localize_format = :long
+
+  config.before_action :set_admin_locale
 
   # == Setting a Favicon
   #

@@ -8,7 +8,7 @@ ActiveAdmin.register MainConfig do
     :active
   )
 
-  menu parent: "Page Configs", label: 'Main Page Configs'
+  menu parent: "Конфигурация страниц"
 
   form do |f|
     f.inputs do
@@ -17,24 +17,24 @@ ActiveAdmin.register MainConfig do
       f.input(
         :pinned_articles,
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :pinned_blogs,
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: BlogArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :main_news,
         as: :select,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: NewsArticle.published.collect { |article| [article.title, article.id] }
       )
       f.input(
         :promoted_articles,
-        :input_html => { multiple: true, class: 'chosen-select' },
+        :input_html => { multiple: true },
         collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
       )
     end
@@ -49,8 +49,8 @@ ActiveAdmin.register MainConfig do
       articles.compact
     end
 
-    column :title
-    column "Data" do |main_config|
+    column "Название", :title
+    column "Конфигурация" do |main_config|
       render 'admin/main_config_data', {
         pinned_articles: populate_articles(main_config.data['pinned_articles']),
         pinned_blogs: populate_articles(main_config.data['pinned_blogs']),
@@ -58,7 +58,7 @@ ActiveAdmin.register MainConfig do
         promoted_articles: populate_articles(main_config.data['promoted_articles'])
       }
     end
-    column :active
+    column "Активен", :active
     actions
   end
 

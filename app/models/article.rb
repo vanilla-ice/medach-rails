@@ -20,6 +20,7 @@ class Article < ApplicationRecord
   multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]
   pg_search_scope :search,
     against: [:body, :title, :author, :infographic, :redaction, :short_description, :origin, :translate],
+    associated_against: { :tags => [:name] },
     using: {
       tsearch: {dictionary: "russian", prefix: true}
     }
@@ -31,6 +32,14 @@ class Article < ApplicationRecord
 
   def self.article_types
     %w(LongreadArticle BlogArticle NewsArticle)
+  end
+
+  def tag_string=(value)
+    self.tag_list = value
+  end
+
+  def tag_string
+    self.tag_list.join(',')
   end
 
 end

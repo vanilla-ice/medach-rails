@@ -51,6 +51,9 @@ class Api::ArticlesController < ActionController::Base
 
   def all
     @articles = Article.published
+    if params[:query]
+      @articles = @articles.search(params[:query])
+    end
     paginated = @articles.page(params[:page]).per(20)
     render(
       json: paginated,
