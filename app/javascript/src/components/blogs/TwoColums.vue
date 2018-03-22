@@ -98,7 +98,7 @@
   @media (max-width: 1440px) {
     .card {
       min-height: 235/1440 * 100vw;
-      max-width: 675/1440 * 100vw;
+      max-width: 675/1380 * 100%;
       padding-top: 40/1440 * 100vw;
       padding-left: 24/1440 * 100vw;
       padding-right: 24/1440 * 100vw;

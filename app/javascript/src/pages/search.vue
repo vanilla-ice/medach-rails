@@ -2,28 +2,55 @@
   div.main-container
     header-component
     main.main-surgery
-      posters-component(:posts="posts")
+      in-order-main(v-if="search" :info="search")
 </template>
 
 <script>
 import HeaderComponent from '../components/Header.vue'
 import PostersComponent from '../components/posters/Posters.vue'
+import InOrderMain from '../components/in-order/InOrderMain.vue'
 
 import { mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
+      scrollBottom: false
     }
   },
 
   computed: {
-    ...mapGetters(['posts'])
+    ...mapGetters(['posts', 'search', 'searchMeta'])
   },
 
   components: {
     HeaderComponent,
-    PostersComponent
+    PostersComponent,
+    InOrderMain
+  },
+
+  mounted() {
+    this.$store.dispatch('search', {id: this.currentId(), scroll: false}).then((res) => { });
+
+    window.addEventListener('scroll', this.getNextPage)
+  },
+
+  methods: {
+    currentId() {
+      if (this.searchMeta) {
+        return this.searchMeta.currentPage
+      }
+      return 1;
+    },
+
+    getNextPage() {
+      const $container = document.querySelector("#app")
+      if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+        if (this.searchMeta.nextPage) {
+          this.$store.dispatch('search', {id: this.searchMeta.nextPage, scroll: true})
+        }
+      }
+    }
   }
 }
 </script>

@@ -133,7 +133,7 @@
 
     .card {
       min-height: 410/1440 * 100vw;
-      max-width: 660/1440 * 100vw;
+      max-width: 48.875%;
     }
   }
 </style>

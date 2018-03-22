@@ -39,7 +39,7 @@ export const getArticles = (page) => {
 
 export const getTranslatedArticles = (page) => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/translated_articles`, {
+    axios.get(`/api/articles/translated`, {
       params: {
         page: page
       }
@@ -65,6 +65,19 @@ export const getIndexInOrder = (page) => {
   })
 }
 
+export const getBlogsInOrder = (page) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/blogs`, {
+      params: {
+        page: page
+      }
+    })
+    .then(response => {
+      resolve(response)
+    })
+    .catch(reject)
+  })
+}
 
 // export const getPinnedPostsRequest = () => {
 //   return new Promise((resolve, reject) => {
@@ -136,7 +149,7 @@ export const getPostsByTag = (tag) => {
 
 export const searchRequest = (query) => {
   return new Promise((resolve, reject) => {
-    axios.get(`/api/articles`, {
+    axios.get(`/api/all_articles`, {
       params: {
         query: query
       }

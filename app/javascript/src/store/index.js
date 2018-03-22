@@ -6,6 +6,7 @@ import moment from 'moment'
 import {
   getArticles,
   getIndexInOrder,
+  getBlogsInOrder,
   getPost,
   getNews,
   getBlogPost,
@@ -25,6 +26,8 @@ Vue.use(Vuex)
 function store () {
   return new Vuex.Store({
     state: {
+      search: null,
+      searchMeta: null,
       news: null,
       newsMeta: null,
       articles: null,
@@ -33,6 +36,8 @@ function store () {
       translatedMeta: null,
       indexInOrder: null,
       indexInOrderMeta: null,
+      blogsInOrder: null,
+      blogsInOrderMeta: null,
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
       activeBlogPost: null,
@@ -44,10 +49,12 @@ function store () {
       allTags: [],
       mainPageConfig: null,
       blogsPageConfig: null,
-      sortState: null
+      sortState: false
     },
 
     getters: {
+      search: state => state.search,
+      searchMeta: state => state.searchMeta,
       news: state => state.news,
       newsMeta: state => state.newsMeta,
       activeArticles: state => state.articles,
@@ -67,7 +74,9 @@ function store () {
       blogsPageConfig: state => state.blogsPageConfig,
       sortState: state => state.sortState,
       indexInOrder: state => state.indexInOrder,
-      indexInOrderMeta: state => state.indexInOrderMeta
+      indexInOrderMeta: state => state.indexInOrderMeta,
+      blogsInOrder: state => state.blogsInOrder,
+      blogsInOrderMeta: state => state.blogsInOrderMeta,
     },
 
     mutations: {
@@ -85,8 +94,24 @@ function store () {
               state.indexInOrder = [...state.indexInOrder, ...res.data.allArticles];
               state.indexInOrderMeta = {...res.data.meta}
             } else {
-              state.indexInOrder = [...res.data.allArticles];
+              state.indexInOrder = [...res.data.allArticles]
               state.indexInOrderMeta = {...res.data.meta}
+            }
+            resolve(res);
+          })
+        })
+      },
+
+      getActiveBlogsInOrder({state}, payload) {
+        const {id, scroll} = payload
+        return new Promise((resolve, reject) => {
+          getBlogsInOrder(id).then(res => {
+            if (scroll) {
+              state.blogsInOrder = [...state.blogsInOrder, ...res.data.blogs];
+              state.blogsInOrderMeta = {...res.data.meta}
+            } else {
+              state.blogsInOrder = [...res.data.blogs]
+              state.blogsInOrderMeta = {...res.data.meta}
             }
             resolve(res);
           })
@@ -100,6 +125,9 @@ function store () {
       removeMeta({state}) {
         state.translatedMeta = null;
         state.articlesMeta = null;
+        state.indexInOrderMeta = null;
+        state.blogsInOrderMeta = null;
+        state.sortState = false;
       },
 
       getActiveArticles({state}, payload) {
@@ -190,13 +218,29 @@ function store () {
       },
 
       search({state}, payload) {
+        const {id, scroll} = payload
         return new Promise((resolve, reject) => {
-          searchRequest(payload).then(res => {
-            state.posts = {...res.data.articles}
-            resolve()
+          searchRequest(id).then(res => {
+            if (scroll) {
+              state.search = [...state.search, ...res.data.allArticles];
+              state.searchMeta = {...res.data.meta}
+            } else {
+              state.search = [...res.data.allArticles]
+              state.searchMeta = {...res.data.meta}
+            }
+            resolve(res);
           })
         })
       },
+
+      // search({state}, payload) {
+      //   return new Promise((resolve, reject) => {
+      //     searchRequest(payload).then(res => {
+      //       state.posts = {...res.data.articles}
+      //       resolve()
+      //     })
+      //   })
+      // },
 
       getTaggedPosts({state}, payload) {
         const { id } = payload

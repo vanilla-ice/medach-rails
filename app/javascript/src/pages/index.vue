@@ -3,12 +3,13 @@
     loader-component(v-if="isLoading")
     header-component
     .main
+      .main-wrapper(v-if="!sortState")
         top-articles(v-if="mainPageConfig" :info="mainPageConfig")
         blogs(v-if="mainPageConfig" :info="mainPageConfig")
         news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
         worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
-    .in-order
-      //- in-order-main(v-if="news" :info="news")
+      .in-order(v-if="sortState")
+        in-order-main(v-if="indexInOrder" :info="indexInOrder")
     footer-component
 </template>
 
@@ -21,18 +22,29 @@ import Blogs from '../components/index/Blogs.vue'
 import News from '../components/index/News.vue'
 import WorstArticles from '../components/index/WorstArticles.vue'
 import FooterComponent from '../components/Footer.vue'
+import InOrderMain from '../components/in-order/InOrderMain.vue'
 
 import LoaderComponent from '../components/Loader.vue'
 import { mapGetters } from 'vuex'
 moment.locale('ru')
 
 export default {
+  components: {
+    HeaderComponent,
+    TopArticles,
+    Blogs,
+    News,
+    WorstArticles,
+    FooterComponent,
+    LoaderComponent,
+    InOrderMain
+  },
+
   data () {
     return {
       inOrder: false,
       isLoading: true,
-      isFetching: false,
-      inThrottle: false
+      scrollBottom: true
     }
   },
 
@@ -49,34 +61,34 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig', 'sortState', 'indexInOrder', 'translatedMeta'])
+    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig', 'sortState', 'indexInOrder', 'indexInOrderMeta'])
   },
 
   methods: {
     currentId() {
-      if (this.translatedMeta) {
-        return this.translatedMeta.currentPage
+      if (this.indexInOrderMeta) {
+        return this.indexInOrderMeta.currentPage
       }
       return 1;
     },
 
     getNextPage() {
-      // const $container = document.querySelector("#app")
-      // if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+      const $container = document.querySelector(".main")
+      if ($container.scrollHeight < (window.pageYOffset + window.innerHeight)) {
+        if (this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+          this.$store.dispatch('getActiveIndexInOrder', {id: this.indexInOrderMeta.nextPage, scroll: true})
+          .then(() => this.scrollBottom = true)
+
+          this.scrollBottom = false;
+        }
         
-      //   if (this.translatedMeta.nextPage) this.$store.dispatch('getActiveTranslatedArticles', {id: this.translatedMeta.nextPage, scroll: true})
-      // }
+      }
     }
   },
 
-  components: {
-    HeaderComponent,
-    TopArticles,
-    Blogs,
-    News,
-    WorstArticles,
-    FooterComponent,
-    LoaderComponent
+  beforeDestroy (to, from, next) {
+    window.removeEventListener('scroll', this.getNextPage)
+    this.$store.dispatch('removeMeta')
   }
 }
 </script>
