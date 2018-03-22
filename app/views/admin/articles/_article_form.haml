@@ -7,4 +7,4 @@
     = f.input :partner_id, as: :select, :input_html => { class: 'chosen-select' }, collection: BlogArticle.published.collect { |article| [article.title, article.id] }
   = f.actions do
     = f.action :submit
-    = f.action :cancel, class: :cancel, label: 'Cancel', :wrapper_html => { class: :cancel}
+    = f.action :cancel, class: :cancel, :wrapper_html => { class: :cancel}

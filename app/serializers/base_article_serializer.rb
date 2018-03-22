@@ -31,8 +31,10 @@ class BaseArticleSerializer < ActiveModel::Serializer
       'News'
     when 'Article'
       'BaseArticle'
+    when 'MediaArticle'
+      'Media'
     else
-      'Unknown'
+      object.type
     end
   end
 

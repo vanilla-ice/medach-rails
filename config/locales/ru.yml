@@ -22,6 +22,15 @@ ru:
       blogs_config:
         one: "Страница Блогов"
         other: "Страницы Блогов"
+  formtastic:
+    :yes: "Да"
+    :no: "Нет"
+    :create: "Создать %{model}"
+    :update: "Обновить %{model}"
+    :submit: "Отправить %{model}"
+    :cancel: "Отменить %{model}"
+    :reset: "Сбрость %{model}"
+    :required: "Обязательный"
   active_admin:
     dashboard: "Панель управления"
     dashboard_welcome:
