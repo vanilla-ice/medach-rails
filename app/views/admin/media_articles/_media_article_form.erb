@@ -1,0 +1,11 @@
+<%= semantic_form_for [:admin, @media_article], :html => { :multipart => true } do |f| %>
+  <% f.object.body ||= "" %>
+  <% f.object.publish_on ||= DateTime.now %>
+  <%= f.inputs do %>
+    <%= render 'admin/form', f: f %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit %>
+    <%= f.action :cancel, label: 'Cancel', :wrapper_html => { class: :cancel} %>
+  <% end %>
+<% end %>

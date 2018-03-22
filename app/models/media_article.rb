@@ -1,0 +1,2 @@
+class MediaArticle < Article
+end
