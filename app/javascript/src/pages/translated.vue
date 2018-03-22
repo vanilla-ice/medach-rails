@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      in-order-main(v-if="news" :info="news")
+      in-order-main(v-if="translatedArticles" :info="translatedArticles")
 </template>
 
 <script>
@@ -27,33 +27,38 @@ import { mapGetters } from 'vuex'
     },
 
     mounted() {
-      if (!this.news) {
-        this.$store.dispatch('getActiveNews').then((res) => {
-          setTimeout(() => this.isLoading = false, 300)
-        });
-      }
-      window.addEventListener('scroll', this.getNextPage)
+      this.$store.dispatch('getActiveTranslatedArticles', {id: this.currentId(), scroll: false}).then((res) => {
+        setTimeout(() => this.isLoading = false, 300)
+      });
 
-      setTimeout(() => this.isLoading = false, 300)
-      return;
+      window.addEventListener('scroll', this.getNextPage)
     },
 
     computed: {
-      ...mapGetters(['news', 'newsMeta'])
+      ...mapGetters(['translatedArticles', 'translatedMeta'])
     },
 
     methods: {
+      currentId() {
+        if (this.translatedMeta) {
+          return this.translatedMeta.currentPage
+        }
+        return 1;
+      },
+
       getNextPage() {
         const $container = document.querySelector("#app")
         if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-          if (this.newsMeta.nextPage) this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})
+          
+          if (this.translatedMeta.nextPage) this.$store.dispatch('getActiveTranslatedArticles', {id: this.translatedMeta.nextPage, scroll: true})
         }
       }
     },
 
     beforeDestroy (to, from, next) {
       window.removeEventListener('scroll', this.getNextPage)
-    },
+      this.$store.dispatch('removeMeta')
+    }
   }
 </script>
 

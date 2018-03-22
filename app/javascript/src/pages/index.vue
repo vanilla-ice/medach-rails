@@ -3,10 +3,12 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      top-articles(v-if="mainPageConfig" :info="mainPageConfig")
-      blogs(v-if="mainPageConfig" :info="mainPageConfig")
-      news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
-      worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
+        top-articles(v-if="mainPageConfig" :info="mainPageConfig")
+        blogs(v-if="mainPageConfig" :info="mainPageConfig")
+        news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
+        worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
+    .in-order
+      //- in-order-main(v-if="news" :info="news")
     footer-component
 </template>
 
@@ -27,6 +29,7 @@ moment.locale('ru')
 export default {
   data () {
     return {
+      inOrder: false,
       isLoading: true,
       isFetching: false,
       inThrottle: false
@@ -38,30 +41,32 @@ export default {
       setTimeout(() => this.isLoading = false, 300)
     });
 
-    // window.addEventListener('scroll', () => {
-    //   const $container = document.querySelector("#app")
-    //   if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-    //     this.throttle(this.fetchPosts, 1000);
-    //   }
-    // })
+    this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
+        setTimeout(() => this.isLoading = false, 300)
+    });
+
+    window.addEventListener('scroll', this.getNextPage)
   },
 
   computed: {
-    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig'])
+    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig', 'sortState', 'indexInOrder', 'translatedMeta'])
   },
 
   methods: {
-    // fetchPosts() {
-    //   this.$store.dispatch('getPosts').then(() => this.isFetching = false)
-    // },
+    currentId() {
+      if (this.translatedMeta) {
+        return this.translatedMeta.currentPage
+      }
+      return 1;
+    },
 
-    // throttle(func, limit) {
-    //   if (!this.inThrottle) {
-    //     func()
-    //     this.inThrottle = true
-    //     setTimeout(() => this.inThrottle = false, limit)
-    //   }
-    // }
+    getNextPage() {
+      // const $container = document.querySelector("#app")
+      // if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+        
+      //   if (this.translatedMeta.nextPage) this.$store.dispatch('getActiveTranslatedArticles', {id: this.translatedMeta.nextPage, scroll: true})
+      // }
+    }
   },
 
   components: {

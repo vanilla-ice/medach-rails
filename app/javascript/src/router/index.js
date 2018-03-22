@@ -10,6 +10,7 @@ import InOrder from '../pages/inOrder.vue'
 import BlogPost from '../pages/blogPost.vue'
 import NewsPost from '../pages/newsPost.vue'
 import Articles from '../pages/articles.vue'
+import Translated from '../pages/translated.vue'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ const router = new Router({
       path: '/articles',
       name: 'articles',
       component: Articles
+    },
+    {
+      path: '/translated',
+      name: 'translated',
+      component: Translated
     },
     { 
       path: '*',

@@ -5,11 +5,13 @@ import moment from 'moment'
 
 import {
   getArticles,
+  getIndexInOrder,
   getPost,
   getNews,
   getBlogPost,
   getNewsPost,
   getNewsNextPage,
+  getTranslatedArticles,
   getPostsByTag,
   searchRequest,
   tagsMostUsed,
@@ -23,9 +25,14 @@ Vue.use(Vuex)
 function store () {
   return new Vuex.Store({
     state: {
-      articles: null,
       news: null,
       newsMeta: null,
+      articles: null,
+      articlesMeta: null,
+      translated: null,
+      translatedMeta: null,
+      indexInOrder: null,
+      indexInOrderMeta: null,
       activeDate: moment(new Date()).format('DD/MM/YYYY'),
       activePost: null,
       activeBlogPost: null,
@@ -36,12 +43,17 @@ function store () {
       indexPageCount: 1,
       allTags: [],
       mainPageConfig: null,
-      blogsPageConfig: null
+      blogsPageConfig: null,
+      sortState: null
     },
 
     getters: {
       news: state => state.news,
       newsMeta: state => state.newsMeta,
+      activeArticles: state => state.articles,
+      articlesMeta: state => state.articlesMeta,
+      translatedArticles: state => state.translated,
+      translatedMeta: state => state.translatedMeta,
       activeDate: state => state.activeDate,
       activePost: state => state.activePost,
       activeBlogPost: state => state.activeBlogPost,
@@ -52,7 +64,10 @@ function store () {
       indexPageCount: state => state.indexPageCount,
       tags: state => state.allTags,
       mainPageConfig: state => state.mainPageConfig,
-      blogsPageConfig: state => state.blogsPageConfig
+      blogsPageConfig: state => state.blogsPageConfig,
+      sortState: state => state.sortState,
+      indexInOrder: state => state.indexInOrder,
+      indexInOrderMeta: state => state.indexInOrderMeta
     },
 
     mutations: {
@@ -62,12 +77,58 @@ function store () {
     },
 
     actions: {
-      getActiveArticles({state}, payload) {
-        const {id} = payload
+      getActiveIndexInOrder({state}, payload) {
+        const {id, scroll} = payload
         return new Promise((resolve, reject) => {
-          getArticles(payload).then(res => {
-            state.articles = {...res.data};
-            state.articlesMeta = {...res.data.meta}
+          getIndexInOrder(id).then(res => {
+            if (scroll) {
+              state.indexInOrder = [...state.indexInOrder, ...res.data.allArticles];
+              state.indexInOrderMeta = {...res.data.meta}
+            } else {
+              state.indexInOrder = [...res.data.allArticles];
+              state.indexInOrderMeta = {...res.data.meta}
+            }
+            resolve(res);
+          })
+        })
+      },
+
+      sortStateToggle({state}) {
+        state.sortState = !state.sortState
+      },
+
+      removeMeta({state}) {
+        state.translatedMeta = null;
+        state.articlesMeta = null;
+      },
+
+      getActiveArticles({state}, payload) {
+        const {id, scroll} = payload
+        return new Promise((resolve, reject) => {
+          getArticles(id).then(res => {
+            if (scroll) {
+              state.articles = [...state.articles, ...res.data.articles];
+              state.articlesMeta = {...res.data.meta}
+            } else {
+              state.articles = [...res.data.articles];
+              state.articlesMeta = {...res.data.meta}
+            }
+            resolve(res);
+          })
+        })
+      },
+
+      getActiveTranslatedArticles({state}, payload) {
+        const {id, scroll} = payload
+        return new Promise((resolve, reject) => {
+          getTranslatedArticles(id).then(res => {
+            if (scroll) {
+              state.translated = [...state.translated, ...res.data.articles];
+              state.translatedMeta = {...res.data.meta}
+            } else {
+              state.translated = [...res.data.articles];
+              state.translatedMeta = {...res.data.meta}
+            }
             resolve(res);
           })
         })

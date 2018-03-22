@@ -26,7 +26,7 @@
             .header__category
               router-link.category-name(to="/news") НОВОСТИ 
             .header__category
-              router-link.category-name(to="/tag/перевод") ПЕРЕВОДЫ
+              router-link.category-name(to="/translated") ПЕРЕВОДЫ
             .header__category
               router-link.category-name(to="/tag/медиа") МЕДИА
             .header__serch-wrapper
@@ -50,11 +50,11 @@
           .header__medach(@click="toggleTags")
             | еще 
         .sort(v-if="sort")
-          label.sort-text#sort-text(for = "sort-checkbox__checkbox")
+          label.sort-text#sort-text(for = "sort-checkbox__checkbox" @click="sortToggle")
             | ПОКАЗЫВАТЬ ПО ПОРЯДКУ   
           .sort-checkbox__wrapper
             input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
-            label.toggle(for = "sort-checkbox__checkbox")
+            label.toggle(for = "sort-checkbox__checkbox" @click="sortToggle")
               .toggle-circle
             
     .menu-page(:class="{visible: isOpen}")
@@ -78,9 +78,7 @@
 
 <script>
   import LoaderComponent from './Loader.vue'
-  import {
-    mapGetters
-  } from 'vuex'
+  import {mapGetters} from 'vuex'
   
   export default {
     data() {
@@ -99,7 +97,10 @@
     },
 
     mounted() {
-      if (this.$router.history.current.name === 'post') this.sort = false;
+      console.log()
+      if (this.$router.history.current.name !== 'blogs' &&
+        this.$router.history.current.name !== 'home'
+      ) this.sort = false;
     },
    
     methods: {
@@ -113,6 +114,10 @@
             this.isLoading = false
           })
         )
+      },
+
+      sortToggle() {
+        this.$store.dispatch('sortStateToggle')
       },
   
       toggleTags() {

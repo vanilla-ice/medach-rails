@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info" :key="item.id" :to="'news-post/' + item.id")
+    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info" :key="item.id" :to="currentHash(item) + item.id")
       .in-order__item-foto
         .image(:style="{backgroundImage: `url(${item.coverImage.url})`}")
         .placeholder
@@ -29,6 +29,20 @@ import InOrderFooter from './InorderFooter.vue'
       getImg(item) {
         if (item.coverImage.url) return false
         return true
+      },
+
+      currentHash(item) {
+        switch (item.type) {
+          case 'News':
+            return 'news-post/'
+            break;
+          case 'Article':
+            return 'post/'
+            break;
+        
+          default:
+            break;
+        }
       }
     }
   }
