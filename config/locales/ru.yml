@@ -30,7 +30,7 @@ ru:
     :submit: "Отправить %{model}"
     :cancel: "Отменить %{model}"
     :reset: "Сбрость %{model}"
-    :required: "Обязательный"
+    :required: "required"
   active_admin:
     dashboard: "Панель управления"
     dashboard_welcome:
