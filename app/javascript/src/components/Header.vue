@@ -8,8 +8,9 @@
             | {{key.toUpperCase()}}
           .tags-wrapper
             div(v-for="(tag, id) in tags", :key="id")
-              router-link.tag-name(:to="`/tag/${tag.name}`")
-                | \#{{tag.name.toUpperCase()}}
+              div.tag-name-wrapper(@click="toggleTags")
+                router-link.tag-name(:to="`/tag/${tag.name}`")
+                  | \#{{tag.name.toUpperCase()}}
     .top
       .container
         .left
@@ -101,6 +102,8 @@
         this.$router.history.current.name !== 'home'
       ) this.sort = false;
     },
+
+
    
     methods: {
       search(e) {
@@ -131,7 +134,7 @@
         if (this.isTagsOpen) {
           document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
         } else {
-          document.getElementsByTagName('body')[0].style.overflowY = 'initial'
+          document.getElementsByTagName('body')[0].style.overflowY = 'auto'
         }
       },
   
@@ -247,6 +250,10 @@
   
   .letter {
     font-size: 22px;
+  }
+
+  .tag-name-wrapper {
+    display: inline-block;
   }
   
   .tag-name {
