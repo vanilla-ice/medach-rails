@@ -28,7 +28,6 @@ import { mapGetters } from 'vuex'
 
     mounted() {
       this.$store.dispatch('getActiveMedia', {id: this.currentId(), scroll: false}).then((res) => {
-        console.log('media', res)
         setTimeout(() => this.isLoading = false, 300)
       });
 

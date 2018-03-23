@@ -257,6 +257,7 @@ function store () {
 
       search({state}, payload) {
         const {id, scroll, query} = payload
+        console.log(query)
         if (query) state.currentQuery = query
         return new Promise((resolve, reject) => {
           searchRequest(id, state.currentQuery).then(res => {
@@ -271,15 +272,6 @@ function store () {
           })
         })
       },
-
-      // search({state}, payload) {
-      //   return new Promise((resolve, reject) => {
-      //     searchRequest(payload).then(res => {
-      //       state.posts = {...res.data.articles}
-      //       resolve()
-      //     })
-      //   })
-      // },
 
       getTaggedPosts({state}, payload) {
         const { id } = payload

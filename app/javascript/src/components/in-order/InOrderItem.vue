@@ -21,10 +21,6 @@ import InOrderFooter from './InorderFooter.vue'
       InOrderFooter
     },
 
-    mounted() {
-      console.log(this.info);
-    },
-
     methods: {
       getImg(item) {
         if (item.coverImage.url) return false
@@ -32,18 +28,19 @@ import InOrderFooter from './InorderFooter.vue'
       },
 
       currentHash(item) {
+        console.log(this.$route)
         switch (item.type) {
           case 'News':
-            return 'news-post/'
+            return '/news-post/'
             break;
           case 'Article':
-            return 'post/'
+            return '/post/'
             break;
           case 'Blog':
-            return 'blog-post/'
+            return '/blog-post/'
             break;
           case 'Media':
-            return 'media-post/'
+            return '/media-post/'
             break;
         
           default:
