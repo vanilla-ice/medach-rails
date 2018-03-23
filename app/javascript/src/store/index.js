@@ -9,8 +9,10 @@ import {
   getBlogsInOrder,
   getPost,
   getNews,
+  getMedia,
   getBlogPost,
   getNewsPost,
+  getMediaPost,
   getNewsNextPage,
   getTranslatedArticles,
   getPostsByTag,
@@ -28,8 +30,11 @@ function store () {
     state: {
       search: null,
       searchMeta: null,
+      currentQuery: null,
       news: null,
       newsMeta: null,
+      media: null,
+      mediaMeta: null,
       articles: null,
       articlesMeta: null,
       translated: null,
@@ -42,6 +47,7 @@ function store () {
       activePost: null,
       activeBlogPost: null,
       activeNewsPost: null,
+      activeMediaPost: null,
       activeTag: null,
       popularTags: [],
       pageCount: 0,
@@ -57,6 +63,8 @@ function store () {
       searchMeta: state => state.searchMeta,
       news: state => state.news,
       newsMeta: state => state.newsMeta,
+      media: state => state.media,
+      mediaMeta: state => state.mediaMeta,
       activeArticles: state => state.articles,
       articlesMeta: state => state.articlesMeta,
       translatedArticles: state => state.translated,
@@ -65,6 +73,7 @@ function store () {
       activePost: state => state.activePost,
       activeBlogPost: state => state.activeBlogPost,
       activeNewsPost: state => state.activeNewsPost,
+      activeMediaPost: state => state.activeMediaPost,
       activeTag: state => state.activeTag,
       popularTags: state => state.popularTags,
       pageCount: state => state.pageCount,
@@ -128,6 +137,8 @@ function store () {
         state.indexInOrderMeta = null;
         state.blogsInOrderMeta = null;
         state.sortState = false;
+        state.searchMeta = false;
+        state.mediaMeta = false;
       },
 
       getActiveArticles({state}, payload) {
@@ -156,6 +167,22 @@ function store () {
             } else {
               state.translated = [...res.data.articles];
               state.translatedMeta = {...res.data.meta}
+            }
+            resolve(res);
+          })
+        })
+      },
+
+      getActiveMedia({state}, payload) {
+        const {id, scroll} = payload
+        return new Promise((resolve, reject) => {
+          getMedia(id).then(res => {
+            if (scroll) {
+              state.media = [...state.media, ...res.data.media];
+              state.mediaMeta = {...res.data.meta}
+            } else {
+              state.media = [...res.data.media];
+              state.mediaMeta = {...res.data.meta}
             }
             resolve(res);
           })
@@ -217,10 +244,22 @@ function store () {
         })
       },
 
-      search({state}, payload) {
-        const {id, scroll} = payload
+      getActiveMediaPost({state}, payload) {
+        const { id } = payload
         return new Promise((resolve, reject) => {
-          searchRequest(id).then(res => {
+          getMediaPost(id).then(res => {
+            console.log(res)
+            state.activeMediaPost = res.data
+            resolve()
+          })
+        })
+      },
+
+      search({state}, payload) {
+        const {id, scroll, query} = payload
+        if (query) state.currentQuery = query
+        return new Promise((resolve, reject) => {
+          searchRequest(id, state.currentQuery).then(res => {
             if (scroll) {
               state.search = [...state.search, ...res.data.allArticles];
               state.searchMeta = {...res.data.meta}

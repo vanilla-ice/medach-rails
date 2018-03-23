@@ -59,44 +59,6 @@
   .article__content i {
     font-family: PTSerif-Regular, helvetica;
   }
-
-  .editor__img-title {
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 10px;
-
-    color: #fff;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 20px;
-
-    background: #30312F;
-    border-top: 2px solid #000;
-    border-left: 2px solid #000; 
-    border-right: 2px solid #000; 
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-
-  .editor__img-content {
-    padding-left: 20px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    font-size: 14px;
-    color: #30312F;
-    line-height: 20px;
-
-    border-left: 2px solid #000; 
-    border-right: 2px solid #000; 
-    border-bottom: 2px solid #000; 
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
 </style>
 
 <style lang="scss" scoped>

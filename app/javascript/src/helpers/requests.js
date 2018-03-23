@@ -51,6 +51,20 @@ export const getTranslatedArticles = (page) => {
   })
 }
 
+export const getMedia = (page) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`/api/media`, {
+      params: {
+        page: page
+      }
+    })
+    .then(response => {
+      resolve(response)
+    })
+    .catch(reject)
+  })
+}
+
 export const getIndexInOrder = (page) => {
   return new Promise((resolve, reject) => {
     axios.get(`/api/all_articles`, {
@@ -127,6 +141,16 @@ export const getNewsPost = (id) => {
   })
 }
 
+export const getMediaPost = (id) => {
+  return new Promise((resolve, reject) => {
+    get(`/api/media/${id}`)
+      .then(response => {
+        resolve(response)
+      })
+      .catch(reject)
+  })
+}
+
 export const getNewsNextPage = (id) => {
   return new Promise((resolve, reject) => {
     get(`/api/news?page=${id}`)
@@ -147,11 +171,12 @@ export const getPostsByTag = (tag) => {
   })
 }
 
-export const searchRequest = (query) => {
+export const searchRequest = (id, query) => {
   return new Promise((resolve, reject) => {
     axios.get(`/api/all_articles`, {
       params: {
-        query: query
+        query: query,
+        page: id
       }
     }).then(response => {
       resolve(response)

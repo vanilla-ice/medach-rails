@@ -39,6 +39,12 @@ import InOrderFooter from './InorderFooter.vue'
           case 'Article':
             return 'post/'
             break;
+          case 'Blog':
+            return 'blog-post/'
+            break;
+          case 'Media':
+            return 'media-post/'
+            break;
         
           default:
             break;
@@ -81,7 +87,7 @@ import InOrderFooter from './InorderFooter.vue'
 .in-order__item-foto {
   display: block;
 
-  height: 150px;
+  min-height: 150px;
   width: 33.3%;
   position: relative;
 }

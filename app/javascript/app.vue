@@ -71,6 +71,46 @@ html {
   background-color: #35495e;
 }
 
+.editor_img-title {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #30312F;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.editor_img-content {
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  color: #30312F;
+  line-height: 20px;
+
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-bottom: 2px solid #000; 
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
   .main-index {
     padding-bottom: 50px;
   }

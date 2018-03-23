@@ -3,12 +3,14 @@ import Router from 'vue-router'
 import Home from '../pages/index.vue'
 import Blogs from '../pages/blogs.vue'
 import News from '../pages/news.vue'
+import Media from '../pages/media.vue'
 import Post from '../pages/post.vue'
 import Tag from '../pages/tag.vue'
 import Search from '../pages/search.vue'
 import InOrder from '../pages/inOrder.vue'
 import BlogPost from '../pages/blogPost.vue'
 import NewsPost from '../pages/newsPost.vue'
+import MediaPost from '../pages/mediaPost.vue'
 import Articles from '../pages/articles.vue'
 import Translated from '../pages/translated.vue'
 
@@ -38,6 +40,11 @@ const router = new Router({
       component: NewsPost
     },
     {
+      path: '/media-post/:id',
+      name: 'media-post',
+      component: MediaPost
+    },
+    {
       path: '/tag/:id',
       name: 'tag',
       component: Tag
@@ -61,6 +68,11 @@ const router = new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/media',
+      name: 'media',
+      component: Media
     },
     {
       path: '/articles',

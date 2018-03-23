@@ -28,7 +28,7 @@
             .header__category
               router-link.category-name(to="/translated") ПЕРЕВОДЫ
             .header__category
-              router-link.category-name(to="/tag/медиа") МЕДИА
+              router-link.category-name(to="/media") МЕДИА
             .header__serch-wrapper
               label
                 form(@submit.prevent="search")
@@ -78,7 +78,7 @@
 
 <script>
   import LoaderComponent from './Loader.vue'
-  import {mapGetters} from 'vuex'
+  import { mapGetters } from 'vuex'
   
   export default {
     data() {
@@ -97,7 +97,6 @@
     },
 
     mounted() {
-      console.log()
       if (this.$router.history.current.name !== 'blogs' &&
         this.$router.history.current.name !== 'home'
       ) this.sort = false;
@@ -106,7 +105,7 @@
     methods: {
       search(e) {
         this.isLoading = true
-        this.$store.dispatch('search', this.query).then(() =>
+        this.$store.dispatch('search', {id: this.currentId(), scroll: false, query: this.query}).then(() =>
           setTimeout(() => {
             document.querySelector('#app').style.overflow = 'initial'
             this.isOpen = false
@@ -114,6 +113,13 @@
             this.isLoading = false
           })
         )
+      },
+
+      currentId() {
+        if (this.searchMeta) {
+          return this.searchMeta.currentPage
+        }
+        return 1;
       },
 
       sortToggle() {
@@ -175,7 +181,7 @@
     },
   
     computed: {
-      ...mapGetters(['popularTags', 'tags'])
+      ...mapGetters(['popularTags', 'tags', 'searchMeta'])
     },
   
     components: {

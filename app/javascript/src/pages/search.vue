@@ -30,8 +30,6 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('search', {id: this.currentId(), scroll: false}).then((res) => { });
-
     window.addEventListener('scroll', this.getNextPage)
   },
 
@@ -51,11 +49,20 @@ export default {
         }
       }
     }
+  },
+
+  beforeDestroy (to, from, next) {
+    window.removeEventListener('scroll', this.getNextPage)
+    this.$store.dispatch('removeMeta')
   }
 }
 </script>
 
 <style scoped lang="scss">
+.main-surgery {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
 
 .main-surgery__title {
   text-align: center;
