@@ -51,7 +51,7 @@ import { mapGetters } from 'vuex'
       }
     },
 
-    beforeDestroy (to, from, next) {
+    beforeDestroy () {
       window.removeEventListener('scroll', this.getNextPage)
     },
   }

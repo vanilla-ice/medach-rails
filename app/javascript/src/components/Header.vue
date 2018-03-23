@@ -103,8 +103,6 @@
       ) this.sort = false;
     },
 
-
-   
     methods: {
       search(e) {
         this.isLoading = true
@@ -189,7 +187,11 @@
   
     components: {
       LoaderComponent
-    }
+    },
+
+    beforeDestroy () {
+      this.toggleTags()
+    },
   }
 </script>
 
