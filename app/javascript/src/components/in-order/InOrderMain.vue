@@ -3,21 +3,25 @@
     .container
       .in-order__wrapper
         in-order-item(:info="info")
+        //- bouncing-loader(v-if='bouncing')
 </template>
 
 <script>
 import InOrderItem from './InOrderItem.vue'
+// import BouncingLoader from '../BouncingLoader.vue'
 
 
 export default {
   props: ['info'],
 
   components: {
-    InOrderItem
+    InOrderItem,
+    // BouncingLoader
   },
 
   data() {
     return {
+      bouncing: true
     }
   },
 

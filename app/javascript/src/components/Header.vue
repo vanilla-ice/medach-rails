@@ -216,6 +216,10 @@
     color: #FFFFFF;
     letter-spacing: 0;
     white-space: nowrap;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
   
   .tags-popup {
