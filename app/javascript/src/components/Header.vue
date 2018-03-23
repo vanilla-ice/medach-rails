@@ -46,7 +46,7 @@
     .bottom.only-desktop
       .container
         .header__main-nav.only-desktop
-          router-link(v-for="(tag, id) in popularTags" v-if="id < 7" , :to="`/tag/${tag.name}`").main-nav__item
+          router-link(v-for="(tag, id) in popularTags" v-if="id < 10" , :to="`/tag/${tag.name}`").main-nav__item
             | {{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
@@ -190,7 +190,7 @@
     },
 
     beforeDestroy () {
-      this.toggleTags()
+      document.getElementsByTagName('body')[0].style.overflowY = 'auto'
     },
   }
 </script>
@@ -541,7 +541,18 @@
   }
   
   .header__medach {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px; 
+
     background-size: contain;
+    background: #fff;
     margin-left: 15px;
     color: #000;
     cursor: pointer;

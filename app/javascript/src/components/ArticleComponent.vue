@@ -54,6 +54,7 @@
 
   .article__content img {
     width: 100%;
+    height: 100%;
   }
 
   .article__content i {
