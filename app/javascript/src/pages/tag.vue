@@ -37,12 +37,14 @@ export default {
   },
 
   beforeRouteUpdate (to, from, next) {
+    this.isLoading = true
     this.$store.dispatch('removeMeta')
     const payload = {
       query: to.params.id,
       id: this.currentId(),
       scroll: false
     }
+
     this.$store.dispatch('search', payload).then(res => setTimeout(() => this.isLoading = false, 300))
     next()
   },
