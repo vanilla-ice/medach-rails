@@ -248,7 +248,6 @@ function store () {
         const { id } = payload
         return new Promise((resolve, reject) => {
           getMediaPost(id).then(res => {
-            console.log(res)
             state.activeMediaPost = res.data
             resolve()
           })
@@ -257,7 +256,6 @@ function store () {
 
       search({state}, payload) {
         const {id, scroll, query} = payload
-        console.log(query)
         if (query) state.currentQuery = query
         return new Promise((resolve, reject) => {
           searchRequest(id, state.currentQuery).then(res => {

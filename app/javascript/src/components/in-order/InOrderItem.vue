@@ -28,7 +28,6 @@ import InOrderFooter from './InorderFooter.vue'
       },
 
       currentHash(item) {
-        console.log(this.$route)
         switch (item.type) {
           case 'News':
             return '/news-post/'
