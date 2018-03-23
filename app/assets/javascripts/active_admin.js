@@ -1,10 +1,8 @@
 //= require active_admin/base
 //= require activeadmin_addons/all
 //= require katex/dist/katex.js
-//= require quill.js
 //= require chosen-jquery
 //= require ./textboxio/textboxio.js
-
 
 /**
  * Step1. select local image
@@ -48,8 +46,8 @@ function saveToServer(file, editor) {
         var url = JSON.parse(xhr.responseText).url;
         // insertToEditor(url, editor);
         var data = {
-          url,
-          editor
+          url: url,
+          editor: editor
         }
         resolve(data)
       }
@@ -74,7 +72,6 @@ function insertToEditor(url, editor) {
     console.log('e', e)
   });
 
-  // editor.insertEmbed(range.index, 'image', url);
 }
 
 $(document).ready(function () {
