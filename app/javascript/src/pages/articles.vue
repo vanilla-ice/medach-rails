@@ -28,7 +28,7 @@ import { mapGetters } from 'vuex'
 
     mounted() {
       this.$store.dispatch('getActiveArticles', {id: this.currentId(), scroll: false}).then((res) => {
-        setTimeout(() => this.isLoading = false, 300)
+        this.isLoading = false
       });
 
       window.addEventListener('scroll', this.getNextPage)

@@ -50,11 +50,11 @@ export default {
 
   mounted() {
     this.$store.dispatch('getMainPageConfig').then((res) => {
-      setTimeout(() => this.isLoading = false, 300)
+      this.isLoading = false
     });
 
     this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-        setTimeout(() => this.isLoading = false, 300)
+      this.isLoading = false
     });
 
     window.addEventListener('scroll', this.getNextPage)

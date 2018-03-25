@@ -35,7 +35,7 @@ import { mapGetters } from 'vuex'
     },
 
     mounted() {
-      this.$store.dispatch('getActiveBlogPost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
+      this.$store.dispatch('getActiveBlogPost', {id: this.$route.params.id}).then(() => this.isLoading = false)
     }
   }
 </script>

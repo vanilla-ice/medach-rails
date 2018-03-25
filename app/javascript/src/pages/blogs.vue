@@ -51,11 +51,11 @@
 
     mounted() {
       this.$store.dispatch('getBlogsPageConfig').then((res) => {
-        setTimeout(() => this.isLoading = false, 300)
+        this.isLoading = false
       });
 
       this.$store.dispatch('getActiveBlogsInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-        setTimeout(() => this.isLoading = false, 300)
+        this.isLoading = false
     });
 
     window.addEventListener('scroll', this.getNextPage)

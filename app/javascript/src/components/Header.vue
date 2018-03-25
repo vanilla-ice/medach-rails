@@ -106,14 +106,12 @@
     methods: {
       search(e) {
         this.isLoading = true
-        this.$store.dispatch('search', {id: this.currentId(), scroll: false, query: this.query}).then(() =>
-          setTimeout(() => {
-            document.querySelector('#app').style.overflow = 'initial'
-            this.isOpen = false
-            this.$router.push('/search')
-            this.isLoading = false
-          })
-        )
+        this.$store.dispatch('search', {id: this.currentId(), scroll: false, query: this.query}).then(() => {
+          document.querySelector('#app').style.overflow = 'initial'
+          this.isOpen = false
+          this.$router.push('/search')
+          this.isLoading = false
+        })
       },
 
       currentId() {

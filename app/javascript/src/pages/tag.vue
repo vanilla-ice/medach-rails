@@ -33,7 +33,7 @@ export default {
       id: this.currentId(),
       scroll: false
     }
-    this.$store.dispatch('search', payload).then(res => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('search', payload).then(res => this.isLoading = false, 300)
   },
 
   beforeRouteUpdate (to, from, next) {
@@ -45,7 +45,7 @@ export default {
       scroll: false
     }
 
-    this.$store.dispatch('search', payload).then(res => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('search', payload).then(res => this.isLoading = false, 300)
     next()
   },
 

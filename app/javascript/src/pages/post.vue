@@ -37,7 +37,7 @@ export default {
   },
 
   mounted () {
-    this.$store.dispatch('getActivePost', {id: this.$route.params.id}).then(() => setTimeout(() => this.isLoading = false, 300))
+    this.$store.dispatch('getActivePost', {id: this.$route.params.id}).then(() => this.isLoading = false, 300)
   },
 
   components: {
