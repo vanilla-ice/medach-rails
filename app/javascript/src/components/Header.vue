@@ -46,7 +46,7 @@
     .bottom.only-desktop
       .container
         .header__main-nav.only-desktop
-          router-link(v-for="(tag, id) in popularTags" v-if="id < 10" , :to="`/tag/${tag.name}`").main-nav__item
+          router-link(v-for="(tag, id) in popularTags" v-if="id < 6" , :to="`/tag/${tag.name}`").main-nav__item
             | {{tag.name.toUpperCase()}}
           .header__medach(@click="toggleTags")
             | еще 
@@ -286,10 +286,13 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    overflow: hidden;
     white-space: nowrap;
-    max-width: 753px;
-    width: 100%;
+    max-width: 100%;
+    width: auto;
+    padding-right: 51px;
+
+    overflow: hidden;
+
     font-size: 10px;
   }
   

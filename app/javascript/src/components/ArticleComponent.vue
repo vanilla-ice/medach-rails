@@ -57,6 +57,18 @@
     height: 100%;
   }
 
+  .article__content-text img {
+    margin: 20px 0;
+    padding: 0 35px;
+  }
+
+  .article__content-text p, .article__content-text span {
+    display: inline-block;
+
+    line-height: 22px;
+    text-align: justify;
+  }
+
   .article__content i {
     font-family: PTSerif-Regular, helvetica;
   }
