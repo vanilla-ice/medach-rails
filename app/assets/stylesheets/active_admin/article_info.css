@@ -59,7 +59,54 @@
 
 #active_admin_content .article-info__body p,
 #active_admin_content .article-info__body span {
-  line-height: 27px;
+  line-height: 1.5em;
+}
+
+#active_admin_content .article-info__body .editor_img-title {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #30312F;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+#active_admin_content .article-info__body .editor_img-content {
+  width:100%;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  color: #30312F;
+  line-height: 20px;
+
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-bottom: 2px solid #000; 
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.article-info__body img {
+  width: 100%;
+  height: 100%;
+  margin: 10px 0;
+  padding: 0 25px;
 }
 
 .article-info__body {
