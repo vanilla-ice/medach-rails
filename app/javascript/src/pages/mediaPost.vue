@@ -3,7 +3,7 @@
       loader-component(v-if="isLoading")
       header-component
       .main
-        article-component(v-if="activeMediaPost", :postInfo = " {origin: activeMediaPost.media.origin, redaction: activeMediaPost.media.redaction, translate: activeMediaPost.media.translate, infographic: activeMediaPost.media.infographic} ",
+        article-component(v-if="activeMediaPost", :postInfo = " {origin: activeMediaPost.media.origin, redaction: activeMediaPost.media.redaction, translate: activeMediaPost.media.translate, infographic: activeMediaPost.media.infographic, tags: activeMediaPost.media.tags} ",
           :coverImage="activeMediaPost.media.coverImage.url",
           :date="activeMediaPost.media.publishOn",
           :title = "activeMediaPost.media.title",
@@ -35,7 +35,7 @@ import { mapGetters } from 'vuex'
     },
 
     mounted() {
-      this.$store.dispatch('getActiveMediaPost', {id: this.$route.params.id}).then(() => this.isLoading)
+      this.$store.dispatch('getActiveMediaPost', {id: this.$route.params.id}).then(() => this.isLoading = false)
     }
   }
 </script>

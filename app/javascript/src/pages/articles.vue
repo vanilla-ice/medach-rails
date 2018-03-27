@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      in-order-main(v-if="activeArticles" :info="activeArticles")
+      in-order-main(v-if="activeArticles" :info="activeArticles" :bouncing="!scrollBottom")
 </template>
 
 <script>
@@ -22,7 +22,8 @@ import { mapGetters } from 'vuex'
 
     data() {
       return {
-        isLoading: true
+        isLoading: true,
+        scrollBottom: true
       }
     },
 
@@ -48,8 +49,13 @@ import { mapGetters } from 'vuex'
 
       getNextPage() {
         const $container = document.querySelector("#app")
-        if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-          if (this.articlesMeta.nextPage) this.$store.dispatch('getActiveArticles', {id: this.articlesMeta.nextPage, scroll: true})
+        if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
+          if (this.articlesMeta.nextPage && this.scrollBottom) {
+            this.scrollBottom = false
+
+            this.$store.dispatch('getActiveArticles', {id: this.articlesMeta.nextPage, scroll: true})
+            .then(() => this.scrollBottom = true)
+          }
         }
       }
     },

@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      in-order-main(v-if="news" :info="news")
+      in-order-main(v-if="news" :info="news" :bouncing="!scrollBottom")
 </template>
 
 <script>
@@ -22,7 +22,8 @@ import { mapGetters } from 'vuex'
 
     data() {
       return {
-        isLoading: true
+        isLoading: true,
+        scrollBottom: true
       }
     },
 
@@ -45,8 +46,13 @@ import { mapGetters } from 'vuex'
     methods: {
       getNextPage() {
         const $container = document.querySelector("#app")
-        if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-          if (this.newsMeta.nextPage) this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})
+        if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
+          if (this.newsMeta.nextPage && this.scrollBottom) {
+            this.scrollBottom = false
+
+            this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})
+            .then(() => this.scrollBottom = true)
+          }  
         }
       }
     },

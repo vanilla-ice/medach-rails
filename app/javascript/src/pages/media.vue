@@ -3,7 +3,7 @@
     loader-component(v-if="isLoading")
     header-component
     .main
-      in-order-main(v-if="media" :info="media")
+      in-order-main(v-if="media" :info="media" :bouncing="!scrollBottom")
 </template>
 
 <script>
@@ -22,7 +22,8 @@ import { mapGetters } from 'vuex'
 
     data() {
       return {
-        isLoading: true
+        isLoading: true,
+        scrollBottom: true
       }
     },
 
@@ -48,9 +49,14 @@ import { mapGetters } from 'vuex'
 
       getNextPage() {
         const $container = document.querySelector("#app")
-        if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
+        if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
           
-          if (this.mediaMeta.nextPage) this.$store.dispatch('getActiveMedia', {id: this.mediaMeta.nextPage, scroll: true})
+          if (this.mediaMeta.nextPage && this.scrollBottom) {
+            this.scrollBottom = false;
+
+            this.$store.dispatch('getActiveMedia', {id: this.mediaMeta.nextPage, scroll: true})
+            .then(() => this.scrollBottom = true)
+          }
         }
       }
     },

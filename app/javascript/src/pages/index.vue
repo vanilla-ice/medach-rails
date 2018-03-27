@@ -9,7 +9,7 @@
         news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
         worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
       .in-order(v-if="sortState")
-        in-order-main(v-if="indexInOrder" :info="indexInOrder")
+        in-order-main(v-if="indexInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
     footer-component
 </template>
 
@@ -42,7 +42,6 @@ export default {
 
   data () {
     return {
-      inOrder: false,
       isLoading: true,
       scrollBottom: true
     }
@@ -74,14 +73,13 @@ export default {
 
     getNextPage() {
       const $container = document.querySelector(".main")
-      if ($container.scrollHeight < (window.pageYOffset + window.innerHeight)) {
+      if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
         if (this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+          this.scrollBottom = false;
+          
           this.$store.dispatch('getActiveIndexInOrder', {id: this.indexInOrderMeta.nextPage, scroll: true})
           .then(() => this.scrollBottom = true)
-
-          this.scrollBottom = false;
         }
-        
       }
     }
   },

@@ -3,7 +3,7 @@
       loader-component(v-if="isLoading")
       header-component
       .main
-        article-component(v-if="activeBlogPost", :postInfo = " {origin: activeBlogPost.blog.origin, redaction: activeBlogPost.blog.redaction, translate: activeBlogPost.blog.translate, infographic: activeBlogPost.blog.infographic} ",
+        article-component(v-if="activeBlogPost", :postInfo = " {origin: activeBlogPost.blog.origin, redaction: activeBlogPost.blog.redaction, translate: activeBlogPost.blog.translate, infographic: activeBlogPost.blog.infographic, tags: activeBlogPost.blog.tags} ",
           :coverImage="activeBlogPost.blog.coverImage.url",
           :date="activeBlogPost.blog.publishOn",
           :title = "activeBlogPost.blog.title",

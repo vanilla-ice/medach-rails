@@ -6,14 +6,21 @@
           | {{ getContent(title) }}
         .article-info__wrapper
           .article-info(v-if="postInfo")
-            .article-info__item.publishing
-              | {{ getContent(postInfo.origin) }}
-            .article-info__item.transfer
-              | Перевод: {{  getContent(postInfo.translate) }}
-            .article-info__item.revision
-              | Редакция: {{ getContent(postInfo.redaction) }}
-            .article-info__item.cover
-              | Обложка: {{ getContent(postInfo.infographic) }}
+            .article-info__item.publishing(v-if="postInfo.origin")
+              a(:href="getContent(postInfo.origin)")
+                | {{ getContent(postInfo.origin) }}
+            .article-info__item.transfer(v-if="postInfo.translate")
+              div Перевод:
+              div {{  getContent(postInfo.translate) }}
+            .article-info__item.revision(v-if="postInfo.redaction")
+              div Редакция:
+              div {{ getContent(postInfo.redaction) }}
+            .article-info__item.cover(v-if="postInfo.infographic")
+              div Обложка:
+              div {{ getContent(postInfo.infographic) }}
+            .article-info__item.tags(v-if="postInfo.tags")
+              div Теги:
+              div {{ getTags() }}
           .date
             | {{ getCurrentDate() }}
         .article__content
@@ -40,6 +47,10 @@
           return date[0].toUpperCase() + date.slice(1);
         }
         return ""
+      },
+
+      getTags() {
+        return this.postInfo.tags.join(', '); 
       }
     }
   }
@@ -58,15 +69,14 @@
   }
 
   .article__content-text img {
-    margin: 20px 0;
-    padding: 0 35px;
+    margin: 10px 0;
+    padding: 0 25px;
   }
 
-  .article__content-text p, .article__content-text span {
-    display: inline-block;
+  .article__content-text p {
+    margin: 15px 0;
 
-    line-height: 22px;
-    text-align: justify;
+    line-height: 1.5em;
   }
 
   .article__content i {
@@ -87,7 +97,7 @@
   }
 
   .article {
-    max-width: 893px;
+    max-width: 700px;
     width: 100%;
   }
 
@@ -108,8 +118,21 @@
   }
 
   .article-info {
-    max-width: 500px;
+    max-width: 530px;
     width: 100%;
+  }
+
+  .article-info__item {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .article-info__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .article-info__item div:first-child {
+    margin-right: 8px;
   }
 
   .date {
@@ -139,6 +162,10 @@
   .content-header .content-header__title {
     margin-top: 40px;
     font-size: 26px;
+  }
+
+  .publishing a {
+    color: #00C;
   }
 
   .article__cover-image {

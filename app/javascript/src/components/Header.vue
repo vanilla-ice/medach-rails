@@ -14,9 +14,9 @@
     .top
       .container
         .left
-          .logo(@click="closeMenu", :class="{'logo--opened': isOpen}")
-            | Meda
-            span ch
+          router-link.logo(to="/")
+            | MEDA
+            span CH
 
         .right.only-desktop
           .header__wrapper-dop
@@ -57,7 +57,7 @@
             input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
             label.toggle(for = "sort-checkbox__checkbox" @click="sortToggle")
               .toggle-circle
-            
+    
     .menu-page(:class="{visible: isOpen}")
       .search
         label
@@ -405,6 +405,15 @@
 
   .sort-checkbox__checkbox:checked + .toggle  .toggle-circle{
     left: 14px;
+  }
+
+  .sort-checkbox__checkbox + .toggle {
+    background-color: #ffffff;
+    transition: 0.3s;
+  }
+
+  .sort-checkbox__checkbox:checked + .toggle {
+    background-color: #110F6C;
   }
   
   .header__wrapper-dop {

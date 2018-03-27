@@ -9,7 +9,7 @@
         two-columns(v-if="blogsPageConfig" :info="blogsPageConfig.mainBlogs")
         intresting(v-if="blogsPageConfig" :info="blogsPageConfig.promotedBlogs")
       .in-order(v-if="sortState")
-        in-order-main(v-if="blogsInOrder" :info="blogsInOrder")
+        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
     footer-component
 </template>
 
@@ -45,7 +45,7 @@
     data() {
       return {
         isLoading: true,
-        scrollBottom: false
+        scrollBottom: true
       }
     },
 
@@ -73,10 +73,10 @@
         const $container = document.querySelector(".main")
         if ($container.scrollHeight < (window.pageYOffset + window.innerHeight)) {
           if (this.blogsInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+            this.scrollBottom = false;
+
             this.$store.dispatch('getActiveBlogsInOrder', {id: this.blogsInOrderMeta.nextPage, scroll: true})
             .then(() => this.scrollBottom = true)
-
-            this.scrollBottom = false;
           }
         }
       }

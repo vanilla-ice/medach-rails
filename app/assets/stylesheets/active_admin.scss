@@ -11,8 +11,6 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import "activeadmin_addons/all";
-@import "quill/dist/quill.core";
-@import "quill/dist/quill.snow";
 @import "katex/dist/katex";
 @import "../../../javascript/src/assets/fonts.css";
 @import "chosen";
@@ -199,42 +197,13 @@ img {
   font-weight: lighter;
 }
 
-.ql-snow.ql-toolbar .ql-showHtml {
-  width: auto;
-  color: #000;
-  text-shadow: none;
-}
-
-.ql-snow.ql-toolbar .ql-titleImg {
-  white-space: nowrap;
-  width: auto;
-  color: #000;
-  text-shadow: none;
-}
-
-.ql-titleImg:after {
-  content: "Title img";
-}
-
-.ql-snow.ql-toolbar .ql-contentImg {
-  white-space: nowrap;
-  width: auto;
-  color: #000;
-  text-shadow: none;
-}
-
-.ql-contentImg:after {
-  content: "Content img";
-}
-
-
 #ephox_article_body {
   width: 100% !important;
   height: 90vh !important;
 }
 
 p {
-  margin-bottom: 40px !important;
+  margin: 15px 0 !important;
 }
 
 
