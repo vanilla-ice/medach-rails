@@ -4,6 +4,14 @@
       <%= image_tag(article.cover_image) %>
     </div>
     <div class="article-info__info">
+        <div class="article-info__info-item">
+        <div class="article-info__info-item-key">
+          Автор
+        </div>
+        <div class="article-info__info-item-value">
+          <%= article.author %>
+        </div>
+      </div>
       <div class="article-info__info-item">
         <div class="article-info__info-item-key">
           Оригинал
@@ -27,7 +35,7 @@
         </div>
       </div>
       <div class="article-info__info-item">
-        <div class="article-info__info-item-key">Обложка</div>
+        <div class="article-info__info-item-key">Оформление</div>
         <div class="article-info__info-item-value">
           <%= article.infographic %>
         </div>

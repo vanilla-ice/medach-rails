@@ -3,17 +3,19 @@
       loader-component(v-if="isLoading")
       header-component
       .main
-        article-component(v-if="activeNewsPost", :postInfo = " {origin: activeNewsPost.news.origin, redaction: activeNewsPost.news.redaction, translate: activeNewsPost.news.translate, infographic: activeNewsPost.news.infographic, tags: activeNewsPost.news.tags} ",
+        article-component(v-if="activeNewsPost", :postInfo = " {origin: activeNewsPost.news.origin, author: activeNewsPost.news.author, redaction: activeNewsPost.news.redaction, translate: activeNewsPost.news.translate, infographic: activeNewsPost.news.infographic, tags: activeNewsPost.news.tags} ",
           :coverImage="activeNewsPost.news.coverImage.url",
           :date="activeNewsPost.news.publishOn",
           :title = "activeNewsPost.news.title",
           :post="activeNewsPost.news.body")
+      footer-component
 </template>
 
 <script>
 import HeaderComponent from '../components/Header.vue'
 import LoaderComponent from '../components/Loader.vue'
 import ArticleComponent from '../components/ArticleComponent.vue'
+import FooterComponent from '../components/Footer.vue'
 
 import { mapGetters } from 'vuex'
 
@@ -21,7 +23,8 @@ import { mapGetters } from 'vuex'
     components: {
       HeaderComponent,
       LoaderComponent,
-      ArticleComponent
+      ArticleComponent,
+      FooterComponent
     },
 
     data () {

@@ -9,6 +9,9 @@
             .article-info__item.publishing(v-if="postInfo.origin")
               a(:href="getContent(postInfo.origin)")
                 | {{ getContent(postInfo.origin) }}
+            .article-info__item.author(v-if="postInfo.author")
+              div Автор:
+              div {{  getContent(postInfo.author) }}
             .article-info__item.transfer(v-if="postInfo.translate")
               div Перевод:
               div {{  getContent(postInfo.translate) }}
@@ -16,7 +19,7 @@
               div Редакция:
               div {{ getContent(postInfo.redaction) }}
             .article-info__item.cover(v-if="postInfo.infographic")
-              div Обложка:
+              div Оформление:
               div {{ getContent(postInfo.infographic) }}
             .article-info__item.tags(v-if="postInfo.tags")
               div Теги:
@@ -76,7 +79,7 @@
   .article__content-text p {
     margin: 15px 0;
 
-    line-height: 1.5em;
+    line-height: 1.5em !important;
   }
 
   .article__content i {
