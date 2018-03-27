@@ -26,9 +26,14 @@
               div {{ getTags() }}
           .date
             | {{ getCurrentDate() }}
-        .article__content
+        .article__content(ref="postData")
           img.article__cover-image(v-if="coverImage" :src="coverImage" )
-          .article__content-text( v-html="post" )
+          .article__content-text(v-html="post")
+      .preview(v-if="currentImg")
+        .preview-wrapper
+          .opacity(@click="close")
+          .christ(@click="close") +
+          img(:src="currentImg")
 </template>
 
 <script>
@@ -36,9 +41,32 @@
   import ru from 'date-fns/locale/ru'
 
   export default {
+
     props: ['title', 'coverImage', 'date', 'post', 'postInfo'],
 
+    data() {
+      return {
+        currentImg: null
+      }
+    },
+
+    mounted() {
+      const images = Array.from(this.$refs.postData.querySelectorAll('img'))
+      images.map(img => {
+        img.addEventListener('click', () => this.renderPreviewImage(img))
+      })
+    },
+
     methods: {
+      renderPreviewImage(image) {
+        this.currentImg = image.getAttribute('src')
+        document.body.classList.add('scroll-del')
+      },
+      close() {
+        document.body.classList.remove('scroll-del')
+        this.currentImg = null;
+      },
+
       getContent(data) {
         if (data) return data
         return ""
@@ -69,6 +97,7 @@
   .article__content img {
     width: 100%;
     height: 100%;
+    cursor: pointer;
   }
 
   .article__content-text img {
@@ -84,6 +113,10 @@
 
   .article__content i {
     font-family: PTSerif-Regular, helvetica;
+  }
+
+  .scroll-del {
+    overflow: hidden;
   }
 </style>
 
@@ -177,6 +210,49 @@
 
   .img-info {
     margin-top: 20px;
+  }
+
+  .preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 3000;
+
+    overflow: auto;
+
+    img {
+      position: relative;
+      max-width: 92%;
+      display: block;
+      margin: 0 auto;
+      z-index: 5;
+    }
+  }
+
+  .preview-wrapper {
+    margin: 30px auto;
+  }
+
+  .opacity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  .christ {
+    position: absolute;
+    top: 5px;
+    right: 17px;
+    font-size: 40px;
+    font-family: sans-serif;
+    transform: rotate(45deg);
+    cursor: pointer;
+    z-index: 10;
   }
 
   @media (max-width: 1024px) {

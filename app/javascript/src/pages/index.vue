@@ -48,7 +48,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.mainPageConfig)
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
     });
