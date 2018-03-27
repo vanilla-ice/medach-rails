@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header
+  header.header(:class="{'header-fixed': headerFixed}")
     loader-component(v-if="isLoading")
     .tags-popup.only-desktop(v-if="isTagsOpen")
       .tag-wrapper
@@ -88,7 +88,8 @@
         isLoading: false,
         isOpen: false,
         isTagsOpen: false,
-        sort: true
+        sort: true,
+        headerFixed: false
       }
     },
   
@@ -98,8 +99,15 @@
     },
 
     mounted() {
-      if (this.$router.history.current.name !== 'blogs' &&
-        this.$router.history.current.name !== 'home'
+      let routerCurrentName = this.$router.history.current.name
+      // console.log(this.$router.history.current.name)
+      if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
+        console.log('asdasas')
+        this.headerFixed = true
+      }
+
+      if (routerCurrentName !== 'blogs' &&
+        routerCurrentName !== 'home'
       ) this.sort = false;
     },
 
@@ -203,6 +211,16 @@
         margin-left: 35px;
       }
     }
+  }
+
+  .header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+
+    box-shadow: 0 0 15px rgba(0, 0, 0, .15)
   }
   
   .header .container {

@@ -42,6 +42,10 @@ html {
   padding: 0 30px;
 }
 
+.header-fixed + .main {
+  padding-top: 130px !important;
+}
+
 .button--green {
   display: inline-block;
   border-radius: 4px;

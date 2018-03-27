@@ -5,9 +5,9 @@
     .main
       .main-wrapper(v-if="!sortState")
         top-blogs(v-if="blogsPageConfig" :info="blogsPageConfig")
-        three-columns(v-if="blogsPageConfig.spotlightBlogs" :info="blogsPageConfig.spotlightBlogs")
-        two-columns(v-if="blogsPageConfig.mainBlogs" :info="blogsPageConfig.mainBlogs")
-        intresting(v-if="blogsPageConfig.promotedBlogs" :info="blogsPageConfig.promotedBlogs")
+        three-columns(v-if="blogsPageConfig" :info="blogsPageConfig.spotlightBlogs")
+        two-columns(v-if="blogsPageConfig" :info="blogsPageConfig.mainBlogs")
+        intresting(v-if="blogsPageConfig" :info="blogsPageConfig.promotedBlogs")
       .in-order(v-if="sortState")
         in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
     footer-component
