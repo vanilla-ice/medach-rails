@@ -177,6 +177,10 @@ $(document).ready(function () {
             items: ['font-menu', 'removeformat']
           },
           {
+            label: 'listindent',
+            items: ['ul', 'ol', 'indent', 'outdent', 'blockquote']
+          },
+          {
             label: 'tools',
             items: ['find', 'accessibility', 'fullscreen', 'usersettings']
           },
