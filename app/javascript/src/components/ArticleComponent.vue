@@ -113,21 +113,21 @@
   }
 
   .article__content-text p {
-    margin: 15px 0 !important;
-    font-size: 18px !important;
+    margin: 15px 0;
+    font-size: 18px;
 
-    line-height: 1.5em !important;
+    line-height: 1.5em;
   }
 
   .article__content-text p span {
-    font-size: 18px !important;
+    font-size: 18px;
 
-    line-height: 1.5em !important;
+    line-height: 1.5em;
   }
 
   .article__content-text span {
-    font-size: 18px !important;
-    line-height: 1.5em !important;
+    font-size: 18px;
+    line-height: 1.5em;
   }
 
   .article__content i {
