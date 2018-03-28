@@ -1,3 +1,3 @@
 <% hint = f.object.send(name).present? ? image_tag(f.object.send(name).url) : content_tag(:span, message || "") %>
-<%= f.input name, :label => label, :as => :file, :hint => hint %>
+<%= f.input name, :label => label, :as => :file, :hint => hint, :input_html => { :class => 'js_image' } %>
 <%= f.input "#{name}_cache", :as => :hidden %>

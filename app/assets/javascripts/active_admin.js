@@ -74,8 +74,9 @@ function insertToEditor(url, editor) {
 
 }
 
-var renderQuickviewPopup = function renderQuickviewPopup(data) {	
-  var result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="main main-description">' + '<div class="container">' + '<div class="foto-column">' + '<div class="foto-column__poster">' + '<img src="' + data.image + '"/>' + ' </div>' + '</div>' + '<div class="desc-column ql-editor">' + '<div class="desc-column__title">' + data.name + '</div>' + '<div class="desc-column__text">' + data.post + '</div>' + '</div>' + '<div class="info-column">' + '<div class="info-column__item">Автор: ' + data.author + '</div>' + '<div class="info-column__item info-column__infographic">Инфографика: <a href="' + data.infographic + '">' + data.infographic + '</a></div>' + '<div class="info-column__item">Редакция: ' + data.redaction + '</div>' + '<div class="info-column__item info-column__infographic">Оригинал: <a href="' + data.origin + '">' + data.origin + '</a></div>' + '</div>' + '</div>' + '</div>' + '</div>';	
+var renderQuickviewPopup = function renderQuickviewPopup(data) {
+  console.log(data)
+  var result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="container">' + '<div class="article__wrapper">' + '<div class="article">' + '<div class="article-title">' + data.name + '</div>' + '<div class="article-info__wrapper">' + '<div class="article-info">' + '<div class="article-info__item">' + '<a href="' + data.origin + '">' + data.origin + '</a>' + '</div>' + '<div class="article-info__item">' + '<div> Автор: </div>' + '<div>' + data.author + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Перевод: </div>' + '<div>' + data.translate + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Редакция: </div>' + '<div>' + data.redaction + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Оформление: </div>' + '<div>' + data.infographic + '</div>' + '</div>' + '</div>' + '</div>' + '<div class="article__content">' + '<img src="' + data.image + '" class="article__cover-image" />' + '<div class="article__content-text">' + data.post + '</div>' + '</div>' + '</div>' + '</div>' +  '</div>' +  '</div>';	
   return result;	
 };
 
@@ -137,22 +138,23 @@ $(document).ready(function () {
                 id: 'quickview1',
                 text: 'Открыть предпросмотр',
 
-                action: function() {
+                action: function(e) {
                   
                   $('body').css('overflow-y', 'hidden');	
                   var data = {};	
                 
-                  data['name'] = $('#article_title').val();	
-                  data['post'] = $('.ql-editor').html();	
-                  data['redaction'] = $('#article_redaction').val();	
-                  data['author'] = $('#article_author').val();	
-                  data['infographic'] = $('#article_infographic').val();	
-                  data['origin'] = $('#article_origin').val();	
-                  data['image'] = $('#article_image_url').val();	
+                  data['name'] = $('.js_title').val();	
+                  data['post'] = e.content.get()
+                  data['redaction'] = $('.js_redaction').val();	
+                  data['author'] = $('.js_author').val();	
+                  data['infographic'] = $('.js_infographic').val();	
+                  data['origin'] = $('.js_original').val();
+                  data['translate'] = $('.js_translate').val();
+                  data['image'] = $('.file .inline-hints img').attr('src');	
                   $('body').append(renderQuickviewPopup(data));	
                 
                   $('body').on('click', '.js-close', function () {	
-                    $('.popup-wrapper > div').remove();	
+                    $('.quickview-popup').remove();	
                     $('body').css('overflow-y', 'initial');	
                   });	
                 }
