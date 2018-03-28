@@ -53,7 +53,9 @@
     mounted() {
       const images = Array.from(this.$refs.postData.querySelectorAll('img'))
       images.map(img => {
-        img.addEventListener('click', () => this.renderPreviewImage(img))
+        img.addEventListener('click', (evt) => {
+          this.renderPreviewImage(img)
+        })
       })
     },
 
@@ -144,7 +146,7 @@
     max-width: 1380px;
     width: 100%;
     margin: 0 auto;
-    padding: 40px 30px 90px 77px;
+    padding: 40px 30px 90px 150px;
 
 
     background: #fff;
