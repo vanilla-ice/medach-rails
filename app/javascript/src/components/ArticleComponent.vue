@@ -113,8 +113,20 @@
   }
 
   .article__content-text p {
-    margin: 15px 0;
+    margin: 15px 0 !important;
+    font-size: 18px !important;
 
+    line-height: 1.5em !important;
+  }
+
+  .article__content-text p span {
+    font-size: 18px !important;
+
+    line-height: 1.5em !important;
+  }
+
+  .article__content-text span {
+    font-size: 18px !important;
     line-height: 1.5em !important;
   }
 
