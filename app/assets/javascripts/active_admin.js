@@ -241,8 +241,4 @@ $(document).ready(function () {
     no_results_text: 'No results matched',
     width: '80%'
   })
-<<<<<<< HEAD
-=======
-
->>>>>>> Fix: es6 error
 });
