@@ -3,7 +3,8 @@
     loader-component(v-if="isLoading")
     header-component
     main.main-surgery
-      in-order-main(v-if="search" :info="search")
+      in-order-main(v-if="search" :info="search" :bouncing="!scrollBottom")
+
 </template>
 <script>
 import HeaderComponent from '../components/Header.vue'
@@ -24,6 +25,7 @@ export default {
   data () {
     return {
       isLoading: true, 
+      scrollBottom: true
     }
   },
 
@@ -71,9 +73,12 @@ export default {
 
     getNextPage() {
       const $container = document.querySelector("#app")
-      if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
-        if (this.searchMeta.nextPage) {
+      if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
+        if (this.searchMeta.nextPage && this.scrollBottom) {
+          this.scrollBottom = false
+
           this.$store.dispatch('search', {id: this.searchMeta.nextPage, scroll: true})
+          .then(() => this.scrollBottom = true)
         }
       }
     }

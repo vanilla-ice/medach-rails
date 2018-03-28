@@ -79,11 +79,11 @@
           .header__medach(@click="toggleTags")
             | еще 
         .sort(v-if="sort")
-          label.sort-text#sort-text(for = "sort-checkbox__checkbox" @click="sortToggle")
+          label.sort-text#sort-text(for = "sort-checkbox__checkbox-desktop" @click="sortToggle")
             | ПОКАЗЫВАТЬ ПО ПОРЯДКУ   
           .sort-checkbox__wrapper
-            input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
-            label.toggle(for = "sort-checkbox__checkbox" @click="sortToggle")
+            input(type = "checkbox" id = "sort-checkbox__checkbox-desktop" class = "sort-checkbox__checkbox-desktop")
+            label.toggle(for = "sort-checkbox__checkbox-desktop" @click="sortToggle")
               .toggle-circle
 </template>
 
@@ -391,7 +391,8 @@
     cursor: pointer;
   }
 
-  .sort-checkbox__checkbox {
+  .sort-checkbox__checkbox,
+  .sort-checkbox__checkbox-desktop {
     display: none;
   }
 
@@ -429,7 +430,7 @@
     transition: 0.3s;
   }
 
-  .sort-checkbox__checkbox:checked + .toggle  .toggle-circle{
+  .sort-checkbox__checkbox:checked + .toggle  .toggle-circle {
     left: 14px;
   }
 
@@ -439,6 +440,19 @@
   }
 
   .sort-checkbox__checkbox:checked + .toggle {
+    background-color: #110F6C;
+  }
+
+  .sort-checkbox__checkbox-desktop:checked + .toggle  .toggle-circle {
+    left: 14px;
+  }
+
+  .sort-checkbox__checkbox-desktop + .toggle {
+    background-color: #ffffff;
+    transition: 0.3s;
+  }
+
+  .sort-checkbox__checkbox-desktop:checked + .toggle {
     background-color: #110F6C;
   }
   
