@@ -114,6 +114,12 @@
     padding: 0 25px;
   }
 
+  .article__content-text {
+    font-size: 18px;
+
+    line-height: 1.5em;
+  }
+
   .article__content-text p {
     margin: 15px 0;
     font-size: 18px;
