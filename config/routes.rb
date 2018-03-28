@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :images do
 
     end
+    resources :documents do
+    end
     resources :blogs, controller: 'blog_articles', only: [:index, :show] do
       collection do
         get 'translated'
