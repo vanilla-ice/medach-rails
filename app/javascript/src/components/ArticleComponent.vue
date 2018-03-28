@@ -83,6 +83,13 @@
       getTags() {
         return this.postInfo.tags.join(', '); 
       }
+    },
+
+    beforeDestroy() {
+      const images = Array.from(this.$refs.postData.querySelectorAll('img'))
+      images.map(img => {
+        img.removeEventListener('click', () => this.renderPreviewImage(img))
+      })
     }
   }
 
@@ -116,7 +123,7 @@
   }
 
   .scroll-del {
-    overflow: hidden;
+    overflow: hidden !important;
   }
 </style>
 
