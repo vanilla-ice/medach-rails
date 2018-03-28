@@ -6,7 +6,7 @@
       .main-wrapper(v-if="!sortState")
         top-articles(v-if="mainPageConfig" :info="mainPageConfig")
         blogs(v-if="mainPageConfig" :info="mainPageConfig")
-        news(v-if="mainPageConfig" :info="mainPageConfig.mainNews")
+        news(v-if="mainPageConfig && mainPageConfig.mainNews.length > 0" :info="mainPageConfig.mainNews")
         worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
       .in-order(v-if="sortState")
         in-order-main(v-if="indexInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
@@ -49,6 +49,7 @@ export default {
 
   mounted() {
     this.$store.dispatch('getMainPageConfig').then((res) => {
+      console.log(this.mainPageConfig)
       this.isLoading = false
     });
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320085243) do
+ActiveRecord::Schema.define(version: 20180327115151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(version: 20180320085243) do
     t.index ["search"], name: "index_articles_on_search"
     t.index ["short_description"], name: "index_articles_on_short_description"
     t.index ["translate"], name: "index_articles_on_translate"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|

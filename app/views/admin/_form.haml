@@ -1,12 +1,12 @@
-= f.input :title, label: "Заголовок"
+= f.input :title, label: "Заголовок", :input_html => { :class => :js_title }
 = render :partial => "admin/text_editor", locals: { f: f }
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка', name: "cover_image", message: "Обложка не представлена"}
 = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
-= f.input :tag_string, as: :tags, label: 'Теги'
-= f.input :author, label: "Автор"
-= f.input :redaction, label: "Редакция"
-= f.input :infographic, label: "Инфографика"
-= f.input :origin, label: "Оригинал"
-= f.input :translate, label: "Перевод"
+= f.input :tag_string, as: :tags, label: 'Теги', :input_html => { :class => :js_tags }
+= f.input :author, label: "Автор", :input_html => { :class => :js_author }
+= f.input :redaction, label: "Редакция", :input_html => { :class => :js_redaction }
+= f.input :infographic, label: "Инфографика", :input_html => { :class => :js_infographic }
+= f.input :origin, label: "Оригинал", :input_html => { :class => :js_original }
+= f.input :translate, label: "Перевод", :input_html => { :class => :js_translate }
 = f.input :publish_on, label: "Отложенный постинг", as: :date_time_picker
 = f.input :fixed, label: "Закрепить в шапке"

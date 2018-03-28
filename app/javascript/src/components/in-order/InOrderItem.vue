@@ -12,42 +12,42 @@
 </template>
 
 <script>
-import InOrderFooter from './InorderFooter.vue'
+import InOrderFooter from './InOrderFooter.vue'
 
-  export default {
-    props: ['info'],
+export default {
+  props: ['info'],
 
-    components: {
-      InOrderFooter
+  components: {
+    InOrderFooter
+  },
+
+  methods: {
+    getImg(item) {
+      if (item.coverImage.url) return false
+      return true
     },
 
-    methods: {
-      getImg(item) {
-        if (item.coverImage.url) return false
-        return true
-      },
-
-      currentHash(item) {
-        switch (item.type) {
-          case 'News':
-            return '/news-post/'
-            break;
-          case 'Article':
-            return '/post/'
-            break;
-          case 'Blog':
-            return '/blog-post/'
-            break;
-          case 'Media':
-            return '/media-post/'
-            break;
-        
-          default:
-            break;
-        }
+    currentHash(item) {
+      switch (item.type) {
+        case 'News':
+          return '/news-post/'
+          break;
+        case 'Article':
+          return '/post/'
+          break;
+        case 'Blog':
+          return '/blog-post/'
+          break;
+        case 'Media':
+          return '/media-post/'
+          break;
+      
+        default:
+          break;
       }
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
