@@ -1,5 +1,6 @@
 <template lang="pug">
   .autors__container.container
+    .title Новости
     router-link.autors__item.autors__item-1( v-for="(item, id) in info" :key="item.id" v-if="id < 2" :to="'news-post/' + item.id" )
       .autors__image( :style="{ backgroundImage:`url(${item.coverImage.url})` }")
       .autors__placeholder
@@ -18,6 +19,10 @@
   .autors__container {
     justify-content: space-between;
     margin-top: 30px;
+  }
+
+  .title {
+    display: none;
   }
 
   .autors__item {
@@ -105,20 +110,58 @@
     color: #fff;  
   }
 
-  @media(max-width: 1440px) {
-    .autors__item{
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    .autors__item {
       width: 675/1380 * 100%;
       min-height: 235/1440 * 100vw;
     }
   }
 
-  @media(max-width: 1250px) {
+  @media (min-width: 1024px) and (max-width: 1250px) {
     .autors__item {
       padding: 24/1440 * 100vw;
     }
 
     .autors__item-text {
       font-size: 20px;
+    }
+  }
+
+  @media(max-width: 1024px) {
+    .autors__container {
+      flex-direction: column;
+      justify-content: flex-start;
+
+      background: #fff;
+      padding-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 20px;
+
+      border-top: 2px solid #110F6C;
+    }
+
+    .title {
+      display: block;
+      margin-bottom: 20px;
+
+      font-family: Montserrat-Medium;
+      font-size: 17px;
+
+      text-align: center;
+      text-transform: uppercase;
+      color: #939393;
+    }
+
+    .autors__item {
+      margin: 0 auto;
+      margin-bottom: 20px;
+
+      min-height: 200px;
+    }
+
+    .autors__item:last-child {
+      margin-bottom: 0;
     }
   }
 </style>

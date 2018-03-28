@@ -128,4 +128,10 @@ html {
     padding-right: 30/1380 * 100%;
   }
 }
+
+@media(max-width: 1024px) {
+  .header-fixed + .main {
+    padding-top: 30px !important;
+  }
+}
 </style>

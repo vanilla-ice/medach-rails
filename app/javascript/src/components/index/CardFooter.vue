@@ -114,4 +114,16 @@
       margin-right: 12px;
     }
   }
+
+  @media(max-width: 500px) {
+    .article-footer__tag {
+      display: none;
+    }
+
+    .article-footer__date {
+      margin-left: 0;
+      text-align: left;
+      color: #939393;
+    }
+  }
 </style>

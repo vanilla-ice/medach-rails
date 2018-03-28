@@ -13,35 +13,63 @@
                   | \#{{tag.name.toUpperCase()}}
     .top
       .container
-        .left
-          router-link.logo(to="/")
-            | MEDA
-            span CH
+        .top-container
+          .left
+            router-link.logo(to="/")
+              | MEDA
+              span CH
 
-        .right.only-desktop
-          .header__wrapper-dop
-            .header__category
-              router-link.category-name(to="/blogs") БЛОГИ
-            .header__category
-              router-link.category-name(to="/articles") АВТОРСКИЕ СТАТЬИ
-            .header__category
-              router-link.category-name(to="/news") НОВОСТИ 
-            .header__category
-              router-link.category-name(to="/translated") ПЕРЕВОДЫ
-            .header__category
-              router-link.category-name(to="/media") МЕДИА
-            .header__serch-wrapper
-              label
-                form(@submit.prevent="search")
-                  .header__search-icon
-                  input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
-              .header__search-buffer
-        .burger.only-mobile(@click="toggleMenu")
-          #nav-icon3(:class="{open: isOpen}")
-            span
-            span
-            span
-            span
+          .right.only-desktop
+            .header__wrapper-dop(:class="{visible: isOpen}")
+              .header__category
+                router-link.category-name(to="/blogs") БЛОГИ
+              .header__category
+                router-link.category-name(to="/articles") АВТОРСКИЕ СТАТЬИ
+              .header__category
+                router-link.category-name(to="/news") НОВОСТИ 
+              .header__category
+                router-link.category-name(to="/translated") ПЕРЕВОДЫ
+              .header__category
+                router-link.category-name(to="/media") МЕДИА
+              .header__serch-wrapper
+                label
+                  form(@submit.prevent="search")
+                    .header__search-icon
+                    input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
+                .header__search-buffer
+          .burger.only-mobile(@click="toggleMenu")
+            #nav-icon3(:class="{open: isOpen}")
+              span
+              span
+              span
+              span
+          .header__serch-wrapper.header__serch-wrapper-mobile
+            label
+              form(@submit.prevent="search")
+                .header__search-icon
+                input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
+            .header__search-buffer
+
+      .top-container__menu(:class="{'open-menu': isOpen}")
+        .header__category-mobile
+          .header__category
+            router-link.category-name(to="/blogs") БЛОГИ
+          .header__category
+            router-link.category-name(to="/articles") АВТОРСКИЕ СТАТЬИ
+          .header__category
+            router-link.category-name(to="/news") НОВОСТИ 
+          .header__category
+            router-link.category-name(to="/translated") ПЕРЕВОДЫ
+          .header__category
+            router-link.category-name(to="/media") МЕДИА
+          .sort.category-name(v-if="sort")
+            label.sort-text#sort-text(for = "sort-checkbox__checkbox" @click="sortToggle")
+              | ПОКАЗЫВАТЬ ПО ПОРЯДКУ   
+            .sort-checkbox__wrapper
+              input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
+              label.toggle(for = "sort-checkbox__checkbox" @click="sortToggle")
+                .toggle-circle
+
 
     .bottom.only-desktop
       .container
@@ -57,24 +85,6 @@
             input(type = "checkbox" id = "sort-checkbox__checkbox" class = "sort-checkbox__checkbox")
             label.toggle(for = "sort-checkbox__checkbox" @click="sortToggle")
               .toggle-circle
-    
-    .menu-page(:class="{visible: isOpen}")
-      .search
-        label
-          form(@submit.prevent="search")
-            button.header__search-icon(type="submit")
-            input(type="text" class="header__search" name="search" placeholder = "Поиск" v-model="query")
-
-      .tags
-        .main-nav__item(v-for="(tag, id) in popularTags" v-if="id < 8" @click="goToTag(tag.name)")
-          | {{tag.name.toUpperCase()}}
-
-      .social
-        .header__socials-wrapper
-          a(href="#").header__social.header__socials-vk
-          a(href="#").header__social.header__socials-facebook
-          a(href="#").header__social.header__socials-telegram
-
 </template>
 
 <script>
@@ -100,9 +110,7 @@
 
     mounted() {
       let routerCurrentName = this.$router.history.current.name
-      // console.log(this.$router.history.current.name)
       if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
-        console.log('asdasas')
         this.headerFixed = true
       }
 
@@ -161,15 +169,7 @@
       },
   
       toggleMenu() {
-        this.isOpen = !this.isOpen
-  
-        if (this.isOpen) {
-          document.querySelector('#app').style.overflow = 'hidden'
-          document.querySelector('#app').style.maxHeight = '100vh'
-        } else {
-          document.querySelector('#app').style.overflow = 'initial'
-          document.querySelector('#app').style.maxHeight = 'initial'
-        }
+        this.isOpen = !this.isOpen;
       },
   
       closeMenu() {
@@ -236,8 +236,12 @@
     white-space: nowrap;
 
     &:hover {
-      opacity: 0.7;
+      opacity: 0.8;
     }
+  }
+
+  .top-container__menu {
+    display: none;
   }
   
   .tags-popup {
@@ -333,13 +337,17 @@
   .top {
     background: #110F6C;
   }
-  
-  .top .container {
+
+  .top-container {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
+
+    width: 100%;
+    min-height: 62px;
   }
+
   
   .main-nav__item.main-nav__item::after {
     content: '';
@@ -482,6 +490,10 @@
       width: 126px;
     }
   }
+
+  .header__serch-wrapper-mobile {
+    display: none;
+  }
   
   .header__serch-wrapper label {
     display: flex;
@@ -527,25 +539,6 @@
   .header__socials-wrapper {
     display: flex;
     justify-content: space-between;
-  }
-  
-  .header__social {
-    display: block;
-    width: 15px;
-    height: 14px;
-    margin: 0 5px;
-  }
-  
-  .header__socials-vk {
-    background: url('../static/images/vk.svg') no-repeat center / contain;
-  }
-  
-  .header__socials-facebook {
-    background: url('../static/images/facebook.svg') no-repeat center / contain;
-  }
-  
-  .header__socials-telegram {
-    background: url('../static/images/telegram.svg') no-repeat center / contain;
   }
   
   .calendar {
@@ -639,7 +632,6 @@
   }
   
   .burger {
-    opacity: .7;
     height: 22px;
     z-index: 20;
     img {
@@ -679,10 +671,6 @@
     -moz-transition: .25s ease-in-out;
     -o-transition: .25s ease-in-out;
     transition: .25s ease-in-out;
-  }
-
-  #nav-icon3.open span {
-    background: #000;
   }
   
   #nav-icon3 span:nth-child(1) {
@@ -737,11 +725,6 @@
     pointer-events: none;
     z-index: 10;
     padding-top: 82px;
-  }
-  
-  .visible {
-    opacity: 1;
-    pointer-events: initial;
   }
   
   .search {
@@ -809,15 +792,85 @@
         padding: 0 40px;
       }
     }
+
+    .header .container {
+      display: block;
+    }
+
+    .left {
+      order: 2
+    }
+
+    .burger {
+      order: 1;
+      margin-top: 5px;
+    }
+
+    .header__serch-wrapper-mobile {
+      margin-left: 0;
+
+      order: 3;
+      display: block;
+    }
+
+    .header__serch-wrapper::before {
+      display: none;
+    }
+
+    .header__category:not(:first-child) {
+      margin-left: 0;
+    }
+
+    .category-name {
+      padding: 9px 0;
+      display: block;
+      padding-left: 40px;
+      padding-right: 15px;
+
+      font-size: 20px;
+    }
+
+    .top-container__menu {
+      display: block;
+      overflow: hidden;
+      max-height: 0;
+
+      background: linear-gradient(to bottom, #110f6c 0%,#2989d8 50%,#7db9e8 100%);
+
+      transition: max-height 0.5s;
+    }
+
+    .open-menu {
+      max-height: 1000px;
+    }
+
+    .sort.category-name {
+      display: flex;
+      justify-content: flex-start;
+
+      max-width: 100%;
+
+      font-size: 20px;
+    }
+
+    .sort-text {
+      font-size: 20px;
+      margin-right: 8px;
+    }
+
+    .header__category-mobile {
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
   }
   
   @media (max-width: 767px) {
+    .logo {
+      font-size: 22px;
+    }
+
     .header .container {
       padding: 0 20px;
-    }
-    .search {
-      left: 148px;
-      max-width: 125px;
     }
 
     .main-nav__item {
@@ -825,12 +878,26 @@
       border: none;
     }
 
-    .header__search-icon {
-      display: none;
-    }
-
     .search {
       top: 18px;
+    }
+
+    .category-name {
+      padding-left: 20px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .header__search {
+      max-width: 90px;
+    }
+
+    .category-name {
+      font-size: 16px;
+    }
+
+    .sort-text {
+      font-size: 16px;
     }
   }
 </style>

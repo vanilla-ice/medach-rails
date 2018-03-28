@@ -140,7 +140,7 @@
     text-align: right;
   }
 
-  @media(max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .worst-articles__item {
       max-width: 440/1380 * 100%;
       min-height: 500/1440 * 100vw;
@@ -183,6 +183,41 @@
 
     .worst-articles__date {
       padding-top: 2px;
+    }
+  }
+
+  @media(max-width: 1024px) {
+    .worst-articles__container {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .worst-articles__item {
+      max-width: 675px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+
+    .worst-articles__item:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .worst-articles__item {
+      min-height: 310px;
+    }
+
+    .worst-articles__image {
+      min-height: 200px;
+    }
+
+    .worst-articles__text-block {
+      padding: 18px;
+    }
+
+    .worst-articles__text {
+      font-family: Montserrat-Regular;
     }
   }
 </style>
