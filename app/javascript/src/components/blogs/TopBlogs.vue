@@ -183,7 +183,7 @@
     border-radius: 8px;
   }
 
-  @media(max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .top-blogs__left {
       min-height: 500/1440 * 100vw;
       padding-top: 40/1440 * 100vw;
@@ -206,9 +206,25 @@
     }
   }
 
-  @media(max-width: 1250px) {
-    .top-blogs__left-title {
+  @media(max-width: 1024px) {
+    .top-blogs {
+      flex-direction: column;
+    }
 
+    .top-blogs__right {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .top-blogs__left {
+      width: 100%;
+      max-width: 675px;
+      margin: 0 auto;
+    }
+
+    .top-blogs__right-card {
+      max-width: 675px;
+      width: 100%;
     }
   }
 </style>

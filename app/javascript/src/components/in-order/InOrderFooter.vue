@@ -78,4 +78,23 @@
   .name {
     font-family: Montserrat-Medium, helvetica;
   }
+
+  @media(max-width: 500px) {
+    .card-footer {
+      font-size: 12px;
+    }
+
+    .date {
+      margin-left: 0;
+    }
+
+    .in-order__item-foto {
+      min-height: 50vw;
+      width: 100%;
+    }
+
+    .in-order__item-text {
+      padding: 10px;
+    }
+  }
 </style>

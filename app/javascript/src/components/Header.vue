@@ -854,6 +854,14 @@
       transition: max-height 0.5s;
     }
 
+    .top-container__menu .sort {
+      border-top: 1px solid #E7E7E7;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    
+
     .open-menu {
       max-height: 1000px;
     }
@@ -874,7 +882,6 @@
 
     .header__category-mobile {
       padding-top: 10px;
-      padding-bottom: 20px;
     }
   }
   

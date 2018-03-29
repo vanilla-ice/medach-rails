@@ -123,4 +123,20 @@ export default {
     color: #aaaaaa;
   }
 }
+
+@media(max-width: 500px) {
+  .in-order__item-foto {
+    width: 100%;
+    min-height: 50vw;
+  }
+
+  .in-order__item {
+    flex-direction: column;
+    box-shadow: none;
+  }
+
+  .in-order__item-text {
+    font-size: 17px;
+  }
+}
 </style>
