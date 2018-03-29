@@ -1,6 +1,6 @@
 <template lang="pug">
   .article-footer
-    .article-footer__tag(v-for="tag in tags")
+    .article-footer__tag(v-for="(tag, index) in tags" v-if="index < 2")
       | {{ tag }}
     .article-footer__date
       | {{ currentDate() }}

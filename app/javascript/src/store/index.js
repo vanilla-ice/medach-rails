@@ -273,7 +273,6 @@ function store () {
 
       searchTag({state}, payload) {
         const {id, scroll, query} = payload
-        console.log(payload)
         if (query) state.currentQuery = query
         return new Promise((resolve, reject) => {
           getPostsByTag(id, state.currentQuery).then(res => {

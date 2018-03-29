@@ -156,7 +156,6 @@ export const getNewsNextPage = (id) => {
 }
 
 export const getPostsByTag = (id, query) => {
-  console.log(id, query)
   return new Promise((resolve, reject) => {
     axios.get(`/api/all_articles`, {
       params: {

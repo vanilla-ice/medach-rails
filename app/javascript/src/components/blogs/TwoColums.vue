@@ -95,7 +95,7 @@
     font-size: 18px;
   }
 
-  @media (max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .card {
       min-height: 235/1440 * 100vw;
       max-width: 675/1380 * 100%;
@@ -103,6 +103,29 @@
       padding-left: 24/1440 * 100vw;
       padding-right: 24/1440 * 100vw;
       padding-bottom: 24/1440 * 100vw;
+    }
+  }
+
+  @media(max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .card {
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .card {
+      min-height: 180px;
+      padding: 15px;
     }
   }
 </style>

@@ -214,6 +214,7 @@
     .top-blogs__right {
       width: 100%;
       margin-left: 0;
+      min-height: 0;
     }
 
     .top-blogs__left {
@@ -223,6 +224,12 @@
       min-height: 450px;
 
       margin-bottom: 20px;
+    }
+
+    .top-blogs__left-title,
+    .top-blogs__right-title {
+      text-align: left;
+      font-size: 24px;
     }
 
     .top-blogs__right-card {
@@ -256,6 +263,7 @@
     .top-blogs__right-title {
       font-family: Montserrat-Regular;
       text-align: left;
+      font-size: 20px;
     }
 
     .top-blogs__right-card {

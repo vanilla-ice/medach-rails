@@ -23,7 +23,8 @@
               div {{ getContent(postInfo.infographic) }}
             .article-info__item.tags(v-if="postInfo.tags && this.postInfo.tags.length > 0")
               div Теги:
-              div {{ getTags() }}
+              router-link.tag(v-for="(item, index) in postInfo.tags" :to="`/tag/${item}`") 
+                | {{ item }}
           .date
             | {{ getCurrentDate() }}
         .article__content(ref="postData")
@@ -83,7 +84,6 @@
       },
 
       getTags() {
-        console.log(this.postInfo.tags.length > 0);
         return this.postInfo.tags.join(', '); 
       }
     },
@@ -197,6 +197,11 @@
 
   .article-info__item div:first-child {
     margin-right: 8px;
+  }
+
+  .tag {
+    margin-right: 7px;
+    color: #00C
   }
 
   .date {

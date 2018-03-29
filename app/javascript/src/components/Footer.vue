@@ -48,4 +48,15 @@
     display: block;
     margin-top: 64px;
   }
+
+  @media(max-width: 500px) {
+    .links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .links__item {
+      padding: 10px 10px 10px 10px;
+    }
+  }
 </style>

@@ -49,11 +49,13 @@
   }
 
   .card-title {
+    margin-bottom: 15px;
+
     font-size: 16px;
     font-family: Montserrat-Bold, helvetica;
   }
 
-  @media(max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     .card {
       min-height: 150/1440 * 100vw;
 
@@ -65,4 +67,28 @@
     }
   }
 
+  @media(max-width: 1024px) {
+    .cards-container {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .card {
+      border-radius: 0;
+      max-width: 675px;
+      margin: 0 auto;
+      border-top: 1px solid #ececec;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .cards-container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .card {
+      padding: 15px;
+    }
+  }
 </style>
