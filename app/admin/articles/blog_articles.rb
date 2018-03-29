@@ -5,10 +5,13 @@ ActiveAdmin.register BlogArticle do
   permit_params(
     :body,
     :cover_image,
+    :remove_cover_image,
     :small_cover_image,
+    :remove_small_cover_image,
     :avatar_cache,
     :short_description,
     :avatar,
+    :remove_avatar,
     :title,
     :author,
     :infographic,

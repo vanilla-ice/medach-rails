@@ -2,7 +2,9 @@ ActiveAdmin.register MediaArticle do
   permit_params(
     :body,
     :cover_image,
+    :remove_cover_image,
     :small_cover_image,
+    :remove_small_cover_image,
     :title,
     :author,
     :infographic,
