@@ -51,7 +51,9 @@ class Api::ArticlesController < ActionController::Base
 
   def all
     @articles = Article.published
-    if params[:query]
+    if params[:tag]
+      @articles = @articles.tagged_with(params[:tag])
+    elsif params[:query]
       @articles = @articles.search(params[:query])
     end
     paginated = @articles.page(params[:page]).per(20)
