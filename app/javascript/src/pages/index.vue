@@ -1,7 +1,7 @@
 <template lang="pug" >
-  div.main-container
+  div.main-container(:class="{'main-open-menu': isOpen}")
     loader-component(v-if="isLoading")
-    header-component
+    header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState")
         top-articles(v-if="mainPageConfig" :info="mainPageConfig")
@@ -43,7 +43,8 @@ export default {
   data () {
     return {
       isLoading: true,
-      scrollBottom: true
+      scrollBottom: true,
+      isOpen: false
     }
   },
 
@@ -82,6 +83,10 @@ export default {
         }
       }
     },
+
+    toggleMenu() {
+      this.isOpen = !this.isOpen;
+    }
   },
 
   beforeDestroy (to, from, next) {
@@ -141,6 +146,18 @@ export default {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+}
+
+.main-open-menu::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0,0,0,0.2);
+  z-index: 100;
 }
 
 @media (max-width: 1024px) {

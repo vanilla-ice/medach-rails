@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.main-container
+  div.main-container(:class="{'main-open-menu': isOpen}")
     loader-component(v-if="isLoading")
-    header-component
+    header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState")
         top-blogs(v-if="blogsPageConfig" :info="blogsPageConfig")
@@ -45,7 +45,8 @@
     data() {
       return {
         isLoading: true,
-        scrollBottom: true
+        scrollBottom: true,
+        isOpen: false
       }
     },
 
@@ -79,6 +80,10 @@
             .then(() => this.scrollBottom = true)
           }
         }
+      },
+    
+      toggleMenu() {
+        this.isOpen = !this.isOpen;
       }
     }
   }

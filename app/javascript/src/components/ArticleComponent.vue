@@ -188,6 +188,7 @@
 
   .article-info__item {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 5px;
   }
 

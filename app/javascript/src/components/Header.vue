@@ -169,6 +169,13 @@
       },
   
       toggleMenu() {
+        if (!this.isOpen) {
+          document.querySelector('.main-container').classList.add('main-open-menu')
+          document.body.classList.add('scroll-del')
+        } else {
+          document.querySelector('.main-container').classList.remove('main-open-menu')
+          document.body.classList.remove('scroll-del')
+        }
         this.isOpen = !this.isOpen;
       },
   
@@ -197,6 +204,7 @@
 
     beforeDestroy () {
       document.getElementsByTagName('body')[0].style.overflowY = 'auto'
+      document.body.classList.remove('scroll-del')
     },
   }
 </script>
@@ -802,6 +810,7 @@
       width: 100%;
       background: #fff;
       box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1);
+      z-index: 101;
       .container {
         padding: 0 40px;
       }

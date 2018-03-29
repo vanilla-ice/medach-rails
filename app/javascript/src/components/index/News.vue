@@ -2,7 +2,7 @@
   .autors__container.container
     .title Новости
     router-link.autors__item.autors__item-1( v-for="(item, id) in info" :key="item.id" v-if="id < 2" :to="'news-post/' + item.id" )
-      .autors__image( :style="{ backgroundImage:`url(${item.coverImage.url})` }")
+      .autors__image( :style="{ backgroundImage:`url(${getImageSrc(item)})` }")
       .autors__placeholder
       .autors__item-text
         | {{ item.title }}
@@ -10,8 +10,14 @@
 
 <script>
   export default {
-    props: ['info']
-    
+    props: ['info'],
+
+    methods: {
+      getImageSrc(item) {
+        if (item.smallCoverImage.url) return item.smallCoverImage.url
+        return item.coverImage.url
+      }
+    }
   }
 </script>
 
@@ -71,6 +77,7 @@
     z-index: 2;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 
     border-radius: 8px;
   }

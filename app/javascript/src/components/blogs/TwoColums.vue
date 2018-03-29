@@ -1,7 +1,7 @@
 <template lang="pug">
   .container
     router-link.card(v-for="(item, id) in info" :key="item.id" v-if="id < 2" :to="'blog-post/' + item.id")
-      .card__image( :style="{ backgroundImage:`url(${item.coverImage.url})` }")
+      .card__image( :style="{ backgroundImage:`url(${getImageSrc(item)})` }")
       .card__placeholder
       .title
         | {{ item.title }}
@@ -15,6 +15,13 @@
 
     components: {
       CardFooter
+    },
+
+    methods: {
+      getImageSrc(item) {
+        if (item.smallCoverImage.url) return item.smallCoverImage.url
+        return item.coverImage.url
+      }
     }
   }
 </script>
