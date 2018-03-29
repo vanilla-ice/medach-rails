@@ -271,13 +271,20 @@ function store () {
         })
       },
 
-      getTaggedPosts({state}, payload) {
-        const { id } = payload
+      searchTag({state}, payload) {
+        const {id, scroll, query} = payload
+        console.log(payload)
+        if (query) state.currentQuery = query
         return new Promise((resolve, reject) => {
-          state.activeTag = id
-          getPostsByTag(id).then(res => {
-            state.posts = [...res.data]
-            resolve()
+          getPostsByTag(id, state.currentQuery).then(res => {
+            if (scroll) {
+              state.search = [...state.search, ...res.data.allArticles];
+              state.searchMeta = {...res.data.meta}
+            } else {
+              state.search = [...res.data.allArticles]
+              state.searchMeta = {...res.data.meta}
+            }
+            resolve(res);
           })
         })
       },

@@ -155,13 +155,17 @@ export const getNewsNextPage = (id) => {
   })
 }
 
-export const getPostsByTag = (tag) => {
+export const getPostsByTag = (id, query) => {
+  console.log(id, query)
   return new Promise((resolve, reject) => {
-    get(`/api/articles/by_tag/${tag}`) // /api/articles?tag=tag_name
-      .then(response => {
+    axios.get(`/api/all_articles`, {
+      params: {
+        tag: query,
+        page: id
+      }
+    }).then(response => {
         resolve(response)
-      })
-      .catch(reject)
+      }).catch(reject)
   })
 }
 

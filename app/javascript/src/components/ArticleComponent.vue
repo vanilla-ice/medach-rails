@@ -21,7 +21,7 @@
             .article-info__item.cover(v-if="postInfo.infographic")
               div Оформление:
               div {{ getContent(postInfo.infographic) }}
-            .article-info__item.tags(v-if="postInfo.tags")
+            .article-info__item.tags(v-if="postInfo.tags && this.postInfo.tags.length > 0")
               div Теги:
               div {{ getTags() }}
           .date
@@ -83,6 +83,7 @@
       },
 
       getTags() {
+        console.log(this.postInfo.tags.length > 0);
         return this.postInfo.tags.join(', '); 
       }
     },
