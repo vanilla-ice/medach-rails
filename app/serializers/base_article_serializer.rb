@@ -1,5 +1,5 @@
 class BaseArticleSerializer < ActiveModel::Serializer
-  attributes :id, :title, :tags, :cover_image, :views, :publication_date, :author, :type
+  attributes :id, :title, :tags, :cover_image, :small_cover_image, :views, :publication_date, :author, :type
 
   def id
     object.id.to_s
@@ -15,6 +15,10 @@ class BaseArticleSerializer < ActiveModel::Serializer
 
   def cover_image
     { url: object.cover_image.url }
+  end
+
+  def small_cover_image
+    { url: object.small_cover_image.url }
   end
 
   def publication_date

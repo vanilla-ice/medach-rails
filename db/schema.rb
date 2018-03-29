@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327115151) do
+ActiveRecord::Schema.define(version: 20180329142003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20180327115151) do
     t.string "avatar"
     t.bigint "partner_id"
     t.integer "impressions_count", default: 0, null: false
+    t.string "small_cover_image"
     t.index ["origin"], name: "index_articles_on_origin"
     t.index ["partner_id"], name: "index_articles_on_partner_id"
     t.index ["publish_on"], name: "index_articles_on_publish_on"

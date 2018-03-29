@@ -2,6 +2,7 @@ ActiveAdmin.register NewsArticle do
   permit_params(
     :body,
     :cover_image,
+    :small_cover_image,
     :title,
     :author,
     :infographic,
