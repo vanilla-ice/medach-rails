@@ -102,4 +102,10 @@
       font-size: 14px;
     }
   }
+
+  @media(max-width: 700px) {
+    .card-footer {
+      font-size: 14px;
+    }
+  }
 </style>
