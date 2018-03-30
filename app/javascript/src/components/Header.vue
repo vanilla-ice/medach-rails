@@ -859,7 +859,7 @@
       overflow: hidden;
       max-height: 0;
 
-      background: linear-gradient(to bottom, #110f6c 0%,#2989d8 50%,#7db9e8 100%);
+      background: linear-gradient(to bottom, #110f6c 0%, #2989d8 100%);
 
       transition: max-height 0.5s;
     }

@@ -7,10 +7,8 @@
         .article-info__wrapper
           .article-info(v-if="postInfo")
             .article-info__item.publishing(v-if="postInfo.origin")
-              div
-                | Оригинал:
               a(:href="getContent(postInfo.origin)")
-                | {{ getContent(postInfo.origin) }}
+                | Оригинал
             .article-info__item.author(v-if="postInfo.author")
               div Автор:
               div {{  getContent(postInfo.author) }}
@@ -115,6 +113,9 @@
   .article__content-text img {
     margin: 10px 0;
     padding: 0 25px;
+
+    max-width: 100%;
+    height: auto !important;
   }
 
   .article__content-text {
