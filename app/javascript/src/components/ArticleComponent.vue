@@ -327,8 +327,8 @@
 
   @media(max-width: 500px) {
     .article__wrapper {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 12px;
+      padding-right: 12px;
       padding-top: 30px;
       padding-bottom: 40px;
     }
