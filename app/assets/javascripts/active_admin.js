@@ -126,7 +126,7 @@ function saveDocumentToServer(file) {
 }
 
 function makeDocumentLink (linkText, documentUrl) {
-  return '<p><a download href="' + documentUrl + '">' + linkText + '</a><br /></p>'
+  return '<p><a target="_blank" href="' + documentUrl + '">' + linkText + '</a><br /></p>'
 }
 
 $(document).ready(function () {

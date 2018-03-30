@@ -315,7 +315,7 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     white-space: nowrap;
-    max-width: 100%;
+    max-width: 920px;
     width: auto;
     padding-right: 51px;
 
@@ -587,8 +587,9 @@
     position: absolute;
     right: 0;
     top: 0;
-    height: 100%;
+    z-index: 2;
 
+    height: 100%;
     display: flex;
     align-items: center;
     padding-left: 10px;

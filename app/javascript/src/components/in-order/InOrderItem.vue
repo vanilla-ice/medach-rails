@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    router-link.in-order__item( :class="{ 'no-image': getImg(item) }" v-for="(item, id) in info" :key="item.id" :to="currentHash(item) + item.id")
+    router-link.in-order__item( :class="{ 'no-image': getImgClass(item) }" v-for="(item, id) in info" :key="item.id" :to="currentHash(item) + item.id")
       .in-order__item-foto
-        .image(:style="{backgroundImage: `url(${item.coverImage.url})`}")
+        .image(:style="{backgroundImage: `url(${getImageSrc(item)})`}")
         .placeholder
           span MEDACH
       .in-order__item-text 
@@ -22,9 +22,14 @@ export default {
   },
 
   methods: {
-    getImg(item) {
-      if (item.coverImage.url) return false
+    getImgClass(item) {
+      if (item.coverImage.url || item.smallCoverImage.url) return false
       return true
+    },
+
+    getImageSrc(item) {
+      if (item.smallCoverImage.url) return item.smallCoverImage.url
+      return item.coverImage.url
     },
 
     currentHash(item) {
