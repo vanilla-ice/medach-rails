@@ -9,7 +9,7 @@ class Article < ApplicationRecord
 
   before_save :delete_whitespace
 
-  acts_as_taggable
+  acts_as_ordered_taggable
   mount_uploader :cover_image, ImageUploader
   mount_uploader :avatar, AvatarUploader
   mount_uploader :small_cover_image, SmallCoverImageUploader
