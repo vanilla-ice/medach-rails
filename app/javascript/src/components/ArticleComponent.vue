@@ -53,7 +53,7 @@
       }
     },
 
-    mounted() {
+    beforeUpdate() {
       const images = Array.from(this.$refs.postData.querySelectorAll('img'))
       images.map(img => {
         img.addEventListener('click', (evt) => {
@@ -145,7 +145,7 @@
 
   .article__content-text span {
     display: inline-block;
-    
+
     font-size: 18px;
     line-height: 1.5em;
   }
