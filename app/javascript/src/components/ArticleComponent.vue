@@ -7,6 +7,8 @@
         .article-info__wrapper
           .article-info(v-if="postInfo")
             .article-info__item.publishing(v-if="postInfo.origin")
+              div
+                | Оригинал:
               a(:href="getContent(postInfo.origin)")
                 | {{ getContent(postInfo.origin) }}
             .article-info__item.author(v-if="postInfo.author")
@@ -51,7 +53,7 @@
       }
     },
 
-    mounted() {
+    beforeUpdate() {
       const images = Array.from(this.$refs.postData.querySelectorAll('img'))
       images.map(img => {
         img.addEventListener('click', (evt) => {
@@ -121,6 +123,10 @@
     line-height: 1.5em;
   }
 
+  .article__content-text  a {
+    color: #00C;
+  }
+
   .article__content-text p {
     margin: 15px 0;
     font-size: 18px;
@@ -129,12 +135,17 @@
   }
 
   .article__content-text p span {
+    display: inline-block;
+    vertical-align: top;
+
     font-size: 18px;
 
     line-height: 1.5em;
   }
 
   .article__content-text span {
+    display: inline-block;
+
     font-size: 18px;
     line-height: 1.5em;
   }
@@ -145,6 +156,12 @@
 
   .scroll-del {
     overflow: hidden !important;
+  }
+
+  @media(max-width: 500px) {
+    .article__content-text img {
+      padding: 0 5px; 
+    }
   }
 </style>
 
@@ -170,7 +187,7 @@
     font-size: 30px;
   }
 
-  .article-info__wrapper{
+  .article-info__wrapper {
     display: flex;
     justify-content: space-between;
     padding-top: 40px;
@@ -202,7 +219,7 @@
 
   .tag {
     margin-right: 7px;
-    color: #00C
+    color: #505666;
   }
 
   .date {
@@ -235,7 +252,7 @@
   }
 
   .publishing a {
-    color: #00C;
+    color: #505666;
   }
 
   .article__cover-image {
@@ -293,6 +310,27 @@
     .article__wrapper {
       padding-left: 30px;
       padding-right: 30px;
+    }
+  }
+
+  @media(max-width: 700px) {
+    .article-info__wrapper {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .date {
+      margin-top: 15px;
+      text-align: left;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .article__wrapper {
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 30px;
+      padding-bottom: 40px;
     }
   }
 </style>

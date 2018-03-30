@@ -75,6 +75,8 @@
     height: 100%;
     width: 100%;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .card .card__image-placeholder {

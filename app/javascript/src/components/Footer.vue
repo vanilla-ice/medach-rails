@@ -2,11 +2,11 @@
   .footer
     .footer__container.container
       .links
-        a(href="#").links__item
+        a().links__item
          | О проекте
-        a(href="#").links__item
+        a().links__item
          | Команда
-        a(href="#").links__item
+        a().links__item
          | Контакты
       .copyright
         | © 2018 Medach
