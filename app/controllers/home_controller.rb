@@ -11,9 +11,9 @@ class HomeController < ApplicationController
     default_value = {
       url: request.original_url,
       title: "Medach",
-      description: "Medach"
+      description: "Test for pretty preview by Medach"
     }
-    if id && Article.exists?(id) then
+    if id && Article.exists?(id) && page != 'tag' then
       article = Article.find(id)
       default_value[:title] = article.title
       default_value[:description] = article.short_description
