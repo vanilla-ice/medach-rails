@@ -4,7 +4,7 @@
     router-link(:to=" 'post/' + info.pinnedArticles[0].id ").top-articles__item
       .top-articles__image.top-articles__image-placeholder
         span MEDACH
-      .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${info.pinnedArticles[0].coverImage.url})` }")
+      .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${getImageSrc(0)})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
@@ -13,7 +13,7 @@
     router-link(:to="'post/' + info.pinnedArticles[1].id").top-articles__item
       .top-articles__image.top-articles__image-placeholder
         span MEDACH
-      .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
+      .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${getImageSrc(1)})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
@@ -35,6 +35,11 @@
       getTitle(data) {
         if (data) return data.title
         return "Неизвестно" 
+      },
+
+      getImageSrc(num) {
+        if (this.info.pinnedArticles[num].smallCoverImage.url) return this.info.pinnedArticles[num].smallCoverImage.url
+        return this.info.pinnedArticles[num].coverImage.url
       }
     }
   }

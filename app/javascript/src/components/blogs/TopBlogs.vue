@@ -8,13 +8,13 @@
       card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views", :author="info.pinnedBlogs[0].author", :date="info.pinnedBlogs[0].publicationDate" )
     .top-blogs__right
       router-link(:to="'blog-post/' + info.pinnedBlogs[1].id").top-blogs__right-card.top-blogs__right-card-1
-        .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(1)})`}")
+        .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(1)})` }")
         .top-blogs__placeholder
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[1]) }}
         card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views", :author="info.pinnedBlogs[1].author", :date="info.pinnedBlogs[1].publicationDate" )
       router-link(:to="'blog-post/' + info.pinnedBlogs[2].id").top-blogs__right-card.top-blogs__right-card-2
-        .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(2)})`, }")
+        .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(2)})` }")
         .top-blogs__placeholder
         .top-blogs__right-title
           | {{ getTitle(info.pinnedBlogs[2]) }}

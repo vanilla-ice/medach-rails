@@ -112,7 +112,6 @@
 
   .article__content-text img {
     margin: 10px 0;
-    padding: 0 25px;
 
     max-width: 100%;
     height: auto !important;
@@ -159,11 +158,6 @@
     overflow: hidden !important;
   }
 
-  @media(max-width: 500px) {
-    .article__content-text img {
-      padding: 0 5px; 
-    }
-  }
 </style>
 
 <style lang="scss" scoped>
