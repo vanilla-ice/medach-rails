@@ -22,8 +22,9 @@ desc "read file"
          Article.create(
             body: content.gsub(/http:../, +'http://old.' ),
             title: post["post_title"], publish_on: Time.zone.now,
-            search: post["ID"], shorttext: short,
-            author: "old.medach.pro"
+            search: post["ID"], short_description: short,
+            author: "old.medach.pro",
+            type: "LongreadArticle"
             )
       else
         puts post["ID"] + " " + "НЕ ПОЛНЫЙ"
@@ -41,7 +42,7 @@ desc "read file"
         kek = Article.find_by(search: post["post_parent"])
         unless kek.nil?
           ima = post["guid"].gsub(/http:../, +'http://old.')
-          kek.update(remote_image_url: ima)
+          kek.update(remote_cover_image_url: ima)
         else
           nil 
         end
