@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header(:class="{'header-fixed': headerFixed}")
+  header.header
     loader-component(v-if="isLoading")
     .tags-popup.only-desktop(v-if="isTagsOpen")
       .tag-wrapper
@@ -99,7 +99,7 @@
         isOpen: false,
         isTagsOpen: false,
         sort: true,
-        headerFixed: false
+        // headerFixed: false
       }
     },
   
@@ -110,9 +110,9 @@
 
     mounted() {
       let routerCurrentName = this.$router.history.current.name
-      if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
-        this.headerFixed = true
-      }
+      // if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
+      //   this.headerFixed = true
+      // }
 
       if (routerCurrentName !== 'blogs' &&
         routerCurrentName !== 'home'
@@ -221,15 +221,15 @@
     }
   }
 
-  .header-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
+  // .header-fixed {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
     
-    width: 100%;
+  //   width: 100%;
 
-    box-shadow: 0 0 15px rgba(0, 0, 0, .15)
-  }
+  //   box-shadow: 0 0 15px rgba(0, 0, 0, .15)
+  // }
   
   .header .container {
     max-width: 1440px;

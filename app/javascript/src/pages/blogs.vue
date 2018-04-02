@@ -1,6 +1,7 @@
 <template lang="pug">
   div.main-container(:class="{'main-open-menu': isOpen}")
     loader-component(v-if="isLoading")
+    scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState")
@@ -35,7 +36,8 @@
       FooterComponent,
       Intresting,
       LoaderComponent,
-      InOrderMain
+      InOrderMain,
+      ScrollTop: () => import('../components/ScrollTop.vue')
     },
 
     computed: {
@@ -46,7 +48,8 @@
       return {
         isLoading: true,
         scrollBottom: true,
-        isOpen: false
+        isOpen: false,
+        scrollButton: false
       }
     },
 
@@ -60,6 +63,7 @@
     });
 
     window.addEventListener('scroll', this.getNextPage)
+    window.addEventListener('scroll', this.showScrollToButton)
     },
 
     methods: {
@@ -84,9 +88,20 @@
     
       toggleMenu() {
         this.isOpen = !this.isOpen;
+      },
+
+      showScrollToButton() {
+        if (window.pageYOffset) return this.scrollButton = true
+        return this.scrollButton = false
+      }
+    },
+
+      beforeDestroy (to, from, next) {
+        window.removeEventListener('scroll', this.getNextPage)
+        window.removeEventListener('scroll', this.getScrollCoord)
+      this.$store.dispatch('removeMeta')
       }
     }
-  }
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,6 @@
 <template lang="pug">
   .container
+    scroll-top(v-if="scrollButton")
     .article__wrapper
       .article
         .article-title
@@ -42,13 +43,21 @@
   import ru from 'date-fns/locale/ru'
 
   export default {
+    components: {
+      ScrollTop: () => import('../components/ScrollTop.vue')
+    },
 
     props: ['title', 'coverImage', 'date', 'post', 'postInfo'],
 
     data() {
       return {
-        currentImg: null
+        currentImg: null,
+        scrollButton: false
       }
+    },
+
+    mounted() {
+      window.addEventListener('scroll', this.showScrollToButton)
     },
 
     beforeUpdate() {
@@ -85,6 +94,11 @@
 
       getTags() {
         return this.postInfo.tags.join(', '); 
+      },
+
+      showScrollToButton() {
+        if (window.pageYOffset) return this.scrollButton = true
+        return this.scrollButton = false
       }
     },
 
@@ -112,7 +126,6 @@
 
   .article__content-text img {
     margin: 10px 0;
-    padding: 0 25px;
 
     max-width: 100%;
     height: auto !important;
@@ -159,14 +172,19 @@
     overflow: hidden !important;
   }
 
-  @media(max-width: 500px) {
-    .article__content-text img {
-      padding: 0 5px; 
+  @media(max-width: 700px) {
+    .article__content-text iframe {
+      width: 100%;
+      height: 52vw;
     }
   }
 </style>
 
 <style lang="scss" scoped>
+  .container {
+    position: static;
+  }
+
   .article__wrapper {
     max-width: 1380px;
     width: 100%;
