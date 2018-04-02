@@ -10,36 +10,7 @@ ActiveAdmin.register MainConfig do
 
   menu parent: "Конфигурация страниц"
 
-  form do |f|
-    f.inputs do
-      f.input :title, label: 'Название'
-      f.input :active, label: 'Активен'
-      f.input(
-        :pinned_articles,
-        as: :select,
-        :input_html => { multiple: true },
-        collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :pinned_blogs,
-        as: :select,
-        :input_html => { multiple: true },
-        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :main_news,
-        as: :select,
-        :input_html => { multiple: true },
-        collection: NewsArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :promoted_articles,
-        :input_html => { multiple: true },
-        collection: LongreadArticle.published.collect { |article| [article.title, article.id] }
-      )
-    end
-    f.actions
-  end
+  form partial: 'main_config_form'
 
   index do
     def populate_articles(article_ids)
@@ -68,12 +39,21 @@ ActiveAdmin.register MainConfig do
       params[:main_config][name].reject(&:empty?)
     end
 
+    def process_order_field(name)
+      order_string = params[:main_config][name]
+      order_string.split(',').map{|s| s.delete(" ") }.reject(&:empty?)
+    end
+
     def build_data
       @data = {
         pinned_articles: filter_input_data(:pinned_articles),
+        pinned_articles_order: process_order_field(:pinned_articles_order),
         pinned_blogs: filter_input_data(:pinned_blogs),
+        pinned_blogs_order: process_order_field(:pinned_blogs_order),
         main_news: filter_input_data(:main_news),
-        promoted_articles: filter_input_data(:promoted_articles)
+        main_news_order: process_order_field(:main_news_order),
+        promoted_articles: filter_input_data(:promoted_articles),
+        promoted_articles_order: process_order_field(:promoted_articles_order),
       }
     end
 

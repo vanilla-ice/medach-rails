@@ -10,40 +10,7 @@ ActiveAdmin.register BlogsConfig do
 
   menu parent: "Конфигурация страниц"
 
-  form do |f|
-    f.inputs do
-      f.input :title, label: 'Название'
-      f.input :active, label: 'Активен'
-      f.input(
-        :pinned_blogs,
-        label: 'Закрепленные блоги',
-        as: :select,
-        :input_html => { multiple: true },
-        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :spotlight_blogs,
-        label: 'Блоги в центре внимания',
-        as: :select,
-        :input_html => { multiple: true },
-        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :main_blogs,
-        label: 'Главные блоги',
-        as: :select,
-        :input_html => { multiple: true },
-        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
-      )
-      f.input(
-        :promoted_blogs,
-        label: 'Продвигаемые блоги',
-        :input_html => { multiple: true },
-        collection: BlogArticle.published.collect { |article| [article.title, article.id] }
-      )
-    end
-    f.actions
-  end
+  form partial: 'blogs_config_form'
 
   index do
     def populate_articles(article_ids)
@@ -72,12 +39,21 @@ ActiveAdmin.register BlogsConfig do
       params[:blogs_config][name].reject(&:empty?)
     end
 
+    def process_order_field(name)
+      order_string = params[:blogs_config][name]
+      order_string.split(',').map{|s| s.delete(" ") }.reject(&:empty?)
+    end
+
     def build_data
       @data = {
         pinned_blogs: filter_input_data(:pinned_blogs),
+        pinned_blogs_order: process_order_field(:pinned_blogs_order),
         spotlight_blogs: filter_input_data(:spotlight_blogs),
+        spotlight_blogs_order: process_order_field(:spotlight_blogs_order),
         main_blogs: filter_input_data(:main_blogs),
-        promoted_blogs: filter_input_data(:promoted_blogs)
+        main_blogs_order: process_order_field(:main_blogs_order),
+        promoted_blogs: filter_input_data(:promoted_blogs),
+        promoted_blogs_order: process_order_field(:promoted_blogs_order),
       }
     end
 

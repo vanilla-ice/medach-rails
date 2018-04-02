@@ -1,0 +1,7 @@
+<% #params: name, label, order_label, collection %>
+<%= f.input name,
+      label: label,
+      as: :select,
+      :input_html => { multiple: true },
+      collection: collection.collect { |article| ["#{article.title} [id = #{article.id}]", article.id] } %>
+<%= f.input "#{name}_order", label: order_label %>
