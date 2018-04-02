@@ -4,15 +4,21 @@ class HomeController < ApplicationController
   end
 
   private
+  def default_rich_preview
+    default_value = {
+      image: ApplicationController.helpers.asset_path('logo.png'),
+      url: request.original_url,
+      title: "Medach",
+      description: "Medach",
+      keywords: [].join(" ")
+    }
+  end
+
   def get_rich_preview_data
     @path = request.fullpath.split('/').reject { |c| c.empty? }
     page = @path[0]
     id = @path[1]
-    default_value = {
-      url: request.original_url,
-      title: "Medach",
-      description: "Test for pretty preview by Medach"
-    }
+    default_value = default_rich_preview
     if id && Article.exists?(id) && page != 'tag' then
       article = Article.find(id)
       default_value[:title] = article.title
