@@ -1,24 +1,24 @@
 <template lang="pug">
   .top-blogs.container
-    router-link(:to="'blog-post/' + info.pinnedBlogs[0].id").top-blogs__left
-      .top-blogs__image( :style="{ backgroundImage:`url(${info.pinnedBlogs[0].coverImage.url})` }")
+    router-link(:to="'blog-post/' + info[0].id").top-blogs__left
+      .top-blogs__image( :style="{ backgroundImage:`url(${info[0].coverImage.url})` }")
       .top-blogs__placeholder
       .top-blogs__left-title
-        | {{ getTitle(info.pinnedBlogs[0]) }}
-      card-footer( :tags="info.pinnedBlogs[0].tags", :view="info.pinnedBlogs[0].views", :author="info.pinnedBlogs[0].author", :date="info.pinnedBlogs[0].publicationDate" )
+        | {{ getTitle(info[0]) }}
+      card-footer( :tags="info[0].tags", :view="info[0].views", :author="info[0].author", :date="info[0].publicationDate" )
     .top-blogs__right
-      router-link(:to="'blog-post/' + info.pinnedBlogs[1].id").top-blogs__right-card.top-blogs__right-card-1
+      router-link(:to="'blog-post/' + info[1].id").top-blogs__right-card.top-blogs__right-card-1
         .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(1)})` }")
         .top-blogs__placeholder
         .top-blogs__right-title
-          | {{ getTitle(info.pinnedBlogs[1]) }}
-        card-footer( :tags="info.pinnedBlogs[1].tags", :view="info.pinnedBlogs[1].views", :author="info.pinnedBlogs[1].author", :date="info.pinnedBlogs[1].publicationDate" )
-      router-link(:to="'blog-post/' + info.pinnedBlogs[2].id").top-blogs__right-card.top-blogs__right-card-2
+          | {{ getTitle(info[1]) }}
+        card-footer( :tags="info[1].tags", :view="info[1].views", :author="info[1].author", :date="info[1].publicationDate" )
+      router-link(:to="'blog-post/' + info[2].id").top-blogs__right-card.top-blogs__right-card-2
         .top-blogs__image( :style="{ backgroundImage:`url(${getImageSrc(2)})` }")
         .top-blogs__placeholder
         .top-blogs__right-title
-          | {{ getTitle(info.pinnedBlogs[2]) }}
-        card-footer( :tags="info.pinnedBlogs[2].tags", :view="info.pinnedBlogs[2].views" :author="info.pinnedBlogs[2].author", :date="info.pinnedBlogs[2].publicationDate" )
+          | {{ getTitle(info[2]) }}
+        card-footer( :tags="info[2].tags", :view="info[2].views" :author="info[2].author", :date="info[2].publicationDate" )
 </template>
 
 <script>
@@ -44,8 +44,8 @@
       },
 
       getImageSrc(num) {
-        if (this.info.pinnedBlogs[num].smallCoverImage.url) return this.info.pinnedBlogs[num].smallCoverImage.url
-        return this.info.pinnedBlogs[num].coverImage.url
+        if (this.info[num].smallCoverImage.url) return this.info[num].smallCoverImage.url
+        return this.info[num].coverImage.url
       }
     }
   }

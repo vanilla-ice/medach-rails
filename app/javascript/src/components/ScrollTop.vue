@@ -25,7 +25,7 @@
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 45px 45px 0;
+    border-width: 0 60px 60px 0;
     border-color: transparent transparent #1F262E transparent;
     text-align: center;
     opacity: .8;
@@ -39,8 +39,8 @@
 
   .arrow-img {
     position: absolute;
-    top: 23px;
-    right: -22px;
+    top: 34px;
+    right: -27px;
     width: 15px;
     height: 15px;
     transform: rotate(-90deg);
