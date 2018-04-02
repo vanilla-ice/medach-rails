@@ -104,7 +104,7 @@ desc "add tags on articles"
         if tag["term_id"] === taggin["term_taxonomy_id"]
           lolik = Article.find_by(search: taggin["object_id"])
           unless lolik.nil?
-            lolik.tag_list.remove(tag["name"])
+            lolik.tag_list.add(tag["name"])
             lolik.save
             puts "NORMUL"
           else
