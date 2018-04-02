@@ -5,10 +5,10 @@
     header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState" v-for="(item, index) in blogsPageConfig")
-        top-blogs(v-if="item && item.pinnedBlogs.length > 1" :info="item.pinnedBlogs")
-        three-columns(v-if="item && item.spotlightBlogs.length > 1" :info="item.spotlightBlogs")
-        two-columns(v-if="item && item.mainBlogs.length > 0" :info="item.mainBlogs")
-        intresting(v-if="item && item.promotedBlogs.length > 0" :info="item.promotedBlogs")
+        top-blogs(v-if="item && item.pinnedBlogs.length > 2" :info="item.pinnedBlogs")
+        three-columns(v-if="item && item.spotlightBlogs.length > 2" :info="item.spotlightBlogs")
+        two-columns(v-if="item && item.mainBlogs.length > 1" :info="item.mainBlogs")
+        intresting(v-if="item && item.promotedBlogs.length > 1" :info="item.promotedBlogs")
       .in-order(v-if="sortState")
         in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
     footer-component

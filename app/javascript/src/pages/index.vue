@@ -5,10 +5,10 @@
     header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState" v-for="(item, index) in mainPageConfig")
-        top-articles(v-if="item && item.pinnedArticles.length > 0" :info="item.pinnedArticles")
-        blogs(v-if="item && item.pinnedBlogs.length > 3" :info="item.pinnedBlogs")
-        news(v-if="item && item.mainNews.length > 0" :info="item.mainNews")
-        worst-articles(v-if="item && item.promotedArticles.length > 1" :info="item.promotedArticles")
+        top-articles(v-if="item && item.pinnedArticles.length > 1" :info="item.pinnedArticles")
+        blogs(v-if="item && item.pinnedBlogs.length > 4" :info="item.pinnedBlogs")
+        news(v-if="item && item.mainNews.length > 1" :info="item.mainNews")
+        worst-articles(v-if="item && item.promotedArticles.length > 2" :info="item.promotedArticles")
       .in-order(v-if="sortState")
         in-order-main(v-if="indexInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
     footer-component
@@ -52,9 +52,9 @@ export default {
   },
 
   mounted() {
-
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
+      console.log(this.mainPageConfig)
     });
 
     this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
