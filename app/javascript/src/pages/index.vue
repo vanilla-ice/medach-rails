@@ -4,11 +4,11 @@
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState")
-        top-articles(v-if="mainPageConfig" :info="mainPageConfig")
-        blogs(v-if="mainPageConfig" :info="mainPageConfig")
-        news(v-if="mainPageConfig && mainPageConfig.mainNews.length > 0" :info="mainPageConfig.mainNews")
-        worst-articles(v-if="mainPageConfig" :info="mainPageConfig.promotedArticles")
+      .main-wrapper(v-if="!sortState" v-for="(item, index) in mainPageConfig")
+        top-articles(v-if="item && item.pinnedArticles.length > 0" :info="item.pinnedArticles")
+        blogs(v-if="item && item.pinnedBlogs.length > 3" :info="item.pinnedBlogs")
+        news(v-if="item && item.mainNews.length > 0" :info="item.mainNews")
+        worst-articles(v-if="item && item.promotedArticles.length > 1" :info="item.promotedArticles")
       .in-order(v-if="sortState")
         in-order-main(v-if="indexInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
     footer-component
@@ -52,6 +52,7 @@ export default {
   },
 
   mounted() {
+
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
     });
@@ -108,6 +109,14 @@ export default {
 </script>
 
 <style lang="scss" scopped>
+.main-wrapper {
+  margin-bottom: 30px;
+}
+
+.main-wrapper:last-child {
+  margin-bottom: 0;
+}
+
 .main {
   min-height: 100vh;
   padding-top: 30px;
