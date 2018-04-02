@@ -1,6 +1,7 @@
 <template lang="pug">
   div.main-container
     loader-component(v-if="isLoading")
+    scroll-top(v-if="scrollButton")
     header-component
     .main
       in-order-main(v-if="news" :info="news" :bouncing="!scrollBottom")
@@ -17,13 +18,15 @@ import { mapGetters } from 'vuex'
     components: {
       HeaderComponent,
       InOrderMain,
-      LoaderComponent
+      LoaderComponent,
+      ScrollTop: () => import('../components/ScrollTop.vue')
     },
 
     data() {
       return {
         isLoading: true,
-        scrollBottom: true
+        scrollBottom: true,
+        scrollButton: false
       }
     },
 
@@ -33,7 +36,9 @@ import { mapGetters } from 'vuex'
           this.isLoading = false
         });
       }
+
       window.addEventListener('scroll', this.getNextPage)
+      window.addEventListener('scroll', this.showScrollToButton)
 
       this.isLoading = false
       return;
@@ -54,11 +59,17 @@ import { mapGetters } from 'vuex'
             .then(() => this.scrollBottom = true)
           }  
         }
+      },
+
+      showScrollToButton() {
+        if (window.pageYOffset) return this.scrollButton = true
+        return this.scrollButton = false
       }
     },
 
     beforeDestroy () {
       window.removeEventListener('scroll', this.getNextPage)
+      window.removeEventListener('scroll', this.showScrollToButton)
     },
   }
 </script>

@@ -1,7 +1,7 @@
 <template lang="pug" >
   div.main-container(:class="{'main-open-menu': isOpen}")
     loader-component(v-if="isLoading")
-    scroll-top(v-if="scrollButtonShow")
+    scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
       .main-wrapper(v-if="!sortState")
@@ -47,7 +47,7 @@ export default {
       isLoading: true,
       scrollBottom: true,
       isOpen: false,
-      scrollButtonShow: false
+      scrollButton: false
     }
   },
 
@@ -62,7 +62,7 @@ export default {
 
     window.addEventListener('scroll', this.getNextPage)
 
-    window.addEventListener('scroll', this.showScrollTo)
+    window.addEventListener('scroll', this.showScrollToButton)
   },
 
   computed: {
@@ -93,9 +93,9 @@ export default {
       this.isOpen = !this.isOpen;
     },
 
-    showScrollTo() {
-      if (window.pageYOffset) return this.scrollButtonShow = true
-      return this.scrollButtonShow = false
+    showScrollToButton() {
+      if (window.pageYOffset) return this.scrollButton = true
+      return this.scrollButton = false
     }
   },
 

@@ -1,6 +1,7 @@
 <template lang="pug" >
   div
     loader-component(v-if="isLoading")
+    scroll-top(v-if="scrollButton")
     header-component
     main.main-surgery
       in-order-main(v-if="search" :info="search" :bouncing="!scrollBottom")
@@ -19,13 +20,15 @@ export default {
     HeaderComponent,
     PostersComponent,
     LoaderComponent,
-    InOrderMain
+    InOrderMain,
+    ScrollTop: () => import('../components/ScrollTop.vue')
   },
 
   data () {
     return {
       isLoading: true, 
-      scrollBottom: true
+      scrollBottom: true,
+      scrollButton: false
     }
   },
 
@@ -53,6 +56,7 @@ export default {
 
   mounted () {
     window.addEventListener('scroll', this.getNextPage)
+    window.addEventListener('scroll', this.showScrollToButton)
   },
 
   computed: {
@@ -81,11 +85,17 @@ export default {
           .then(() => this.scrollBottom = true)
         }
       }
+    },
+
+    showScrollToButton() {
+      if (window.pageYOffset) return this.scrollButton = true
+      return this.scrollButton = false
     }
   },
 
   beforeDestroy (to, from, next) {
     window.removeEventListener('scroll', this.getNextPage)
+    window.removeEventListener('scroll', this.showScrollToButton)
     this.$store.dispatch('removeMeta')
   }
 }

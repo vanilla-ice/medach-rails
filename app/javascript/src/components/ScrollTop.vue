@@ -20,12 +20,12 @@
   .wrapper {
     position: fixed;
     z-index: 999;
-    right: 0;
+    left: 0;
     bottom: 0;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 0 45px 45px;
+    border-width: 0 45px 45px 0;
     border-color: transparent transparent #1F262E transparent;
     text-align: center;
     opacity: .8;
@@ -39,8 +39,8 @@
 
   .arrow-img {
     position: absolute;
-    top: 22px;
-    right: 6px;
+    top: 23px;
+    right: -22px;
     width: 15px;
     height: 15px;
     transform: rotate(-90deg);
