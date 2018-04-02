@@ -25,6 +25,7 @@
     "vue-images": "^1.0.10",
     "vue-loader": "^13.3.0",
     "vue-router": "^3.0.1",
+    "vue-scrollto": "^2.11.0",
     "vue-simple-lightbox": "^1.1.0",
     "vue-sweetalert2": "^1.0.7",
     "vue-template-compiler": "^2.5.2",

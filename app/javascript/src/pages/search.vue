@@ -1,5 +1,6 @@
 <template lang="pug" >
   div.main-container
+    scroll-top(v-if="scrollButton")
     header-component
     main.main-surgery
       in-order-main(v-if="search" :info="search" :bouncing="!scrollBottom")
@@ -13,9 +14,17 @@ import InOrderMain from '../components/in-order/InOrderMain.vue'
 import { mapGetters } from 'vuex'
 
 export default {
+  components: {
+    HeaderComponent,
+    PostersComponent,
+    InOrderMain,
+    ScrollTop: () => import('../components/ScrollTop.vue')
+  },
+
   data () {
     return {
-      scrollBottom: true
+      scrollBottom: true,
+      scrollButton: false
     }
   },
 
@@ -23,14 +32,9 @@ export default {
     ...mapGetters(['posts', 'search', 'searchMeta'])
   },
 
-  components: {
-    HeaderComponent,
-    PostersComponent,
-    InOrderMain
-  },
-
   mounted() {
     window.addEventListener('scroll', this.getNextPage)
+    window.addEventListener('scroll', this.showScrollToButton)
   },
 
   methods: {
@@ -50,11 +54,17 @@ export default {
           .then(() => this.scrollBottom = true)
         }
       }
+    },
+
+    showScrollToButton() {
+      if (window.pageYOffset) return this.scrollButton = true
+      return this.scrollButton = false
     }
   },
 
   beforeDestroy (to, from, next) {
     window.removeEventListener('scroll', this.getNextPage)
+    window.removeEventListener('scroll', this.showScrollToButton)
     this.$store.dispatch('removeMeta')
   }
 }

@@ -4,13 +4,13 @@
       .blogs-tag
         | БЛОГИ
       .blogs__articles-wrapper
-        router-link(:to=" 'blog-post/' + info.pinnedBlogs[0].id ").blogs__articles-big
+        router-link(:to=" 'blog-post/' + info[0].id ").blogs__articles-big
           .blogs__articles-big-text
-            | {{ info.pinnedBlogs[0].title }}
+            | {{ info[0].title }}
           .blogs__articles-big-date
-            | {{ currentDate(info.pinnedBlogs[0].publicationDate) }}  
+            | {{ currentDate(info[0].publicationDate) }}  
         .blogs__articles-min-wrapper
-          router-link(v-for="(item, id) in info.pinnedBlogs" v-if="id > 0 && id < 5" :key="id" :to=" 'blog-post/' + item.id ").blogs__articles-min-item
+          router-link(v-for="(item, id) in info" v-if="id > 0 && id < 5" :key="id" :to=" 'blog-post/' + item.id ").blogs__articles-min-item
             .blogs__articles-min-item-text
               | {{ item.title }}
             .blogs__articles-min-item-date

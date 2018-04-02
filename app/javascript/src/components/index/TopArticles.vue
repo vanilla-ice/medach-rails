@@ -1,24 +1,24 @@
 
 <template lang="pug">
   .top-articles__container.container
-    router-link(:to=" 'post/' + info.pinnedArticles[0].id ").top-articles__item
+    router-link(:to=" 'post/' + info[0].id ").top-articles__item
       .top-articles__image.top-articles__image-placeholder
         span MEDACH
-      .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${info.pinnedArticles[0].coverImage.url})` }")
+      .top-articles__image.top-articles__image-1( :style="{ backgroundImage:`url(${getImageSrc(0)})` }" )
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
-          | {{ getTitle(info.pinnedArticles[0]) }}
-        card-footer( :tags="info.pinnedArticles[0].tags", :view="info.pinnedArticles[0].views" :date="info.pinnedArticles[0].publicationDate" )
-    router-link(:to="'post/' + info.pinnedArticles[1].id").top-articles__item
+          | {{ getTitle(info[0]) }}
+        card-footer( :tags="info[0].tags", :view="info[0].views" :date="info[0].publicationDate" )
+    router-link(:to="'post/' + info[1].id").top-articles__item
       .top-articles__image.top-articles__image-placeholder
         span MEDACH
-      .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${info.pinnedArticles[1].coverImage.url})` }")
+      .top-articles__image.top-articles__image-2( :style="{ backgroundImage:`url(${getImageSrc(1)})` }")
         .top-articles__info-name
       .top-articles__text-block
         .top-articles__text
-          | {{ getTitle(info.pinnedArticles[1]) }}
-        card-footer( :tags="info.pinnedArticles[1].tags", :view="info.pinnedArticles[1].views" :date="info.pinnedArticles[1].publicationDate" )
+          | {{ getTitle(info[1]) }}
+        card-footer( :tags="info[1].tags", :view="info[1].views" :date="info[1].publicationDate" )
 </template>
 
 <script>
@@ -35,6 +35,11 @@
       getTitle(data) {
         if (data) return data.title
         return "Неизвестно" 
+      },
+
+      getImageSrc(num) {
+        if (this.info[num].smallCoverImage.url) return this.info[num].smallCoverImage.url
+        return this.info[num].coverImage.url
       }
     }
   }

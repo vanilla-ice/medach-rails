@@ -7,7 +7,6 @@ import Media from '../pages/media.vue'
 import Post from '../pages/post.vue'
 import Tag from '../pages/tag.vue'
 import Search from '../pages/search.vue'
-import InOrder from '../pages/inOrder.vue'
 import BlogPost from '../pages/blogPost.vue'
 import NewsPost from '../pages/newsPost.vue'
 import MediaPost from '../pages/mediaPost.vue'
@@ -58,11 +57,6 @@ const router = new Router({
       path: '/blogs',
       name: 'blogs',
       component: Blogs
-    },
-    {
-      path: '/in-order',
-      name: 'in-order',
-      component: InOrder
     },
     {
       path: '/news',

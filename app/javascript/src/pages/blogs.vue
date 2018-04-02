@@ -1,13 +1,14 @@
 <template lang="pug">
   div.main-container(:class="{'main-open-menu': isOpen}")
     loader-component(v-if="isLoading")
+    scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState")
-        top-blogs(v-if="blogsPageConfig" :info="blogsPageConfig")
-        three-columns(v-if="blogsPageConfig" :info="blogsPageConfig.spotlightBlogs")
-        two-columns(v-if="blogsPageConfig" :info="blogsPageConfig.mainBlogs")
-        intresting(v-if="blogsPageConfig" :info="blogsPageConfig.promotedBlogs")
+      .main-wrapper(v-if="!sortState" v-for="(item, index) in blogsPageConfig")
+        top-blogs(v-if="item && item.pinnedBlogs.length > 1" :info="item.pinnedBlogs")
+        three-columns(v-if="item && item.spotlightBlogs.length > 1" :info="item.spotlightBlogs")
+        two-columns(v-if="item && item.mainBlogs.length > 0" :info="item.mainBlogs")
+        intresting(v-if="item && item.promotedBlogs.length > 0" :info="item.promotedBlogs")
       .in-order(v-if="sortState")
         in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
     footer-component
@@ -35,7 +36,8 @@
       FooterComponent,
       Intresting,
       LoaderComponent,
-      InOrderMain
+      InOrderMain,
+      ScrollTop: () => import('../components/ScrollTop.vue')
     },
 
     computed: {
@@ -46,12 +48,14 @@
       return {
         isLoading: true,
         scrollBottom: true,
-        isOpen: false
+        isOpen: false,
+        scrollButton: false
       }
     },
 
     mounted() {
       this.$store.dispatch('getBlogsPageConfig').then((res) => {
+        console.log(this.blogsPageConfig)
         this.isLoading = false
       });
 
@@ -60,6 +64,7 @@
     });
 
     window.addEventListener('scroll', this.getNextPage)
+    window.addEventListener('scroll', this.showScrollToButton)
     },
 
     methods: {
@@ -84,9 +89,20 @@
     
       toggleMenu() {
         this.isOpen = !this.isOpen;
+      },
+
+      showScrollToButton() {
+        if (window.pageYOffset) return this.scrollButton = true
+        return this.scrollButton = false
+      }
+    },
+
+      beforeDestroy (to, from, next) {
+        window.removeEventListener('scroll', this.getNextPage)
+        window.removeEventListener('scroll', this.getScrollCoord)
+      this.$store.dispatch('removeMeta')
       }
     }
-  }
 </script>
 
 <style lang="scss" scoped>
