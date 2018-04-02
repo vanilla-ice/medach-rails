@@ -55,7 +55,6 @@
 
     mounted() {
       this.$store.dispatch('getBlogsPageConfig').then((res) => {
-        console.log(this.blogsPageConfig)
         this.isLoading = false
       });
 

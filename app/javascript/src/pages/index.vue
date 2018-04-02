@@ -54,7 +54,6 @@ export default {
   mounted() {
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
-      console.log(this.mainPageConfig)
     });
 
     this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
