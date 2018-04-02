@@ -4,20 +4,40 @@ class HomeController < ApplicationController
   end
 
   private
-  def get_rich_preview_data
-    @path = request.fullpath.split('/').reject { |c| c.empty? }
-    page = @path[0]
-    id = @path[1]
+  def default_rich_preview
     default_value = {
+      image: ApplicationController.helpers.asset_path('logo.png'),
       url: request.original_url,
       title: "Medach",
-      description: "Test for pretty preview by Medach"
+      description: "Medach",
+      keywords: [].join(" ")
     }
-    if id && Article.exists?(id) && page != 'tag' then
-      article = Article.find(id)
+  end
+
+  def get_url
+    route_array = request.fullpath.split('/').reject { |c| c.empty? }
+    '/' + (route_array[0] || '')
+  end
+
+  def get_id
+    route_array = request.fullpath.split('/').reject { |c| c.empty? }
+    route_array[1]
+  end
+
+  def get_rich_preview_data
+    @page = get_url
+    @id = get_id
+    default_value = default_rich_preview
+    if @id && @page != '/tag' && Article.exists?(@id) then
+      article = Article.find(@id)
       default_value[:title] = article.title
       default_value[:description] = article.short_description
       default_value[:image] = article.cover_image.url
+    elsif PageMeta.exists?(:url => @page)
+      page_meta = PageMeta.find_by(url: @page)
+      default_value[:title] = page_meta.title
+      default_value[:description] = page_meta.description
+      default_value[:keywords] = page_meta.keywords
     end
     default_value
   end
