@@ -39,9 +39,6 @@ import { mapGetters } from 'vuex'
 
       window.addEventListener('scroll', this.getNextPage)
       window.addEventListener('scroll', this.showScrollToButton)
-
-      this.isLoading = false
-      return;
     },
 
     computed: {
