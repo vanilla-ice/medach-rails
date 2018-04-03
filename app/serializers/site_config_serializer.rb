@@ -8,7 +8,14 @@ class SiteConfigSerializer < ActiveModel::Serializer
   end
 
   def populate_articles(articles_type)
-    articles = object.data[articles_type].map do |article_id|
+    ordered_article_ids = object.data["#{articles_type}_order"]
+    article_ids = object.data[articles_type]
+    article_ids_to_populate = if article_ids.sort == ordered_article_ids.sort then
+      ordered_article_ids
+    else 
+      article_ids
+    end
+    articles = article_ids_to_populate.map do |article_id|
       Article.exists?(article_id) ? Article.find(article_id) : nil
     end
     articles.compact
