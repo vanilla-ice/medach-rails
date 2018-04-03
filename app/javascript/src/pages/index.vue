@@ -1,8 +1,8 @@
 <template lang="pug" >
   div.main-container(:class="{'main-open-menu': isOpen}")
-    loader-component(v-if="isLoading")
+    loader-component(v-if="isLoading" key="index-loader")
     scroll-top(v-if="scrollButton")
-    header-component(@isOpen="toggleMenu")
+    header-component(@isOpen="toggleMenu" @sortState="sortStateToggle")
     .main
       .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in mainPageConfig")
         top-articles(v-if="item && item.pinnedArticles.length > 1" :info="item.pinnedArticles")
@@ -48,26 +48,26 @@ export default {
       isLoadingInOrder: true,
       scrollBottom: true,
       isOpen: false,
-      scrollButton: false
+      scrollButton: false,
+      sortState: false
     }
   },
 
   mounted() {
-    this.$store.dispatch('getMainPageConfig').then((res) => {
-      this.isLoading = false
-    });
-
     this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
         this.isLoadingInOrder = false
     });
 
-    window.addEventListener('scroll', this.getNextPage)
+    this.$store.dispatch('getMainPageConfig').then((res) => {
+      this.isLoading = false
+    });
 
+    window.addEventListener('scroll', this.getNextPage)
     window.addEventListener('scroll', this.showScrollToButton)
   },
 
   computed: {
-    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig', 'sortState', 'indexInOrder', 'indexInOrderMeta'])
+    ...mapGetters(['activeDate', 'pageCount', 'indexPageCount', 'mainPageConfig', 'indexInOrder', 'indexInOrderMeta'])
   },
 
   methods: {
@@ -103,6 +103,10 @@ export default {
       const childrenStatus = item.pinnedArticles.length > 1 || item.pinnedBlogs.length > 4 || item.mainNews.length > 1 || item.promotedArticles.length > 2
       if (childrenStatus) return true
       return false
+    },
+
+    sortStateToggle() {
+      this.sortState = !this.sortState
     }
   },
 
