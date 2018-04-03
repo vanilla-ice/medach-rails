@@ -1,8 +1,8 @@
 <template lang="pug">
   .in-order
-    loader-component(v-if="isLoadingInOrder" key="in-order-loader")
     .container
       .in-order__wrapper
+        bouncing-loader(v-if='isLoadingInOrder')
         in-order-item(:info="info")
         bouncing-loader(v-if='bouncing')
 </template>

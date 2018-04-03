@@ -1,6 +1,6 @@
 <template lang="pug" >
   div.main-container(:class="{'main-open-menu': isOpen}")
-    loader-component(v-if="isLoading" key="index-loader")
+    loader-component(v-if="isLoading")
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu" @sortState="sortStateToggle")
     .main
@@ -54,12 +54,12 @@ export default {
   },
 
   mounted() {
-    this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-        this.isLoadingInOrder = false
-    });
-
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
+    });
+
+    this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
+        this.isLoadingInOrder = false
     });
 
     window.addEventListener('scroll', this.getNextPage)
