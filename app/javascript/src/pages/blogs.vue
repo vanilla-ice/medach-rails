@@ -1,8 +1,8 @@
 <template lang="pug">
   div.main-container(:class="{'main-open-menu': isOpen}")
-    loader-component(v-if="isLoading")
+    loader-component(v-if="isLoading" key="blogs-loader")
     scroll-top(v-if="scrollButton")
-    header-component(@isOpen="toggleMenu")
+    header-component(@isOpen="toggleMenu" @sortState="sortStateToggle")
     .main
       .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in blogsPageConfig")
         top-blogs(v-if="item && item.pinnedBlogs.length > 2" :info="item.pinnedBlogs")
@@ -41,7 +41,7 @@
     },
 
     computed: {
-      ...mapGetters(['blogsPageConfig', 'sortState', 'blogsInOrder', 'blogsInOrderMeta'])
+      ...mapGetters(['blogsPageConfig', 'blogsInOrder', 'blogsInOrderMeta'])
     },
 
     data() {
@@ -50,7 +50,8 @@
         isLoadingInOrder: true,
         scrollBottom: true,
         isOpen: false,
-        scrollButton: false
+        scrollButton: false,
+        sortState: false
       }
     },
 
@@ -100,6 +101,10 @@
         const childrenStatus = item.pinnedBlogs.length > 2 || item.spotlightBlogs.length > 2 || item.mainBlogs.length > 1 || item && item.promotedBlogs.length > 1
         if (childrenStatus) return true
         return false
+      },
+
+      sortStateToggle() {
+        this.sortState = !this.sortState
       }
     },
 

@@ -55,7 +55,6 @@ function store () {
       allTags: [],
       mainPageConfig: null,
       blogsPageConfig: null,
-      sortState: false
     },
 
     getters: {
@@ -81,7 +80,6 @@ function store () {
       tags: state => state.allTags,
       mainPageConfig: state => state.mainPageConfig,
       blogsPageConfig: state => state.blogsPageConfig,
-      sortState: state => state.sortState,
       indexInOrder: state => state.indexInOrder,
       indexInOrderMeta: state => state.indexInOrderMeta,
       blogsInOrder: state => state.blogsInOrder,
@@ -127,16 +125,11 @@ function store () {
         })
       },
 
-      sortStateToggle({state}) {
-        state.sortState = !state.sortState
-      },
-
       removeMeta({state}) {
         state.translatedMeta = null;
         state.articlesMeta = null;
         state.indexInOrderMeta = null;
         state.blogsInOrderMeta = null;
-        state.sortState = false;
         state.searchMeta = false;
         state.mediaMeta = false;
       },

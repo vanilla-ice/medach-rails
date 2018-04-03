@@ -138,7 +138,7 @@
       },
 
       sortToggle() {
-        this.$store.dispatch('sortStateToggle')
+        this.$emit('sortState')
       },
   
       toggleTags() {
