@@ -30,7 +30,8 @@
   .container {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .card {
@@ -117,6 +118,8 @@
     .container {
       flex-direction: column;
       justify-content: flex-start;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .card {

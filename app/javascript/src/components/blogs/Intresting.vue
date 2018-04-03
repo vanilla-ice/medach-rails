@@ -28,14 +28,15 @@
 
 <style lang="scss" scoped>
   .container {
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .intresting-wrapper {
     min-height: 500px;
     padding: 30px 15px 15px;
     width: 100%;
-    margin-bottom: 10px;
+
 
     background: #fff;
     box-shadow: 0 0 15px rgba(0,0,0,0.15), inset 0 4px 0 #110F6C;
@@ -144,6 +145,11 @@
   }
 
   @media(max-width: 1024px) {
+    .container {
+      padding-top: 10px;
+      padding-bottom: 10px
+    }
+
     .card {
       max-width: 660px;
       width: 100%;

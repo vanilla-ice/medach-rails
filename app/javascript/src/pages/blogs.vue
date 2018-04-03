@@ -4,7 +4,7 @@
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState" v-for="(item, index) in blogsPageConfig")
+      .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in blogsPageConfig")
         top-blogs(v-if="item && item.pinnedBlogs.length > 2" :info="item.pinnedBlogs")
         three-columns(v-if="item && item.spotlightBlogs.length > 2" :info="item.spotlightBlogs")
         two-columns(v-if="item && item.mainBlogs.length > 1" :info="item.mainBlogs")
@@ -93,6 +93,12 @@
       showScrollToButton() {
         if (window.pageYOffset) return this.scrollButton = true
         return this.scrollButton = false
+      },
+
+      checkChildren(item) {
+        const childrenStatus = item.pinnedBlogs.length > 2 || item.spotlightBlogs.length > 2 || item.mainBlogs.length > 1 || item && item.promotedBlogs.length > 1
+        if (childrenStatus) return true
+        return false
       }
     },
 

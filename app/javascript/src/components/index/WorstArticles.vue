@@ -27,8 +27,9 @@
 
 <style lang="scss" scoped>
   .worst-articles__container {
-    margin-top: 30px; 
     justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .worst-articles__item {
@@ -190,6 +191,9 @@
     .worst-articles__container {
       flex-direction: column;
       justify-content: flex-start;
+
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .worst-articles__item {

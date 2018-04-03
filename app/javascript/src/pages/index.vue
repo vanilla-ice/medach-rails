@@ -4,7 +4,7 @@
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState" v-for="(item, index) in mainPageConfig")
+      .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in mainPageConfig")
         top-articles(v-if="item && item.pinnedArticles.length > 1" :info="item.pinnedArticles")
         blogs(v-if="item && item.pinnedBlogs.length > 4" :info="item.pinnedBlogs")
         news(v-if="item && item.mainNews.length > 1" :info="item.mainNews")
@@ -96,6 +96,12 @@ export default {
     showScrollToButton() {
       if (window.pageYOffset) return this.scrollButton = true
       return this.scrollButton = false
+    },
+
+    checkChildren(item) {
+      const childrenStatus = item.pinnedArticles.length > 1 || item.pinnedBlogs.length > 4 || item.mainNews.length > 1 || item.promotedArticles.length > 2
+      if (childrenStatus) return true
+      return false
     }
   },
 
@@ -108,18 +114,14 @@ export default {
 </script>
 
 <style lang="scss" scopped>
-.main-wrapper {
-  margin-bottom: 30px;
-}
-
 .main-wrapper:last-child {
   margin-bottom: 0;
 }
 
 .main {
   min-height: 100vh;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   background: #e0e0e0;
 }

@@ -52,6 +52,11 @@
 </script>
 
 <style lang="scss" scoped>
+  .top-blogs {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
   .top-blogs__left {
     position: relative;
 
@@ -214,6 +219,8 @@
   @media(max-width: 1024px) {
     .top-blogs {
       flex-direction: column;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .top-blogs__right {
@@ -279,7 +286,8 @@
 
   @media(max-width: 500px) {
     .top-blogs {
-      padding: 0;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .top-blogs__left,

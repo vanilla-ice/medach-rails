@@ -38,7 +38,8 @@
 
 <style lang = "scss" scoped>
   .blogs__container {
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .blogs__wrapper {
@@ -140,7 +141,8 @@
 
   @media(max-width: 1024px) {
     .blogs__container {
-      margin-top: 15px;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .blogs__wrapper {
