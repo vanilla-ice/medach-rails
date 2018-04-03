@@ -95,8 +95,6 @@
   }
 
   .title {
-    padding-right: 24px;
-
     text-align: right;
     font-family: Montserrat-Bold, Helvetica;
     color: #fff;

@@ -10,7 +10,7 @@
         two-columns(v-if="item && item.mainBlogs.length > 1" :info="item.mainBlogs")
         intresting(v-if="item && item.promotedBlogs.length > 1" :info="item.promotedBlogs")
       .in-order(v-if="sortState")
-        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
+        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom" :isLoadingInOrder="isLoadingInOrder")
     footer-component
 </template>
 
@@ -47,6 +47,7 @@
     data() {
       return {
         isLoading: true,
+        isLoadingInOrder: true,
         scrollBottom: true,
         isOpen: false,
         scrollButton: false
@@ -59,7 +60,7 @@
       });
 
       this.$store.dispatch('getActiveBlogsInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-        this.isLoading = false
+          this.isLoadingInOrder = false
     });
 
     window.addEventListener('scroll', this.getNextPage)
@@ -105,7 +106,7 @@
       beforeDestroy (to, from, next) {
         window.removeEventListener('scroll', this.getNextPage)
         window.removeEventListener('scroll', this.getScrollCoord)
-      this.$store.dispatch('removeMeta')
+        this.$store.dispatch('removeMeta')
       }
     }
 </script>

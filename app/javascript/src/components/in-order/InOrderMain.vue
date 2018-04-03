@@ -1,5 +1,6 @@
 <template lang="pug">
   .in-order
+    loader-component(v-if="isLoadingInOrder")
     .container
       .in-order__wrapper
         in-order-item(:info="info")
@@ -12,11 +13,12 @@ import BouncingLoader from '../BouncingLoader.vue'
 
 
 export default {
-  props: ['info', 'bouncing'],
+  props: ['info', 'bouncing', 'isLoadingInOrder'],
 
   components: {
     InOrderItem,
-    BouncingLoader
+    BouncingLoader,
+    LoaderComponent: () => import('../Loader.vue')
   },
 
   data() {
