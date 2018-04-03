@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex'
       getNextPage() {
         const $container = document.querySelector("#app")
         if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
-          if (this.articlesMeta.nextPage && this.scrollBottom) {
+          if (this.articlesMeta && this.articlesMeta.nextPage && this.scrollBottom) {
             this.scrollBottom = false
 
             this.$store.dispatch('getActiveArticles', {id: this.articlesMeta.nextPage, scroll: true})

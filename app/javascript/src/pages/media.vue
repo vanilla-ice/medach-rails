@@ -55,7 +55,7 @@ import { mapGetters } from 'vuex'
         const $container = document.querySelector("#app")
         if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
           
-          if (this.mediaMeta.nextPage && this.scrollBottom) {
+          if (this.mediaMeta && this.mediaMeta.nextPage && this.scrollBottom) {
             this.scrollBottom = false;
 
             this.$store.dispatch('getActiveMedia', {id: this.mediaMeta.nextPage, scroll: true})

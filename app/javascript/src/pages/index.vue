@@ -4,13 +4,13 @@
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState" v-for="(item, index) in mainPageConfig")
+      .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in mainPageConfig")
         top-articles(v-if="item && item.pinnedArticles.length > 1" :info="item.pinnedArticles")
         blogs(v-if="item && item.pinnedBlogs.length > 4" :info="item.pinnedBlogs")
         news(v-if="item && item.mainNews.length > 1" :info="item.mainNews")
         worst-articles(v-if="item && item.promotedArticles.length > 2" :info="item.promotedArticles")
       .in-order(v-if="sortState")
-        in-order-main(v-if="indexInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
+        in-order-main(v-if="indexInOrder" :isLoadingInOrder="isLoadingInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
     footer-component
 </template>
 
@@ -45,6 +45,7 @@ export default {
   data () {
     return {
       isLoading: true,
+      isLoadingInOrder: true,
       scrollBottom: true,
       isOpen: false,
       scrollButton: false
@@ -57,7 +58,7 @@ export default {
     });
 
     this.$store.dispatch('getActiveIndexInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-      this.isLoading = false
+        this.isLoadingInOrder = false
     });
 
     window.addEventListener('scroll', this.getNextPage)
@@ -80,7 +81,7 @@ export default {
     getNextPage() {
       const $container = document.querySelector(".main")
       if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
-        if (this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+        if (this.indexInOrderMeta && this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
           this.scrollBottom = false;
           
           this.$store.dispatch('getActiveIndexInOrder', {id: this.indexInOrderMeta.nextPage, scroll: true})
@@ -96,6 +97,12 @@ export default {
     showScrollToButton() {
       if (window.pageYOffset) return this.scrollButton = true
       return this.scrollButton = false
+    },
+
+    checkChildren(item) {
+      const childrenStatus = item.pinnedArticles.length > 1 || item.pinnedBlogs.length > 4 || item.mainNews.length > 1 || item.promotedArticles.length > 2
+      if (childrenStatus) return true
+      return false
     }
   },
 
@@ -108,18 +115,14 @@ export default {
 </script>
 
 <style lang="scss" scopped>
-.main-wrapper {
-  margin-bottom: 30px;
-}
-
 .main-wrapper:last-child {
   margin-bottom: 0;
 }
 
 .main {
   min-height: 100vh;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   background: #e0e0e0;
 }

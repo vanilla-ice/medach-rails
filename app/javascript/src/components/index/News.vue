@@ -24,7 +24,8 @@
 <style lang="scss" scoped>
   .autors__container {
     justify-content: space-between;
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .title {
@@ -144,6 +145,8 @@
       padding-left: 10px;
       padding-right: 10px;
       padding-bottom: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
 
       border-top: 2px solid #110F6C;
     }

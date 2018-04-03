@@ -4,13 +4,13 @@
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu")
     .main
-      .main-wrapper(v-if="!sortState" v-for="(item, index) in blogsPageConfig")
+      .main-wrapper(v-if="!sortState && checkChildren(item)" v-for="(item, index) in blogsPageConfig")
         top-blogs(v-if="item && item.pinnedBlogs.length > 2" :info="item.pinnedBlogs")
         three-columns(v-if="item && item.spotlightBlogs.length > 2" :info="item.spotlightBlogs")
         two-columns(v-if="item && item.mainBlogs.length > 1" :info="item.mainBlogs")
         intresting(v-if="item && item.promotedBlogs.length > 1" :info="item.promotedBlogs")
       .in-order(v-if="sortState")
-        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom")
+        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom" :isLoadingInOrder="isLoadingInOrder")
     footer-component
 </template>
 
@@ -47,6 +47,7 @@
     data() {
       return {
         isLoading: true,
+        isLoadingInOrder: true,
         scrollBottom: true,
         isOpen: false,
         scrollButton: false
@@ -59,7 +60,7 @@
       });
 
       this.$store.dispatch('getActiveBlogsInOrder', {id: this.currentId(), scroll: false}).then((res) => {
-        this.isLoading = false
+          this.isLoadingInOrder = false
     });
 
     window.addEventListener('scroll', this.getNextPage)
@@ -77,7 +78,7 @@
       getNextPage() {
         const $container = document.querySelector(".main")
         if ($container.scrollHeight < (window.pageYOffset + window.innerHeight)) {
-          if (this.blogsInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+          if (this.blogsInOrderMeta && this.blogsInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
             this.scrollBottom = false;
 
             this.$store.dispatch('getActiveBlogsInOrder', {id: this.blogsInOrderMeta.nextPage, scroll: true})
@@ -93,13 +94,19 @@
       showScrollToButton() {
         if (window.pageYOffset) return this.scrollButton = true
         return this.scrollButton = false
+      },
+
+      checkChildren(item) {
+        const childrenStatus = item.pinnedBlogs.length > 2 || item.spotlightBlogs.length > 2 || item.mainBlogs.length > 1 || item && item.promotedBlogs.length > 1
+        if (childrenStatus) return true
+        return false
       }
     },
 
       beforeDestroy (to, from, next) {
         window.removeEventListener('scroll', this.getNextPage)
         window.removeEventListener('scroll', this.getScrollCoord)
-      this.$store.dispatch('removeMeta')
+        this.$store.dispatch('removeMeta')
       }
     }
 </script>

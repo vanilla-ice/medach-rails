@@ -30,7 +30,8 @@
   .container {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .card {
@@ -94,8 +95,6 @@
   }
 
   .title {
-    padding-right: 24px;
-
     text-align: right;
     font-family: Montserrat-Bold, Helvetica;
     color: #fff;
@@ -117,6 +116,8 @@
     .container {
       flex-direction: column;
       justify-content: flex-start;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .card {

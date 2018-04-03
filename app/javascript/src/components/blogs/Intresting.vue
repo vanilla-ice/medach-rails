@@ -28,14 +28,15 @@
 
 <style lang="scss" scoped>
   .container {
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .intresting-wrapper {
     min-height: 500px;
     padding: 30px 15px 15px;
     width: 100%;
-    margin-bottom: 10px;
+
 
     background: #fff;
     box-shadow: 0 0 15px rgba(0,0,0,0.15), inset 0 4px 0 #110F6C;
@@ -49,8 +50,8 @@
 
   .cards {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: row;
 
     width: 100%;
     margin-top: 40px;
@@ -70,6 +71,8 @@
 
   .card .card__image {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 2;
 
     height: 100%;
@@ -82,7 +85,7 @@
   .card .card__image-placeholder {
     position: absolute;
     z-index: 1;
-    top: 0;
+    top: 0; 
     left: 0;
     width: 100%;
 
@@ -144,6 +147,11 @@
   }
 
   @media(max-width: 1024px) {
+    .container {
+      padding-top: 10px;
+      padding-bottom: 10px
+    }
+
     .card {
       max-width: 660px;
       width: 100%;

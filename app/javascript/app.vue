@@ -115,9 +115,6 @@ html {
   border-bottom-right-radius: 3px;
 }
 
-  .main-index {
-    padding-bottom: 50px;
-  }
   @import './src/assets/normalize.css';
   @import './src/assets/fonts.css';
   @import './src/assets/settings.css';

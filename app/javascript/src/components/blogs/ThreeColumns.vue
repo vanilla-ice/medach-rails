@@ -27,10 +27,11 @@
 <style lang="scss" scoped>
   .cards-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
 
-    margin-top: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .card {
@@ -71,6 +72,9 @@
     .cards-container {
       flex-direction: column;
       justify-content: flex-start;
+
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .card {

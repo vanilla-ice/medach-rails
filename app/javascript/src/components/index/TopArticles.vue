@@ -50,6 +50,9 @@
     justify-content: space-between;
     max-width: 1440px;
     width: 100%;
+
+    padding-top: 15px; 
+    padding-bottom: 15px; 
   }
 
   .top-articles__item {
@@ -135,6 +138,8 @@
   @media(max-width: 1024px) {
     .top-articles__container {
       flex-direction: column;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .top-articles__item {
@@ -143,6 +148,10 @@
 
       margin: 0 auto;
       margin-bottom: 20px;
+    }
+
+    .top-articles__item:last-child {
+      margin-bottom: 0;
     }
   }
 
