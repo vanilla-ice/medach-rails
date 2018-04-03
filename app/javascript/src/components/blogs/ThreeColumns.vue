@@ -27,8 +27,8 @@
 <style lang="scss" scoped>
   .cards-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
 
     padding-top: 15px;
     padding-bottom: 15px;

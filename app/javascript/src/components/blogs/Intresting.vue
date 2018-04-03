@@ -50,8 +50,8 @@
 
   .cards {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: row;
 
     width: 100%;
     margin-top: 40px;
@@ -71,6 +71,8 @@
 
   .card .card__image {
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 2;
 
     height: 100%;
@@ -83,7 +85,7 @@
   .card .card__image-placeholder {
     position: absolute;
     z-index: 1;
-    top: 0;
+    top: 0; 
     left: 0;
     width: 100%;
 

@@ -54,7 +54,7 @@ import { mapGetters } from 'vuex'
         const $container = document.querySelector("#app")
         if ($container.scrollHeight === (window.pageYOffset + window.innerHeight)) {
           
-          if (this.translatedMeta.nextPage) this.$store.dispatch('getActiveTranslatedArticles', {id: this.translatedMeta.nextPage, scroll: true})
+          if (this.translatedMeta && this.translatedMeta.nextPage) this.$store.dispatch('getActiveTranslatedArticles', {id: this.translatedMeta.nextPage, scroll: true})
         }
       },
 

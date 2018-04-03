@@ -48,7 +48,7 @@ export default {
     getNextPage() {
       const $container = document.querySelector("#app")
       if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
-        if (this.searchMeta.nextPage && this.scrollBottom) {
+        if (this.searchMeta && this.searchMeta.nextPage && this.scrollBottom) {
           this.scrollBottom = false
           this.$store.dispatch('search', {id: this.searchMeta.nextPage, scroll: true})
           .then(() => this.scrollBottom = true)

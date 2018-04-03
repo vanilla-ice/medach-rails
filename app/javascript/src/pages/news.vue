@@ -49,7 +49,7 @@ import { mapGetters } from 'vuex'
       getNextPage() {
         const $container = document.querySelector("#app")
         if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
-          if (this.newsMeta.nextPage && this.scrollBottom) {
+          if (this.newsMeta && this.newsMeta.nextPage && this.scrollBottom) {
             this.scrollBottom = false
 
             this.$store.dispatch('getActiveNextPageNews', {id: this.newsMeta.nextPage})

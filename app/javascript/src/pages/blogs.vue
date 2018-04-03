@@ -77,7 +77,7 @@
       getNextPage() {
         const $container = document.querySelector(".main")
         if ($container.scrollHeight < (window.pageYOffset + window.innerHeight)) {
-          if (this.blogsInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+          if (this.blogsInOrderMeta && this.blogsInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
             this.scrollBottom = false;
 
             this.$store.dispatch('getActiveBlogsInOrder', {id: this.blogsInOrderMeta.nextPage, scroll: true})

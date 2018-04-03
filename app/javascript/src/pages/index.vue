@@ -80,7 +80,7 @@ export default {
     getNextPage() {
       const $container = document.querySelector(".main")
       if ($container.scrollHeight - 200 < (window.pageYOffset + window.innerHeight)) {
-        if (this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
+        if (this.indexInOrderMeta && this.indexInOrderMeta.nextPage && this.scrollBottom && this.sortState) {
           this.scrollBottom = false;
           
           this.$store.dispatch('getActiveIndexInOrder', {id: this.indexInOrderMeta.nextPage, scroll: true})
