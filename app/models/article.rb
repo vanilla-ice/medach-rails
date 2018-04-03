@@ -40,7 +40,7 @@ class Article < ApplicationRecord
   end
 
   def tag_string
-    self.tag_list.join(',')
+    self.tag_list.join(', ')
   end
 
 end
