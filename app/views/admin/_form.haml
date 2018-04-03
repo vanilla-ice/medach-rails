@@ -3,7 +3,7 @@
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка', name: "cover_image", message: "Обложка не представлена"}
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка миниатюра (≈ 675 x 285)', name: "small_cover_image", message: "Миниатюра обложки не представлена"}
 = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
-= f.input :tag_string, as: :tags, label: 'Теги', :input_html => { :class => :js_tags }
+= f.input :tag_string, label: 'Теги', :input_html => { :class => :js_tags }
 = f.input :author, label: "Автор", :input_html => { :class => :js_author }
 = f.input :redaction, label: "Редакция", :input_html => { :class => :js_redaction }
 = f.input :infographic, label: "Оформление", :input_html => { :class => :js_infographic }
