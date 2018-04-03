@@ -1,6 +1,6 @@
 <template lang="pug">
   div.main-container(:class="{'main-open-menu': isOpen}")
-    loader-component(v-if="isLoading" key="blogs-loader")
+    loader-component(v-if="isLoading")
     scroll-top(v-if="scrollButton")
     header-component(@isOpen="toggleMenu" @sortState="sortStateToggle")
     .main
