@@ -8,8 +8,10 @@ class Api::ArticlesController < ActionController::Base
       @articles = type_class.published.tagged_with(params[:tag])
     elsif params[:query]
       @articles = type_class.published.search(params[:query])
-    else
+    elsif type_class === LongreadArticle
       @articles = type_class.published.tagged_with(['перевод'], :exclude => true)
+    else
+      @articles = type_class.published
     end
     paginated = @articles.page(params[:page]).per(20)
     render(

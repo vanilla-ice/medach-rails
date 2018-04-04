@@ -1,0 +1,50 @@
+<%= semantic_form_for [:admin, @blogs_config] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title, label: 'Название' %>
+    <%= f.input :active, label: 'Активен' %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: "pinned_blogs",
+        label: "Закрепленные блоги",
+        order_label: "Порядок закрепленных блогов",
+        collection: BlogArticle.published
+      })
+    %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: "spotlight_blogs",
+        label: "Блоги в центре внимания",
+        order_label: "Порядок блогов в центре внимания",
+        collection: BlogArticle.published
+      })
+    %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: "main_blogs",
+        label: "Главные блоги",
+        order_label: "Порядок главных блогов",
+        collection: BlogArticle.published
+      })
+    %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: "promoted_blogs",
+        label: "Продвигаемые блоги",
+        order_label: "Порядок продвигаемых блогов",
+        collection: BlogArticle.published
+      })
+    %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit %>
+    <%= f.action :cancel, :wrapper_html => { class: :cancel} %>
+  <% end %>
+<% end %>
