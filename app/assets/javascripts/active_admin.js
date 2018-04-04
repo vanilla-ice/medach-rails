@@ -71,7 +71,6 @@ function insertToEditor(url, editor) {
   editor.content.uploadImages(function(e) {
     console.log('e', e)
   });
-
 }
 
 var renderQuickviewPopup = function renderQuickviewPopup(data) {
@@ -128,6 +127,7 @@ function saveDocumentToServer(file) {
 function makeDocumentLink (linkText, documentUrl) {
   return '<p><a target="_blank" href="' + documentUrl + '">' + linkText + '</a><br /></p>'
 }
+
 
 $(document).ready(function () {
   var editor;
@@ -190,6 +190,7 @@ $(document).ready(function () {
               {
                 id: 'quickview1',
                 text: 'Открыть предпросмотр',
+                icon: '/assets/preview.png',
 
                 action: function(e) {
                   
@@ -220,6 +221,7 @@ $(document).ready(function () {
               {
                 id: 'fileLoaderPdf',
                 text: 'Загрузить файл',
+                icon: '/assets/upload-file.svg',
 
                 action: function() {
                   selectLocalDocument(function (data) {
