@@ -10,7 +10,7 @@
         two-columns(v-if="item && item.mainBlogs.length > 1" :info="item.mainBlogs")
         intresting(v-if="item && item.promotedBlogs.length > 1" :info="item.promotedBlogs")
       .in-order(v-if="sortState")
-        in-order-main(v-if="blogsInOrder" :info="blogsInOrder" :bouncing="!scrollBottom" :isLoadingInOrder="isLoadingInOrder")
+        in-order-main(:info="blogsInOrder" :bouncing="!scrollBottom" :isLoadingInOrder="isLoadingInOrder")
     footer-component
 </template>
 

@@ -10,7 +10,7 @@
         news(v-if="item && item.mainNews.length > 1" :info="item.mainNews")
         worst-articles(v-if="item && item.promotedArticles.length > 2" :info="item.promotedArticles")
       .in-order(v-if="sortState")
-        in-order-main(v-if="indexInOrder" :isLoadingInOrder="isLoadingInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
+        in-order-main(:isLoadingInOrder="isLoadingInOrder" :info="indexInOrder" :bouncing="!scrollBottom")
     footer-component
 </template>
 

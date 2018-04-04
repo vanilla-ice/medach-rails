@@ -3,7 +3,7 @@
     loader-component(v-if="isLoadingInOrder")
     .container
       .in-order__wrapper
-        in-order-item(:info="info")
+        in-order-item(v-if="info" :info="info")
         bouncing-loader(v-if='bouncing')
 </template>
 
