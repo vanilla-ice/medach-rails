@@ -152,6 +152,10 @@
       padding-bottom: 10px
     }
 
+    .cards {
+      flex-direction: column;
+    }
+
     .card {
       max-width: 660px;
       width: 100%;
