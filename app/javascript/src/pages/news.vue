@@ -31,11 +31,10 @@ import { mapGetters } from 'vuex'
     },
 
     mounted() {
-      if (!this.news) {
         this.$store.dispatch('getActiveNews').then((res) => {
           this.isLoading = false
         });
-      }
+   
 
       window.addEventListener('scroll', this.getNextPage)
       window.addEventListener('scroll', this.showScrollToButton)
