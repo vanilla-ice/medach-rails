@@ -29,7 +29,6 @@
           .date
             | {{ getCurrentDate() }}
         .article__content(ref="postData")
-          img.article__cover-image(v-if="coverImage" :src="coverImage" )
           .article__content-text(v-html="post")
       .preview(v-if="currentImg")
         .preview-wrapper
