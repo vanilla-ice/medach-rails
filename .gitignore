@@ -12,6 +12,7 @@
 /db/*.sqlite3-journal
 /db/database.yml
 /public/*
+!/public/assets/icons/*
 
 # Ignore all logfiles and tempfiles.
 /log/*
