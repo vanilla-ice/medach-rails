@@ -8,7 +8,7 @@ class Api::ArticlesController < ActionController::Base
       @articles = type_class.published.tagged_with(params[:tag])
     elsif params[:query]
       @articles = type_class.published.search(params[:query])
-    elsif type_class === LongreadArticle
+    elsif type_class == LongreadArticle
       @articles = type_class.published.tagged_with(['перевод'], :exclude => true)
     else
       @articles = type_class.published
