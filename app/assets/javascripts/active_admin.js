@@ -190,7 +190,7 @@ $(document).ready(function () {
               {
                 id: 'quickview1',
                 text: 'Открыть предпросмотр',
-                icon: '/assets/preview.png',
+                icon: '/images/preview.png',
 
                 action: function(e) {
                   
@@ -221,7 +221,7 @@ $(document).ready(function () {
               {
                 id: 'fileLoaderPdf',
                 text: 'Загрузить файл',
-                icon: '/assets/upload-file.svg',
+                icon: '/images/upload-file.svg',
 
                 action: function() {
                   selectLocalDocument(function (data) {
