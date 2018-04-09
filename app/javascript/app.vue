@@ -128,7 +128,7 @@ html {
 
 @media(max-width: 1024px) {
   .header-fixed + .main {
-    padding-top: 30px !important;
+    padding-top: 20px !important;
   }
 }
 </style>
