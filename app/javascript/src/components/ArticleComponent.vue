@@ -163,6 +163,10 @@
     line-height: 1.5em;
   }
 
+  .article__content-text ul span {
+    display: inline;
+  }
+
   .article__content i {
     font-family: PTSerif-Regular, helvetica;
   }
