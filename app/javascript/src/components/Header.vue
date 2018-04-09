@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header(:class="{'header-fixed': headerFixed, 'header-fixed-show': headerFixedShow, 'header-fixed-close': headerFixedClose}")
+  header.header(:class="{'header-fixed': headerFixed, 'header-fixed-show': headerFixedShow}")
     loader-component(v-if="isLoading")
     .tags-popup.only-desktop(v-if="isTagsOpen")
       .tag-wrapper
@@ -100,7 +100,6 @@
         isTagsOpen: false,
         sort: true,
         headerFixed: false,
-        headerFixedClose: false,
         headerFixedShow: true
       }
     },
@@ -252,10 +251,6 @@
 
   .header-fixed-show {
     top: 0px;
-  }
-
-  .header-fixed-close {
-    top: -110px;
   }
   
   .header .container {
