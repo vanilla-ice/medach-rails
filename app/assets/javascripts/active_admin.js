@@ -147,10 +147,6 @@ $(document).ready(function () {
         }
       }
     },
-    paste: {
-      style: 'clean',  // Overrides default: 'prompt' for MS Office content
-      enableFlashImport: true // Note, true is the default
-    },
     ui: {
       toolbar: {
         items: [
