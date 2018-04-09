@@ -167,6 +167,12 @@
     display: inline;
   }
 
+  .article__content-text blockquote {
+    margin: 1.5em;
+    color: #666;
+    font-style: italic;
+  }
+
   .article__content i {
     font-family: PTSerif-Regular, helvetica;
   }
