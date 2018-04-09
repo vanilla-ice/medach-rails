@@ -1,5 +1,5 @@
 <template lang="pug">
-  header.header
+  header.header(:class="{'header-fixed': headerFixed, 'header-fixed-show': headerFixedShow, 'header-fixed-close': headerFixedClose}")
     loader-component(v-if="isLoading")
     .tags-popup.only-desktop(v-if="isTagsOpen")
       .tag-wrapper
@@ -99,7 +99,9 @@
         isOpen: false,
         isTagsOpen: false,
         sort: true,
-        // headerFixed: false
+        headerFixed: false,
+        headerFixedClose: false,
+        headerFixedShow: true
       }
     },
   
@@ -110,9 +112,11 @@
 
     mounted() {
       let routerCurrentName = this.$router.history.current.name
-      // if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
-      //   this.headerFixed = true
-      // }
+      if (routerCurrentName === 'post' || routerCurrentName === 'blog-post' || routerCurrentName === 'news-post' || routerCurrentName === 'media-post') {
+        this.headerFixed = true;
+
+        this.scrollPosition()
+      }
 
       if (routerCurrentName !== 'blogs' &&
         routerCurrentName !== 'home'
@@ -191,6 +195,20 @@
         document.querySelector('#app').style.overflow = 'initial'
         document.querySelector('#app').style.maxHeight = 'initial'
         this.$router.push(`/tag/${tag}`)
+      },
+
+      scrollPosition() {
+        let lastScrollTop = 250;
+        window.addEventListener('scroll', () => {
+          let currentPosition = window.pageYOffset;
+           if (currentPosition > lastScrollTop && currentPosition > 200) {
+              this.headerFixedShow = false
+              lastScrollTop = currentPosition - 20
+           } else {
+             this.headerFixedShow = true
+             lastScrollTop = currentPosition
+           }
+        })
       }
     },
   
@@ -221,15 +239,24 @@
     }
   }
 
-  // .header-fixed {
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
+  .header-fixed {
+    position: fixed;
+    top: -110px;
+    left: 0;
+    transition: top 0.2s;
     
-  //   width: 100%;
+    width: 100%;
 
-  //   box-shadow: 0 0 15px rgba(0, 0, 0, .15)
-  // }
+    box-shadow: 0 0 15px rgba(0, 0, 0, .15)
+  }
+
+  .header-fixed-show {
+    top: 0px;
+  }
+
+  .header-fixed-close {
+    top: -110px;
+  }
   
   .header .container {
     max-width: 1440px;
