@@ -167,6 +167,10 @@
     display: inline;
   }
 
+   .article__content-text ol span {
+    display: inline;
+  }
+
   .article__content-text blockquote {
     margin: 1.5em;
     color: #666;
