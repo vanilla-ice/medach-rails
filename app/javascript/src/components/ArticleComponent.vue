@@ -237,7 +237,7 @@
 
   .article-info__item {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-bottom: 5px;
   }
 
