@@ -1,11 +1,7 @@
-class ImageUploader < CommonUploader
+class CoverImageUploader < CommonUploader
   include CarrierWave::MiniMagick
   # process scale: [278, 261]
-  # process resize_to_fit: [800, 800]
-
-  # version :thumb do
-  #   process resize_to_fill: [278,261]
-  # end
+  process resize_to_fit: [600, 600]
 
   def store_dir
     if model.class.to_s == 'LongreadArticle'
