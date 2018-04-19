@@ -24,8 +24,9 @@
               div {{ getContent(postInfo.infographic) }}
             .article-info__item.tags(v-if="postInfo.tags && this.postInfo.tags.length > 0")
               div Теги:
-              router-link.tag(v-for="(item, index) in postInfo.tags" :to="`/tag/${item}`") 
-                | {{ item }}
+              .tags-wrapper  
+                router-link.tag(v-for="(item, index) in postInfo.tags" :to="`/tag/${item}`") 
+                  | {{ item }}
           .date
             | {{ getCurrentDate() }}
         .article__content(ref="postData")
@@ -175,6 +176,12 @@
     margin: 1.5em;
     color: #666;
     font-style: italic;
+  }
+
+  .tags-wrapper  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .article__content i {
