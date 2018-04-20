@@ -180,7 +180,7 @@
 
   .tags-wrapper  {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
   }
 
