@@ -178,9 +178,9 @@
     font-style: italic;
   }
 
-  .tags-wrapper  {
+  .article-info__item .tags-wrapper  {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
   }
 
