@@ -81,7 +81,7 @@ export default {
         if (this.searchMeta && this.searchMeta.nextPage && this.scrollBottom) {
           this.scrollBottom = false
 
-          this.$store.dispatch('search', {id: this.searchMeta.nextPage, scroll: true})
+          this.$store.dispatch('searchTag', {id: this.searchMeta.nextPage, scroll: true, query: this.$route.params.id})
           .then(() => this.scrollBottom = true)
         }
       }
