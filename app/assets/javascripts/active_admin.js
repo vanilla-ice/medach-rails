@@ -134,6 +134,9 @@ $(document).ready(function () {
 
   var config = {
     basePath: '/textboxio',
+    css : {
+      stylesheets : ['/assets/active_admin/editor.css'] // an array of CSS file URLs
+    },
     images: {
       upload: {
         handler: function(data, success, failture) {
