@@ -12,7 +12,7 @@ module Myapp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join("app", "assets", "fonts", "vendor")
     config.load_defaults 5.1
     config.time_zone = 'Moscow'
     config.active_record.default_timezone = :local

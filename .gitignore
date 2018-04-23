@@ -13,6 +13,8 @@
 /db/database.yml
 /public/*
 !/public/images/
+!/public/css/
+
 
 # Ignore all logfiles and tempfiles.
 /log/*
