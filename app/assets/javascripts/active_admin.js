@@ -151,6 +151,7 @@ $(document).ready(function () {
       }
     },
     ui: {
+      fonts : [ 'Helvetica', 'Arial', 'Times New Roman', '"PT Serif", sans-serif' ],
       toolbar: {
         items: [
           {
