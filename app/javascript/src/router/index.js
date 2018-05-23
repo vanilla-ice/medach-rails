@@ -12,6 +12,7 @@ import NewsPost from '../pages/newsPost.vue'
 import MediaPost from '../pages/mediaPost.vue'
 import Articles from '../pages/articles.vue'
 import Translated from '../pages/translated.vue'
+import VueYandexMetrika from 'vue-yandex-metrika'  
 
 Vue.use(Router)
 
@@ -88,6 +89,12 @@ const router = new Router({
   scrollBehavior (to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
+})
+
+Vue.use(VueYandexMetrika, {
+  id: 48984611,
+  router: router,
+  env: process.env.NODE_ENV
 })
 
 export default router

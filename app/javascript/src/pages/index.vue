@@ -54,6 +54,7 @@ export default {
   },
 
   mounted() {
+    this.$metrika
     this.$store.dispatch('getMainPageConfig').then((res) => {
       this.isLoading = false
     });
