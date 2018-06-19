@@ -136,6 +136,7 @@ $(document).ready(function () {
     basePath: '/textboxio',
     css : {
       stylesheets : ['/css/editor.css'] // an array of CSS file URLs
+      
     },
     paste: {
       style: 'plain'
@@ -186,6 +187,31 @@ $(document).ready(function () {
           {
             label: 'tools',
             items: ['find', 'accessibility', 'fullscreen', 'usersettings']
+          },
+          {
+            label: 'Imagebox',
+            items: [
+              {
+                id: 'ImageBox-title',
+                text: 'Imagebox header',
+                icon: '/images/header.png',
+                action: function() {
+                  var ed = textboxio.getActiveEditor();
+
+                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-title">Title</div></p><br />');
+                }
+              },
+              {
+                id: 'ImageBox-content',
+                text: 'Imagebox content',
+                icon: '/images/content.png',
+                action: function() {
+                  var ed = textboxio.getActiveEditor();
+
+                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-content">Content</div></p><br />');
+                }
+              }
+            ]
           },
           {
             label: 'Quickview',
