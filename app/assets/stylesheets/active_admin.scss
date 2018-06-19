@@ -123,10 +123,6 @@ img {
   width: 100%;
   overflow: hidden;
 
-  p {
-    font-family: Times-Roman;
-    color: #515666;
-  }
 
   .desc-column__title {
     font-family: LucidaGrande-Bold;
@@ -225,7 +221,6 @@ p {
 
 .article__content-text img {
   margin: 10px 0;
-  padding: 0 25px;
 }
 
 .article__content-text p {
@@ -256,6 +251,7 @@ p {
 .article-title {
   font-family: PTSerif-Regular, helvetica;
   font-size: 30px;
+  color: #000;
 }
 
 .article-info__wrapper{
@@ -313,6 +309,7 @@ p {
 
 .publishing a {
   color: #00C;
+  text-decoration: underline;
 }
 
 .article__cover-image {
@@ -321,5 +318,126 @@ p {
 
 .img-info {
   margin-top: 20px;
+}
+
+.editor_img-title {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+
+  background: #30312F;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-sizing: border-box;
+}
+
+.editor_img-content {
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  color: #30312F;
+  line-height: 20px;
+
+  border-left: 2px solid #000; 
+  border-right: 2px solid #000; 
+  border-bottom: 2px solid #000; 
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-sizing: border-box;
+}
+
+.article__content {
+  font-family: PTSerif-Regular, helvetica;
+}
+
+.article__content img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.article__content-text img {
+  margin: 10px 0;
+
+  max-width: 100%;
+  height: auto !important;
+}
+
+.article__content-text {
+  font-size: 18px;
+
+  line-height: 1.5em;
+}
+
+.article__content-text a {
+  color: #00C;
+  text-decoration: underline;
+  font-family: PTSerif-Regular;
+}
+
+.article__content-text p {
+  margin: 15px 0;
+  font-size: 18px;
+
+  line-height: 1.5em;
+  color: #000;
+  font-family: PTSerif-Regular;
+}
+
+.article__content-text p span {
+  display: inline-block;
+  vertical-align: top;
+
+  font-size: 18px;
+
+  line-height: 1.5em;
+}
+
+.article__content-text span {
+  display: inline-block;
+  font-family: PTSerif-Regular;
+
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
+.article__content-text ul span {
+  display: inline;
+}
+
+ .article__content-text ol span {
+  display: inline;
+}
+
+.article__content-text blockquote {
+  margin: 1.5em;
+  color: #666;
+  font-style: italic;
+}
+
+.article-info__item .tags-wrapper  {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.article__content i {
+  font-family: PTSerif-Regular, helvetica;
 }
 

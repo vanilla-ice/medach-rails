@@ -139,6 +139,7 @@
 
   .article__content-text  a {
     color: #00C;
+    text-decoration: underline;
   }
 
   .article__content-text p {
@@ -292,6 +293,7 @@
 
   .publishing a {
     color: #505666;
+    text-decoration: underline;
   }
 
   .article__cover-image {
