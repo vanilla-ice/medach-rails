@@ -5,29 +5,6 @@
 //= require ./textboxio/textboxio.js
 
 /**
- * Step1. select local image
- *
- */
-function selectLocalImage(editor) {
-  var input = document.createElement('input');
-  input.setAttribute('type', 'file');
-  input.click();
-
-  // Listen upload local image and save to server
-  input.onchange = function () {
-    var file = input.files[0];
-
-    // file type is only image.
-    if (/^image\//.test(file.type)) {
-      saveToServer(file, editor);
-    } else {
-
-      console.warn('You could only upload images.');
-    }
-  };
-}
-
-/**
  * Step2. save to server
  *
  * @param {File} file
@@ -44,6 +21,7 @@ function saveToServer(file, editor) {
         console.log('xhr 200')
         // this is callback data: url
         var url = JSON.parse(xhr.responseText).url;
+        console.log('save to server url', url)
         // insertToEditor(url, editor);
         var data = {
           url: url,
@@ -144,7 +122,12 @@ $(document).ready(function () {
     images: {
       upload: {
         handler: function(data, success, failture) {
-          saveToServer(data.blob(), editor)
+          var blob = data.blob()
+          var filename = data.filename()
+
+          var resultImage = new File([blob], filename)
+
+          saveToServer(resultImage, editor)
             .then(function(data) {
               success(data.url)
             })
