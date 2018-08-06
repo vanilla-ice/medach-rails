@@ -228,6 +228,35 @@ $(document).ready(function () {
             ]
           },
           {
+            label: 'set backup',
+            items: [
+              {
+                id: 'setBackupData',
+                text: 'Сделать бекап',
+                icon: '/images/save-icon.svg',
+
+                action: function(e) {
+                  localStorage.setItem('postData', e.content.get())
+                }
+              }
+            ]
+          },
+          {
+            label: 'get backup',
+            items: [
+              {
+                id: 'getBackupData',
+                text: 'Использовать последний бекап',
+                icon: '/images/preview.png',
+
+                action: function(e) {
+                  var data = localStorage.getItem('postData');
+                  e.content.set(data)
+                }
+              }
+            ]
+          },
+          {
             label: 'FileLoader',
             items: [
               {
@@ -270,4 +299,6 @@ $(document).ready(function () {
     no_results_text: 'No results matched',
     width: '80%'
   })
+
+
 });
