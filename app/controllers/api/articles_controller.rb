@@ -40,6 +40,11 @@ class Api::ArticlesController < ActionController::Base
    @articles = type_class.fixed
    render json: @articles
   end
+
+  def show_random
+    @articles = type_class.order('RANDOM()').limit(params[:limit] || 3)
+    render json: @articles
+  end
  
   def meta_attributes(collection, extra_meta = {})
     {

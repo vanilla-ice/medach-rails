@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :articles, controller: 'longread_articles', only: [:index, :show] do
       collection do
         get 'show_fixed'
+        get 'show_random'
         get 'translated'
       end 
     end
