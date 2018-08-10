@@ -3,11 +3,13 @@ default: &default
   encoding: unicode
   pool: 5
   host: localhost
+  user: postgres
+  password: postgres
 
 development:
   <<: *default
   database: medach_development
-  port: 5431
+  port: 5432
 
 test:
   <<: *default

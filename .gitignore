@@ -7,10 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/db/database.yml
+# Ignore configs
+/config/database.yml
+
+
+# Ignore public
 /public/*
 !/public/images/
 !/public/css/
@@ -21,6 +22,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+.DS_Store
 
 /node_modules
 /yarn-error.log
@@ -30,3 +32,6 @@
 /public/packs-test
 /node_modules
 public/uploads/article/image/
+
+# Ignore IDE
+/.idea/
