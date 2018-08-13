@@ -4,6 +4,7 @@ ActiveAdmin.register MainConfig do
     :pinned_blogs,
     :main_news,
     :promoted_articles,
+    :slider_articles,
     :title,
     :active
   )
@@ -14,10 +15,7 @@ ActiveAdmin.register MainConfig do
 
   index do
     def populate_articles(article_ids)
-      articles = article_ids.map do |article_id|
-        Article.exists?(article_id) ? Article.find(article_id) : nil
-      end
-      articles.compact
+      Article.where(id: article_ids).sort_by { |article| ids.index(article.id) }
     end
 
     column "Название", :title
@@ -26,7 +24,8 @@ ActiveAdmin.register MainConfig do
         pinned_articles: populate_articles(main_config.data['pinned_articles']),
         pinned_blogs: populate_articles(main_config.data['pinned_blogs']),
         main_news: populate_articles(main_config.data['main_news']),
-        promoted_articles: populate_articles(main_config.data['promoted_articles'])
+        promoted_articles: populate_articles(main_config.data['promoted_articles']),
+        slider_articles: populate_articles(main_config.data['slider_articles'])
       }
     end
     column "Активен", :active
@@ -54,6 +53,8 @@ ActiveAdmin.register MainConfig do
         main_news_order: process_order_field(:main_news_order),
         promoted_articles: filter_input_data(:promoted_articles),
         promoted_articles_order: process_order_field(:promoted_articles_order),
+        slider_articles: filter_input_data(:slider_articles),
+        slider_articles_order: process_order_field(:slider_articles_order)
       }
     end
 

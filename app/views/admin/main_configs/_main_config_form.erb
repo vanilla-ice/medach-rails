@@ -6,9 +6,9 @@
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "pinned_articles",
-        label: "Закрепленные статьи",
-        order_label: "Порядок закрепленных статей",
+        name: 'pinned_articles',
+        label: 'Закрепленные статьи',
+        order_label: 'Порядок закрепленных статей',
         collection: LongreadArticle.published
       })
     %>
@@ -16,9 +16,9 @@
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "pinned_blogs",
-        label: "Закрепленные блоги",
-        order_label: "Порядок закрепленные блогов",
+        name: 'pinned_blogs',
+        label: 'Закрепленные блоги',
+        order_label: 'Порядок закрепленных блогов',
         collection: BlogArticle.published
       })
     %>
@@ -26,9 +26,9 @@
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "main_news",
-        label: "Главные новости",
-        order_label: "Порядок главных новостей",
+        name: 'main_news',
+        label: 'Главные новости',
+        order_label: 'Порядок главных новостей',
         collection: NewsArticle.published
       })
     %>
@@ -36,9 +36,19 @@
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "promoted_articles",
-        label: "Продвигаемые статьи",
-        order_label: "Порядок продвигаемых статей",
+        name: 'promoted_articles',
+        label: 'Продвигаемые статьи',
+        order_label: 'Порядок продвигаемых статей',
+        collection: LongreadArticle.published
+      })
+    %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: 'slider_articles',
+        label: 'Слайдер',
+        order_label: 'Порядок в слайдере',
         collection: LongreadArticle.published
       })
     %>

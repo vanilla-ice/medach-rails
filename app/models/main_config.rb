@@ -32,4 +32,12 @@ class MainConfig < SiteConfig
   def promoted_articles_order
     data_value('promoted_articles_order').join(', ')
   end
+
+  def slider_articles
+    data_value('slider_articles')
+  end
+
+  def slider_articles_order
+    data_value('slider_articles_order').join(', ')
+  end
 end

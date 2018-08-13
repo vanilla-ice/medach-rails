@@ -14,10 +14,7 @@ ActiveAdmin.register BlogsConfig do
 
   index do
     def populate_articles(article_ids)
-      articles = article_ids.map do |article_id|
-        Article.exists?(article_id) ? Article.find(article_id) : nil
-      end
-      articles.compact
+      Article.where(id: article_ids).sort_by { |article| ids.index(article.id) }
     end
 
     column "Название", :title

@@ -14,16 +14,16 @@ class Article < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   mount_uploader :small_cover_image, SmallCoverImageUploader
 
-  scope :fixed, -> { where(fixed: true)}
-  scope :published, -> { where(["publish_on < ?", Time.zone.now]).order("publish_on DESC") }
-  scope :newest_first, -> {order("created_at DESC")}
+  scope :fixed, -> { where(fixed: true) }
+  scope :published, -> { where('publish_on < ?', Time.current).order(publish_on: :desc) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
   multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]
   pg_search_scope :search,
     against: [:body, :title, :author, :infographic, :redaction, :short_description, :origin, :translate],
     associated_against: { :tags => [:name] },
     using: {
-      tsearch: {dictionary: "russian", prefix: true}
+      tsearch: {dictionary: 'russian', prefix: true}
     }
 
   def delete_whitespace
