@@ -26,10 +26,10 @@ class Api::ArticlesController < ActionController::Base
   def show
     unless type_class.exists?(params[:id])
       render(
-        json: { errors: [ { message: "#{root_key_single} with id=#{params[:id]} not found" } ] },
+        json: { errors: [ { message: "#{type_class.model_name.human} с id = #{params[:id]} не найден" } ] },
         status: 404
       )
-    else 
+    else
       @article = type_class.find(params[:id])
       impressionist(@article)
       render json: @article, serializer: serializer, root: root_key_single, key_transform: :camel_lower
@@ -45,7 +45,7 @@ class Api::ArticlesController < ActionController::Base
     @articles = type_class.order('RANDOM()').limit(params[:limit] || 3)
     render json: @articles
   end
- 
+
   def meta_attributes(collection, extra_meta = {})
     {
       current_page: collection.current_page,
@@ -87,23 +87,24 @@ class Api::ArticlesController < ActionController::Base
   end
 
   protected
-    def type_class
-      Article
-    end
 
-    def serializer
-      SingleArticleSerializer
-    end
+  def type_class
+    Article
+  end
 
-    def each_serializer
-      MultipleArticleSerializer
-    end
+  def serializer
+    SingleArticleSerializer
+  end
 
-    def root_key_single
-      'article'
-    end
+  def each_serializer
+    MultipleArticleSerializer
+  end
 
-    def root_key_multiple
-      'articles'
-    end
+  def root_key_single
+    'article'
+  end
+
+  def root_key_multiple
+    'articles'
+  end
 end

@@ -1,0 +1,8 @@
+ru:
+  devise:
+    failure:
+      admin_user:
+        unauthenticated: Вы не вошли в систему
+    sessions:
+      admin_user:
+        signed_in: Вы успешно вошли в систему
