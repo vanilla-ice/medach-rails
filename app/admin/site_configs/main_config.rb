@@ -9,7 +9,7 @@ ActiveAdmin.register MainConfig do
     :active
   )
 
-  menu parent: "Конфигурация страниц"
+  menu parent: 'Конфигурация страниц'
 
   form partial: 'main_config_form'
 
@@ -18,8 +18,8 @@ ActiveAdmin.register MainConfig do
       Article.where(id: article_ids).sort_by { |article| article_ids.index(article.id) }
     end
 
-    column "Название", :title
-    column "Конфигурация" do |main_config|
+    column 'Название', :title
+    column 'Конфигурация' do |main_config|
       render 'admin/main_config_data', {
         pinned_articles: populate_articles(main_config.data['pinned_articles']),
         pinned_blogs: populate_articles(main_config.data['pinned_blogs']),
@@ -28,7 +28,7 @@ ActiveAdmin.register MainConfig do
         slider_articles: populate_articles(main_config.data['slider_articles'])
       }
     end
-    column "Активен", :active
+    column 'Активен', :active
     actions
   end
 
@@ -40,7 +40,7 @@ ActiveAdmin.register MainConfig do
 
     def process_order_field(name)
       order_string = params[:main_config][name]
-      order_string.split(',').map{|s| s.delete(" ") }.reject(&:empty?)
+      order_string.split(',').map{|s| s.delete(' ') }.reject(&:empty?)
     end
 
     def build_data

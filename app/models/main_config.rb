@@ -1,5 +1,11 @@
 class MainConfig < SiteConfig
-  scope :active, -> { where(active: true).order("updated_at DESC") }
+  after_save :set_active
+
+  scope :active, -> { where(active: true).order(updated_at: :desc) }
+
+  def set_active
+    MainConfig.where.not(id: id).update_all(active: false) if active
+  end
 
   def pinned_articles
     data_value('pinned_articles')
