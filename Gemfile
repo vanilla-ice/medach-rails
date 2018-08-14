@@ -77,3 +77,5 @@ gem 'haml'
 gem 'chosen-rails'
 gem 'impressionist'
 gem 'activeadmin_addons'
+
+gem "rack-cors", "~> 1.0"
