@@ -1,21 +1,19 @@
 class BlogsConfigSerializer < SiteConfigSerializer
-  attributes(
-    :pinned_blogs,
-    :spotlight_blogs,
-    :main_blogs,
-    :promoted_blogs
-  )
+  attributes :pinned, :spotlight, :main, :promoted
 
-  def pinned_blogs
+  def pinned
     prepare_articles('pinned_blogs')
   end
-  def spotlight_blogs
+
+  def spotlight
     prepare_articles('spotlight_blogs')
   end
-  def main_blogs
+
+  def main
     prepare_articles('main_blogs')
   end
-  def promoted_blogs
+
+  def promoted
     prepare_articles('promoted_blogs')
   end
 end
