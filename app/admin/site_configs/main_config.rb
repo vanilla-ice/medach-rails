@@ -15,7 +15,7 @@ ActiveAdmin.register MainConfig do
 
   index do
     def populate_articles(article_ids)
-      Article.where(id: article_ids).sort_by { |article| ids.index(article.id) }
+      Article.where(id: article_ids).sort_by { |article| article_ids.index(article.id) }
     end
 
     column "Название", :title
