@@ -4,15 +4,9 @@ class Api::ArticlesController < ActionController::Base
   impressionist :actions => [:show]
 
   def index
-    if params[:tag]
-      @articles = type_class.published.tagged_with(params[:tag])
-    elsif params[:query]
-      @articles = type_class.published.search(params[:query])
-    elsif type_class == LongreadArticle
-      @articles = type_class.published.tagged_with(['перевод'], :exclude => true)
-    else
-      @articles = type_class.published
-    end
+    @articles = type_class.published.filter(index_params.except(:sort)).sort_query(sort_params)
+    @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
+
     paginated = @articles.page(params[:page]).per(20)
     render(
       json: paginated,
@@ -57,12 +51,8 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def all
-    @articles = Article.published
-    if params[:tag]
-      @articles = @articles.tagged_with(params[:tag])
-    elsif params[:query]
-      @articles = @articles.search(params[:query])
-    end
+    @articles = Article.published.filter(index_params.except(:sort)).sort(sort_params)
+
     paginated = @articles.page(params[:page]).per(20)
     render(
       json: paginated,
@@ -106,5 +96,20 @@ class Api::ArticlesController < ActionController::Base
 
   def root_key_multiple
     'articles'
+  end
+
+  def index_params
+    params.permit(
+      :tag,
+      :query,
+      sort: [
+        :col,
+        :dir
+      ]
+    )
+  end
+
+  def sort_params
+    index_params[:sort].to_h.reverse_merge(col: :publish_on, dir: :desc)
   end
 end

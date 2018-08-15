@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   include PgSearch
+  include Filterable
+  include Sortable
 
   is_impressionable :counter_cache => true, :unique => :all
 
@@ -15,7 +17,7 @@ class Article < ApplicationRecord
   mount_uploader :small_cover_image, SmallCoverImageUploader
 
   scope :fixed, -> { where(fixed: true) }
-  scope :published, -> { where('publish_on < ?', Time.current).order(publish_on: :desc) }
+  scope :published, -> { where('publish_on < ?', Time.current) }
   scope :newest_first, -> { order(created_at: :desc) }
 
   multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]
@@ -23,7 +25,7 @@ class Article < ApplicationRecord
     against: [:body, :title, :author, :infographic, :redaction, :short_description, :origin, :translate],
     associated_against: { :tags => [:name] },
     using: {
-      tsearch: {dictionary: 'russian', prefix: true}
+      tsearch: { dictionary: 'russian', prefix: true }
     }
 
   def delete_whitespace
