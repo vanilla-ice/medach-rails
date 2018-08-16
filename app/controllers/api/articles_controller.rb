@@ -11,7 +11,6 @@ class Api::ArticlesController < ActionController::Base
     render(
       json: paginated,
       each_serializer: each_serializer,
-      root: root_key_multiple,
       key_transform: :camel_lower,
       meta: meta_attributes(paginated)
     )
@@ -26,7 +25,7 @@ class Api::ArticlesController < ActionController::Base
     else
       @article = type_class.find(params[:id])
       impressionist(@article)
-      render json: @article, serializer: serializer, root: root_key_single, key_transform: :camel_lower
+      render json: @article, serializer: serializer, key_transform: :camel_lower
     end
   end
 
@@ -51,7 +50,7 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def all
-    @articles = Article.published.filter(index_params.except(:sort)).sort(sort_params)
+    @articles = Article.published.filter(index_params.except(:sort)).sort_query(sort_params)
 
     paginated = @articles.page(params[:page]).per(20)
     render(
@@ -70,7 +69,6 @@ class Api::ArticlesController < ActionController::Base
     render(
       json: paginated,
       each_serializer: each_serializer,
-      root: root_key_multiple,
       key_transform: :camel_lower,
       meta: meta_attributes(paginated)
     )
@@ -88,14 +86,6 @@ class Api::ArticlesController < ActionController::Base
 
   def each_serializer
     MultipleArticleSerializer
-  end
-
-  def root_key_single
-    'article'
-  end
-
-  def root_key_multiple
-    'articles'
   end
 
   def index_params
