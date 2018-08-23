@@ -1,5 +1,6 @@
 class BaseArticleSerializer < ActiveModel::Serializer
-  attributes :id, :title, :tags, :cover_image, :small_cover_image, :views, :publication_date, :author, :type, :short_description
+  attributes :id, :title, :tags, :cover_image, :small_cover_image, :views, :publication_date, :author, :type,
+             :short_description
 
   def id
     object.id.to_s

@@ -22,6 +22,9 @@ ru:
       blogs_config:
         one: "Страница Блогов"
         other: "Страницы Блогов"
+      user:
+        one: Пользователь
+        other: Пользователи
 
   formtastic:
     :yes: "Да"
