@@ -11,7 +11,7 @@ class BaseArticleSerializer < ActiveModel::Serializer
   end
 
   def tags
-    object.tag_list
+    object.tags.collect { |t| t.name }
   end
 
   def cover_image

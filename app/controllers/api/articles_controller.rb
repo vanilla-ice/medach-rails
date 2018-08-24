@@ -4,7 +4,7 @@ class Api::ArticlesController < ActionController::Base
   impressionist :actions => [:show]
 
   def index
-    @articles = type_class.published.filter(index_params.except(:sort)).sort_query(sort_params)
+    @articles = type_class.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
     @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
 
     paginated = @articles.page(params[:page]).per(20)
@@ -30,12 +30,12 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def show_fixed
-   @articles = type_class.fixed
+   @articles = type_class.includes(:tags).fixed
    render json: @articles
   end
 
   def show_random
-    @articles = type_class.order('RANDOM()').limit(params[:limit] || 3)
+    @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:limit] || 3)
     render json: @articles
   end
 
@@ -50,7 +50,7 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def all
-    @articles = Article.published.filter(index_params.except(:sort)).sort_query(sort_params)
+    @articles = Article.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
 
     paginated = @articles.page(params[:page]).per(20)
     render(

@@ -11,7 +11,7 @@ class SiteConfigSerializer < ActiveModel::Serializer
     ordered_article_ids = object.data["#{articles_type}_order"]
     article_ids = object.data[articles_type]
     ids = article_ids.sort == ordered_article_ids.sort ? ordered_article_ids : article_ids
-    Article.where(id: ids).sort_by { |article| ids.index(article.id) }.reverse
+    Article.includes(:tags).where(id: ids).sort_by { |article| ids.index(article.id) }.reverse
   end
 
   def prepare_articles(articles_type)
