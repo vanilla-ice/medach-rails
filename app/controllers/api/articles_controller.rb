@@ -91,6 +91,7 @@ class Api::ArticlesController < ActionController::Base
   def index_params
     params.permit(
       :tag,
+      :page,
       :query,
       sort: [
         :col,
