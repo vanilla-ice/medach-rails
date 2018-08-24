@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         get 'most_used', action: :most_used
       end
     end
+    resources :users, only: [:show]
     get 'all_articles', to: 'articles#all'
     get 'blogs_page_config', to: 'blogs_configs#index'
     get 'main_page_config', to: 'main_configs#index'
