@@ -521,11 +521,7 @@ DEPENDENCIES
   pg_search (= 2.1.1)
   pry-rails
   puma (~> 3.7)
-<<<<<<< HEAD
   rack-cors (~> 1.0)
-=======
-  rack-cors
->>>>>>> maybe it will brake all things
   rails (~> 5.1.4)
   rails-i18n
   rails_12factor
