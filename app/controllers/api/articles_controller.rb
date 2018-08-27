@@ -7,7 +7,7 @@ class Api::ArticlesController < ActionController::Base
     @articles = type_class.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
     @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
 
-    paginated = @articles.page(params[:page]).per(20)
+    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
     render(
       json: paginated,
       each_serializer: each_serializer,
@@ -35,7 +35,7 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def show_random
-    @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:limit] || 3)
+    @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:per_page] || 3)
     render json: @articles
   end
 
@@ -52,7 +52,7 @@ class Api::ArticlesController < ActionController::Base
   def all
     @articles = Article.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
 
-    paginated = @articles.page(params[:page]).per(20)
+    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
     render(
       json: paginated,
       each_serializer: BaseArticleSerializer,
@@ -64,7 +64,7 @@ class Api::ArticlesController < ActionController::Base
 
   def translated
     @articles = type_class.published.tagged_with(['перевод'])
-    paginated = @articles.page(params[:page]).per(20)
+    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
     render(
       json: paginated,
