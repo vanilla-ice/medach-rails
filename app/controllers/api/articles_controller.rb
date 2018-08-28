@@ -6,13 +6,16 @@ class Api::ArticlesController < ActionController::Base
   def index
     @articles = type_class.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
     @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
-
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
+
     render(
-      json: paginated,
+      json: {
+        collection: paginated,
+        meta: meta_attributes(paginated)
+      },
       each_serializer: each_serializer,
       key_transform: :camel_lower,
-      meta: meta_attributes(paginated)
+
     )
   end
 

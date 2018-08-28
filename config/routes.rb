@@ -20,12 +20,12 @@ Rails.application.routes.draw do
         get 'translated'
       end
     end
-    resources :news, controller: 'news_articles', only: [:index, :show] do
+    resources :news, only: [:index, :show] do
       collection do
         get 'translated'
       end
     end
-    resources :media, controller: 'media_articles', only: [:index, :show] do
+    resources :media, only: [:index, :show] do
       collection do
         get 'translated'
       end
