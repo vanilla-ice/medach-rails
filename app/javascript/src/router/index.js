@@ -92,7 +92,7 @@ const router = new Router({
 })
 
 Vue.use(VueYandexMetrika, {
-  id: 48984611,
+  id: 50175607,
   router: router,
   env: process.env.NODE_ENV
 })
