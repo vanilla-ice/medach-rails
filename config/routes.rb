@@ -3,29 +3,32 @@ Rails.application.routes.draw do
   root 'home#index'
   ActiveAdmin.routes(self)
   namespace :api do
-    resources :articles, controller: 'longread_articles', only: [:index, :show] do
+    resources :articles, only: [:index, :show] do
       collection do
         get 'show_fixed'
         get 'show_random'
         get 'translated'
+        get 'all'
       end 
     end
-    resources :images do
-
-    end
-    resources :documents do
-    end
-    resources :blogs, only: [:index, :show] do
+    resources :images
+    resources :documents
+    resources :longread_articles, only: :index do
       collection do
         get 'translated'
       end
     end
-    resources :news, only: [:index, :show] do
+    resources :blogs, only: :index do
       collection do
         get 'translated'
       end
     end
-    resources :media, only: [:index, :show] do
+    resources :news, only: :index do
+      collection do
+        get 'translated'
+      end
+    end
+    resources :media, only: :index do
       collection do
         get 'translated'
       end
