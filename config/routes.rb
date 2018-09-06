@@ -9,6 +9,9 @@ Rails.application.routes.draw do
         get 'show_random'
         get 'translated'
         get 'all'
+        %w(news media blogs longread_articles).each do |type|
+          get type, to: "#{type}#index"
+        end
       end 
     end
     resources :images
