@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180824054357) do
+ActiveRecord::Schema.define(version: 20180916175736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,16 @@ ActiveRecord::Schema.define(version: 20180824054357) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "about"
+    t.string "avatar"
+    t.string "facebook_account"
+    t.string "instagram_account"
+    t.string "telegram_account"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -178,4 +188,5 @@ ActiveRecord::Schema.define(version: 20180824054357) do
 
   add_foreign_key "articles", "partners"
   add_foreign_key "articles", "users", column: "creator_id"
+  add_foreign_key "user_profiles", "users"
 end

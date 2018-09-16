@@ -25,6 +25,15 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
     end
+    f.inputs 'Profile' do
+      f.has_many :user_profile, allow_destroy: false, new_record: true do |ff|
+        ff.input :about
+        ff.input :facebook_account
+        ff.input :instagram_account
+        ff.input :telegram_account
+        ff.input :avatar
+      end
+    end
     f.actions
   end
 
