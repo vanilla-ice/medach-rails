@@ -13,9 +13,8 @@ class Api::ArticlesController < ActionController::Base
         collection: paginated,
         meta: meta_attributes(paginated)
       },
-      each_serializer: each_serializer,
-      key_transform: :camel_lower,
-
+      serializer: ArticleCollectionSerializer,
+      key_transform: :camel_lower
     )
   end
 

@@ -7,7 +7,8 @@ class SingleArticleSerializer < BaseArticleSerializer
     :publish_on,
     :short_description,
     :origin,
-    :translate
+    :translate,
+    :tags
   )
 
   def id

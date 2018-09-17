@@ -20,9 +20,9 @@ class Article < ApplicationRecord
   scope :published, -> { where('publish_on < ?', Time.current) }
   scope :newest_first, -> { order(created_at: :desc) }
 
-  multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]
+  multisearchable against: [:title, :author, :short_description, :origin]
   pg_search_scope :search,
-    against: [:body, :title, :author, :infographic, :redaction, :short_description, :origin, :translate],
+    against: [:title, :author, :short_description, :origin],
     associated_against: { :tags => [:name] },
     using: {
       tsearch: { dictionary: 'russian', prefix: true }

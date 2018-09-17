@@ -1,3 +1,3 @@
 class SingleBlogArticleSerializer < SingleArticleSerializer
-  attributes :avatar
+  attributes :avatar, :tags
 end
