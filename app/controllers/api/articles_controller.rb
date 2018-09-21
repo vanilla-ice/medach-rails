@@ -8,14 +8,7 @@ class Api::ArticlesController < ActionController::Base
     @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
-    render(
-      json: {
-        collection: paginated,
-        meta: meta_attributes(paginated)
-      },
-      serializer: ArticleCollectionSerializer,
-      key_transform: :camel_lower
-    )
+    render_paginated(paginated)
   end
 
   def show
@@ -53,27 +46,16 @@ class Api::ArticlesController < ActionController::Base
 
   def all
     @articles = Article.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
-
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
-    render(
-      json: paginated,
-      each_serializer: BaseArticleSerializer,
-      root: 'all_articles',
-      key_transform: :camel_lower,
-      meta: meta_attributes(paginated)
-    )
+
+    render_paginated(paginated)
   end
 
   def translated
     @articles = type_class.published.tagged_with(['перевод'])
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
-    render(
-      json: paginated,
-      each_serializer: each_serializer,
-      key_transform: :camel_lower,
-      meta: meta_attributes(paginated)
-    )
+    render_paginated(paginated)
   end
 
   protected
@@ -104,5 +86,18 @@ class Api::ArticlesController < ActionController::Base
 
   def sort_params
     index_params[:sort].to_h.reverse_merge(col: :publish_on, dir: :desc)
+  end
+
+  private
+
+  def render_paginated(paginated)
+    render(
+      json: {
+        collection: paginated,
+        meta: meta_attributes(paginated)
+      },
+      serializer: ArticleCollectionSerializer,
+      key_transform: :camel_lower
+    )
   end
 end
