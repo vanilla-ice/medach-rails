@@ -77,6 +77,7 @@ class Api::ArticlesController < ActionController::Base
       :tag,
       :page,
       :query,
+      :user_id,
       sort: [
         :col,
         :dir

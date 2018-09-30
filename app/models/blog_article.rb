@@ -1,7 +1,7 @@
 class BlogArticle < Article
-  belongs_to :creator, class_name: 'User'
+  belongs_to :user
 
   def author
-    creator.present? ? creator : read_attribute(:author)
+    user.present? ? user : read_attribute(:author)
   end
 end

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   has_one :user_profile, dependent: :destroy
+  has_many :blogs, class_name: 'BlogArticle'
 
   accepts_nested_attributes_for :user_profile, allow_destroy: false
 
