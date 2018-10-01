@@ -1,7 +1,4 @@
 ActiveAdmin.register BlogArticle do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
   permit_params(
     :body,
     :cover_image,
@@ -26,9 +23,10 @@ ActiveAdmin.register BlogArticle do
     :fixed,
     :partner_id
   )
-#
-# or
-#
+
+  before_create do |article|
+    article.user = current_user
+  end
 
   menu parent: "Статьи"
 
@@ -42,7 +40,7 @@ ActiveAdmin.register BlogArticle do
   filter :origin, label: 'Оригинал'
 
   show title: :title do
-    render 'admin/article', {article: blog_article}
+    render 'admin/article', { article: blog_article }
   end
 
   index do
