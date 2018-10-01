@@ -25,6 +25,12 @@ img {
   width : 100%;
 }
 
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
 .inputs img {
   max-width: 300px !important;
 }

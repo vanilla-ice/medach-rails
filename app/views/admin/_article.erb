@@ -9,7 +9,7 @@
           Автор
         </div>
         <div class="article-info__info-item-value">
-          <% if article.user.present? %>
+          <% if article.try(:user) %>
             <%= link_to article.user.full_name, admin_user_url(article.user.id) %>
           <% else %>
             <%= article.author %>

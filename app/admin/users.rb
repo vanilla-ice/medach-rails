@@ -45,12 +45,14 @@ ActiveAdmin.register User do
       end
     end
     panel 'User profile' do
-      table_for user.user_profile do
-        column :about
-        column :facebook_account
-        column :instagram_account
-        column :telegram_account
-        column :avatar
+      attributes_table_for user.user_profile do
+        row :about
+        row :facebook_account
+        row :instagram_account
+        row :telegram_account
+        row :avatar do |up|
+          image_tag up.avatar, class: 'img-responsive'
+        end
       end
     end
 
