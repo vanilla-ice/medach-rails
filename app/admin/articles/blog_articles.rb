@@ -28,6 +28,10 @@ ActiveAdmin.register BlogArticle do
     article.user = current_user
   end
 
+  before_save do |article|
+    article.updater = current_user
+  end
+
   menu parent: "Статьи"
 
   filter :tags, label: 'Теги'
@@ -53,6 +57,7 @@ ActiveAdmin.register BlogArticle do
     column 'Автор', :author
     column 'Дата создания', :created_at
     column 'Дата изменения', :updated_at
+    column 'Обновил', :updater
     column 'Дата публикации', :publish_on
     actions
   end

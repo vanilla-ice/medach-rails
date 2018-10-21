@@ -6,6 +6,7 @@ class Article < ApplicationRecord
 
   validates :short_description, length: { maximum: 250 }
 
+  belongs_to :updater, class_name: 'User', optional: true
   has_many :images
 
   before_save :delete_whitespace

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181001110738) do
+ActiveRecord::Schema.define(version: 20181021172810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,12 +50,14 @@ ActiveRecord::Schema.define(version: 20181001110738) do
     t.integer "impressions_count", default: 0, null: false
     t.string "small_cover_image"
     t.bigint "user_id"
+    t.bigint "updater_id"
     t.index ["origin"], name: "index_articles_on_origin"
     t.index ["partner_id"], name: "index_articles_on_partner_id"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
     t.index ["search"], name: "index_articles_on_search"
     t.index ["short_description"], name: "index_articles_on_short_description"
     t.index ["translate"], name: "index_articles_on_translate"
+    t.index ["updater_id"], name: "index_articles_on_updater_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -189,5 +191,6 @@ ActiveRecord::Schema.define(version: 20181001110738) do
 
   add_foreign_key "articles", "partners"
   add_foreign_key "articles", "users"
+  add_foreign_key "articles", "users", column: "updater_id"
   add_foreign_key "user_profiles", "users"
 end
