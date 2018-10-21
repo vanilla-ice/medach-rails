@@ -52,6 +52,7 @@ ActiveAdmin.register BlogArticle do
     column 'Теги', :tag_list
     column 'Автор', :author
     column 'Дата создания', :created_at
+    column 'Дата изменения', :updated_at
     column 'Дата публикации', :publish_on
     actions
   end
