@@ -449,3 +449,9 @@ p {
   font-family: PTSerif-Regular, helvetica;
 }
 
+form {
+  fieldset.actions li {
+    float: right;
+  }
+}
+
