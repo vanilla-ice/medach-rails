@@ -2,6 +2,8 @@ class Article < ApplicationRecord
   include PgSearch
   include Sortable
 
+  TYPES = %w(BlogArticle LongreadArticle MediaArticle NewsArticle).freeze
+
   is_impressionable :counter_cache => true, :unique => :all
 
   validates :short_description, length: { maximum: 250 }

@@ -7,6 +7,7 @@
   <% f.object.publish_on ||= DateTime.now %>
   <%= f.inputs do %>
     <%= render 'admin/form', f: f %>
+    <%= render partial: "admin/articles/type", locals: { f: f } %>
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit %>
