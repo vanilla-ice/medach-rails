@@ -3,27 +3,42 @@ ru:
     models:
       blog_article:
         one: "Блог"
+        few: "Блогов"
+        many: "Блогов"
         other: "Блоги"
       news_article:
         one: "Новость"
+        few: "Новостей"
+        many: "Новостей"
         other: "Новости"
       longread_article:
         one: "Лонгрид"
+        few: "Лонгридов"
+        many: "Лонгридов"
         other: "Лонгриды"
       media_article:
         one: "Медиа"
+        few: "Медиа"
         other: "Медиа"
       partner:
         one: "Партнер"
+        few: "Партнеров"
+        many: "Партнеров"
         other: "Партнеры"
       main_config:
         one: "Главная Cтраница"
+        few: "Главных Страниц"
+        many: "Главных Страниц"
         other: "Главные Страницы"
       blogs_config:
         one: "Страница Блогов"
+        few: "Страниц Блогов"
+        many: "Страниц Блогов"
         other: "Страницы Блогов"
       user:
         one: Пользователь
+        few: Пользователей
+        many: Пользователей
         other: Пользователи
 
   formtastic:
