@@ -9,6 +9,7 @@ class Article < ApplicationRecord
   validates :short_description, length: { maximum: 250 }
   validates :title, :tag_string, presence: true
 
+  belongs_to :user, optional: true
   belongs_to :updater, class_name: 'User', optional: true
   has_many :images
 

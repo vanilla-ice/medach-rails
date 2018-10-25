@@ -21,6 +21,10 @@ ActiveAdmin.register MediaArticle do
 
   menu parent: "Статьи"
 
+  before_create do |article|
+    article.user = current_user
+  end
+
   before_save do |article|
     article.updater = current_user
   end

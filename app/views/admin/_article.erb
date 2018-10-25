@@ -4,16 +4,22 @@
       <%= image_tag(article.cover_image) %>
     </div>
     <div class="article-info__info">
+      <% if article.user %>
         <div class="article-info__info-item">
+          <div class="article-info__info-item-key">
+            Добавил
+          </div>
+          <div class="article-info__info-item-value">
+            <%= link_to article.user.full_name, admin_user_url(article.user.id) %>
+          </div>
+        </div>
+      <% end %>
+      <div class="article-info__info-item">
         <div class="article-info__info-item-key">
           Автор
         </div>
         <div class="article-info__info-item-value">
-          <% if article.try(:user) %>
-            <%= link_to article.user.full_name, admin_user_url(article.user.id) %>
-          <% else %>
-            <%= article.author %>
-          <% end %>
+          <%= article.author.try(:full_name) || article.author %>
         </div>
       </div>
       <div class="article-info__info-item">
@@ -53,7 +59,19 @@
       <div class="article-info__info-item">
         <div class="article-info__info-item-key">Дата публикации</div>
         <div class="article-info__info-item-value">
-          <%= (article.publish_on || article.created_at).strftime('%d %B %Y, %H:%M') %>
+          <%= I18n.localize(article.publish_on) %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Дата создания</div>
+        <div class="article-info__info-item-value">
+          <%= I18n.localize(article.created_at) %>
+        </div>
+      </div>
+      <div class="article-info__info-item">
+        <div class="article-info__info-item-key">Дата обновления</div>
+        <div class="article-info__info-item-value">
+          <%= I18n.localize(article.publish_on) %>
         </div>
       </div>
     </div>

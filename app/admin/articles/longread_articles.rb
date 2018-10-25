@@ -21,11 +21,12 @@ permit_params(
   :translate,
   :fixed
 )
-#
-# or
-#
 
   menu parent: "Статьи"
+
+  before_create do |article|
+    article.user = current_user
+  end
 
   before_save do |article|
     article.updater = current_user

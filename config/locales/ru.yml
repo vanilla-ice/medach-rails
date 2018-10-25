@@ -191,4 +191,5 @@ ru:
       blog: "Блог"
   time:
     formats:
+      default: '%d %B %Y, %H:%M'
       long: "%Y-%m-%d %H:%M:%S"
