@@ -3,8 +3,10 @@ class Api::ArticlesController < ActionController::Base
 
   impressionist :actions => [:show]
 
+  META_PARAMS = %i(page per_page sort).freeze
+
   def index
-    @articles = type_class.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
+    @articles = type_class.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
     @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
@@ -76,6 +78,7 @@ class Api::ArticlesController < ActionController::Base
     params.permit(
       :tag,
       :page,
+      :per_page,
       :query,
       :user_id,
       sort: [
