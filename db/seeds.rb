@@ -12,7 +12,8 @@ users = [
     password_confirmation: 'password',
     first_name: 'Admin',
     last_name: 'Admin',
-    admin: true
+    admin: true,
+    approved: true
   },
   {
     email: 'jedi@example.com',

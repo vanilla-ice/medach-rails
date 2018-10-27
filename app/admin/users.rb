@@ -10,6 +10,7 @@ ActiveAdmin.register User do
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
+    column :approved
     actions
   end
 
@@ -25,6 +26,7 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :password
       f.input :password_confirmation
+      f.input :approved if current_user.admin?
     end
     f.inputs 'Profile' do
       f.has_many :user_profile, allow_destroy: false, new_record: true do |ff|

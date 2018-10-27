@@ -2,7 +2,11 @@ ru:
   devise:
     failure:
       user:
+        not_approved: Ваша учетная запись ещё не была подтверждена администратором.
         unauthenticated: Вы не вошли в систему
     sessions:
       user:
         signed_in: Вы успешно вошли в систему
+    registrations:
+      user:
+        signed_up_but_not_approved: Вы успешно зарегистрированы, но ваша учётная запись ещё не была подтверждена администратором.
