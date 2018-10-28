@@ -46,7 +46,7 @@ ActiveAdmin.register User do
         row(field)
       end
     end
-    panel 'User profile' do
+    panel UserProfile.model_name.human do
       attributes_table_for user.user_profile do
         row :about
         row :facebook_account

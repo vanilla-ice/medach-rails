@@ -1,11 +1,35 @@
 ru:
+  attributes:
+    active: Активен
+    created_at: Создано
+    name: Название
+    title: Заголовок
+    updated_at: Обновлено
   activerecord:
+    attributes:
+      user:
+        approved: Подтвержден
+        admin: Администратор
+        first_name: Имя
+        full_name: Имя
+        last_name: Фамилия
+      user_profile:
+        about: О себе
+        avatar: Аватар
+        facebook_account: Страница в Facebook
+        instagram_account: Ник в Instagram
+        telegram_account: Ник в Telegram
     models:
       blog_article:
         one: "Блог"
         few: "Блогов"
         many: "Блогов"
         other: "Блоги"
+      comments:
+        one: Комментарий
+        few: Комментариев
+        many: Комментариев
+        other: Комментариев
       news_article:
         one: "Новость"
         few: "Новостей"
@@ -40,7 +64,11 @@ ru:
         few: Пользователей
         many: Пользователей
         other: Пользователи
-
+      user_profile:
+        one: Профиль пользователя
+        few: Профилей пользователей
+        many: Профилей пользователей
+        other: Профили пользователей
   formtastic:
     :yes: "Да"
     :no: "Нет"
@@ -195,3 +223,10 @@ ru:
     formats:
       default: '%d %B %Y, %H:%M'
       long: "%Y-%m-%d %H:%M:%S"
+  views:
+    pagination:
+      first: Первая
+      last: Последняя
+      next: Следующая
+      previous: Предыдущая
+      truncate: ...
