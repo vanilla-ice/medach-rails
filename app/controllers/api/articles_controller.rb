@@ -47,7 +47,7 @@ class Api::ArticlesController < ActionController::Base
   end
 
   def all
-    @articles = Article.includes(:tags).published.filter(index_params.except(:sort)).sort_query(sort_params)
+    @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
     render_paginated(paginated)
