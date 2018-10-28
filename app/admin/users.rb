@@ -1,6 +1,9 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :first_name, :last_name,
+  permit_params :email, :first_name, :last_name, :approved,
                 user_profile_attributes: [:about, :facebook_account, :instagram_account, :telegram_account, :avatar]
+
+  scope 'Все', :all
+  scope ('Неподтвержденные')  { |scope| scope.where(approved: false) }
 
   index do
     selectable_column
@@ -24,11 +27,9 @@ ActiveAdmin.register User do
       f.input :email
       f.input :first_name
       f.input :last_name
-      f.input :password
-      f.input :password_confirmation
       f.input :approved if current_user.admin?
     end
-    f.inputs 'Profile' do
+    f.inputs 'Профиль' do
       f.has_many :user_profile, allow_destroy: false, new_record: true do |ff|
         ff.input :about
         ff.input :facebook_account
