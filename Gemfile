@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.4'
 gem 'activeadmin', '~> 1.3.0'
 # gem 'activeadmin_trumbowyg'
 # gem 'activeadmin_quill_editor', '0.1.1'
+gem "active_material", github: "vigetlabs/active_material"
 
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
