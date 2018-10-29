@@ -21,53 +21,59 @@ ru:
         telegram_account: Ник в Telegram
     models:
       blog_article:
-        one: "Блог"
-        few: "Блогов"
-        many: "Блогов"
-        other: "Блоги"
+        one: Блог
+        few: Блога
+        many: Блоги
+        other: Блоги
+      case_article:
+        one: Кейс
+        few: Кейса
+        many: Кейсы
+        other: Кейсы
       comments:
         one: Комментарий
-        few: Комментариев
-        many: Комментариев
-        other: Комментариев
+        few: Комментария
+        many: Комментарии
+        other: Комментарии
       news_article:
-        one: "Новость"
-        few: "Новостей"
-        many: "Новостей"
-        other: "Новости"
+        one: Новость
+        few: Новостей
+        many: Новости
+        other: Новости
       longread_article:
-        one: "Лонгрид"
-        few: "Лонгридов"
-        many: "Лонгридов"
-        other: "Лонгриды"
+        one: Лонгрид
+        few: Лонгрида
+        many: Лонгриды
+        other: Лонгриды
       media_article:
-        one: "Медиа"
-        few: "Медиа"
-        other: "Медиа"
+        one: Медиа
+        few: Медиа
+        many: Медиа
+        other: Медиа
       partner:
-        one: "Партнер"
-        few: "Партнеров"
-        many: "Партнеров"
-        other: "Партнеры"
+        one: Партнер
+        few: Партнера
+        many: Партнеры
+        other: Партнеры
       main_config:
         one: "Главная Cтраница"
         few: "Главных Страниц"
-        many: "Главных Страниц"
+        many: "Главные Страницы"
         other: "Главные Страницы"
       blogs_config:
         one: "Страница Блогов"
         few: "Страниц Блогов"
-        many: "Страниц Блогов"
+        many: "Страницы Блогов"
         other: "Страницы Блогов"
       user:
         one: Пользователь
-        few: Пользователей
-        many: Пользователей
+        few: Пользователя
+        many: Пользователи
         other: Пользователи
       user_profile:
         one: Профиль пользователя
-        few: Профилей пользователей
-        many: Профилей пользователей
+        few: Профиля пользователя
+        many: Профили пользователей
         other: Профили пользователей
   formtastic:
     :yes: "Да"

@@ -1,0 +1,2 @@
+class CaseArticle < Article
+end
