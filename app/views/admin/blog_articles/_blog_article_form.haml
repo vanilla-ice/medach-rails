@@ -1,27 +1,14 @@
-- bloggers = User.all.includes(:user_profile)
 = semantic_form_for [:admin, @blog_article], :html => { :multipart => true }, builder: ActiveAdmin::FormBuilder do |f|
   = f.actions do
     = f.action :submit
     = f.action :cancel, class: :cancel, label: 'Отменить', :wrapper_html => { class: :cancel}
   - f.object.body ||= ""
   - f.object.publish_on ||= DateTime.now
-  = f.inputs do 
-    = f.input :title, label: "Заголовок", :input_html => { :class => :js_title }
-    = render :partial => "admin/text_editor", locals: { f: f }
-    = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка квадратная (≈ 675 x 475)', name: "cover_image", message: "Обложка не представлена"}
-    = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка прямоугольная (≈ 675 x 285)', name: "small_cover_image", message: "Миниатюра обложки не представлена"}
-    = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
-    = f.input :tag_string, label: 'Теги', :input_html => { :class => :js_tags }
-    = f.input :user, label: "Автор", as: :select, collection: bloggers, :input_html => { :class => :js_author }
-    = f.input :redaction, label: "Редакция", :input_html => { :class => :js_redaction }
-    = f.input :infographic, label: "Оформление", :input_html => { :class => :js_infographic }
-    = f.input :origin, label: "Оригинал", :input_html => { :class => :js_original }
-    = f.input :translate, label: "Перевод", :input_html => { :class => :js_translate }
-    = f.input :publish_on, label: "Отложенный постинг", as: :date_time_picker
-    = f.input :fixed, label: "Закрепить в шапке"
+  = f.inputs do
+    = render :partial => "admin/form", locals: {f: f}
     = render :partial => "admin/image_uploader", locals: {f: f, label: 'Аватар', name: "avatar", message: "Аватар не представлен"}
-    = f.input :partner_id, label: "Партнер", as: :select, collection: Partner.all.collect { |partner| [partner.name, partner.id] }
+    = f.input :partner_id, as: :select, collection: Partner.all.collect { |partner| [partner.name, partner.id] }
     = render :partial => "admin/articles/type", locals: { f: f }
   = f.actions do
     = f.action :submit
-    = f.action :cancel, class: :cancel, label: 'Отменить', :wrapper_html => { class: :cancel}
+    = f.action :cancel, class: :cancel, label: 'Отмяенить', :wrapper_html => { class: :cancel}
