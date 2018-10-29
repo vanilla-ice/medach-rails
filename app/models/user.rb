@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   after_create :init_profile
 
+  scope :bloggers, -> { where(admin: false) }
+
   def full_name
     [first_name, last_name].compact.join(' ')
   end

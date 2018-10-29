@@ -1,4 +1,4 @@
-class Api::ArticlesController < ActionController::Base
+class Api::ArticlesController < Api::ApiController
   respond_to :json
 
   impressionist :actions => [:show]
@@ -34,16 +34,6 @@ class Api::ArticlesController < ActionController::Base
   def show_random
     @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:per_page] || 3)
     render json: @articles
-  end
-
-  def meta_attributes(collection, extra_meta = {})
-    {
-      current_page: collection.current_page,
-      next_page: collection.next_page,
-      prev_page: collection.prev_page, # use collection.previous_page when using will_paginate
-      total_pages: collection.total_pages,
-      total_count: collection.total_count
-    }.merge(extra_meta)
   end
 
   def all
