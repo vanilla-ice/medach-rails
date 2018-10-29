@@ -21,7 +21,8 @@ ActiveAdmin.register BlogArticle do
     :origin,
     :translate,
     :fixed,
-    :partner_id
+    :partner_id,
+    :user_id
   )
 
   before_create do |article|
