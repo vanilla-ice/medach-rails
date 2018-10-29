@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :approved,
-                user_profile_attributes: [:about, :facebook_account, :instagram_account, :telegram_account, :avatar]
+                user_profile_attributes: [:id, :about, :facebook_account, :instagram_account, :telegram_account, :avatar]
 
   scope 'Все', :all
   scope ('Неподтвержденные')  { |scope| scope.where(approved: false) }
@@ -28,14 +28,19 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :approved if current_user.admin?
-    end
-    f.inputs 'Профиль' do
+
       f.has_many :user_profile, allow_destroy: false, new_record: true do |ff|
         ff.input :about
         ff.input :facebook_account
         ff.input :instagram_account
         ff.input :telegram_account
-        ff.input :avatar
+
+        hint = ff.object.avatar.present? ? image_tag(ff.object.avatar.url) : content_tag(:span, "Аватар не загружен")
+        ff.input :avatar, as: :file, hint: hint, input_html: { :class => 'js_image' }
+        if ff.object.avatar.present?
+          ff.input "remove_avatar".to_sym, as: :boolean, label: 'Удалить'
+        end
+        ff.input "avatar_cache", as: :hidden
       end
     end
     f.actions
