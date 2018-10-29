@@ -54,6 +54,9 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
+    run :remote do
+      command %{yarn}
+    end
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
