@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         get 'show_random'
         get 'translated'
         get 'all'
-        %w(news media blogs longread_articles).each do |type|
+        %w(news media blogs longread_articles cases).each do |type|
           get type, to: "#{type}#index"
         end
       end 
@@ -32,6 +32,11 @@ Rails.application.routes.draw do
       end
     end
     resources :media, only: :index do
+      collection do
+        get 'translated'
+      end
+    end
+    resources :cases, only: :index do
       collection do
         get 'translated'
       end
