@@ -48,7 +48,7 @@ task :yarn do
 end
 
 task :setup_frontend do
-  command %{cd medach_frontend && yarn install && yarn build && yarn prod}
+  command %{cd medach_frontend && yarn install && yarn build}
 end
 
 desc "Deploys the current version to the server."
