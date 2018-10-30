@@ -47,6 +47,10 @@ task :yarn do
   command %{yarn}
 end
 
+task :setup_frontend do
+  command %{cd medach_frontend && yarn install && yarn build}
+end
+
 desc "Deploys the current version to the server."
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
@@ -61,6 +65,7 @@ task :deploy do
     invoke :yarn
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    invoke :setup_frontend
 
     on :launch do
       in_path(fetch(:current_path)) do
