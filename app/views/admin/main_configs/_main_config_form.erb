@@ -9,7 +9,7 @@
         name: 'pinned_articles',
         label: 'Закрепленные статьи',
         order_label: 'Порядок закрепленных статей',
-        collection: LongreadArticle.published
+        collection: LongreadArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -19,7 +19,7 @@
         name: 'pinned_blogs',
         label: 'Закрепленные блоги',
         order_label: 'Порядок закрепленных блогов',
-        collection: BlogArticle.published
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -29,7 +29,7 @@
         name: 'main_news',
         label: 'Главные новости',
         order_label: 'Порядок главных новостей',
-        collection: NewsArticle.published
+        collection: NewsArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -39,7 +39,7 @@
         name: 'promoted_articles',
         label: 'Продвигаемые статьи',
         order_label: 'Порядок продвигаемых статей',
-        collection: LongreadArticle.published
+        collection: LongreadArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(

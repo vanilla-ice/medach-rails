@@ -9,7 +9,7 @@
         name: "pinned_blogs",
         label: "Закрепленные блоги",
         order_label: "Порядок закрепленных блогов",
-        collection: BlogArticle.published
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -19,7 +19,7 @@
         name: "spotlight_blogs",
         label: "Блоги в центре внимания",
         order_label: "Порядок блогов в центре внимания",
-        collection: BlogArticle.published
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -29,7 +29,7 @@
         name: "main_blogs",
         label: "Главные блоги",
         order_label: "Порядок главных блогов",
-        collection: BlogArticle.published
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
@@ -39,7 +39,7 @@
         name: "promoted_blogs",
         label: "Продвигаемые блоги",
         order_label: "Порядок продвигаемых блогов",
-        collection: BlogArticle.published
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
   <% end %>
