@@ -16,6 +16,7 @@ ru:
       user_profile:
         about: О себе
         avatar: Аватар
+        cover_image: Обложка
         facebook_account: Страница в Facebook
         instagram_account: Ник в Instagram
         telegram_account: Ник в Telegram

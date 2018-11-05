@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :approved, :password, :password_confirmation,
-                user_profile_attributes: [:id, :about, :facebook_account, :instagram_account, :telegram_account, :avatar]
+                user_profile_attributes: [:id, :about, :facebook_account, :instagram_account, :telegram_account, :avatar, :cover_image]
 
   scope 'Все', :all
   scope ('Неподтвержденные')  { |scope| scope.where(approved: false) }
@@ -43,8 +43,14 @@ ActiveAdmin.register User do
         ff.input :avatar, as: :file, hint: hint, input_html: { :class => 'js_image' }
         if ff.object.avatar.present?
           ff.input "remove_avatar".to_sym, as: :boolean, label: 'Удалить'
+          end
+
+        hint = ff.object.cover_image.present? ? image_tag(ff.object.cover_image.url) : content_tag(:span, "Обложка не загружена")
+        ff.input :cover_image, as: :file, hint: hint, input_html: { :class => 'js_image' }
+        if ff.object.cover_image.present?
+          ff.input "remove_cover_image".to_sym, as: :boolean, label: 'Удалить'
         end
-        ff.input "avatar_cache", as: :hidden
+        ff.input "cover_image_cache", as: :hidden
       end
     end
     f.actions
@@ -64,6 +70,9 @@ ActiveAdmin.register User do
         row :telegram_account
         row :avatar do |up|
           image_tag up.avatar, class: 'img-responsive'
+        end
+        row :cover_image do |up|
+          image_tag up.cover_image, class: 'img-responsive'
         end
       end
     end
