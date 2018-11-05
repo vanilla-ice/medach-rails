@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   include PgSearch
   include Sortable
 
-  TYPES = %w(BlogArticle LongreadArticle MediaArticle NewsArticle).freeze
+  TYPES = %w(BlogArticle LongreadArticle MediaArticle NewsArticle CaseArticle).freeze
 
   is_impressionable :counter_cache => true, :unique => :all
 
