@@ -3,6 +3,7 @@
 //= require katex/dist/katex.js
 //= require chosen-jquery
 //= require ./textboxio/textboxio.js
+//= require active_material
 
 /**
  * Step2. save to server

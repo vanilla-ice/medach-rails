@@ -21,11 +21,16 @@ permit_params(
   :translate,
   :fixed
 )
-#
-# or
-#
 
   menu parent: "Статьи"
+
+  before_create do |article|
+    article.user = current_user
+  end
+
+  before_save do |article|
+    article.updater = current_user
+  end
 
   filter :tags, label: 'Теги'
   filter :body, label: 'Текст статьи'
@@ -49,6 +54,8 @@ permit_params(
     column 'Теги', :tag_list
     column 'Автор', :author
     column 'Дата создания', :created_at
+    column 'Дата изменения', :updated_at
+    column 'Обновил', :updater
     column 'Дата публикации', :publish_on
     actions
   end

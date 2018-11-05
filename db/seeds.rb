@@ -5,4 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+users = [
+  {
+    email: 'admin@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    first_name: 'Admin',
+    last_name: 'Admin',
+    admin: true,
+    approved: true
+  },
+  {
+    email: 'jedi@example.com',
+    password: 'password',
+    password_confirmation: 'password',
+    first_name: 'Dental',
+    last_name: 'Jedi'
+  },
+]
+
+users.each do |user|
+  User.find_or_initialize_by(email: user[:email]).update!(user)
+end

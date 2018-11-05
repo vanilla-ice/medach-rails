@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402101452) do
+ActiveRecord::Schema.define(version: 20181105092856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,23 +27,6 @@ ActiveRecord::Schema.define(version: 20180402101452) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "articles", force: :cascade do |t|
@@ -66,12 +49,16 @@ ActiveRecord::Schema.define(version: 20180402101452) do
     t.bigint "partner_id"
     t.integer "impressions_count", default: 0, null: false
     t.string "small_cover_image"
+    t.bigint "user_id"
+    t.bigint "updater_id"
     t.index ["origin"], name: "index_articles_on_origin"
     t.index ["partner_id"], name: "index_articles_on_partner_id"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
     t.index ["search"], name: "index_articles_on_search"
     t.index ["short_description"], name: "index_articles_on_short_description"
     t.index ["translate"], name: "index_articles_on_translate"
+    t.index ["updater_id"], name: "index_articles_on_updater_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -172,5 +159,40 @@ ActiveRecord::Schema.define(version: 20180402101452) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "about"
+    t.string "avatar"
+    t.string "facebook_account"
+    t.string "instagram_account"
+    t.string "telegram_account"
+    t.text "cover_image"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin", default: false
+    t.boolean "approved", default: false, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "articles", "partners"
+  add_foreign_key "articles", "users"
+  add_foreign_key "articles", "users", column: "updater_id"
+  add_foreign_key "user_profiles", "users"
 end

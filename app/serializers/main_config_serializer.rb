@@ -1,21 +1,23 @@
 class MainConfigSerializer < SiteConfigSerializer
-  attributes(
-    :pinned_articles,
-    :pinned_blogs,
-    :main_news,
-    :promoted_articles
-  )
+  attributes :pinned, :blogs, :news, :promoted, :slider
 
-  def pinned_articles
+  def pinned
     prepare_articles('pinned_articles')
   end
-  def pinned_blogs
+
+  def blogs
     prepare_articles('pinned_blogs')
   end
-  def main_news
+
+  def news
     prepare_articles('main_news')
   end
-  def promoted_articles
+
+  def promoted
     prepare_articles('promoted_articles')
+  end
+
+  def slider
+    prepare_articles('slider_articles')
   end
 end

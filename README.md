@@ -2,16 +2,20 @@
 
 ## Setup
 
-1. Install ruby v2.4.1, postgres v9.6+, yarn v1.0+
-2. Copy and edit database config 
+1. Clone repo
+    ```
+    $ git clone https://github.com/vanilla-ice/medach-rails.git
+    ```
+2. Install ruby v2.4.1, postgres v9.6+, yarn v1.0+
+3. Copy and edit database config 
     ```
     $ cp config/database.sample.yml config/database.yml
     ```
-3. Install project gems
+4. Install project gems
     ```
     $ bundle install
     ```
-4. Prepare database
+5. Prepare database
     - create databases
       ```
       $ rails db:create:all
@@ -25,7 +29,7 @@
       $ rails db:migrate db:seed
       ```
     
-5. Build client side
+6. Build client side
     ```
     $ yarn
     ```

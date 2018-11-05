@@ -1,10 +1,16 @@
 class Article < ApplicationRecord
   include PgSearch
+  include Sortable
+
+  TYPES = %w(BlogArticle LongreadArticle MediaArticle NewsArticle CaseArticle).freeze
 
   is_impressionable :counter_cache => true, :unique => :all
 
   validates :short_description, length: { maximum: 250 }
+  validates :title, :tag_string, presence: true
 
+  belongs_to :user, optional: true
+  belongs_to :updater, class_name: 'User', optional: true
   has_many :images
 
   before_save :delete_whitespace
@@ -14,16 +20,16 @@ class Article < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   mount_uploader :small_cover_image, SmallCoverImageUploader
 
-  scope :fixed, -> { where(fixed: true)}
-  scope :published, -> { where(["publish_on < ?", Time.zone.now]).order("publish_on DESC") }
-  scope :newest_first, -> {order("created_at DESC")}
+  scope :fixed, -> { where(fixed: true) }
+  scope :published, -> { where('publish_on < ?', Time.current) }
+  scope :newest_first, -> { order(created_at: :desc) }
 
-  multisearchable against: [:body, :title, :author, :infographic, :redaction, :short_description, :translate, :origin]
+  multisearchable against: [:title, :author, :short_description, :origin]
   pg_search_scope :search,
-    against: [:body, :title, :author, :infographic, :redaction, :short_description, :origin, :translate],
+    against: [:title, :author, :short_description, :origin],
     associated_against: { :tags => [:name] },
     using: {
-      tsearch: {dictionary: "russian", prefix: true}
+      tsearch: { dictionary: 'russian', prefix: true }
     }
 
   def delete_whitespace
@@ -41,6 +47,20 @@ class Article < ApplicationRecord
 
   def tag_string
     self.tag_list.join(', ')
+  end
+
+  private
+
+  def self.filter(filtering_params)
+    results = self.where(nil)
+    filtering_params.each do |key, value|
+      case key
+      when 'tag' then results = results.tagged_with(value)
+      when 'query' then results = search(value)
+      else results = results.where(key => value) if value.present?
+      end
+    end
+    results
   end
 
 end

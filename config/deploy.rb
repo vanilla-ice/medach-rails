@@ -10,10 +10,10 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 set :user, 'deploy'
 set :application_name, 'medach'
-set :domain, '146.185.143.96'
+set :domain, '142.93.13.232'
 set :deploy_to, '/home/deploy/apps/medach'
 set :repository, 'git://github.com/vanilla-ice/medach-rails.git'
-set :branch, 'master'
+set :branch, 'develop'
 
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
@@ -43,6 +43,14 @@ task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
 end
 
+task :yarn do
+  command %{yarn}
+end
+
+task :setup_frontend do
+  command %{cd medach_frontend && yarn install && yarn build && yarn prod}
+end
+
 desc "Deploys the current version to the server."
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
@@ -54,8 +62,10 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
+    invoke :yarn
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    invoke :setup_frontend
 
     on :launch do
       in_path(fetch(:current_path)) do

@@ -1,5 +1,6 @@
 class BaseArticleSerializer < ActiveModel::Serializer
-  attributes :id, :title, :tags, :cover_image, :small_cover_image, :views, :publication_date, :author, :type
+  attributes :id, :title, :tags, :cover_image, :small_cover_image, :views, :publication_date, :author, :type,
+             :short_description
 
   def id
     object.id.to_s
@@ -10,7 +11,7 @@ class BaseArticleSerializer < ActiveModel::Serializer
   end
 
   def tags
-    object.tag_list
+    object.tags.collect { |t| t.name }
   end
 
   def cover_image

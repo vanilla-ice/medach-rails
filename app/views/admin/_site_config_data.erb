@@ -31,4 +31,12 @@
       <% end %>
     </div>
   <% end %>
+  <% if slider_articles.any? %>
+    <div>
+      <div>Слайдер:</div>
+      <% slider_articles.each do |blog| %>
+        <span> <%=link_to(blog.title, admin_blog_article_path(blog)) %> </span>
+      <% end %>
+    </div>
+  <% end %>
 </div>

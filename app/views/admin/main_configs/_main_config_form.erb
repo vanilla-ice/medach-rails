@@ -6,39 +6,49 @@
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "pinned_articles",
-        label: "Закрепленные статьи",
-        order_label: "Порядок закрепленных статей",
-        collection: LongreadArticle.published
+        name: 'pinned_articles',
+        label: 'Закрепленные статьи',
+        order_label: 'Порядок закрепленных статей',
+        collection: LongreadArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "pinned_blogs",
-        label: "Закрепленные блоги",
-        order_label: "Порядок закрепленные блогов",
-        collection: BlogArticle.published
+        name: 'pinned_blogs',
+        label: 'Закрепленные блоги',
+        order_label: 'Порядок закрепленных блогов',
+        collection: BlogArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "main_news",
-        label: "Главные новости",
-        order_label: "Порядок главных новостей",
-        collection: NewsArticle.published
+        name: 'main_news',
+        label: 'Главные новости',
+        order_label: 'Порядок главных новостей',
+        collection: NewsArticle.published.order(created_at: :desc)
       })
     %>
     <%= render(
       partial: 'admin/site_config_input',
       locals: {
         f: f,
-        name: "promoted_articles",
-        label: "Продвигаемые статьи",
-        order_label: "Порядок продвигаемых статей",
+        name: 'promoted_articles',
+        label: 'Продвигаемые статьи',
+        order_label: 'Порядок продвигаемых статей',
+        collection: LongreadArticle.published.order(created_at: :desc)
+      })
+    %>
+    <%= render(
+      partial: 'admin/site_config_input',
+      locals: {
+        f: f,
+        name: 'slider_articles',
+        label: 'Слайдер',
+        order_label: 'Порядок в слайдере',
         collection: LongreadArticle.published
       })
     %>

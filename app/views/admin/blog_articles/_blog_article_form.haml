@@ -1,10 +1,14 @@
 = semantic_form_for [:admin, @blog_article], :html => { :multipart => true }, builder: ActiveAdmin::FormBuilder do |f|
-  - f.object.body ||= ""
-  - f.object.publish_on ||= DateTime.now
-  = f.inputs do 
-    = render :partial => "admin/form", locals: {f: f}
-    = render :partial => "admin/image_uploader", locals: {f: f, label: 'Аватар', name: "avatar", message: "Аватар не представлен"}
-    = f.input :partner_id, as: :select, collection: Partner.all.collect { |partner| [partner.name, partner.id] }
   = f.actions do
     = f.action :submit
     = f.action :cancel, class: :cancel, label: 'Отменить', :wrapper_html => { class: :cancel}
+  - f.object.body ||= ""
+  - f.object.publish_on ||= DateTime.now
+  = f.inputs do
+    = render :partial => "admin/form", locals: {f: f}
+    = render :partial => "admin/image_uploader", locals: {f: f, label: 'Аватар', name: "avatar", message: "Аватар не представлен"}
+    = f.input :partner_id, as: :select, collection: Partner.all.collect { |partner| [partner.name, partner.id] }
+    = render :partial => "admin/articles/type", locals: { f: f } unless f.object.new_record?
+  = f.actions do
+    = f.action :submit
+    = f.action :cancel, class: :cancel, label: 'Отмяенить', :wrapper_html => { class: :cancel}

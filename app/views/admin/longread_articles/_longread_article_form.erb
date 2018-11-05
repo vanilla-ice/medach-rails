@@ -1,8 +1,13 @@
 <%= semantic_form_for [:admin, @longread_article], :html => { :multipart => true } do |f| %>
+  <%= f.actions do %>
+    <%= f.action :submit %>
+    <%= f.action :cancel, :wrapper_html => { class: :cancel} %>
+  <% end %>
   <% f.object.body ||= "" %>
   <% f.object.publish_on ||= DateTime.now %>
   <%= f.inputs do %>
     <%= render 'admin/form', f: f %>
+    <%= render partial: "admin/articles/type", locals: { f: f } unless f.object.new_record? %>
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit %>

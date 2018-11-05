@@ -9,11 +9,13 @@
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
-@import "active_admin/base";
+@import "active_material";
 @import "activeadmin_addons/all";
 @import "katex/dist/katex";
 @import "../../../javascript/src/assets/fonts.css";
 @import "chosen";
+@import "active_admin/cover_image.css";
+@import "active_admin/article_info.css";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
@@ -21,6 +23,12 @@
 //   .status_tag { background: #6090DB; }
 img {
   width : 100%;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  width: auto;
 }
 
 .inputs img {
@@ -209,6 +217,10 @@ p {
 }
 
 //// QUICKVIEW STYLES
+
+.panel_padded {
+  padding: 15px;
+}
 
 .article__content {
   font-family: PTSerif-Regular, helvetica;
@@ -439,5 +451,19 @@ p {
 
 .article__content i {
   font-family: PTSerif-Regular, helvetica;
+}
+
+form {
+  fieldset.actions li {
+    float: right;
+  }
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 42px;
+}
+
+.select2-container .select2-selection--single {
+  height: 42px;
 }
 

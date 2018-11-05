@@ -8,20 +8,17 @@ ActiveAdmin.register BlogsConfig do
     :active
   )
 
-  menu parent: "Конфигурация страниц"
+  menu parent: 'Конфигурация страниц'
 
   form partial: 'blogs_config_form'
 
   index do
     def populate_articles(article_ids)
-      articles = article_ids.map do |article_id|
-        Article.exists?(article_id) ? Article.find(article_id) : nil
-      end
-      articles.compact
+      Article.where(id: article_ids).sort_by { |article| article_ids.index(article.id) }
     end
 
-    column "Название", :title
-    column "Конфигурация" do |blogs_config|
+    column 'Название', :title
+    column 'Конфигурация' do |blogs_config|
       render 'admin/blogs_config_data', {
         pinned_blogs: populate_articles(blogs_config.data['pinned_blogs']),
         spotlight_blogs: populate_articles(blogs_config.data['spotlight_blogs']),
@@ -29,7 +26,7 @@ ActiveAdmin.register BlogsConfig do
         promoted_blogs: populate_articles(blogs_config.data['promoted_blogs'])
       }
     end
-    column "Активен", :active
+    column 'Активен', :active
     actions
   end
 
@@ -41,7 +38,7 @@ ActiveAdmin.register BlogsConfig do
 
     def process_order_field(name)
       order_string = params[:blogs_config][name]
-      order_string.split(',').map{|s| s.delete(" ") }.reject(&:empty?)
+      order_string.split(',').map{|s| s.delete(' ') }.reject(&:empty?)
     end
 
     def build_data

@@ -9,9 +9,10 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-gem 'activeadmin', '~> 1.0.0'
+gem 'activeadmin', '~> 1.3.0'
 # gem 'activeadmin_trumbowyg'
 # gem 'activeadmin_quill_editor', '0.1.1'
+gem "active_material", github: "vigetlabs/active_material"
 
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
@@ -22,8 +23,9 @@ gem 'mina', '1.2.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'carrierwave', '~> 1.0'
-gem "mini_magick"
-gem "devise"
+gem 'mini_magick'
+gem 'devise'
+gem 'devise-i18n'
 gem 'acts-as-taggable-on', '5.0.0'
 gem 'pry-rails'
 gem 'pg_search', '2.1.1'
@@ -53,6 +55,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# RBAC
+gem 'cancancan', '~> 2.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -77,3 +82,6 @@ gem 'haml'
 gem 'chosen-rails'
 gem 'impressionist'
 gem 'activeadmin_addons'
+gem 'rails-i18n'
+
+gem "rack-cors", "~> 1.0"
