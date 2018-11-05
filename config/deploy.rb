@@ -49,7 +49,7 @@ end
 
 task :setup_frontend do
   command %{cd medach_frontend && yarn install}
-  command %{cd yarn build && pm2 kill && yarn prod}
+  command %{yarn build && pm2 kill && yarn prod}
 end
 
 desc "Deploys the current version to the server."
