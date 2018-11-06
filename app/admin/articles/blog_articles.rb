@@ -22,7 +22,8 @@ ActiveAdmin.register BlogArticle do
     :translate,
     :fixed,
     :partner_id,
-    :user_id
+    :user_id,
+    :type
   )
 
   before_create do |article|
@@ -31,6 +32,15 @@ ActiveAdmin.register BlogArticle do
 
   before_save do |article|
     article.updater = current_user
+  end
+
+  controller do
+    def update
+      update! do |format|
+        path = "admin_#{Article.find(resource.id).model_name.element}_path"
+        format.html { redirect_to self.send(path, resource.id)}
+      end
+    end
   end
 
   menu parent: "Статьи"
