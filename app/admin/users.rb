@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :approved, :password, :password_confirmation,
+  permit_params :email, :first_name, :last_name, :approved, :admin, :password, :password_confirmation,
                 user_profile_attributes: [:id, :about, :facebook_account, :instagram_account, :telegram_account, :avatar, :cover_image]
 
   scope 'Все', :all
@@ -31,7 +31,10 @@ ActiveAdmin.register User do
         f.input :password
         f.input :password_confirmation
       end
-      f.input :approved if current_user.admin?
+      if current_user.admin?
+        f.input :approved unless f.object.approved
+        f.input :admin unless f.object.id == current_user.id
+      end
 
       f.has_many :user_profile, allow_destroy: false, new_record: true do |ff|
         ff.input :about
