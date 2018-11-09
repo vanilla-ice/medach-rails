@@ -4,7 +4,7 @@ class CoverImageUploader < CommonUploader
   process resize_to_fit: [600, 600]
 
   def store_dir
-    if model.class.to_s == 'LongreadArticle'
+    if model.class.to_s.in?(Article::TYPES)
       return "uploads/article/image/#{model.id}"
     end
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
