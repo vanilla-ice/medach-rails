@@ -20,7 +20,9 @@ ActiveAdmin.register LongreadArticle do
     :origin,
     :translate,
     :fixed,
-    :type
+    :type,
+    :slider_image,
+    :remove_slider_image
   )
 
   menu parent: "Статьи"
@@ -37,7 +39,6 @@ ActiveAdmin.register LongreadArticle do
     def update
       update! do |format|
         path = "admin_#{Article.find(resource.id).model_name.element}_path"
-        p path
         format.html { redirect_to self.send(path, resource.id)}
       end
     end
