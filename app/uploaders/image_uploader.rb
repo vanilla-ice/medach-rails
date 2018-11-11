@@ -8,8 +8,8 @@ class ImageUploader < CommonUploader
   # end
 
   def store_dir
-    if model.class.to_s == 'LongreadArticle'
-      return "uploads/article/image/#{model.id}"
+    if model.class.to_s.in?(Article::TYPES)
+      return "uploads/article/#{mounted_as}/#{model.id}"
     end
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end

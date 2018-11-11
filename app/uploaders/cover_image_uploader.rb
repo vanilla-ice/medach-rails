@@ -1,6 +1,6 @@
 class CoverImageUploader < CommonUploader
   include CarrierWave::MiniMagick
-  # process scale: [278, 261]
+
   process resize_to_fit: [600, 600]
 
   def store_dir
