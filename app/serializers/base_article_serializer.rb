@@ -22,6 +22,11 @@ class BaseArticleSerializer < ActiveModel::Serializer
     { url: object.small_cover_image.url }
   end
 
+  def slider_image
+    url = object.slider_image.url || object.cover_image.url
+    { url: url }
+  end
+
   def publication_date
     object.publish_on
   end
