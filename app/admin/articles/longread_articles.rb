@@ -37,9 +37,9 @@ ActiveAdmin.register LongreadArticle do
 
   controller do
     def update
-      update! do |format|
+      update! do |success, failure|
         path = "admin_#{Article.find(resource.id).model_name.element}_path"
-        format.html { redirect_to self.send(path, resource.id)}
+        success.html { redirect_to self.send(path, resource.id)}
       end
     end
   end
