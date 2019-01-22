@@ -9,7 +9,7 @@ class Ability
       can :update, User do |u|
         u.id == user.id
       end
-      can [:update, :edit], Article do |a|
+      can [:update, :edit, :destroy], Article do |a|
         a.user_id == user.id
       end
 

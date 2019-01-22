@@ -19,6 +19,7 @@ class Article < ApplicationRecord
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :avatar, AvatarUploader
   mount_uploader :small_cover_image, SmallCoverImageUploader
+  mount_uploader :slider_image, ImageUploader
 
   scope :fixed, -> { where(fixed: true) }
   scope :published, -> { where('publish_on < ?', Time.current) }

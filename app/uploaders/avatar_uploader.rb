@@ -5,6 +5,9 @@ class AvatarUploader < CommonUploader
   process resize_and_crop: 200
 
   def store_dir
+    if model.class.to_s.in?(Article::TYPES)
+      return "uploads/article/#{mounted_as}/#{model.id}"
+    end
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 

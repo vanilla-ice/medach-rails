@@ -2,25 +2,28 @@ ActiveAdmin.register LongreadArticle do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params(
-  :body,
-  :cover_image,
-  :remove_cover_image,
-  :small_cover_image,
-  :remove_small_cover_image,
-  :title,
-  :author,
-  :infographic,
-  :redaction,
-  :created_at,
-  :tag_list,
-  :tag_string,
-  :publish_on,
-  :short_description,
-  :origin,
-  :translate,
-  :fixed
-)
+  permit_params(
+    :body,
+    :cover_image,
+    :remove_cover_image,
+    :small_cover_image,
+    :remove_small_cover_image,
+    :title,
+    :author,
+    :infographic,
+    :redaction,
+    :created_at,
+    :tag_list,
+    :tag_string,
+    :publish_on,
+    :short_description,
+    :origin,
+    :translate,
+    :fixed,
+    :type,
+    :slider_image,
+    :remove_slider_image
+  )
 
   menu parent: "Статьи"
 
@@ -30,6 +33,15 @@ permit_params(
 
   before_save do |article|
     article.updater = current_user
+  end
+
+  controller do
+    def update
+      update! do |success, failure|
+        path = "admin_#{Article.find(resource.id).model_name.element}_path"
+        success.html { redirect_to self.send(path, resource.id)}
+      end
+    end
   end
 
   filter :tags, label: 'Теги'
