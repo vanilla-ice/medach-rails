@@ -54,8 +54,8 @@ function insertToEditor(url, editor) {
 
 var renderQuickviewPopup = function renderQuickviewPopup(data) {
   console.log(data)
-  var result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="container">' + '<div class="article__wrapper">' + '<div class="article">' + '<div class="article-title">' + data.name + '</div>' + '<div class="article-info__wrapper">' + '<div class="article-info">' + '<div class="article-info__item">' + '<a href="' + data.origin + '">' + data.origin + '</a>' + '</div>' + '<div class="article-info__item">' + '<div> Автор: </div>' + '<div>' + data.author + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Перевод: </div>' + '<div>' + data.translate + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Редакция: </div>' + '<div>' + data.redaction + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Оформление: </div>' + '<div>' + data.infographic + '</div>' + '</div>' + '</div>' + '</div>' + '<div class="article__content">' + '<div class="article__content-text">' + data.post + '</div>' + '</div>' + '</div>' + '</div>' +  '</div>' +  '</div>';	
-  return result;	
+  var result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="container">' + '<div class="article__wrapper">' + '<div class="article">' + '<div class="article-title">' + data.name + '</div>' + '<div class="article-info__wrapper">' + '<div class="article-info">' + '<div class="article-info__item">' + '<a href="' + data.origin + '">' + data.origin + '</a>' + '</div>' + '<div class="article-info__item">' + '<div> Автор: </div>' + '<div>' + data.author + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Перевод: </div>' + '<div>' + data.translate + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Редакция: </div>' + '<div>' + data.redaction + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Оформление: </div>' + '<div>' + data.infographic + '</div>' + '</div>' + '</div>' + '</div>' + '<div class="article__content">' + '<div class="article__content-text">' + data.post + '</div>' + '</div>' + '</div>' + '</div>' +  '</div>' +  '</div>';
+  return result;
 };
   /**
  * Step1. select local image
@@ -115,10 +115,10 @@ $(document).ready(function () {
     basePath: '/textboxio',
     css : {
       stylesheets : ['/css/editor.css'] // an array of CSS file URLs
-      
+
     },
     paste: {
-      style: 'plain'
+      style: 'clean'
     },
     images: {
       upload: {
@@ -206,24 +206,24 @@ $(document).ready(function () {
                 icon: '/images/preview.png',
 
                 action: function(e) {
-                  
-                  $('body').css('overflow-y', 'hidden');	
-                  var data = {};	
-                
-                  data['name'] = $('.js_title').val();	
+
+                  $('body').css('overflow-y', 'hidden');
+                  var data = {};
+
+                  data['name'] = $('.js_title').val();
                   data['post'] = e.content.get()
-                  data['redaction'] = $('.js_redaction').val();	
-                  data['author'] = $('.js_author').val();	
-                  data['infographic'] = $('.js_infographic').val();	
+                  data['redaction'] = $('.js_redaction').val();
+                  data['author'] = $('.js_author').val();
+                  data['infographic'] = $('.js_infographic').val();
                   data['origin'] = $('.js_original').val();
                   data['translate'] = $('.js_translate').val();
-                  data['image'] = $('.file .inline-hints img').attr('src');	
-                  $('body').append(renderQuickviewPopup(data));	
-                
-                  $('body').on('click', '.js-close', function () {	
-                    $('.quickview-popup').remove();	
-                    $('body').css('overflow-y', 'initial');	
-                  });	
+                  data['image'] = $('.file .inline-hints img').attr('src');
+                  $('body').append(renderQuickviewPopup(data));
+
+                  $('body').on('click', '.js-close', function () {
+                    $('.quickview-popup').remove();
+                    $('body').css('overflow-y', 'initial');
+                  });
                 }
               }
             ]
@@ -281,7 +281,38 @@ $(document).ready(function () {
   };
 
   if (document.getElementById('article_body')) {
-    editor = textboxio.replace('#article_body', config)
+    editor = textboxio.replaceAll('#article_body', config)
+
+    let toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      ['clean']
+    ];
+
+    let options = {
+      placeholder: 'Compose an epic...',
+      modules: {
+        toolbar: toolbarOptions
+      },
+      theme: 'snow'
+    };
+
+    //
+    // const quill = new Quill('#article_body', options);
 
     window.onbeforeunload = function(e) {
       var dialogText = 'Покинуть страницу?';

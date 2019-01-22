@@ -16,7 +16,12 @@
 @import "chosen";
 @import "active_admin/cover_image.css";
 @import "active_admin/article_info.css";
+@import "quill.core.css";
+@import "quill.snow.css";
 
+#article_body {
+  height: 450px;
+}
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
@@ -213,7 +218,7 @@ p {
 
 
 #news_article_body_input label {
-  display: none !important; 
+  display: none !important;
 }
 
 //// QUICKVIEW STYLES
@@ -347,8 +352,8 @@ p {
 
   background: #30312F;
   border-top: 2px solid #000;
-  border-left: 2px solid #000; 
-  border-right: 2px solid #000; 
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   box-sizing: border-box;
@@ -366,9 +371,9 @@ p {
   color: #30312F;
   line-height: 20px;
 
-  border-left: 2px solid #000; 
-  border-right: 2px solid #000; 
-  border-bottom: 2px solid #000; 
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   box-sizing: border-box;
@@ -467,3 +472,6 @@ form {
   height: 42px;
 }
 
+.ephox-chameleon-layer-menus{
+  transition: none!important;
+}
