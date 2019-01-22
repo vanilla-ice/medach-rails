@@ -36,6 +36,12 @@ class Api::ArticlesController < Api::ApiController
     render json: @articles
   end
 
+  def show_related
+    tags = type_class.includes(:tags).find_by(id: params[:id]).tags
+    @articles = type_class.includes(:tags).joins(:tags).where(tags: {name: tags.pluck(:name)}).order('RANDOM()').limit(params[:per_page] || 3)
+    render json: @articles
+  end
+
   def all
     @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
     paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
