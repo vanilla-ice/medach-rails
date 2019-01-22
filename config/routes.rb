@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   namespace :api do
     resources :articles, only: [:index, :show] do
+      member do
+        get 'show_related'
+      end
       collection do
         get 'show_fixed'
         get 'show_random'
