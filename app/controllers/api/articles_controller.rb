@@ -39,7 +39,7 @@ class Api::ArticlesController < Api::ApiController
   def show_related
     tags = type_class.includes(:tags).find_by(id: params[:id]).tags
     @articles = type_class.includes(:tags).joins(:tags).where(tags: {name: tags.pluck(:name)}).order('RANDOM()').limit(params[:per_page] || 3)
-    render json: @articles
+    render json: @articles, each_serializer: related_serializer
   end
 
   def all
@@ -68,6 +68,10 @@ class Api::ArticlesController < Api::ApiController
 
   def each_serializer
     MultipleArticleSerializer
+  end
+
+  def related_serializer
+    RelatedArticleSerializer
   end
 
   def index_params
