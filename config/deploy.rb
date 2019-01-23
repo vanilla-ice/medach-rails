@@ -48,7 +48,10 @@ task :yarn do
 end
 
 task :setup_frontend do
-  command %{cd medach_frontend && yarn install && yarn build && yarn prod}
+  in_path("#{fetch(:current_path)}/medach_frontend") do
+    command %{yarn install && yarn build}
+    command %{if [[ $(pm2 list | grep nuxt | grep online) ]]; then pm2 restart nuxt; else yarn prod; fi}
+  end
 end
 
 desc "Deploys the current version to the server."
