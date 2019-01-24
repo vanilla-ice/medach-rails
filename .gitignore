@@ -12,9 +12,8 @@
 
 
 # Ignore public
-/public/*
-!/public/images/
-!/public/css/
+/public/assets*
+/public/uploads*
 
 
 # Ignore all logfiles and tempfiles.
@@ -28,10 +27,7 @@
 /yarn-error.log
 
 .byebug_history
-/public/packs
-/public/packs-test
 /node_modules
-public/uploads/article/image/
 
 # Ignore IDE
 /.idea/
