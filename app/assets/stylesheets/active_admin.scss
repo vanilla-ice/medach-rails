@@ -12,10 +12,9 @@
 @import "active_material";
 @import "activeadmin_addons/all";
 @import "katex/dist/katex";
-@import "../../../javascript/src/assets/fonts.css";
 @import "chosen";
-@import "active_admin/cover_image.css";
-@import "active_admin/article_info.css";
+@import "active_admin/cover_image.scss";
+@import "active_admin/article_info.scss";
 @import "quill.core.css";
 @import "quill.snow.css";
 
