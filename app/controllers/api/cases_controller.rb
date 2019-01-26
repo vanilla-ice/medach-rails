@@ -1,7 +1,9 @@
-class Api::CasesController < Api::ArticlesController
-  protected
+module Api
+  class CasesController < ArticlesController
+    protected
 
-  def type_class
-    CaseArticle
+    def type_class
+      CaseArticle
+    end
   end
 end

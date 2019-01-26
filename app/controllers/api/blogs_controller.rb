@@ -1,11 +1,13 @@
-class Api::BlogsController < Api::ArticlesController
-  protected
+module Api
+  class BlogsController < ArticlesController
+    protected
 
-  def type_class
-    BlogArticle
-  end
+    def type_class
+      BlogArticle
+    end
 
-  def serializer
-    SingleBlogArticleSerializer
+    def serializer
+      SingleBlogArticleSerializer
+    end
   end
 end
