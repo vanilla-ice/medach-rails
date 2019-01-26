@@ -1,4 +1,6 @@
 Rails.application.configure do
+  BASE_URL = 'https://medach.pro'
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

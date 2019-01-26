@@ -53,6 +53,9 @@ gem 'turbolinks', '~> 5'
 # RBAC
 gem 'cancancan', '~> 2.0'
 
+# Documentation
+gem 'swagger-docs'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

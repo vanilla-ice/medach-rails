@@ -1,5 +1,5 @@
 module Api
-  class DocumentsController < ApiContoller
+  class DocumentsController < BaseController
     respond_to  :json
     def create
       @document = Document.new(url: params[:document])
