@@ -1,0 +1,61 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "users",
+  "apis": [
+    {
+      "path": "/api/users/{user_id}/bloggers.json",
+      "operations": [
+        {
+          "summary": "Fetches all bloggers",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page number",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "per",
+              "type": "integer",
+              "description": "Records per page number",
+              "required": false
+            }
+          ],
+          "nickname": "Api::Users#bloggers",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/users/{id}.json",
+      "operations": [
+        {
+          "summary": "Fetches a single user",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "User ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::Users#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

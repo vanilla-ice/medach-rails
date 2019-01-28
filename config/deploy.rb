@@ -68,6 +68,7 @@ task :deploy do
     invoke :yarn
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    invoke :'swagger:docs'
     invoke :setup_frontend
 
     on :launch do

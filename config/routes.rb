@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   root 'home#index'
+  get '/api' => redirect('/swagger/index.html?url=/api-docs.json')
   ActiveAdmin.routes(self)
   namespace :api do
     resources :articles, only: [:index, :show] do
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
         %w(news media blogs longread_articles cases).each do |type|
           get type, to: "#{type}#index"
         end
-      end 
+      end
     end
     resources :images
     resources :documents
@@ -50,12 +51,15 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: :show do
+      collection do
+        get 'bloggers'
+      end
       resources :blogs, only: :index
     end
+    resources :site_configs, only: :index
     get 'all_articles', to: 'articles#all'
     get 'blogs_page_config', to: 'blogs_configs#index'
     get 'main_page_config', to: 'main_configs#index'
-    get 'bloggers', to: 'users#bloggers'
   end
   get '*path' => 'home#index'
 end
