@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         %w(news media blogs longread_articles cases).each do |type|
           get type, to: "#{type}#index"
         end
-      end 
+      end
     end
     resources :images
     resources :documents
@@ -51,7 +51,9 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: :show do
-      get 'bloggers'
+      collection do
+        get 'bloggers'
+      end
       resources :blogs, only: :index
     end
     resources :site_configs, only: :index

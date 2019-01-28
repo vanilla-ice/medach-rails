@@ -34,7 +34,7 @@
       "path": "/api/users/{id}.json",
       "operations": [
         {
-          "summary": "Fetches single user",
+          "summary": "Fetches a single user",
           "parameters": [
             {
               "paramType": "path",

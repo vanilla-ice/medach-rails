@@ -1,5 +1,19 @@
 module Api
   class UsersController < BaseController
+    swagger_controller :users, "Users management"
+
+    swagger_api :bloggers do
+      summary 'Fetches all bloggers'
+      param :query, :page, :integer, :optional, "Page number"
+      param :query, :per, :integer, :optional, "Records per page number"
+    end
+
+    swagger_api :show do
+      summary 'Fetches a single user'
+      param :path, :id, :integer, :required, "User ID"
+      response :not_found
+    end
+
     def show
       @user = User.find_by(id: params[:id])
       if @user
