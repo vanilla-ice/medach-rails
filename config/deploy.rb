@@ -50,7 +50,7 @@ end
 task :setup_frontend do
   in_path("#{fetch(:current_path)}/medach_frontend") do
     command %{yarn install && yarn build}
-    command %{if [[ $(pm2 list | grep nuxt | grep online) ]]; then pm2 restart nuxt; else yarn prod; fi}
+    command %{pm2 delete all && yarn prod}
   end
 end
 
