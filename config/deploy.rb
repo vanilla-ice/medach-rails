@@ -10,9 +10,9 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 set :user, 'deploy'
 set :application_name, 'medach'
-set :domain, '142.93.13.232'
+set :domain, '206.189.193.126'
 set :deploy_to, '/home/deploy/apps/medach'
-set :repository, 'git://github.com/vanilla-ice/medach-rails.git'
+set :repository, 'git://github.com/neonaddict/medach-rails.git'
 set :branch, 'master'
 
 # Optional settings:
