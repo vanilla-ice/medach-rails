@@ -77,8 +77,8 @@
 
   background: #30312F;
   border-top: 2px solid #000;
-  border-left: 2px solid #000; 
-  border-right: 2px solid #000; 
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
@@ -96,9 +96,9 @@
   color: #30312F;
   line-height: 20px;
 
-  border-left: 2px solid #000; 
-  border-right: 2px solid #000; 
-  border-bottom: 2px solid #000; 
+  border-left: 2px solid #000;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }

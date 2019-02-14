@@ -1,0 +1,25 @@
+{
+  "name": "javascripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "editor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3"
+  },
+  "dependencies": {
+    "froala-editor": "^2.9.2",
+    "quill": "^1.3.6",
+    "quill-blot-formatter": "^1.0.5",
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0",
+    "quill-image-resize-module-withfix": "^4.0.1",
+    "quill-magic-url": "^1.0.2",
+    "quill-url-embeds": "^1.2.5"
+  }
+}
