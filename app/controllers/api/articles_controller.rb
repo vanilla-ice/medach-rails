@@ -41,6 +41,12 @@ module Api
       render json: @articles, each_serializer: related_serializer
     end
 
+    def add_typo
+      @article = type_class.find(params[:id])
+      typo = ArticleTypo.create(typo_text: params[:typo_text], commentary: params[:commentary], article: @article)
+      render json: typo
+    end
+
     def all
       @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
       paginated = @articles.page(params[:page]).per(params[:per_page] || 20)

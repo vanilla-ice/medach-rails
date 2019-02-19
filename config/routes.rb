@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :articles, only: [:index, :show] do
       member do
         get 'show_related'
+        post 'add_typo'
       end
       collection do
         get 'show_fixed'

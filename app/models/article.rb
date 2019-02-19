@@ -12,6 +12,7 @@ class Article < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :updater, class_name: 'User', optional: true
   has_many :images
+  has_many :article_typos
 
   before_save :delete_whitespace
 
