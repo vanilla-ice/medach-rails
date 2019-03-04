@@ -4,6 +4,8 @@
 //= require chosen-jquery
 //= require ./textboxio/textboxio.js
 //= require active_material
+//= require activeadmin/dynamic_fields
+//= require ./dynamic_fields/ad_banners.js
 
 /**
  * Step2. save to server

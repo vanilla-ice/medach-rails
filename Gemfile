@@ -11,6 +11,7 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'activeadmin', '~> 1.3.0'
 gem "active_material", github: "vigetlabs/active_material"
+gem 'activeadmin_dynamic_fields'
 
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18.4'
