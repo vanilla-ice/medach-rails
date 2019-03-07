@@ -1,9 +1,9 @@
 var article_type_map = {
-  'Блоги': 'blog',
-  'Лонгриды': 'longread',
-  'Медиа': 'media',
-  'Новости': 'news',
-  'Кейсы': 'case'
+  'BlogArticle': 'blog',
+  'LongraedArticle': 'longread',
+  'MediaArticle': 'media',
+  'NewsArticle': 'news',
+  'CaseArticle': 'case'
 }
 
 function on_change_ad_type( args ) {
@@ -18,7 +18,6 @@ function on_change_article_type( args ) {
   var article_type = $( '.article_type_select' ).val();
   var input_wrappers = $('.a_type');
   input_wrappers.css('display', 'none');
-  input_wrappers.find('input').val('');
-  input_wrappers.find('select').val('');
+  input_wrappers.find('select').val(null).trigger('change');
   $('.article_' + article_type_map[article_type]).removeAttr('style');
 }

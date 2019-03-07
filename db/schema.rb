@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190227090008) do
+ActiveRecord::Schema.define(version: 20190304052856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20190227090008) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ad_banners_articles", force: :cascade do |t|
+    t.bigint "ad_banner_id", null: false
+    t.bigint "article_id", null: false
+    t.boolean "automaticly_created", default: false, null: false
+    t.index ["ad_banner_id"], name: "index_ad_banners_articles_on_ad_banner_id"
+    t.index ["article_id"], name: "index_ad_banners_articles_on_article_id"
   end
 
   create_table "article_typos", force: :cascade do |t|
@@ -211,6 +219,8 @@ ActiveRecord::Schema.define(version: 20190227090008) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "ad_banners_articles", "ad_banners"
+  add_foreign_key "ad_banners_articles", "articles"
   add_foreign_key "articles", "partners"
   add_foreign_key "articles", "users"
   add_foreign_key "articles", "users", column: "updater_id"

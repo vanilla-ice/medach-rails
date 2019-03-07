@@ -13,6 +13,8 @@ class Article < ApplicationRecord
   belongs_to :updater, class_name: 'User', optional: true
   has_many :images
   has_many :article_typos
+  has_many :ad_banners_articles
+  has_many :ad_banners, through: :ad_banners_articles
 
   before_save :delete_whitespace
 
