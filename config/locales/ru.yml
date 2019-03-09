@@ -24,6 +24,14 @@ ru:
         typo_text: Опечатка
         commentary: Комментарий
         fixed: Исправлено
+      ad_banner:
+        ad_position: Позиция
+        ad_type: Тип баннера
+        image: Изображение
+        link: Ссылка
+        google_id: Google ID
+        article_type: Тип статей
+        article_ids: Статьи
     models:
       blog_article:
         one: Блог
@@ -85,6 +93,11 @@ ru:
         few: Профиля пользователя
         many: Профили пользователей
         other: Профили пользователей
+      ad_banner:
+        one: Рекламынй баннер
+        few: Рекламных баннера
+        many: Рекламных баннеров
+        other: Рекламные баннеры
   formtastic:
     :yes: "Да"
     :no: "Нет"
