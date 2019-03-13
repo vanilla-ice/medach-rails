@@ -2,7 +2,7 @@ $R.addLang('ru', {
   "table": "Таблица",
   "insert-table": "Вставить таблицу",
   "insert-row-above": "Добавить строку до",
-  "insert-row-below": "Добавить строку полсе",
+  "insert-row-below": "Добавить строку после",
   "insert-column-left": "Добавить столбец до",
   "insert-column-right": "Добавить столбец после",
   "add-head": "Добавить шапку",

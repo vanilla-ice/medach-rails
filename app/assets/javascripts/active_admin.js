@@ -4,17 +4,19 @@
 //= require chosen-jquery
 //= require active_material
 //= require redactor3
-//= require ru
-//= require ru.plugins
-//= require alignment.min
-//= require fontcolor.min
-//= require table.min
-//= require video.min
-//= require widget.min
-//= require fullscreen.min
-//= require clear
-//= require preview
-//= require inlinestyle.min
+//= require plugins/ru
+//= require plugins/ru.plugins
+//= require plugins/alignment
+//= require plugins/fontcolor
+//= require plugins/table
+//= require plugins/video
+//= require plugins/widget
+//= require plugins/fullscreen
+//= require plugins/fontfamily
+//= require plugins/fontsize
+//= require plugins/inlinestyle
+//= require plugins/clear
+//= require plugins/preview
 
 /**
  * Step2. save to server
@@ -292,7 +294,7 @@ $(document).ready(function () {
         })
       },
       fileUpload: '/api/documents',
-      buttons: ['undo', 'redo', 'format', 'bold', 'italic', 'lists', 'image', 'file', 'link', 'html'],
+      buttons: ['undo', 'redo', 'html', 'format', 'bold', 'sup', 'sub', 'italic', 'lists', 'image', 'file', 'link'],
       imageResizable: true,
       imagePosition: true,
       focus: true,
@@ -300,7 +302,7 @@ $(document).ready(function () {
       // air: true,
       pasteLinkTarget: '_blank',
       toolbarFixedTopOffset: 40,
-      plugins: ['alignment', 'fontcolor', 'table', 'video', 'preview', 'clear_format', 'inlinestyle']
+      plugins: ['alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen']
     };
 
     $R('#article_body', options);

@@ -16,8 +16,8 @@
 @import "chosen";
 @import "active_admin/cover_image.css";
 @import "active_admin/article_info.css";
-@import "redactor.min.css";
-@import "inlinestyle.min.css";
+@import "redactor.css";
+@import "inlinestyle.css";
 
 // @import "froala_editor.pkgd.min.css";
 // Overriding any non-variable SASS must be done after the fact.
@@ -65,12 +65,12 @@
   }
 }
 
-.redactor-in h2,
+/*.redactor-in h2,
 .redactor-in h2 span,
 .redactor-in h2 strong {
   font-size: 24px !important;
   font-family: Helvetica !important;
-}
+} */
 
 .redactor-in figcaption {
   margin-top: 10px;
@@ -299,12 +299,40 @@ p {
   font-size: 16px;
 }
 
+.article__content h1 {
+  font-size: 32px !important;
+}
+
+.article__content h1 span {
+  font-size: 32px !important;
+}
+
 .article__content h2 {
-  font-size: 27px !important;
+  font-size: 24px !important;
 }
 
 .article__content h2 span {
-  font-size: 27px !important;
+  font-size: 24px !important;
+}
+
+.article__content h3 {
+  font-size: 18.72px !important;
+}
+
+.article__content h3 span {
+  font-size: 18.72px !important;
+}
+
+.article__content h4 {
+  font-size: 16px !important;
+}
+
+.article__content h4 span {
+  font-size: 16px !important;
+}
+
+.article__content h1, h2, h3, h4 {
+  font-weight: bold;
 }
 
 .article__content img {
