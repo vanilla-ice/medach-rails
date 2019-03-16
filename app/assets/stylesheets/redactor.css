@@ -1090,10 +1090,16 @@
   .redactor-styles ul li,
   .redactor-styles ol li {
     text-align: left; }
+  .redactor-styles ul li {
+    list-style-type: disc;
+  }
+  .redactor-styles ul li li {
+    list-style-type: circle;
+  }
   .redactor-styles ol ol li {
-    list-style-type: lower-alpha; }
+    list-style-type: decimal; }
   .redactor-styles ol ol ol li {
-    list-style-type: lower-roman; }
+    list-style-type: decimal; }
   .redactor-styles ul,
   .redactor-styles ol {
     margin-bottom: 1em; }

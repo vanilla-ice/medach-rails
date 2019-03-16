@@ -17,6 +17,8 @@
 //= require plugins/inlinestyle
 //= require plugins/clear
 //= require plugins/preview
+//= require plugins/indents
+//= require plugins/liststyles
 
 /**
  * Step2. save to server
@@ -294,15 +296,15 @@ $(document).ready(function () {
         })
       },
       fileUpload: '/api/documents',
-      buttons: ['undo', 'redo', 'html', 'format', 'bold', 'sup', 'sub', 'italic', 'lists', 'image', 'file', 'link'],
+      buttons: ['undo', 'redo', 'html', 'format','line', 'bold', 'sup', 'sub', 'italic', 'lists', 'image', 'file', 'link'],
       imageResizable: true,
       imagePosition: true,
-      focus: true,
+      //focus: true,
       lang: 'ru',
       // air: true,
       pasteLinkTarget: '_blank',
       toolbarFixedTopOffset: 40,
-      plugins: ['alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen']
+      plugins: ['liststyles', 'indents', 'alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen']
     };
 
     $R('#article_body', options);

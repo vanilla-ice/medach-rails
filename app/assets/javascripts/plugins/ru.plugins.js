@@ -21,5 +21,8 @@ $R.addLang('ru', {
   "align-right": "Справа",
   "align-justify": "Justify",
   fullscreen: "Развернуть",
-  style: "Стиль"
+  style: "Стиль",
+  indents: "Отступы",
+  size: "Размер шрифта",
+  fontfamily: "Шрифты"
 });
