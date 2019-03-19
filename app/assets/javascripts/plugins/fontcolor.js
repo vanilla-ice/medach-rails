@@ -48,7 +48,7 @@
 
             var $dropdown = this._buildDropdown();
 
-            this.$button = this.toolbar.addButton('fontcolor', btnObj);
+            this.$button = this.toolbar.addButtonAfter('italic','fontcolor', btnObj);
 			this.$button.setIcon('<i class="re-icon-fontcolor"></i>');
 			this.$button.setDropdown($dropdown);
         },

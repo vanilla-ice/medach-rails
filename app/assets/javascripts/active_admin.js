@@ -17,7 +17,8 @@
 //= require plugins/inlinestyle
 //= require plugins/clear
 //= require plugins/preview
-//= require plugins/indents
+//= require plugins/add_indent
+//= require plugins/add_outdent
 //= require plugins/liststyles
 
 /**
@@ -296,7 +297,7 @@ $(document).ready(function () {
         })
       },
       fileUpload: '/api/documents',
-      buttons: ['undo', 'redo', 'html', 'format','line', 'bold', 'sup', 'sub', 'italic', 'lists', 'image', 'file', 'link'],
+      buttons: ['undo', 'redo', 'format','line', 'bold', 'italic', 'sup', 'sub', 'lists', 'image', 'file', 'link', 'html'],
       imageResizable: true,
       imagePosition: true,
       //focus: true,
@@ -304,7 +305,78 @@ $(document).ready(function () {
       // air: true,
       pasteLinkTarget: '_blank',
       toolbarFixedTopOffset: 40,
-      plugins: ['liststyles', 'indents', 'alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen']
+      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen'],
+      callbacks: {
+        click: function(e)
+        {
+          // get node
+          var node = document.getSelection().anchorNode;
+          var el = node.nodeType == 3 ? node.parentNode : node;
+          
+          // get relevant buttons and values
+          var fontsizeBtn = this.toolbar.getButton('fontsize');
+          var fontsizeValue = $(el).css('font-size');
+
+          var fontfamilyBtn = this.toolbar.getButton('fontfamily');
+          var fontfamilyValue = $(el).css('font-family');
+          
+          var fontcolorBtn = this.toolbar.getButton('fontcolor');
+          var fontcolorValue = $(el).css('color');
+          var fontcolorBackgroundValue = $(el).css('background-color');
+
+          var alignLeftBtn = this.toolbar.getButton('align-left');
+          var alignCenterBtn = this.toolbar.getButton('align-center');
+          var alignRightBtn = this.toolbar.getButton('align-right');
+          var alignJustifyBtn = this.toolbar.getButton('align-justify');
+          var alignValue = $(el).css('text-align');
+
+          fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
+          fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
+          fontcolorBtn.setIcon(`
+            <i class="fas fa-palette"">
+              <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
+            </i>
+            
+            <i class="fas fa-fill">
+              <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
+            </i>
+          `);
+          switch(alignValue) {
+            case 'left':
+              alignLeftBtn.setActive();
+              break;
+            case 'center':
+              alignCenterBtn.setActive();
+              break;
+            case 'right':
+              alignRightBtn.setActive();
+              break;
+            case 'justify':
+              alignJustifyBtn.setActive();
+              break;
+          }
+        },
+        keydown: function(e) 
+        {
+          // get node
+          var node = document.getSelection().anchorNode;
+          var el = node.nodeType == 3 ? node.parentNode : node;
+
+          // get relevant buttons
+          var fontsizeBtn = this.toolbar.getButton('fontsize');
+          var fontsizeValue = $(el).css('font-size');
+
+          var fontfamilyBtn = this.toolbar.getButton('fontfamily');
+          var fontfamilyValue = $(el).css('font-family');
+          
+          var fontcolorBtn = this.toolbar.getButton('fontcolor');
+          //var fontcolorValue = $(el).css();
+
+          fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
+          fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
+          fontcolorBtn.setIcon(`<i class="fas fa-palette"></i><i class="fas fa-fill"></i>`);
+        }
+      }
     };
 
     $R('#article_body', options);

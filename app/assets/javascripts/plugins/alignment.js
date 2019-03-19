@@ -21,16 +21,19 @@
         // public
         start: function()
         {
-            var dropdown = {};
+    		var btnLeftData = { title: this.lang.get('align-left'), api: 'plugin.alignment.set', args: 'left' };
+    		var btnCenterData = { title: this.lang.get('align-center'), api: 'plugin.alignment.set', args: 'center' };
+    		var btnRightData = { title: this.lang.get('align-right'), api: 'plugin.alignment.set', args: 'right' };
+    		var btnJustifyData = { title: this.lang.get('align-justify'), api: 'plugin.alignment.set', args: 'justify' };
 
-    		dropdown.left = { title: this.lang.get('align-left'), api: 'plugin.alignment.set', args: 'left' };
-    		dropdown.center = { title: this.lang.get('align-center'), api: 'plugin.alignment.set', args: 'center' };
-    		dropdown.right = { title: this.lang.get('align-right'), api: 'plugin.alignment.set', args: 'right' };
-    		dropdown.justify = { title: this.lang.get('align-justify'), api: 'plugin.alignment.set', args: 'justify' };
-
-            var $button = this.toolbar.addButton('alignment', { title: this.lang.get('align') });
-            $button.setIcon('<i class="re-icon-alignment"></i>');
-			$button.setDropdown(dropdown);
+			var $buttonLeft = this.toolbar.addButtonAfter('liststyles', 'align-left', btnLeftData);
+			var $buttonCenter = this.toolbar.addButtonAfter('align-left', 'align-center', btnCenterData);
+			var $buttonRight = this.toolbar.addButtonAfter('align-center', 'align-right', btnRightData);
+			var $buttonJustify = this.toolbar.addButtonAfter('align-right', 'align-justify', btnJustifyData);
+			$buttonLeft.setIcon('<i class="fas fa-align-left"></i>');
+			$buttonCenter.setIcon('<i class="fas fa-align-center"></i>');
+			$buttonRight.setIcon('<i class="fas fa-align-right"></i>');
+			$buttonJustify.setIcon('<i class="fas fa-align-justify"></i>');
         },
         set: function(type)
 		{

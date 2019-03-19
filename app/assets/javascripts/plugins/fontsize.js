@@ -36,7 +36,7 @@
     			api: 'plugin.fontsize.remove'
             };
 
-            var $button = this.toolbar.addButton('fontsize', { title: this.lang.get('size') });
+            var $button = this.toolbar.addButtonAfter('italic', 'fontsize', { title: this.lang.get('size') });
             $button.setIcon('<i class="re-icon-fontsize"></i>');
 			$button.setDropdown(dropdown);
         },
@@ -53,6 +53,10 @@
 		remove: function()
 		{
 			this.inline.remove({ style: 'font-size' });
-		}
+        },
+        onclickStart: function()
+        {
+            console.log('sssss');
+        }
     });
 })(Redactor);
