@@ -37,7 +37,7 @@
     			api: 'plugin.fontfamily.remove'
             };
 
-            var $button = this.toolbar.addButton('fontfamily', { title: this.lang.get('fontfamily') });
+            var $button = this.toolbar.addButtonAfter('italic', 'fontfamily', { title: this.lang.get('fontfamily') });
             $button.setIcon('<i class="re-icon-fontfamily"></i>');
 			$button.setDropdown(dropdown);
         },

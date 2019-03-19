@@ -56,7 +56,7 @@
                 title: this.lang.get('liststyles'),
             };
 
-            var $button = this.toolbar.addButton('liststyles', buttonData);
+            var $button = this.toolbar.addButtonAfter('lists', 'liststyles', buttonData);
             $button.setDropdown(dropdown);
         },
         // TODO Refactor

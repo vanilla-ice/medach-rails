@@ -10,6 +10,7 @@
       this.app = app;
       this.toolbar = app.toolbar;
       this.inline = app.inline;
+      this.block = app.block;
       this.lang = app.lang;
     },
     start: function () {
