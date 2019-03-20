@@ -1,4 +1,4 @@
-= f.input :title, label: "Заголовок", :input_html => { :class => :js_title }
+= f.input :title, label: "Заголовок", :input_html => { :class => ['js_title', 'form-title'] }
 = render :partial => "admin/text_editor", locals: { f: f }
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка квадратная (≈ 675 x 475)', name: "cover_image", message: "Обложка не представлена"}
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка прямоугольная (≈ 675 x 285)', name: "small_cover_image", message: "Миниатюра обложки не представлена"}
