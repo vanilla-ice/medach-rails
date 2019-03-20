@@ -4,9 +4,9 @@ module Api
     def create
       @document = Document.new(url: params[:document])
       if @document.save!
-        render json: @document.url
+        render json: { filekey: { url: @document.url, name: @document.name, id: @document.id } }
       else
-        render json: {ok: false}, status: 422
+        render json: { ok: false }, status: 422
       end
     end
   end
