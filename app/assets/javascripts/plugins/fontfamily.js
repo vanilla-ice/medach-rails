@@ -16,7 +16,7 @@
             this.toolbar = app.toolbar;
 
             // local
-    		this.fonts = (this.opts.fontfamily) ? this.opts.fontfamily : ['Arial', 'Helvetica', 'Georgia', 'Times New Roman', 'Monospace'];
+    		this.fonts = (this.opts.fontfamily) ? this.opts.fontfamily : ['PTSerif', 'Arial', 'Helvetica', 'Georgia', 'Times New Roman', 'Monospace'];
         },
         // public
         start: function()

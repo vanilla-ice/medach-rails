@@ -20,6 +20,7 @@
 //= require plugins/add_indent
 //= require plugins/add_outdent
 //= require plugins/liststyles
+//= require plugins/lineheight
 
 /**
  * Step2. save to server
@@ -129,166 +130,6 @@ function makeDocumentLink(linkText, documentUrl) {
 $(document).ready(function () {
   var editor;
 
-  var config = {
-    basePath: '/textboxio',
-    css: {
-      stylesheets: ['/css/editor.css'] // an array of CSS file URLs
-
-    },
-    paste: {
-      style: 'clean'
-    },
-    images: {
-      upload: {
-        handler: function (data, success, failture) {
-          var blob = data.blob()
-          var filename = data.filename()
-
-          var resultImage = new File([blob], filename)
-
-          saveToServer(resultImage, editor)
-            .then(function (data) {
-              success(data.url)
-            })
-            .catch(function (error) {
-              failture('uploading error', error)
-            })
-        }
-      }
-    },
-    ui: {
-      fonts: ['Helvetica', 'Arial', 'Times New Roman', '"PT Serif", sans-serif'],
-      toolbar: {
-        items: [{
-            label: 'undo',
-            items: ['undo', 'redo']
-          },
-          {
-            label: 'insert',
-            id: 'insert',
-            items: ['link', 'fileupload', 'table', 'media', 'hr', 'specialchar']
-          },
-          'style',
-          {
-            label: 'emphasis',
-            items: ['bold', 'italic', 'underline']
-          },
-          {
-            label: 'align',
-            items: ['alignment']
-          },
-          {
-            label: 'format',
-            items: ['font-menu', 'removeformat']
-          },
-          {
-            label: 'listindent',
-            items: ['ul', 'ol', 'indent', 'outdent', 'blockquote']
-          },
-          {
-            label: 'tools',
-            items: ['find', 'accessibility', 'fullscreen', 'usersettings']
-          },
-          {
-            label: 'Imagebox',
-            items: [{
-                id: 'ImageBox-title',
-                text: 'Imagebox header',
-                icon: '/images/header.png',
-                action: function () {
-                  var ed = textboxio.getActiveEditor();
-
-                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-title">Title</div></p><br />');
-                }
-              },
-              {
-                id: 'ImageBox-content',
-                text: 'Imagebox content',
-                icon: '/images/content.png',
-                action: function () {
-                  var ed = textboxio.getActiveEditor();
-
-                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-content">Content</div></p><br />');
-                }
-              }
-            ]
-          },
-          {
-            label: 'Quickview',
-            items: [{
-              id: 'quickview1',
-              text: 'Открыть предпросмотр',
-              icon: '/images/preview.png',
-
-              action: function (e) {
-
-                $('body').css('overflow-y', 'hidden');
-                var data = {};
-
-                data['name'] = $('.js_title').val();
-                data['post'] = e.content.get()
-                data['redaction'] = $('.js_redaction').val();
-                data['author'] = $('.js_author').val();
-                data['infographic'] = $('.js_infographic').val();
-                data['origin'] = $('.js_original').val();
-                data['translate'] = $('.js_translate').val();
-                data['tags'] = $('.js_tags').val();
-                data['image'] = $('.file .inline-hints img').attr('src');
-                $('body').append(renderQuickviewPopup(data));
-
-                $('body').on('click', '.js-close', function () {
-                  $('.quickview-popup').remove();
-                  $('body').css('overflow-y', 'initial');
-                });
-              }
-            }]
-          },
-          {
-            label: 'set backup',
-            items: [{
-              id: 'setBackupData',
-              text: 'Сделать бекап',
-              icon: '/images/save-icon.svg',
-
-              action: function (e) {
-                localStorage.setItem('postData', e.content.get())
-              }
-            }]
-          },
-          {
-            label: 'get backup',
-            items: [{
-              id: 'getBackupData',
-              text: 'Использовать последний бекап',
-              icon: '/images/preview.png',
-
-              action: function (e) {
-                var data = localStorage.getItem('postData');
-                e.content.set(data)
-              }
-            }]
-          },
-          {
-            label: 'FileLoader',
-            items: [{
-              id: 'fileLoaderPdf',
-              text: 'Загрузить файл',
-              icon: '/images/upload-file.svg',
-
-              action: function () {
-                selectLocalDocument(function (data) {
-                  var ed = textboxio.getActiveEditor()
-                  var linkText = prompt('Введите текст ссылки для скачивания', 'Скачать документ') || 'Скачать документ'
-                  ed.content.insertHtmlAtCursor(makeDocumentLink(linkText, data.url))
-                })
-              }
-            }]
-          },
-        ]
-      }
-    }
-  };
-
   if (document.getElementById('article_body')) {
     let options = {
       imageUpload: function (formData, files, event, upload) {
@@ -296,16 +137,50 @@ $(document).ready(function () {
           upload.complete(data.url)
         })
       },
+      formatting: ['p', 'blockquote', 'pre'],
+      formattingAdd: {
+        "h1": {
+          title: 'Заголовок 1',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h1',
+              'class': 'header-1-custom'
+          }
+        },
+        "h2": {
+          title: 'Заголовок 2',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h2',
+              'class': 'header-2-custom'
+          }
+        },
+        "h3": {
+          title: 'Заголовок 3',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h3',
+              'class': 'header-3-custom'
+          }
+        },
+        "h4": {
+          title: 'Заголовок 4',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h4',
+              'class': 'header-4-custom'
+          }
+        }
+      },
       fileUpload: '/api/documents',
       buttons: ['undo', 'redo', 'format','line', 'bold', 'italic', 'sup', 'sub', 'lists', 'image', 'file', 'link', 'html'],
       imageResizable: true,
       imagePosition: true,
-      //focus: true,
+      structure: true,
+      breakline: false,
       lang: 'ru',
-      // air: true,
       pasteLinkTarget: '_blank',
-      toolbarFixedTopOffset: 40,
-      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'inlinestyle', 'fullscreen'],
+      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'lineheight', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'fullscreen'],
       callbacks: {
         click: function(e)
         {
@@ -319,6 +194,9 @@ $(document).ready(function () {
 
           var fontfamilyBtn = this.toolbar.getButton('fontfamily');
           var fontfamilyValue = $(el).css('font-family');
+
+          var lineheightBtn = this.toolbar.getButton('lineheight');
+          var lineheightValue = $(el).css('line-height');
           
           var fontcolorBtn = this.toolbar.getButton('fontcolor');
           var fontcolorValue = $(el).css('color');
@@ -332,6 +210,7 @@ $(document).ready(function () {
 
           fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
           fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
+          lineheightBtn.setIcon(`<i class="fas fa-arrows-alt-v"> ${lineheightValue}</i>`);
           fontcolorBtn.setIcon(`
             <i class="fas fa-palette"">
               <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
@@ -368,13 +247,54 @@ $(document).ready(function () {
 
           var fontfamilyBtn = this.toolbar.getButton('fontfamily');
           var fontfamilyValue = $(el).css('font-family');
-          
+
+          var lineheightBtn = this.toolbar.getButton('lineheight');
+          var lineheightValue = $(el).css('line-height');
+                    
           var fontcolorBtn = this.toolbar.getButton('fontcolor');
-          //var fontcolorValue = $(el).css();
+          var fontcolorValue = $(el).css('color');
+          var fontcolorBackgroundValue = $(el).css('background-color');
+
+          var alignLeftBtn = this.toolbar.getButton('align-left');
+          var alignCenterBtn = this.toolbar.getButton('align-center');
+          var alignRightBtn = this.toolbar.getButton('align-right');
+          var alignJustifyBtn = this.toolbar.getButton('align-justify');
+          var alignValue = $(el).css('text-align');
 
           fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
           fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
-          fontcolorBtn.setIcon(`<i class="fas fa-palette"></i><i class="fas fa-fill"></i>`);
+          lineheightBtn.setIcon(`<i class="fas fa-arrows-alt-v"> ${lineheightValue}</i>`);
+          fontcolorBtn.setIcon(`
+            <i class="fas fa-palette"">
+              <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
+            </i>
+            
+            <i class="fas fa-fill">
+              <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
+            </i>
+          `);
+          switch(alignValue) {
+            case 'left':
+              alignLeftBtn.setActive();
+              break;
+            case 'center':
+              alignCenterBtn.setActive();
+              break;
+            case 'right':
+              alignRightBtn.setActive();
+              break;
+            case 'justify':
+              alignJustifyBtn.setActive();
+              break;
+          }
+        },
+        format: function(type, nodes)
+        {
+          setTimeout(() => {
+            window.getSelection().collapseToStart();
+            console.log("HELLO");
+           }
+          , 1);
         }
       }
     };

@@ -12,7 +12,7 @@
 @import "active_material";
 @import "activeadmin_addons/all";
 @import "katex/dist/katex";
-@import "../../../javascript/src/assets/fonts.css";
+@import 'fonts.scss';
 @import "chosen";
 @import "active_admin/cover_image.css";
 @import "active_admin/article_info.css";
@@ -42,18 +42,17 @@
 .redactor-in {
   border: 0.5px dashed rgba(gray, 0);
   border-radius: 3px;
-  font-size: 18px !important;
+  font-size: 16px !important;
   line-height: 1.5;
-  font-family: PTSerif, serif;
+  font-family: PTSerif;
   box-sizing: border-box;
   padding: 15px;
 }
 
 .redactor-in strong,
 .redactor-in b {
-  font-size: 18px !important;
   line-height: 1.5;
-  font-family: PTSerif, serif;
+  font-family: 'PTSerif';
 }
 
 .redactor-in p {
@@ -65,20 +64,14 @@
   }
 }
 
-/*.redactor-in h2,
-.redactor-in h2 span,
-.redactor-in h2 strong {
-  font-size: 24px !important;
-  font-family: Helvetica !important;
-} */
-
 .redactor-in figcaption {
   margin-top: 10px;
   font-style: normal;
   color: rgb(63, 63, 63);
   display: block;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: Helvetica;
 }
 
 .redactor-in li {
@@ -251,11 +244,10 @@ blockquote {
   background: #fff;
   overflow-y: auto;
   color: #505666;
-  font-size: 16px;
 
-  p {
-    font-family: Times-Roman, Georgia;
-    line-height: 1.42;
+  figcaption {
+    font-family: Helvetica;
+    font-size: 14px;
   }
 }
 
@@ -300,39 +292,42 @@ p {
 }
 
 .article__content h1 {
-  font-size: 2em !important;
+  font-size: 20px !important;
   margin-top: 0.67em;
   margin-bottom: 0.67em;
   margin-left: 0;
   margin-right: 0;
+  font-family: Helvetica;
 }
 
 .article__content h1 span {
-  font-size: 2em !important;
+  font-size: 20px !important;
 }
 
 .article__content h2 {
-  font-size: 1.5em !important;
+  font-size: 18px !important;
   margin-top: 0.83em;
   margin-bottom: 0.83em;
   margin-left: 0;
   margin-right: 0;
+  font-family: PTSerif;
 }
 
 .article__content h2 span {
-  font-size: 1.5em !important;
+  font-size: 18px !important;
 }
 
 .article__content h3 {
-  font-size: 1.17em !important;
+  font-size: 16px !important;
   margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 0;
   margin-right: 0;
+  font-family: PTSerif;
 }
 
 .article__content h3 span {
-  font-size: 1.17em !important;
+  font-size: 16px !important;
 }
 
 .article__content h4 {
@@ -387,7 +382,7 @@ p {
 .article__content-text p {
   margin: 15px 0;
 
-  line-height: 1.5em !important;
+  line-height: 1.5 !important;
 }
 
 .article__content i {
@@ -410,7 +405,7 @@ p {
 }
 
 .article-title {
-  font-family: PTSerif, serif;
+  font-family: PTSerif;
   font-size: 54px;
   color: #5b5b5b;
   letter-spacing: 0;
@@ -547,9 +542,9 @@ p {
 }
 
 .article__content-text {
-  font-size: 18px;
+  font-size: 16px;
 
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .article__content-text a {
@@ -560,28 +555,17 @@ p {
 
 .article__content-text p {
   margin-top: 24px;
-  font-size: 18px;
-
-  line-height: 1.5em;
+  font-size: 16px;
   color: #000;
-  font-family: PTSerif-Regular;
 }
 
 .article__content-text p span {
   display: inline-block;
   vertical-align: top;
-
-  font-size: 18px;
-
-  line-height: 1.5em;
 }
 
 .article__content-text span {
   display: inline-block;
-  font-family: PTSerif-Regular;
-
-  font-size: 18px;
-  line-height: 1.5em;
 }
 
 .article__content-text ul span {

@@ -702,24 +702,31 @@
   font-family: monospace, sans-serif; }
 
 .redactor-dropdown-format .redactor-dropdown-item-h1 {
-  font-size: 40px;
+  font-size: 20px;
   font-weight: bold;
-  line-height: 32px; }
+  line-height: 1.5;
+  font-family: Helvetica, sans-serif;
+ }
 
 .redactor-dropdown-format .redactor-dropdown-item-h2 {
-  font-size: 32px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 32px; }
+  line-height: 32px;
+  font-family: PTSerif; 
+}
 
 .redactor-dropdown-format .redactor-dropdown-item-h3 {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
-  line-height: 24px; }
+  line-height: 24px;
+  font-family: PTSerif;
+}
 
 .redactor-dropdown-format .redactor-dropdown-item-h4 {
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 24px; }
+  font-size: 14px;
+  line-height: 24px;
+  font-family: Helvetica; 
+}
 
 .redactor-dropdown-format .redactor-dropdown-item-h5 {
   font-size: 18px;
@@ -1118,7 +1125,52 @@
     margin-bottom: 0.5em;
     line-height: 1.2; }
   .redactor-styles h1 {
-    font-size: 2.0736em; }
+    font-size: 2.0736em;
+    font-family: Helvetica; 
+  }
+
+  .redactor-in .header-1-custom {
+    font-family: Helvetica;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .redactor-in .header-2-custom {
+    font-family: PTSerif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .redactor-in .header-3-custom {
+    font-family: PTSerif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .redactor-in .header-4-custom {
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* .redactor-in . */
+
   .redactor-styles h2 {
     font-size: 1.728em; }
   .redactor-styles h3 {
