@@ -1,7 +1,7 @@
 (function($R)
 {
     $R.lang['ru'] = {
-        "format": "Формат",
+        "format": "Стиль",
         "image": "Картинка",
         "file": "Файл",
         "link": "Ссылка",
