@@ -31,13 +31,15 @@ module Api
     end
 
     def show_random
-      @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:per_page] || 3)
+      @articles = type_class.includes(:tags).where.not(hidden: true).order('RANDOM()').limit(params[:per_page] || 3)
       render json: @articles
     end
 
     def show_related
       tags = type_class.includes(:tags).find_by(id: params[:id]).tags
-      @articles = type_class.includes(:tags).joins(:tags).where(tags: {name: tags.pluck(:name)}).where.not(id: params[:id]).order('RANDOM()').limit(params[:per_page] || 3)
+      @articles = type_class.includes(:tags).joins(:tags).where(
+        tags: {name: tags.pluck(:name)}).where.not(id: params[:id], hidden: true).
+        order('RANDOM()').limit(params[:per_page] || 3)
       render json: @articles, each_serializer: related_serializer
     end
 

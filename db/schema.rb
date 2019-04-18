@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181110173357) do
+ActiveRecord::Schema.define(version: 20190418095142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20181110173357) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "article_typos", force: :cascade do |t|
+    t.string "typo_text"
+    t.text "commentary"
+    t.boolean "fixed", default: false
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_article_typos_on_article_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -52,6 +60,7 @@ ActiveRecord::Schema.define(version: 20181110173357) do
     t.bigint "user_id"
     t.bigint "updater_id"
     t.string "slider_image"
+    t.boolean "hidden", default: false
     t.index ["origin"], name: "index_articles_on_origin"
     t.index ["partner_id"], name: "index_articles_on_partner_id"
     t.index ["publish_on"], name: "index_articles_on_publish_on"
@@ -66,6 +75,7 @@ ActiveRecord::Schema.define(version: 20181110173357) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "images", force: :cascade do |t|

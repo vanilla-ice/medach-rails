@@ -17,7 +17,8 @@ ActiveAdmin.register MediaArticle do
     :origin,
     :translate,
     :fixed,
-    :type
+    :type,
+    :hidden
   )
 
   menu parent: "Статьи"
