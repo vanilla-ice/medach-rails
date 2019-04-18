@@ -1,7 +1,8 @@
-= f.input :title, label: "Заголовок", :input_html => { :class => :js_title }
+= f.input :title, label: "Заголовок", :input_html => { :class => ['js_title', 'form-title'] }
 = render :partial => "admin/text_editor", locals: { f: f }
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка квадратная (≈ 675 x 475)', name: "cover_image", message: "Обложка не представлена"}
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка прямоугольная (≈ 675 x 285)', name: "small_cover_image", message: "Миниатюра обложки не представлена"}
+= render :partial => "admin/image_uploader", locals: {f: f, label: 'Изображение для слайдера', name: "slider_image", message: "Миниатюра изображениея не представлена"} if f.object.is_a?(LongreadArticle)
 = f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
 = f.input :tag_string, label: 'Теги', :input_html => { :class => :js_tags }
 = f.input :author, label: "Автор", :input_html => { :class => :js_author }

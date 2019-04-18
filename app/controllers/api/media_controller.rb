@@ -1,6 +1,8 @@
-class Api::MediaController < Api::ArticlesController
-  protected
+module Api
+  class MediaController < ArticlesController
+    protected
     def type_class
       MediaArticle
     end
+  end
 end

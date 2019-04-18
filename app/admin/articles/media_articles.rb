@@ -16,7 +16,8 @@ ActiveAdmin.register MediaArticle do
     :short_description,
     :origin,
     :translate,
-    :fixed
+    :fixed,
+    :type
   )
 
   menu parent: "Статьи"
@@ -27,6 +28,15 @@ ActiveAdmin.register MediaArticle do
 
   before_save do |article|
     article.updater = current_user
+  end
+
+  controller do
+    def update
+      update! do |format|
+        path = "admin_#{Article.find(resource.id).model_name.element}_path"
+        format.html { redirect_to self.send(path, resource.id)}
+      end
+    end
   end
 
   filter :tags, label: 'Теги'

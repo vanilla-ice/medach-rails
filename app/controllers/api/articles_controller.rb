@@ -1,97 +1,113 @@
-class Api::ArticlesController < Api::ApiController
-  respond_to :json
+module Api
+  class ArticlesController < BaseController
+    impressionist :actions => [:show]
 
-  impressionist :actions => [:show]
+    META_PARAMS = %i(page per_page sort).freeze
 
-  META_PARAMS = %i(page per_page sort).freeze
+    def index
+      @articles = type_class.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
+      @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
+      paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
-  def index
-    @articles = type_class.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
-    @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
-    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
-
-    render_paginated(paginated)
-  end
-
-  def show
-    unless type_class.exists?(params[:id])
-      render(
-        json: { errors: [ { message: "#{type_class.model_name.human} с id = #{params[:id]} не найден" } ] },
-        status: 404
-      )
-    else
-      @article = type_class.find(params[:id])
-      impressionist(@article)
-      render json: @article, serializer: serializer, key_transform: :camel_lower
+      render_paginated(paginated)
     end
-  end
 
-  def show_fixed
-   @articles = type_class.includes(:tags).fixed
-   render json: @articles
-  end
+    def show
+      unless type_class.exists?(params[:id])
+        render(
+          json: { errors: [ { message: "#{type_class.model_name.human} с id = #{params[:id]} не найден" } ] },
+          status: 404
+        )
+      else
+        @article = type_class.find(params[:id])
+        impressionist(@article)
+        render json: @article, serializer: serializer, key_transform: :camel_lower
+      end
+    end
 
-  def show_random
-    @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:per_page] || 3)
-    render json: @articles
-  end
+    def show_fixed
+      @articles = type_class.includes(:tags).fixed
+      render json: @articles
+    end
 
-  def all
-    @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
-    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
+    def show_random
+      @articles = type_class.includes(:tags).order('RANDOM()').limit(params[:per_page] || 3)
+      render json: @articles
+    end
 
-    render_paginated(paginated)
-  end
+    def show_related
+      tags = type_class.includes(:tags).find_by(id: params[:id]).tags
+      @articles = type_class.includes(:tags).joins(:tags).where(tags: {name: tags.pluck(:name)}).where.not(id: params[:id]).order('RANDOM()').limit(params[:per_page] || 3)
+      render json: @articles, each_serializer: related_serializer
+    end
 
-  def translated
-    @articles = type_class.published.tagged_with(['перевод'])
-    paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
+    def add_typo
+      @article = type_class.find(params[:id])
+      typo = ArticleTypo.create(typo_text: params[:typo_text], commentary: params[:commentary], article: @article)
+      render json: typo
+    end
 
-    render_paginated(paginated)
-  end
+    def all
+      @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
+      paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
-  protected
+      render_paginated(paginated)
+    end
 
-  def type_class
-    Article
-  end
+    def translated
+      @articles = type_class.published.tagged_with(['перевод'])
+      paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
-  def serializer
-    SingleArticleSerializer
-  end
+      render_paginated(paginated)
+    end
 
-  def each_serializer
-    MultipleArticleSerializer
-  end
+    protected
 
-  def index_params
-    params.permit(
-      :tag,
-      :page,
-      :per_page,
-      :query,
-      :user_id,
-      sort: [
-        :col,
-        :dir
-      ]
-    )
-  end
+    def type_class
+      Article
+    end
 
-  def sort_params
-    index_params[:sort].to_h.reverse_merge(col: :publish_on, dir: :desc)
-  end
+    def serializer
+      SingleArticleSerializer
+    end
 
-  private
+    def each_serializer
+      MultipleArticleSerializer
+    end
 
-  def render_paginated(paginated)
-    render(
-      json: {
-        collection: paginated,
-        meta: meta_attributes(paginated)
-      },
-      serializer: ArticleCollectionSerializer,
-      key_transform: :camel_lower
-    )
+    def related_serializer
+      RelatedArticleSerializer
+    end
+
+    def index_params
+      params.permit(
+        :tag,
+        :page,
+        :per_page,
+        :query,
+        :user_id,
+        sort: [
+          :col,
+          :dir
+        ]
+      )
+    end
+
+    def sort_params
+      index_params[:sort].to_h.reverse_merge(col: :publish_on, dir: :desc)
+    end
+
+    private
+
+    def render_paginated(paginated)
+      render(
+        json: {
+          collection: paginated,
+          meta: meta_attributes(paginated)
+        },
+        serializer: ArticleCollectionSerializer,
+        key_transform: :camel_lower
+      )
+    end
   end
 end

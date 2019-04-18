@@ -12,6 +12,7 @@ class Article < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :updater, class_name: 'User', optional: true
   has_many :images
+  has_many :article_typos
 
   before_save :delete_whitespace
 
@@ -19,6 +20,7 @@ class Article < ApplicationRecord
   mount_uploader :cover_image, CoverImageUploader
   mount_uploader :avatar, AvatarUploader
   mount_uploader :small_cover_image, SmallCoverImageUploader
+  mount_uploader :slider_image, ImageUploader
 
   scope :fixed, -> { where(fixed: true) }
   scope :published, -> { where('publish_on < ?', Time.current) }

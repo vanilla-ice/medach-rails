@@ -2,41 +2,32 @@
 //= require activeadmin_addons/all
 //= require katex/dist/katex.js
 //= require chosen-jquery
-//= require ./textboxio/textboxio.js
 //= require active_material
+//= require redactor3
+//= require plugins/ru
+//= require plugins/ru.plugins
+//= require plugins/alignment
+//= require plugins/fontcolor
+//= require plugins/table
+//= require plugins/video
+//= require plugins/widget
+//= require plugins/fullscreen
+//= require plugins/fontfamily
+//= require plugins/fontsize
+//= require plugins/inlinestyle
+//= require plugins/clear
+//= require plugins/preview
+//= require plugins/add_indent
+//= require plugins/add_outdent
+//= require plugins/liststyles
+//= require plugins/lineheight
 
 /**
  * Step2. save to server
  *
  * @param {File} file
  */
-function saveToServer(file, editor) {
-  return new Promise(function(resolve, reject) {
-    var fd = new FormData();
-    fd.append('image', file);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/images', true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        console.log('xhr 200')
-        // this is callback data: url
-        var url = JSON.parse(xhr.responseText).url;
-        console.log('save to server url', url)
-        // insertToEditor(url, editor);
-        var data = {
-          url: url,
-          editor: editor
-        }
-        resolve(data)
-      }
-      else {
-        reject('error')
-      }
-    };
-    xhr.send(fd);
-  })
-}
 /**
  * Step3. insert image url to rich editor.
  *
@@ -47,17 +38,13 @@ function insertToEditor(url, editor) {
   // push image url to rich editor.
   console.log('insert to editor', editor)
 
-  editor.content.uploadImages(function(e) {
+  editor.content.uploadImages(function (e) {
     console.log('e', e)
   });
 }
 
-var renderQuickviewPopup = function renderQuickviewPopup(data) {
-  console.log(data)
-  var result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="container">' + '<div class="article__wrapper">' + '<div class="article">' + '<div class="article-title">' + data.name + '</div>' + '<div class="article-info__wrapper">' + '<div class="article-info">' + '<div class="article-info__item">' + '<a href="' + data.origin + '">' + data.origin + '</a>' + '</div>' + '<div class="article-info__item">' + '<div> Автор: </div>' + '<div>' + data.author + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Перевод: </div>' + '<div>' + data.translate + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Редакция: </div>' + '<div>' + data.redaction + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Оформление: </div>' + '<div>' + data.infographic + '</div>' + '</div>' + '</div>' + '</div>' + '<div class="article__content">' + '<div class="article__content-text">' + data.post + '</div>' + '</div>' + '</div>' + '</div>' +  '</div>' +  '</div>';
-  return result;
-};
-  /**
+
+/**
  * Step1. select local image
  *
  */
@@ -80,7 +67,7 @@ function selectLocalDocument(onSuccess) {
  * @param {File} file
  */
 function saveDocumentToServer(file) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     var fd = new FormData();
     fd.append('document', file);
 
@@ -94,8 +81,7 @@ function saveDocumentToServer(file) {
           url: url
         }
         resolve(data)
-      }
-      else {
+      } else {
         reject('error')
       }
     };
@@ -103,7 +89,40 @@ function saveDocumentToServer(file) {
   })
 }
 
-function makeDocumentLink (linkText, documentUrl) {
+function saveToServer(file, editor) {
+  return new Promise(function (resolve, reject) {
+    var fd = new FormData();
+    fd.append('image', file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/images', true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log('xhr 200')
+        // this is callback data: url
+        var url = JSON.parse(xhr.responseText).url;
+        console.log('save to server url', url)
+        // insertToEditor(url, editor);
+        var data = {
+          url: url,
+          editor: editor
+        }
+        resolve(data)
+      } else {
+        alert('Ошибка загрузки, попробуйте еще раз')
+        reject('error')
+      }
+    };
+    xhr.send(fd);
+  })
+}
+
+let renderQuickviewPopup = function renderQuickviewPopup(data) {
+  let result = '<div class="quickview-popup">' + '<div class="js-close close-popup">Закрыть</div>' + '<div class="container">' + '<div class="article__wrapper">' + '<div class="article">' + '<div class="article-title">' + data.name + '</div>' + '<div class="article-info__wrapper">' + '<div class="article-info">' + '<div class="article-info__item">' + '<a href="' + data.origin + '">' + data.origin + '</a>' + '</div>' + '<div class="article-info__item">' + '<div> Автор: </div>' + '<div>' + data.author + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Перевод: </div>' + '<div>' + data.translate + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Редакция: </div>' + '<div>' + data.redaction + '</div>' + '</div>' + '<div class="article-info__item">' + '<div> Оформление: </div>' + '<div>' + data.infographic + '</div>' + '</div>' + '</div>' + '</div>' + '<div class="article__content">' + '<div class="article__content-text">' + data.post + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>';
+  return result;
+};
+
+function makeDocumentLink(linkText, documentUrl) {
   return '<p><a target="_blank" href="' + documentUrl + '">' + linkText + '</a><br /></p>'
 }
 
@@ -111,216 +130,184 @@ function makeDocumentLink (linkText, documentUrl) {
 $(document).ready(function () {
   var editor;
 
-  var config = {
-    basePath: '/textboxio',
-    css : {
-      stylesheets : ['/css/editor.css'] // an array of CSS file URLs
+  if (document.getElementById('article_body')) {
+    let options = {
+      imageUpload: function (formData, files, event, upload) {
+        saveToServer(files[0], editor).then(function (data) {
+          upload.complete(data.url)
+        })
+      },
+      formatting: ['p', 'blockquote', 'pre'],
+      formattingAdd: {
+        "h1": {
+          title: 'Заголовок 1',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h1',
+              'class': 'header-1-custom'
+          }
+        },
+        "h2": {
+          title: 'Заголовок 2',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h2',
+              'class': 'header-2-custom'
+          }
+        },
+        "h3": {
+          title: 'Заголовок 3',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h3',
+              'class': 'header-3-custom'
+          }
+        },
+        "h4": {
+          title: 'Заголовок 4',
+          api: 'module.block.format',
+          args: {
+              'tag': 'h4',
+              'class': 'header-4-custom'
+          }
+        }
+      },
+      fileUpload: '/api/documents',
+      buttons: ['undo', 'redo', 'format','line', 'bold', 'italic', 'sup', 'sub', 'lists', 'image', 'file', 'link', 'html'],
+      imageResizable: true,
+      imagePosition: true,
+      structure: true,
+      breakline: false,
+      lang: 'ru',
+      pasteLinkTarget: '_blank',
+      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'lineheight', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'fullscreen'],
+      callbacks: {
+        click: function(e)
+        {
+          // get node
+          var node = document.getSelection().anchorNode;
+          var el = node.nodeType == 3 ? node.parentNode : node;
+          
+          // get relevant buttons and values
+          var fontsizeBtn = this.toolbar.getButton('fontsize');
+          var fontsizeValue = $(el).css('font-size');
 
-    },
-    paste: {
-      style: 'clean'
-    },
-    images: {
-      upload: {
-        handler: function(data, success, failture) {
-          var blob = data.blob()
-          var filename = data.filename()
+          var fontfamilyBtn = this.toolbar.getButton('fontfamily');
+          var fontfamilyValue = $(el).css('font-family');
 
-          var resultImage = new File([blob], filename)
+          var lineheightBtn = this.toolbar.getButton('lineheight');
+          var lineheightValue = $(el).css('line-height');
+          
+          var fontcolorBtn = this.toolbar.getButton('fontcolor');
+          var fontcolorValue = $(el).css('color');
+          var fontcolorBackgroundValue = $(el).css('background-color');
 
-          saveToServer(resultImage, editor)
-            .then(function(data) {
-              success(data.url)
-            })
-            .catch(function(error) {
-              failture('uploading error', error)
-            })
+          var alignLeftBtn = this.toolbar.getButton('align-left');
+          var alignCenterBtn = this.toolbar.getButton('align-center');
+          var alignRightBtn = this.toolbar.getButton('align-right');
+          var alignJustifyBtn = this.toolbar.getButton('align-justify');
+          var alignValue = $(el).css('text-align');
+
+          fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
+          fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
+          lineheightBtn.setIcon(`<i class="fas fa-arrows-alt-v"> ${lineheightValue}</i>`);
+          fontcolorBtn.setIcon(`
+            <i class="fas fa-palette"">
+              <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
+            </i>
+            
+            <i class="fas fa-fill">
+              <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
+            </i>
+          `);
+          switch(alignValue) {
+            case 'left':
+              alignLeftBtn.setActive();
+              break;
+            case 'center':
+              alignCenterBtn.setActive();
+              break;
+            case 'right':
+              alignRightBtn.setActive();
+              break;
+            case 'justify':
+              alignJustifyBtn.setActive();
+              break;
+          }
+        },
+        keydown: function(e) 
+        {
+          // get node
+          var node = document.getSelection().anchorNode;
+          var el = node.nodeType == 3 ? node.parentNode : node;
+
+          // get relevant buttons
+          var fontsizeBtn = this.toolbar.getButton('fontsize');
+          var fontsizeValue = $(el).css('font-size');
+
+          var fontfamilyBtn = this.toolbar.getButton('fontfamily');
+          var fontfamilyValue = $(el).css('font-family');
+
+          var lineheightBtn = this.toolbar.getButton('lineheight');
+          var lineheightValue = $(el).css('line-height');
+                    
+          var fontcolorBtn = this.toolbar.getButton('fontcolor');
+          var fontcolorValue = $(el).css('color');
+          var fontcolorBackgroundValue = $(el).css('background-color');
+
+          var alignLeftBtn = this.toolbar.getButton('align-left');
+          var alignCenterBtn = this.toolbar.getButton('align-center');
+          var alignRightBtn = this.toolbar.getButton('align-right');
+          var alignJustifyBtn = this.toolbar.getButton('align-justify');
+          var alignValue = $(el).css('text-align');
+
+          fontsizeBtn.setIcon(`<i class="re-icon-fontsize">  ${fontsizeValue}</i>`);
+          fontfamilyBtn.setIcon(`<i class="re-icon-fontfamily"> ${fontfamilyValue}</i>`);
+          lineheightBtn.setIcon(`<i class="fas fa-arrows-alt-v"> ${lineheightValue}</i>`);
+          fontcolorBtn.setIcon(`
+            <i class="fas fa-palette"">
+              <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
+            </i>
+            
+            <i class="fas fa-fill">
+              <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
+            </i>
+          `);
+          switch(alignValue) {
+            case 'left':
+              alignLeftBtn.setActive();
+              break;
+            case 'center':
+              alignCenterBtn.setActive();
+              break;
+            case 'right':
+              alignRightBtn.setActive();
+              break;
+            case 'justify':
+              alignJustifyBtn.setActive();
+              break;
+          }
+        },
+        format: function(type, nodes)
+        {
+          setTimeout(() => {
+            window.getSelection().collapseToStart();
+            console.log("HELLO");
+           }
+          , 1);
         }
       }
-    },
-    ui: {
-      fonts : [ 'Helvetica', 'Arial', 'Times New Roman', '"PT Serif", sans-serif' ],
-      toolbar: {
-        items: [
-          {
-            label: 'undo',
-            items: ['undo', 'redo']
-          },
-          {
-            label: 'insert',
-            id: 'insert',
-            items: ['link', 'fileupload', 'table', 'media', 'hr', 'specialchar']
-          },
-          'style',
-          {
-            label: 'emphasis',
-            items: ['bold', 'italic', 'underline']
-          },
-          {
-            label: 'align',
-            items: ['alignment']
-          },
-          {
-            label: 'format',
-            items: ['font-menu', 'removeformat']
-          },
-          {
-            label: 'listindent',
-            items: ['ul', 'ol', 'indent', 'outdent', 'blockquote']
-          },
-          {
-            label: 'tools',
-            items: ['find', 'accessibility', 'fullscreen', 'usersettings']
-          },
-          {
-            label: 'Imagebox',
-            items: [
-              {
-                id: 'ImageBox-title',
-                text: 'Imagebox header',
-                icon: '/images/header.png',
-                action: function() {
-                  var ed = textboxio.getActiveEditor();
-
-                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-title">Title</div></p><br />');
-                }
-              },
-              {
-                id: 'ImageBox-content',
-                text: 'Imagebox content',
-                icon: '/images/content.png',
-                action: function() {
-                  var ed = textboxio.getActiveEditor();
-
-                  ed.content.insertHtmlAtCursor('<p><div class="editor_img-content">Content</div></p><br />');
-                }
-              }
-            ]
-          },
-          {
-            label: 'Quickview',
-            items: [
-              {
-                id: 'quickview1',
-                text: 'Открыть предпросмотр',
-                icon: '/images/preview.png',
-
-                action: function(e) {
-
-                  $('body').css('overflow-y', 'hidden');
-                  var data = {};
-
-                  data['name'] = $('.js_title').val();
-                  data['post'] = e.content.get()
-                  data['redaction'] = $('.js_redaction').val();
-                  data['author'] = $('.js_author').val();
-                  data['infographic'] = $('.js_infographic').val();
-                  data['origin'] = $('.js_original').val();
-                  data['translate'] = $('.js_translate').val();
-                  data['image'] = $('.file .inline-hints img').attr('src');
-                  $('body').append(renderQuickviewPopup(data));
-
-                  $('body').on('click', '.js-close', function () {
-                    $('.quickview-popup').remove();
-                    $('body').css('overflow-y', 'initial');
-                  });
-                }
-              }
-            ]
-          },
-          {
-            label: 'set backup',
-            items: [
-              {
-                id: 'setBackupData',
-                text: 'Сделать бекап',
-                icon: '/images/save-icon.svg',
-
-                action: function(e) {
-                  localStorage.setItem('postData', e.content.get())
-                }
-              }
-            ]
-          },
-          {
-            label: 'get backup',
-            items: [
-              {
-                id: 'getBackupData',
-                text: 'Использовать последний бекап',
-                icon: '/images/preview.png',
-
-                action: function(e) {
-                  var data = localStorage.getItem('postData');
-                  e.content.set(data)
-                }
-              }
-            ]
-          },
-          {
-            label: 'FileLoader',
-            items: [
-              {
-                id: 'fileLoaderPdf',
-                text: 'Загрузить файл',
-                icon: '/images/upload-file.svg',
-
-                action: function() {
-                  selectLocalDocument(function (data) {
-                    var ed = textboxio.getActiveEditor()
-                    var linkText = prompt('Введите текст ссылки для скачивания', 'Скачать документ') || 'Скачать документ'
-                    ed.content.insertHtmlAtCursor(makeDocumentLink(linkText, data.url))
-                  })
-                }
-              }
-            ]
-          },
-        ]
-      }
-    }
-  };
-
-  if (document.getElementById('article_body')) {
-    editor = textboxio.replaceAll('#article_body', config)
-
-    let toolbarOptions = [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-
-      [{ 'header': 1 }, { 'header': 2 }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],
-      [{ 'indent': '-1'}, { 'indent': '+1' }],
-      [{ 'direction': 'rtl' }],
-
-      [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-      [{ 'color': [] }, { 'background': [] }],
-      [{ 'font': [] }],
-      [{ 'align': [] }],
-
-      ['clean']
-    ];
-
-    let options = {
-      placeholder: 'Compose an epic...',
-      modules: {
-        toolbar: toolbarOptions
-      },
-      theme: 'snow'
     };
 
-    //
-    // const quill = new Quill('#article_body', options);
+    $R('#article_body', options);
 
-    window.onbeforeunload = function(e) {
+    window.onbeforeunload = function (e) {
       var dialogText = 'Покинуть страницу?';
       e.returnValue = dialogText;
       return dialogText;
     }
 
-    $('input[name="commit"]').on('click', function() {
+    $('input[name="commit"]').on('click', function () {
       window.onbeforeunload = false
     })
 
@@ -331,6 +318,5 @@ $(document).ready(function () {
     no_results_text: 'No results matched',
     width: '80%'
   })
-
 
 });

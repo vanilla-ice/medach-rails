@@ -1,44 +1,16 @@
 {
-  "name": "myapp",
+  "name": "medach-rails",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.0.2",
     "@types/katex": "^0.5.0",
-    "axios": "^0.17.1",
     "babel-loader": "^7.1.2",
     "browserify": "^14.0.0",
     "browserify-incremental": "^3.1.0",
-    "coffeescript": "1.12.7",
-    "date-fns": "^1.29.0",
-    "dotenv": "^4.0.0",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "katex": "^0.9.0-alpha2",
-    "moment": "2.18.1",
-    "node-sass": "^4.5.3",
-    "normalize.css": "^7.0.0",
-    "pug": "^2.0.0-beta6",
-    "pug-loader": "^2.3.0",
-    "sass-loader": "^6.0.6",
-    "svg-inline-loader": "^0.8.0",
-    "vue": "^2.5.2",
-    "vue-carousel": "^0.6.5",
-    "vue-images": "^1.0.10",
-    "vue-loader": "^13.3.0",
-    "vue-router": "^3.0.1",
-    "vue-scrollto": "^2.11.0",
-    "vue-simple-lightbox": "^1.1.0",
-    "vue-sweetalert2": "^1.0.7",
-    "vue-template-compiler": "^2.5.2",
-    "vue-yandex-metrika": "^1.6.1",
-    "vuex": "^3.0.1",
-    "webpack-dev-server": "^2.9.3",
-    "webpack-merge": "^4.1.1"
+    "katex": "^0.9.0-alpha2"
   },
   "devDependencies": {},
   "scripts": {
     "start": "NODE_ENV=production RAILS_ENV=production rails server -p $PORT -e $RAILS_ENV",
-    "dev": "./bin/webpack-dev-server",
-    "build": "NODE_ENV='production' ./bin/webpack -p --config ./config/webpack/production.js --progress",
     "heroku-postbuild": "NODE_ENV=production RAILS_ENV=production rails assets:precompile"
   }
 }

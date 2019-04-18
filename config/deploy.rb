@@ -13,7 +13,7 @@ set :application_name, 'medach'
 set :domain, '142.93.13.232'
 set :deploy_to, '/home/deploy/apps/medach'
 set :repository, 'git://github.com/vanilla-ice/medach-rails.git'
-set :branch, 'develop'
+set :branch, 'master'
 
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
@@ -48,7 +48,10 @@ task :yarn do
 end
 
 task :setup_frontend do
-  command %{cd medach_frontend && yarn install && yarn build && yarn prod}
+  in_path("#{fetch(:current_path)}/medach_frontend") do
+    command %{yarn install && yarn build}
+    command %{pm2 delete all && yarn prod}
+  end
 end
 
 desc "Deploys the current version to the server."
