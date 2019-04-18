@@ -21,6 +21,7 @@ ActiveAdmin.register LongreadArticle do
     :translate,
     :fixed,
     :type,
+    :hidden,
     :slider_image,
     :remove_slider_image
   )
