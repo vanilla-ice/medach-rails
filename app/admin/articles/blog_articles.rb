@@ -23,7 +23,8 @@ ActiveAdmin.register BlogArticle do
     :fixed,
     :partner_id,
     :user_id,
-    :type
+    :type,
+    :hidden
   )
 
   before_create do |article|

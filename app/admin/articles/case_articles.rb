@@ -17,7 +17,8 @@ ActiveAdmin.register CaseArticle do
     :origin,
     :translate,
     :fixed,
-    :type
+    :type,
+    :hidden
   )
 
   menu parent: "Статьи"
