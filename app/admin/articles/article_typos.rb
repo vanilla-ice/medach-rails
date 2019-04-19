@@ -4,8 +4,11 @@ ActiveAdmin.register ArticleTypo do
   permit_params(
     :typo_text,
     :commentary,
-    :article_id
+    :article_id,
+    :fixed
   )
+
+  actions :all, except: :new
 
   menu parent: 'Статьи'
 
@@ -18,6 +21,7 @@ ActiveAdmin.register ArticleTypo do
     column 'Исправлено', :fixed
     actions
   end
+
 
   show do
     attributes_table do
