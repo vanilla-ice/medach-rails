@@ -20,6 +20,9 @@
 //= require plugins/add_outdent
 //= require plugins/liststyles
 //= require plugins/lineheight
+//= require plugins/caption
+
+
 
 /**
  * Step2. save to server
@@ -179,7 +182,7 @@ $(document).ready(function () {
       breakline: false,
       lang: 'ru',
       pasteLinkTarget: '_blank',
-      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'lineheight', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'fullscreen'],
+      plugins: ['liststyles', 'add_outdent', 'add_indent', 'alignment', 'fontcolor', 'fontsize', 'lineheight', 'fontfamily', 'table', 'video', 'preview', 'clear_format', 'fullscreen','caption'],
       callbacks: {
         click: function(e)
         {
