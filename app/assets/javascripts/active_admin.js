@@ -289,14 +289,22 @@ $(document).ready(function () {
         },
         format: function(type, nodes)
         {
-            let range = document.createRange();
-            if(nodes.length <= 0)
-              return;
-            range.setStart(nodes[0],0);
-            range.setEnd(nodes[nodes.length-1],0);
-            let sel = window.getSelection();
-            sel.removeAllRanges();
-            sel.addRange(range);
+            // console.log(type);
+            // console.log(nodes);
+            // console.log(this.selection.getRange());
+            // let range = this.selection.getRange();
+            // setTimeout(()=>{
+            //   this.selection.setRange(range);
+            // },1);
+            //
+            // // let range = document.createRange();
+            // // if(nodes.length <= 0)
+            // //   return;
+            // // range.setStart(nodes[0],0);
+            // // range.setEnd(nodes[nodes.length-1],0);
+            // // let sel = window.getSelection();
+            // // sel.removeAllRanges();
+            // // sel.addRange(range);
         }
       }
     };
