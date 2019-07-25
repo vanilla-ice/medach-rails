@@ -186,7 +186,7 @@ $(document).ready(function () {
           // get node
           var node = document.getSelection().anchorNode;
           var el = node.nodeType == 3 ? node.parentNode : node;
-          
+
           // get relevant buttons and values
           var fontsizeBtn = this.toolbar.getButton('fontsize');
           var fontsizeValue = $(el).css('font-size');
@@ -196,7 +196,7 @@ $(document).ready(function () {
 
           var lineheightBtn = this.toolbar.getButton('lineheight');
           var lineheightValue = $(el).css('line-height');
-          
+
           var fontcolorBtn = this.toolbar.getButton('fontcolor');
           var fontcolorValue = $(el).css('color');
           var fontcolorBackgroundValue = $(el).css('background-color');
@@ -214,7 +214,7 @@ $(document).ready(function () {
             <i class="fas fa-palette"">
               <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
             </i>
-            
+
             <i class="fas fa-fill">
               <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
             </i>
@@ -234,7 +234,7 @@ $(document).ready(function () {
               break;
           }
         },
-        keydown: function(e) 
+        keydown: function(e)
         {
           // get node
           var node = document.getSelection().anchorNode;
@@ -249,7 +249,7 @@ $(document).ready(function () {
 
           var lineheightBtn = this.toolbar.getButton('lineheight');
           var lineheightValue = $(el).css('line-height');
-                    
+
           var fontcolorBtn = this.toolbar.getButton('fontcolor');
           var fontcolorValue = $(el).css('color');
           var fontcolorBackgroundValue = $(el).css('background-color');
@@ -267,7 +267,7 @@ $(document).ready(function () {
             <i class="fas fa-palette"">
               <i class="fas fa-square" style="color: ${fontcolorValue}"></i>
             </i>
-            
+
             <i class="fas fa-fill">
               <i class="fas fa-square" style="color: ${fontcolorBackgroundValue}"></i>
             </i>
@@ -289,11 +289,14 @@ $(document).ready(function () {
         },
         format: function(type, nodes)
         {
-          setTimeout(() => {
-            window.getSelection().collapseToStart();
-            console.log("HELLO");
-           }
-          , 1);
+            let range = document.createRange();
+            if(nodes.length <= 0)
+              return;
+            range.setStart(nodes[0],0);
+            range.setEnd(nodes[nodes.length-1],0);
+            let sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
         }
       }
     };
