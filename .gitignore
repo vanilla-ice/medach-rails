@@ -23,6 +23,8 @@
 !/tmp/.keep
 .DS_Store
 
+db_dump*.sql
+
 /node_modules
 /yarn-error.log
 
