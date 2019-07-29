@@ -18,6 +18,8 @@
   to {
     opacity: 0; } }
 
+
+
 .redactor-animate-hide {
   display: none !important; }
 
@@ -712,7 +714,7 @@
   font-size: 18px;
   font-weight: bold;
   line-height: 32px;
-  font-family: PTSerif; 
+  font-family: PTSerif;
 }
 
 .redactor-dropdown-format .redactor-dropdown-item-h3 {
@@ -725,7 +727,7 @@
 .redactor-dropdown-format .redactor-dropdown-item-h4 {
   font-size: 14px;
   line-height: 24px;
-  font-family: Helvetica; 
+  font-family: Helvetica;
 }
 
 .redactor-dropdown-format .redactor-dropdown-item-h5 {
@@ -1126,7 +1128,7 @@
     line-height: 1.2; }
   .redactor-styles h1 {
     font-size: 2.0736em;
-    font-family: Helvetica; 
+    font-family: Helvetica;
   }
 
   .redactor-in .header-1-custom {
