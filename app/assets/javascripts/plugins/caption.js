@@ -13,6 +13,8 @@
             this.block = app.block;
             this.toolbar = app.toolbar;
             this.source = app.source;
+            this.component = app.component;
+            this.insertion = app.insertion;
         },
         // public
         start: function ()
@@ -26,14 +28,15 @@
         },
         add: function()
         {
+          //var $cap = this.component.create('video',);
           this.app.insertion.insertNode(this.getSampleCaption());
         },
         getSampleCaption: function(){
-          let dv = document.createElement("div");
+          let dv  = document.createElement('div');
           dv.innerHTML =
           `
-          <div class="editor_img-title"><span style="font-family: Helvetica; font-size: 14px;">Название</span></div>
-          <div class="editor_img-content"><span style="font-family: Helvetica; font-size: 14px;">Описание</span></div>
+          <div class="editor_img-title"><span style="font-family: Helvetica; font-size: 14px;"></span></div>
+          <div class="editor_img-content"><span style="font-family: Helvetica; font-size: 14px;"></span></div>
           `;
           return dv;
         }
