@@ -44,6 +44,11 @@ ActiveAdmin.register BlogArticle do
     end
   end
 
+  collection_action :search, method: :get do
+    tags = ActsAsTaggableOn::Tag.where('LOWER(name) ILIKE ?', "#{params[:term]}%")
+    render json: tags, each_serializer: AutocompleteSerializer, root: false
+  end
+
   menu parent: "Статьи"
 
   filter :tags, label: 'Теги'
