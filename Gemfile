@@ -30,6 +30,9 @@ gem 'pg_search', '2.1.1'
 gem 'figaro', '1.1.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'jquery-ui-rails'
+gem 'select2-rails'
+gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'kaminari', '1.1.1'

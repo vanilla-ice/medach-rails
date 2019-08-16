@@ -40,6 +40,11 @@ ActiveAdmin.register MediaArticle do
     end
   end
 
+  collection_action :search, method: :get do
+    tags = ActsAsTaggableOn::Tag.where('LOWER(name) ILIKE ?', "#{params[:term]}%")
+    render json: tags, each_serializer: AutocompleteSerializer, root: false
+  end
+
   filter :tags, label: 'Теги'
   filter :body, label: 'Текст статьи'
   filter :title, label: 'Заголовок'
