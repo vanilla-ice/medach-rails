@@ -24,7 +24,8 @@ ActiveAdmin.register BlogArticle do
     :partner_id,
     :user_id,
     :type,
-    :hidden
+    :hidden,
+    banners_attributes: [:article_id, :title, :description, :url]
   )
 
   before_create do |article|
@@ -79,6 +80,10 @@ ActiveAdmin.register BlogArticle do
     actions
   end
 
-
   form partial: 'blog_article_form'
+end
+
+ActiveAdmin.register Banner do
+  belongs_to :blog_article
+  permit_params :article_id, :title, :description, :url
 end
