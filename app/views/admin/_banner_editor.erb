@@ -1,5 +1,8 @@
-<% f.has_many :banners do |b| %>
-	<% b.input :title %>
-	<% b.input :url %>
-	<% b.input :description %>
+<% f.has_many :banners, allow_destroy: true do |b| %>	
+	<% b.inputs "Баннер" do %>
+		<% b.input :title %>
+		<% b.input :url %>
+		<% b.input :description %>		
+		<%= render partial: "admin/image_uploader", locals: { f: b, label: 'Изображение для баннера', name: "image", message: "Миниатюра изображения не представлена" } %>
+	<% end %>		
 <% end %>

@@ -14,7 +14,7 @@ class Article < ApplicationRecord
   has_many :images
   has_many :article_typos
   has_many :banners
-  accepts_nested_attributes_for :banners
+  accepts_nested_attributes_for :banners, allow_destroy: true
 
   before_save :delete_whitespace
 

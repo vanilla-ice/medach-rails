@@ -5,4 +5,7 @@ class Banner < ApplicationRecord
 	validates :title, presence: true
 	validates :url, presence: true
 	validates :description, presence: true
+	validates :image, presence: true
+
+	mount_uploader :image, ImageUploader
 end

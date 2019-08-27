@@ -25,7 +25,7 @@ ActiveAdmin.register BlogArticle do
     :user_id,
     :type,
     :hidden,
-    banners_attributes: [:article_id, :title, :description, :url]
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image]
   )
 
   before_create do |article|
@@ -85,5 +85,5 @@ end
 
 ActiveAdmin.register Banner do
   belongs_to :blog_article
-  permit_params :article_id, :title, :description, :url
+  permit_params :article_id, :title, :description, :url, :image
 end
