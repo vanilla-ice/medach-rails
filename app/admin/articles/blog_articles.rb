@@ -83,7 +83,8 @@ ActiveAdmin.register BlogArticle do
   form partial: 'blog_article_form'
 end
 
-ActiveAdmin.register Banner do
-  belongs_to :blog_article
-  permit_params :article_id, :title, :description, :url, :image
-end
+#ActiveAdmin.register Banner do
+  #belongs_to :blog_article
+  #belongs_to :case_article  
+  #permit_params :article_id, :title, :description, :url, :image
+#end
