@@ -1,6 +1,9 @@
 //= require active_admin/base
 //= require activeadmin_addons/all
 //= require chosen-jquery
+//= require jquery-ui
+//= require active_admin/select2
+//= require tag-autocomplete
 //= require active_material
 //= require redactor3
 //= require plugins/ru

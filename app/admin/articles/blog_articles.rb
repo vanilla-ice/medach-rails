@@ -24,7 +24,8 @@ ActiveAdmin.register BlogArticle do
     :partner_id,
     :user_id,
     :type,
-    :hidden
+    :hidden,
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   before_create do |article|
@@ -42,6 +43,11 @@ ActiveAdmin.register BlogArticle do
         format.html { redirect_to self.send(path, resource.id)}
       end
     end
+  end
+
+  collection_action :search, method: :get do
+    tags = ActsAsTaggableOn::Tag.where('LOWER(name) ILIKE ?', "#{params[:term]}%")
+    render json: tags, each_serializer: AutocompleteSerializer, root: false
   end
 
   menu parent: "Статьи"
@@ -73,7 +79,6 @@ ActiveAdmin.register BlogArticle do
     column 'Дата публикации', :publish_on
     actions
   end
-
 
   form partial: 'blog_article_form'
 end

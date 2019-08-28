@@ -23,19 +23,21 @@ ActiveAdmin.register LongreadArticle do
     :type,
     :hidden,
     :slider_image,
-    :remove_slider_image
+    :remove_slider_image,
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
+  
   menu parent: "Статьи"
-
+  
   before_create do |article|
     article.user = current_user
   end
-
+  
   before_save do |article|
     article.updater = current_user
   end
-
+  
   controller do
     def update
       update! do |success, failure|
@@ -43,7 +45,25 @@ ActiveAdmin.register LongreadArticle do
         success.html { redirect_to self.send(path, resource.id)}
       end
     end
+    def autocomplete_gift_tags
+      @tags = ActsAsTaggableOn::Tag
+        .where("name LIKE ?", "#{params[:q]}%")
+        .order(:name)
+      respond_to do |format|
+        format.json { render json: @tags , only: [:id, :name], root: false }
+      end
+    end
   end
+  
+  collection_action :search, method: :get do
+    @tags = ActsAsTaggableOn::Tag
+      .where("name LIKE ?", "#{params[:q]}%")
+      .order(:name)
+    respond_to do |format|
+      format.json { render :json => @tags.collect{|t| {:id => t.name, :name => t.name }}}
+    end
+  end
+  
 
   filter :tags, label: 'Теги'
   filter :body, label: 'Текст статьи'

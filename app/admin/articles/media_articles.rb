@@ -18,7 +18,8 @@ ActiveAdmin.register MediaArticle do
     :translate,
     :fixed,
     :type,
-    :hidden
+    :hidden,
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   menu parent: "Статьи"
@@ -38,6 +39,11 @@ ActiveAdmin.register MediaArticle do
         format.html { redirect_to self.send(path, resource.id)}
       end
     end
+  end
+
+  collection_action :search, method: :get do
+    tags = ActsAsTaggableOn::Tag.where('LOWER(name) ILIKE ?', "#{params[:term]}%")
+    render json: tags, each_serializer: AutocompleteSerializer, root: false
   end
 
   filter :tags, label: 'Теги'
