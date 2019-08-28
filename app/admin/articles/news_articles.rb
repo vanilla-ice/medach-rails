@@ -19,7 +19,7 @@ ActiveAdmin.register NewsArticle do
     :fixed,
     :type,
     :hidden,
-    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image]
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   menu parent: "Статьи"

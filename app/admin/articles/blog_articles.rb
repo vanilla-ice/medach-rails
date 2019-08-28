@@ -25,7 +25,7 @@ ActiveAdmin.register BlogArticle do
     :user_id,
     :type,
     :hidden,
-    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image]
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   before_create do |article|
@@ -82,9 +82,3 @@ ActiveAdmin.register BlogArticle do
 
   form partial: 'blog_article_form'
 end
-
-#ActiveAdmin.register Banner do
-  #belongs_to :blog_article
-  #belongs_to :case_article  
-  #permit_params :article_id, :title, :description, :url, :image
-#end

@@ -24,7 +24,7 @@ ActiveAdmin.register LongreadArticle do
     :hidden,
     :slider_image,
     :remove_slider_image,
-    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image]
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   
