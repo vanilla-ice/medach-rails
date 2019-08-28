@@ -24,7 +24,8 @@ ActiveAdmin.register BlogArticle do
     :partner_id,
     :user_id,
     :type,
-    :hidden
+    :hidden,
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   before_create do |article|
@@ -78,7 +79,6 @@ ActiveAdmin.register BlogArticle do
     column 'Дата публикации', :publish_on
     actions
   end
-
 
   form partial: 'blog_article_form'
 end
