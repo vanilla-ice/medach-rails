@@ -8,6 +8,7 @@
   <%= f.inputs do %>
     <%= render partial: 'admin/form', locals: { f: f } %>
     <%= render partial: "admin/articles/type", locals: { f: f } unless f.object.new_record? %>
+    <%= render partial: 'admin/banner_editor', locals: { f: f } %>
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit %>
