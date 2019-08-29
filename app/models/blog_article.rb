@@ -1,2 +1,2 @@
-class BlogArticle < Article
+class BlogArticle < Article	
 end

@@ -23,7 +23,8 @@ ActiveAdmin.register LongreadArticle do
     :type,
     :hidden,
     :slider_image,
-    :remove_slider_image
+    :remove_slider_image,
+    banners_attributes: [:id, :_destroy, :article_id, :title, :description, :url, :image, :position]
   )
 
   
