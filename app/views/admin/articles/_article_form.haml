@@ -5,6 +5,7 @@
     = render :partial => "admin/form", locals: {f: f}
     = render :partial => "admin/image_uploader", locals: {f: f, label: 'Аватар', name: "avatar", message: "Аватар не представлен"}
     = f.input :partner_id, as: :select, :input_html => { class: 'chosen-select' }, collection: BlogArticle.published.collect { |article| [article.title, article.id] }
+    = render partial: 'admin/form', locals: { f: f }
   = f.actions do
     = f.action :submit
     = f.action :cancel, class: :cancel, :wrapper_html => { class: :cancel}

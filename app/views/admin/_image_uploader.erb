@@ -1,6 +1,6 @@
 <% hint = f.object.send(name).present? ? image_tag(f.object.send(name).url) : content_tag(:span, message || "") %>
-<% f.input name, :label => label, :as => :file, :hint => hint, :input_html => { :class => 'js_image' } %>
+<%= f.input name, :label => label, :as => :file, :hint => hint, :input_html => { :class => 'js_image' } %>
 <% if f.object.send(name).present? %>
-  <% f.input "remove_#{name}".to_sym, :as => :boolean, label: 'Удалить' %>
+  <%= f.input "remove_#{name}".to_sym, :as => :boolean, label: 'Удалить' %>
 <% end %>
-<% f.input "#{name}_cache", :as => :hidden %>
+<%= f.input "#{name}_cache", :as => :hidden %>

@@ -1,9 +1,9 @@
-<% f.has_many :banners, allow_destroy: true do |b| %>	
+<% f.has_many :banners, heading: 'Мои баннеры', new_record: 'Добавить баннер', allow_destroy: true do |b| %>	
 	<% b.inputs "Баннер" do %>
-		<% b.input :title %>
-		<% b.input :url %>
-		<% b.input :description %>		
-		<%= render partial: "admin/image_uploader", locals: { f: b, label: 'Изображение для баннера', name: "image", message: "Миниатюра изображения не представлена" } %>		
-		<% b.input :position, as: :select, collection: Banner.positions.keys %>
+		<%= render partial: "admin/banner_image_uploader", locals: { f: b, label: 'Изображение для баннера', name: "image", message: "Миниатюра изображения не представлена" } %>		
+		<% b.input :title %>		
+		<% b.input :url, label: 'URL' %>		
+		<% b.input :description, label: 'Описание' %>		
+		<% b.input :position, label: 'Позиция', as: :select, collection: Banner.positions.keys %>
 	<% end %>		
 <% end %>
