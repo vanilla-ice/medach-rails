@@ -3,3 +3,13 @@
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка квадратная (≈ 675 x 475)', name: "cover_image", message: "Обложка не представлена"}
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Обложка прямоугольная (≈ 675 x 285)', name: "small_cover_image", message: "Миниатюра обложки не представлена"}
 = render :partial => "admin/image_uploader", locals: {f: f, label: 'Изображение для слайдера', name: "slider_image", message: "Миниатюра изображениея не представлена"} if f.object.is_a?(LongreadArticle)
+= f.input :short_description, label: "Краткое описание", :placeholder => 'max 250 символов'
+= f.input :tag_string, label: 'Теги', :input_html => { :class => :js_tags }
+= f.input :author, label: "Автор", :input_html => { :class => :js_author }
+= f.input :redaction, label: "Редакция", :input_html => { :class => :js_redaction } unless f.object.is_a?(BlogArticle)
+= f.input :infographic, label: "Оформление", :input_html => { :class => :js_infographic }
+= f.input :origin, label: "Оригинал", :input_html => { :class => :js_original }
+= f.input :translate, label: "Перевод", :input_html => { :class => :js_translate }
+= f.input :publish_on, label: "Отложенный постинг", as: :date_time_picker
+= f.input :fixed, label: "Закрепить в шапке"
+= f.input :hidden, label: "Скрыть"
