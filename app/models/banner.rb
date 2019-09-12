@@ -9,9 +9,7 @@ class Banner < ApplicationRecord
 		in_text: "in_text"
 	}
 	
-	validates :url, presence: true
-	#validates :title, presence: true
-	#validates :description, presence: true
+	validates :url, presence: true	
 	validates :image, presence: true
 	validates :position, presence: true
 
