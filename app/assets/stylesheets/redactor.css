@@ -267,6 +267,8 @@
 .redactor-component {
   position: relative; }
 
+
+
 .redactor-component[data-redactor-type="widget"]:before,
 .redactor-component[data-redactor-type="video"]:before {
   width: 100%;

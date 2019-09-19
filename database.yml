@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  user: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: medach_test
+  port: 5432
+
+test:
+  <<: *default
+  database: medach_test
+
+production:
+  <<: *default
+  database: medach_production
+  port: 5433
