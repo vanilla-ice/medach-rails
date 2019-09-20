@@ -6,21 +6,21 @@
                 "lineheight": "Межстрочный интервал"
             }
         },
-        init: function (app) 
+        init: function (app)
         {
             this.app = app;
             this.lang = app.lang;
             this.block = app.block;
             this.inline = app.inline;
             this.toolbar = app.toolbar;
-            this.source = app.source; 
+            this.source = app.source;
         },
         // public
-        start: function () 
+        start: function ()
         {
             var heights = [1, 1.25, 1.5, 2, 2.5, 3];
             var dropdown = {};
-            
+
             dropdown.remove = {
                 title: "Remove Line Height",
                 api: 'plugin.lineheight.remove'
@@ -33,7 +33,7 @@
                     args: heights[i]
                 }
             }
-            
+
             var buttonData = {
                 title: this.lang.get('lineheight'),
               };
@@ -44,11 +44,17 @@
         },
         add: function(height)
         {
+            var toRemove = {
+              style : 'line-height'
+            };
             var args = {
                 style: { 'line-height': height }
             };
-            this.block.format(args);
-            this.inline.format(args);
+            this.block.remove(toRemove);
+            this.inline.remove(toRemove);
+            this.block.add(args);
+            this.inline.add(args);
+
         },
         remove: function()
         {
