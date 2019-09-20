@@ -6,17 +6,17 @@
                 "liststyles": "Стиль списка"
             }
         },
-        init: function (app) 
+        init: function (app)
         {
             this.app = app;
             this.lang = app.lang;
             this.block = app.block;
             this.inline = app.inline;
             this.element = app.element;
-            this.toolbar = app.toolbar; 
+            this.toolbar = app.toolbar;
         },
         // public
-        start: function () 
+        start: function ()
         {
             var dropdown = {};
             dropdown.disc = {
@@ -59,54 +59,59 @@
             var $button = this.toolbar.addButtonAfter('lists', 'liststyles', buttonData);
             $button.setDropdown(dropdown);
         },
+
+        findParentList:function(node){
+          for ( ; node && node !== document; node = node.parentNode ) {
+
+            if(node.tagName == "UL" || node.tagName == "OL")
+              return node;
+          }
+          return null;
+        },
+
+
+
+        changeListType:function(type){
+          var node = document.getSelection().anchorNode;
+          var el = this.findParentList(node)
+          console.log(el);
+          if(el)
+            for(var child=el.firstChild; child!==null; child=child.nextSibling)
+                $(child).css('list-style-type', type);
+        },
+
         // TODO Refactor
-        disc: function() 
+        disc: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'disc');
+            this.changeListType('disc');
         },
-        circle: function() 
+        circle: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'circle');
+            this.changeListType('circle');
         },
-        square: function() 
+        square: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'square');
+            this.changeListType( 'square');
         },
-        decimal: function() 
+        decimal: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'decimal');
+            this.changeListType( 'decimal');
         },
-        upperLatin: function() 
+        upperLatin: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'upper-latin');
+            this.changeListType('upper-latin');
         },
-        lowerLatin: function() 
+        lowerLatin: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'lower-latin');
+            this.changeListType( 'lower-latin');
         },
-        upperRoman: function() 
+        upperRoman: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'upper-roman');
+            this.changeListType( 'upper-roman');
         },
-        lowerRoman: function() 
+        lowerRoman: function()
         {
-            var node = document.getSelection().anchorNode;
-            var el = node.nodeType == 3 ? node.parentNode : node;
-            $(el).css('list-style-type', 'lower-roman');
+            this.changeListType('lower-roman');
         },
     });
 })(Redactor);
