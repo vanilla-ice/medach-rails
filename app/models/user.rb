@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_profile, allow_destroy: false
 
-  after_create :init_profile
+  #after_create :init_profile
 
   scope :bloggers, -> { where(admin: false) }
 
