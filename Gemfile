@@ -51,6 +51,8 @@ gem 'turbolinks', '~> 5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'sidekiq'
+gem 'sidekiq-cron'
 
 # RBAC
 gem 'cancancan', '~> 2.0'
