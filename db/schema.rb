@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190828130921) do
+ActiveRecord::Schema.define(version: 20200414115354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,20 @@ ActiveRecord::Schema.define(version: 20190828130921) do
     t.boolean "approved", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vacancies", force: :cascade do |t|
+    t.boolean "is_approved"
+    t.string "title"
+    t.string "employer"
+    t.string "location"
+    t.string "experience"
+    t.string "contacts"
+    t.boolean "is_promoted"
+    t.string "external_url"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "articles", "partners"
