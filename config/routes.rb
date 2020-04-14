@@ -61,7 +61,9 @@ Rails.application.routes.draw do
       collection do
         get :index
         post :create
+        get 'unsubscribe/:subscriber_id', to: 'vacancies#unsubscribe'
       end
+      post :subscribe, on: :collection
     end
     resources :site_configs, only: :index
     get 'all_articles', to: 'articles#all'

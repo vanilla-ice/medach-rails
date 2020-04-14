@@ -30,13 +30,35 @@ module Api
         render json: @vacancy.errors, status: :unprocessable_entity
       end
     rescue => e
-      render json: {message: e.message}
+      render json: { message: e.message }
+    end
+
+    def subscribe
+      @subscriber = Subscriber.new(subscribe_params.merge(is_subscribed: true))
+      if @subscriber.save
+        render json: @subscriber
+      else
+        render json: @subscriber.errors, status: :unprocessable_entity
+      end
+    rescue => e 
+      render json: { message: e.message }
+    end
+
+    def unsubscribe
+      @subscriber = Subscriber.find(params[:subscriber_id])
+      if @subscriber.update(is_subscribed: false)
+        render json: @subscriber
+      else
+        render json: @subscriber.errors, status: :unprocessable_entity
+      end
+    rescue => e
+      render json: { message: e.message }
     end
 
     private
 
     def vacancy_params
-      params.require(:vacancy).permit(
+      params.permit(
         :title,
         :employer,
         :location,
@@ -44,6 +66,12 @@ module Api
         :contacts,
         :external_url,
         :content
+      )
+    end
+
+    def subscribe_params
+      params.permit(
+        :email
       )
     end
   end
