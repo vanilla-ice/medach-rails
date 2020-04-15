@@ -12,6 +12,8 @@ ActiveAdmin.register Vacancy do
     :content
   )
 
+  menu parent: 'Вакансии'
+  
   scope 'Все', :all
   scope ('Неподтвержденные') { |scope| scope.where(is_approved: false) }
 

@@ -24,6 +24,19 @@ ru:
         typo_text: Опечатка
         commentary: Комментарий
         fixed: Исправлено
+      vacancy:
+        employer: Работодатель
+        experience: Опыт работы
+        salary: Зарплата
+        contacts: Контакты
+        location: Местоположение
+        content: Содержание
+        external_url: Внешняя ссылка
+        is_promoted: Продвигаемая
+        is_approved: Одобрена
+      subscriber:
+         email: email
+         is_subscribed: Подписан
     models:
       blog_article:
         one: Блог
@@ -85,6 +98,16 @@ ru:
         few: Профиля пользователя
         many: Профили пользователей
         other: Профили пользователей
+      vacancy:
+        one: Вакансия
+        few: Вакансии
+        many: Вакансии
+        other: Вакансии
+      subscriber:
+        one: Подписчик
+        few: Подписчика
+        many: Подписчики
+        other: Подписчики
   formtastic:
     :yes: "Да"
     :no: "Нет"

@@ -4,6 +4,8 @@ ActiveAdmin.register Subscriber do
     :is_subscribed
   )
 
+  menu parent: 'Вакансии'
+  
   scope 'Все', :all
   scope ('Подписавшиеся') { |scope| scope.where(is_subscribed: true) }
   scope ('Отписавшиеся') { |scope| scope.where(is_subscribed: false) }
