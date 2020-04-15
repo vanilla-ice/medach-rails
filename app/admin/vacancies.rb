@@ -4,6 +4,7 @@ ActiveAdmin.register Vacancy do
     :employer,
     :location,
     :experience,
+    :salary,
     :contacts,
     :is_promoted,
     :is_approved,
@@ -23,6 +24,7 @@ ActiveAdmin.register Vacancy do
     column :employer
     column :location
     column :experience
+    column :salary
     column :contacts
     column :is_promoted
     column :is_approved
@@ -36,6 +38,7 @@ ActiveAdmin.register Vacancy do
       input :employer
       input :location
       input :experience
+      input :salary
       input :content, label: 'Текст вакансии', :input_html => { id: :article_body }
       input :contacts
       input :is_promoted
