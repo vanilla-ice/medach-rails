@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200415094022) do
+ActiveRecord::Schema.define(version: 20200416082242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,19 @@ ActiveRecord::Schema.define(version: 20200415094022) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "salary"
+  end
+
+  create_table "vacancy_responses", force: :cascade do |t|
+    t.string "full_name"
+    t.string "phone"
+    t.string "email"
+    t.text "covering_letter"
+    t.bigint "vacancy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "document_id"
+    t.index ["document_id"], name: "index_vacancy_responses_on_document_id"
+    t.index ["vacancy_id"], name: "index_vacancy_responses_on_vacancy_id"
   end
 
   add_foreign_key "articles", "partners"

@@ -1,5 +1,7 @@
 module Api
   class VacanciesController < BaseController
+    before_action :set_vacancy, only: [:respond]
+
     def show
       @vacancy = Vacancy.find_by(id: params[:id])
       if @vacancy
@@ -33,6 +35,18 @@ module Api
       render json: { message: e.message }
     end
 
+    def respond
+      @response = VacancyResponse.new(vacancy_response_params)
+      @response.vacancy = @vacancy
+      if @response.save
+        render json: @response
+      else
+        render json: @response.errors, status: :unprocessable_entity
+      end
+    rescue => e
+      render json: { message: e.message }
+    end
+
     def subscribe
       @subscriber = Subscriber.new(subscribe_params.merge(is_subscribed: true))
       if @subscriber.save
@@ -57,6 +71,12 @@ module Api
 
     private
 
+    def set_vacancy
+      @vacancy = Vacancy.find(params[:id])
+    rescue => e
+      render json: { message: e.message }
+    end
+
     def vacancy_params
       params.permit(
         :title,
@@ -67,6 +87,16 @@ module Api
         :contacts,
         :external_url,
         :content
+      )
+    end
+
+    def vacancy_response_params
+      params.permit(
+        :full_name,
+        :phone,
+        :email,
+        :covering_letter,
+        :document_id
       )
     end
 

@@ -63,6 +63,9 @@ Rails.application.routes.draw do
         post :create
         get 'unsubscribe/:subscriber_id', to: 'vacancies#unsubscribe'
       end
+      member do
+        post :respond
+      end
       post :subscribe, on: :collection
     end
     resources :site_configs, only: :index
