@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200416082242) do
+ActiveRecord::Schema.define(version: 20200416154101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -158,7 +158,7 @@ ActiveRecord::Schema.define(version: 20200416082242) do
 
   create_table "subscribers", force: :cascade do |t|
     t.string "email"
-    t.boolean "is_subscribed"
+    t.boolean "is_subscribed", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(version: 20200416082242) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "salary"
+    t.string "salary"
   end
 
   create_table "vacancy_responses", force: :cascade do |t|

@@ -48,7 +48,7 @@ module Api
     end
 
     def subscribe
-      @subscriber = Subscriber.new(subscribe_params.merge(is_subscribed: true))
+      @subscriber = Subscriber.new(subscribe_params)
       if @subscriber.save
         render json: @subscriber
       else
