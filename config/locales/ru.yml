@@ -35,8 +35,13 @@ ru:
         is_promoted: Продвигаемая
         is_approved: Одобрена
       subscriber:
-         email: email
-         is_subscribed: Подписан
+        email: email
+        is_subscribed: Подписан
+      vacancy_response:
+        full_name: Имя
+        phone: Телефон
+        covering_letter: Сопроводительное письмо
+        document: Файл резюме
     models:
       blog_article:
         one: Блог
@@ -108,6 +113,11 @@ ru:
         few: Подписчика
         many: Подписчики
         other: Подписчики
+      vacancy_response:
+        one: Отклик
+        few: Отклика
+        many: Отклики
+        other: Отклики
   formtastic:
     :yes: "Да"
     :no: "Нет"
