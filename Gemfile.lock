@@ -132,7 +132,7 @@ GEM
     erubi (1.9.0)
     et-orbi (1.2.4)
       tzinfo
-    excon (0.59.0)
+    excon (0.73.0)
     execjs (2.7.0)
     ffi (1.9.18)
     figaro (1.1.1)
