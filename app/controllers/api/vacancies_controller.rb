@@ -83,6 +83,7 @@ module Api
         :employer,
         :location,
         :experience,
+        :employment,
         :salary,
         :contacts,
         :external_url,
