@@ -376,7 +376,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (3.0.0)
-    puma (3.10.0)
+    puma (3.12.4)
     raabro (1.1.6)
     rack (2.0.7)
     rack-cors (1.0.2)
@@ -539,7 +539,7 @@ DEPENDENCIES
   pg (~> 0.18.4)
   pg_search (= 2.1.1)
   pry-rails
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors (~> 1.0)
   rails (~> 5.1.4)
   rails-i18n
