@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190828130921) do
+ActiveRecord::Schema.define(version: 20200418142037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,13 @@ ActiveRecord::Schema.define(version: 20190828130921) do
     t.string "type", default: "MainConfig"
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.string "email"
+    t.boolean "is_subscribed", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -211,6 +218,35 @@ ActiveRecord::Schema.define(version: 20190828130921) do
     t.boolean "approved", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vacancies", force: :cascade do |t|
+    t.boolean "is_approved"
+    t.string "title"
+    t.string "employer"
+    t.string "location"
+    t.string "experience"
+    t.string "contacts"
+    t.boolean "is_promoted"
+    t.string "external_url"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "salary"
+    t.string "employment"
+  end
+
+  create_table "vacancy_responses", force: :cascade do |t|
+    t.string "full_name"
+    t.string "phone"
+    t.string "email"
+    t.text "covering_letter"
+    t.bigint "vacancy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "document_id"
+    t.index ["document_id"], name: "index_vacancy_responses_on_document_id"
+    t.index ["vacancy_id"], name: "index_vacancy_responses_on_vacancy_id"
   end
 
   add_foreign_key "articles", "partners"

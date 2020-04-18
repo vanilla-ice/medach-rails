@@ -57,6 +57,17 @@ Rails.application.routes.draw do
       end
       resources :blogs, only: :index
     end
+    resources :vacancies, only: :show do
+      collection do
+        get :index
+        post :create
+        get 'unsubscribe/:subscriber_id', to: 'vacancies#unsubscribe'
+      end
+      member do
+        post :respond
+      end
+      post :subscribe, on: :collection
+    end
     resources :site_configs, only: :index
     get 'all_articles', to: 'articles#all'
     get 'blogs_page_config', to: 'blogs_configs#index'

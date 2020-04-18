@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Список последних актуальных вакансий:
+    <% @vacancies.each do |vacancy| %>
+      <span>
+        <%= vacancy.title %>
+      </span>
+      <span>
+        <%= vacancy.location %>
+      </span>
+      <span>
+        <%= vacancy.employer %>
+      </span>
+    <% end %>
+  </body>
+</html>
