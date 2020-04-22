@@ -5,7 +5,7 @@ module Api
     META_PARAMS = %i(page per_page sort).freeze
 
     def index
-      @articles = type_class.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
+      @articles = type_class.includes(:tags).published.sort_query(sort_params).filter(index_params.except(*META_PARAMS))
       @articles = @articles.tagged_with(['перевод'], exclude: true) if type_class == LongreadArticle
       paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
@@ -50,7 +50,7 @@ module Api
     end
 
     def all
-      @articles = Article.includes(:tags).published.filter(index_params.except(*META_PARAMS)).sort_query(sort_params)
+      @articles = Article.includes(:tags).published.sort_query(sort_params).filter(index_params.except(*META_PARAMS))
       paginated = @articles.page(params[:page]).per(params[:per_page] || 20)
 
       render_paginated(paginated)
