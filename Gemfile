@@ -35,7 +35,7 @@ gem 'select2-rails'
 gem 'activeadmin-select2', github: 'mfairburn/activeadmin-select2'
 
 gem 'active_model_serializers', '~> 0.10.2'
-gem 'kaminari', '1.1.1'
+gem 'kaminari', '1.2.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
