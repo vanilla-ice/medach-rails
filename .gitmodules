@@ -1,3 +1,3 @@
 [submodule "medach_frontend"]
 	path = medach_frontend
-	url = git@github.com:vanilla-ice/medach_frontend.git
+	url = git@github.com:Medach-Development/medach-frontend.git

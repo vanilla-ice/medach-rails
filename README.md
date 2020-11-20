@@ -4,7 +4,7 @@
 
 1. Clone repo
     ```
-    $ git clone https://github.com/vanilla-ice/medach-rails.git
+    $ git clone https://github.com/Medach-Development/medach-rails.git
     ```
 2. Install ruby v2.4.1, postgres v9.6+, yarn v1.0+
 3. Copy and edit database config 
